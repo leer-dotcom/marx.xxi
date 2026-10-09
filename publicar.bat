@@ -27,7 +27,12 @@ echo.
 set "MSG="
 set /p "MSG=Describe el cambio (Enter = Actualizacion): "
 if "!MSG!"=="" set "MSG=Actualizacion"
-git commit -q -m "!MSG!" || goto :fallo
+rem Firma: dos iniciales aleatorias (L.L., sin W X Y Z) como autor y committer de este commit
+set "AUTOR="
+for /f "delims=" %%i in ('python tools\iniciales.py') do set "AUTOR=%%i"
+if "!AUTOR!"=="" goto :fallo
+echo Firma del commit: !AUTOR!
+git -c user.name="!AUTOR!" commit -q -m "!MSG!" || goto :fallo
 
 git remote get-url origin >nul 2>&1 || (
   echo.
