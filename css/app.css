@@ -340,15 +340,17 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .drawer details[open] > summary::after{transform:translateY(-30%) rotate(-135deg)}
 .m-vol > summary{font-size:18px;line-height:1.2;padding-right:44px}
 .m-dot{width:12px;height:16px;flex:none;background:var(--vol);clip-path:polygon(0 0,100% 50%,0 100%)}
+/* el triángulo ocupa el mismo hueco que los iconos (21px): títulos de volumen alineados con «La publicación» y «Síntesis» */
+.m-vol > summary .m-dot{margin:0 4.5px}
 /* volumen en el menú: su color al pasar el cursor y, desplegado, solo en su título */
 .drawer .m-vol > summary:hover,.drawer .m-vol[open] > summary,.drawer .m-vol > summary[aria-current="page"]{background:color-mix(in srgb,var(--vol) 12%,transparent)}
 /* subapartados del volumen: color del volumen solo bajo el cursor */
 .m-vol .m-sub .m-link:hover,.m-vol .m-arts > summary:hover,.m-vol .m-art:hover{background:color-mix(in srgb,var(--vol) 12%,transparent)}
 .m-sub{padding:0 0 8px}
-.m-sub .m-link{font-size:16.5px;padding:8px 18px 8px 42px}
-.m-arts > summary{font-size:16.5px;padding:8px 44px 8px 42px}
+.m-sub .m-link{font-size:16.5px;padding:8px 18px 8px 51px}
+.m-arts > summary{font-size:16.5px;padding:8px 44px 8px 51px}
 .m-count{font-size:14px;color:var(--ink-3)}
-.m-art{display:flex;align-items:flex-start;gap:4px;padding:2px 8px 2px 54px}
+.m-art{display:flex;align-items:flex-start;gap:4px;padding:2px 8px 2px 63px}
 .m-art.on{box-shadow:inset 3px 0 0 var(--vol)}
 .m-art-title{flex:1;padding:6px 0;color:var(--ink);text-decoration:none;font-size:15.5px;line-height:1.3}
 .m-art-title b{color:var(--vol);font-weight:500}
@@ -404,7 +406,6 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 /* ---------- lector: volumen en la cabecera ---------- */
 .reader .r-head a.r-vol{display:block;text-decoration:none}
 .reader .r-head a.r-vol:hover{text-decoration:underline;text-underline-offset:3px}
-.m-vol.here > summary span{font-weight:700}
 
 /* ---------- subrayados ---------- */
 .reader mark.hl{background:color-mix(in srgb,var(--hl) 45%,transparent);color:inherit;border-radius:2px;padding:0;cursor:pointer;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -617,7 +618,7 @@ div.dg-title{color:var(--ink)}
 }
 
 /* menú: «Artículos» / «Textos» (desplegable) con la misma altura que Presentación, Conclusiones, etc. */
-.drawer .m-sub .m-arts > summary{padding:8px 44px 8px 42px;line-height:1.25;gap:8px}
+.drawer .m-sub .m-arts > summary{padding:8px 44px 8px 51px;line-height:1.25;gap:8px}
 
 /* pestaña principal (Artículos / Textos / Texto completo): como las demás, en negrita y un punto más grande */
 .tabs a.primary{font-weight:700;font-size:18px;color:var(--ink)}
@@ -637,16 +638,16 @@ div.dg-title{color:var(--ink)}
 }
 
 /* menú: el volumen o número de la pantalla actual queda teñido de su color aunque esté plegado */
-.drawer .m-vol.here > summary{background:color-mix(in srgb,var(--vol) 12%,transparent)}
+.drawer .m-vol.here > summary{background:color-mix(in srgb,var(--vol) 12%,transparent);box-shadow:inset 3px 0 0 var(--vol)}
 
 /* síntesis de cada revista: tesis plegables (Tesis N + enunciado; el desarrollo, dentro) */
 .card.thesis{padding:0}
 .card.thesis > summary{list-style:none;cursor:pointer;position:relative;padding:14px 46px 14px 18px}
 .card.thesis > summary::-webkit-details-marker{display:none}
-.card.thesis > summary::after{content:"";position:absolute;right:18px;top:24px;width:9px;height:9px;border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
-.card.thesis[open] > summary::after{transform:translateY(4px) rotate(-135deg)}
+/* flecha del desplegable centrada en vertical respecto al título */
+.card.thesis > summary::after{content:"";position:absolute;right:18px;top:50%;width:9px;height:9px;border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.card.thesis[open] > summary::after{transform:translateY(-30%) rotate(-135deg)}
 .card.thesis > summary h3{margin:4px 0 0}
-.card.thesis > summary:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .card.thesis .thesis-body{padding:0 18px 16px}
 .card.thesis{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 64px)}
 
@@ -663,13 +664,19 @@ body.art-page{--art-bg:color-mix(in srgb,var(--bg) 97.5%,#000);background:var(--
 body.art-page .wrap[data-vol]{--band:color-mix(in srgb,var(--vol) 13%,var(--art-bg))}
 .art-band{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);
   margin-top:-16px;padding-top:36px;padding-bottom:6px;margin-bottom:0}
-body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 95%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;border-bottom-color:transparent}
+body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;border-bottom-color:transparent}
 .art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 70%,transparent)}
 
 /* barras de pestañas desplazables: flecha fija en el borde derecho mientras quedan pestañas por ver */
 .tabs{--tabs-bg:var(--bg)}
 .sheet-body .tabs{--tabs-bg:var(--bg)}
-.tabs-more{display:none;position:sticky;right:0;margin-left:auto;flex:none;align-self:stretch;border:0;cursor:pointer;
+.tabs-more{display:none;position:sticky;right:-10px;margin-left:auto;flex:none;align-self:stretch;border:0;cursor:pointer;
   padding:0 10px 4px 44px;margin-right:-10px;font:inherit;font-size:32px;font-weight:700;line-height:1;color:var(--vol);
   background:linear-gradient(to right,color-mix(in srgb,var(--tabs-bg) 0%,transparent),var(--tabs-bg) 60%)}
 .tabs.more-right .tabs-more{display:block}
+/* flecha izquierda: superpuesta a la primera pestaña visible (no la desplaza al aparecer).
+   left/right -10px: compensan el relleno lateral de la barra para que las flechas lleguen al borde */
+.tabs-less{display:none;position:sticky;left:-10px;z-index:1;flex:none;align-self:stretch;border:0;cursor:pointer;
+  width:54px;margin:0 -54px 0 -10px;padding:0 30px 4px 10px;text-align:left;font:inherit;font-size:32px;font-weight:700;line-height:1;color:var(--vol);
+  background:linear-gradient(to left,color-mix(in srgb,var(--tabs-bg) 0%,transparent),var(--tabs-bg) 45%)}
+.tabs.more-left .tabs-less{display:block}

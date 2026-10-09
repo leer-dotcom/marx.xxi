@@ -1,6 +1,6 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
 import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS, volHead, volShort, artLabel, byline } from './data.js';
-import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, toast } from './app.js';
+import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -159,7 +159,7 @@ export async function readerView(key, params) {
       ${blocks.orphans.map(n => `<p class="note" data-orphan="${n}"><b>${n}.</b> ${rich(esc(blocks.notes[n].text))}</p>`).join('')}</section>` : ''}
     <footer class="reader-end">
       <div class="fleuron" aria-hidden="true">❧</div>
-      ${a ? `<a class="btn ghost" href="#/articulo/${a.id}/4">Ver la cita y la conclusión de la guía</a>` : ''}
+      ${a ? `<a class="btn ghost" href="#/articulo/${a.id}/${TAB.cita}">Ver la cita y la conclusión de la guía</a>` : ''}
       ${next ? `<a class="btn" href="#/leer/${next.id}">Siguiente: ${esc(next.title)}</a>` : ''}
     </footer>
   </article>
@@ -491,10 +491,11 @@ function mount({ key, a, v, blocks, params }) {
 
   // --- guía del artículo sin salir del texto
   if (a) $('#r-guide').onclick = () => {
-    const names = ART_TABS.slice(0, 5);
-    const render = t => `<nav class="tabs" aria-label="Guía">${names.map((n, i) =>
-      `<a href="#" data-gt="${i}" ${i === t ? 'aria-current="page"' : ''}>${n}</a>`).join('')}</nav><div id="g-body">${guideTab(a, t)}</div>`;
-    openSheet('Guía de estudio', render(0), body => {
+    // todas las pestañas de la guía menos «Texto completo», que es el propio lector
+    const ids = ART_TABS.map((_, i) => i).filter(i => i !== TAB.texto);
+    const render = t => `<nav class="tabs" aria-label="Guía">${ids.map(i =>
+      `<a href="#" data-gt="${i}" ${i === t ? 'aria-current="page"' : ''}>${ART_TABS[i]}</a>`).join('')}</nav><div id="g-body">${guideTab(a, t)}</div>`;
+    openSheet('Guía de estudio', render(ids[0]), body => {
       body.onclick = e => {
         const t = e.target.closest('[data-gt]'); if (!t) return;
         e.preventDefault(); body.innerHTML = render(+t.dataset.gt); body.scrollTop = 0;

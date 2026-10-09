@@ -2,7 +2,7 @@
 
 Versión web (PWA) del lector de *Marx XXI*. Es una **biblioteca** con dos publicaciones del mismo proyecto editorial:
 *Marx XXI* (revista-libro, cinco volúmenes) y *Nuevo Ciclo* (revista trimestral, cuatro números hasta junio de 2026).
-Textos íntegros con resúmenes, argumento, esquemas, conceptos, glosario, tesis comunes, referencias cruzadas entre las
+Textos íntegros con píldoras, resúmenes, esquemas, conceptos, glosario, tesis comunes, referencias cruzadas entre las
 dos revistas, síntesis de la biblioteca, índice de autores y búsqueda. Es HTML, CSS y JavaScript sin dependencias ni paso de compilación,
 y se puede publicar directamente en GitHub Pages.
 

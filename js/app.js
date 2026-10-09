@@ -93,24 +93,29 @@ function hydrateDiagrams(root = document) {
 new MutationObserver(() => { hydrateDiagrams(); initTabs(); }).observe(document.body, { childList: true, subtree: true });
 
 // ---------------------------------------------------------------- barras de pestañas desplazables
-// En pantallas estrechas no caben todas las pestañas: una flecha «›» fija en el borde derecho (con un
-// degradado sobre la última pestaña visible) indica que hay más y, al tocarla, desplaza la barra.
+// En pantallas estrechas no caben todas las pestañas: una flecha fija en cada borde («‹» a la izquierda,
+// «›» a la derecha, con un degradado sobre la pestaña cortada) indica que hay más por ese lado y, al
+// tocarla, desplaza la barra.
 // Al abrir la página, la pestaña actual se lleva a la vista.
 function updateTabs(nav) {
-  const more = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 4;
-  nav.classList.toggle('more-right', more);
+  nav.classList.toggle('more-right', nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 4);
+  nav.classList.toggle('more-left', nav.scrollLeft > 4);
 }
 function initTabs(root = document) {
   for (const nav of root.querySelectorAll('nav.tabs:not([data-tabs-ready])')) {
     nav.dataset.tabsReady = '';
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'tabs-more';
-    btn.setAttribute('aria-label', 'Ver más pestañas');
-    btn.tabIndex = -1;
-    btn.textContent = '›';
-    btn.onclick = e => { e.preventDefault(); nav.scrollBy({ left: nav.clientWidth * 0.7, behavior: 'smooth' }); };
-    nav.append(btn);
+    const arrow = (cls, text, dir) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = cls;
+      btn.setAttribute('aria-label', 'Ver más pestañas');
+      btn.tabIndex = -1;
+      btn.textContent = text;
+      btn.onclick = e => { e.preventDefault(); nav.scrollBy({ left: dir * nav.clientWidth * 0.7, behavior: 'smooth' }); };
+      return btn;
+    };
+    nav.prepend(arrow('tabs-less', '‹', -1));
+    nav.append(arrow('tabs-more', '›', 1));
     nav.addEventListener('scroll', () => updateTabs(nav), { passive: true });
     const cur = nav.querySelector('[aria-current="page"]');
     if (cur && cur.offsetLeft + cur.offsetWidth > nav.clientWidth - 40) nav.scrollLeft = cur.offsetLeft - 24;
@@ -244,7 +249,7 @@ function menuHtml() {
       `<details class="m-arts">
          <summary><span>Artículos</span><span class="m-count">${v.articles.length}</span></summary>
          ${v.articles.map(a => `<div class="m-art${a.id === curArt ? ' on' : ''}">
-           <a class="m-art-title" href="#/articulo/${a.id}/0"><b>${isInterview(a) ? 'Entrevista.' : a.number + '.'}</b> ${esc(a.title)}<small>${esc(byline(a))}</small></a>
+           <a class="m-art-title" href="#/articulo/${a.id}/${TAB.pildoras}"><b>${isInterview(a) ? 'Entrevista.' : a.number + '.'}</b> ${esc(a.title)}<small>${esc(byline(a))}</small></a>
            <a class="m-art-read" href="#/leer/${a.id}" aria-label="Texto completo de ${esc(a.title)}" title="Texto completo">${ICON.book}</a>
          </div>`).join('')}
        </details>`,
@@ -488,6 +493,8 @@ function collectionView(p) {
 }
 
 const VOL_TABS = ['Presentación', 'Artículos', 'Conclusiones', 'Mapa', 'Relaciones'];
+/** Primera letra en mayúscula (solo al mostrar; los datos no se tocan). */
+const upperFirst = s => s.charAt(0).toLocaleUpperCase('es') + s.slice(1);
 
 function volumeView(p, n, tab = 1) {
   const v = p && volume(n, p.id);
@@ -516,18 +523,21 @@ function volumeView(p, n, tab = 1) {
           </div>
           <div class="art-actions" role="group" aria-label="Abrir ${esc(a.title)}">
             <a class="btn stack" href="#/leer/${a.id}">${ICON.book}<span>Texto<br>completo</span></a>
-            <a class="btn ghost stack" href="#/articulo/${a.id}/0">${ICON.guide}<span>Guía de<br>estudio</span></a>
+            <a class="btn ghost stack" href="#/articulo/${a.id}/${TAB.pildoras}">${ICON.guide}<span>Guía de<br>estudio</span></a>
           </div>
         </div>`;
       }).join('');
   } else if (tab === 2) {
-    body = v.conclusions.map((c, i) => `<div class="card"><div class="eyebrow vol">Conclusión ${i + 1}</div><h3>${esc(c.title)}</h3><p style="margin:0">${esc(c.text)}</p></div>`).join('');
+    // conclusiones plegables, como las tesis de la síntesis: a la vista el número y el enunciado
+    body = v.conclusions.map((c, i) => `<details class="card thesis" id="conclusion-${i + 1}">
+      <summary><div class="eyebrow vol">Conclusión ${i + 1}</div><h3>${esc(c.title)}</h3></summary>
+      <div class="thesis-body"><p style="margin:0">${esc(c.text)}</p></div></details>`).join('');
   } else if (tab === 3) {
     body = figure(v.concept_map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>';
   } else {
     body = v.relations.map(r => {
       const nums = [...r.pair.matchAll(/Art\.\s*(\d+)/g)].map(m => +m[1]);
-      return `<div class="card"><div class="eyebrow vol">${esc(r.pair)}</div>${r.concept ? `<h3>${esc(r.concept)}</h3>` : ''}<p style="margin:0">${esc(r.text)}</p>
+      return `<div class="card"><div class="eyebrow vol">${esc(r.pair)}</div>${r.concept ? `<h3>${esc(upperFirst(r.concept))}</h3>` : ''}<p style="margin:0">${esc(r.text)}</p>
         <div class="chips">${nums.map(n => v.articles.find(a => a.number === n)).filter(Boolean).map(a =>
           `<a class="chip" href="#/articulo/${a.id}">${artLabel(a)} · ${esc(byline(a).split(/ y | e |,/)[0])}</a>`).join('')}</div></div>`;
     }).join('');
@@ -578,7 +588,9 @@ function volNeighbourLink(v, dir, tab) {
   </a>`;
 }
 
-export const ART_TABS = ['Resumen', 'Argumento', 'Esquema', 'Conceptos', 'Cita y conclusión', 'Texto completo'];
+export const ART_TABS = ['Píldoras', 'Texto completo', 'Resumen', 'Esquema', 'Conceptos', 'Cita y conclusión'];
+/** Índice de cada pestaña del artículo (las rutas #/articulo/<id>/<n> usan estos números). */
+export const TAB = { pildoras: 0, texto: 1, resumen: 2, esquema: 3, conceptos: 4, cita: 5 };
 
 /** Contenido de las pestañas de guía (también se usa en la hoja «Guía» del lector). */
 /** Aviso breve de que la guía está elaborada con IA (Claude), con enlace a los créditos. */
@@ -588,17 +600,17 @@ export function aiNote() {
 }
 
 export function guideTab(a, tab) {
-  return guideTabBody(a, tab) + (tab >= 0 && tab <= 4 ? aiNote() : '');
+  return guideTabBody(a, tab) + (tab >= 0 && tab < ART_TABS.length && tab !== TAB.texto ? aiNote() : '');
 }
 
 function guideTabBody(a, tab) {
   switch (tab) {
-    case 0: return `<div class="prose">${paras(a.summary)}</div>
+    case TAB.resumen: return `<div class="prose">${paras(a.summary)}</div>
       ${a.references ? `<div class="card" style="margin-top:16px"><div class="eyebrow">Interlocutores y referencias</div><p style="margin:6px 0 0">${esc(a.references)}</p></div>` : ''}`;
-    case 1: return `<ol class="steps">${a.argument.map(s => `<li><h3>${esc(s.title)}</h3><div>${esc(s.text)}</div></li>`).join('')}</ol>`;
-    case 2: return a.diagrams.length ? a.diagrams.map(figure).join('') + '<p class="muted small">Toca el esquema para ampliarlo.</p>' : '<p class="empty">Este artículo no tiene esquema.</p>';
-    case 3: return `<dl class="concepts">${a.concepts.map(c => `<dt>${esc(c.term)}</dt><dd>${esc(c.definition)}</dd>`).join('')}</dl>`;
-    case 4: return `${a.quote ? `<blockquote class="quote">${esc(a.quote.text)}<footer>— ${esc(a.quote.source)}</footer></blockquote>` : ''}
+    case TAB.pildoras: return `<ol class="steps">${a.argument.map(s => `<li><h3>${esc(s.title)}</h3><div>${esc(s.text)}</div></li>`).join('')}</ol>`;
+    case TAB.esquema: return a.diagrams.length ? a.diagrams.map(figure).join('') + '<p class="muted small">Toca el esquema para ampliarlo.</p>' : '<p class="empty">Este artículo no tiene esquema.</p>';
+    case TAB.conceptos: return `<dl class="concepts">${a.concepts.map(c => `<dt>${esc(c.term)}</dt><dd>${esc(c.definition)}</dd>`).join('')}</dl>`;
+    case TAB.cita: return `${a.quote ? `<blockquote class="quote">${esc(a.quote.text)}<footer>— ${esc(a.quote.source)}</footer></blockquote>` : ''}
       <h2 style="font-size:22px;margin-bottom:10px">Conclusión</h2><div class="prose">${paras(a.conclusion)}</div>`;
     default: return '';
   }
@@ -636,7 +648,7 @@ function articleView(id, tab = 0) {
   const p = store.position(a.id)?.progress || 0;
   const { prev, next } = neighbours(a.id);
   let body;
-  if (tab === 5) {
+  if (tab === TAB.texto) {
     body = `<div class="card">
       <div class="eyebrow">Texto íntegro del artículo</div>
       <p style="margin:8px 0 2px">≈ ${a.word_count.toLocaleString('es')} palabras · ${minutes(a.word_count)} min de lectura</p>
@@ -663,9 +675,9 @@ function articleView(id, tab = 0) {
         const toArt = x => ({ href: `#/articulo/${x.id}/${tab}`, label: artLabel(x), tip: x.title, vol: v.key });
         return headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toVol, 'Artículos contiguos');
       })()}</header>
-    ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, ART_TABS.length - 1)}
+    ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, TAB.texto)}
     ${body}
-    ${tab !== 5 ? relatedPanel(a) : ''}
+    ${tab !== TAB.texto ? relatedPanel(a) : ''}
     <nav class="neighbours" aria-label="Artículos contiguos">
       ${prev ? neighbourLink(prev, 'prev', tab) : '<span></span>'}
       ${next ? neighbourLink(next, 'next', tab) : '<span></span>'}
@@ -732,7 +744,7 @@ function whereLinks(where, p = pub()) {
       || v.articles.find(a => n.split(/\s+(?:y|e)\s+/).every(x => fold(byline(a)).includes(fold(x))));
     const found = [...new Set(names.map(find).filter(Boolean))];
     if (!found.length) out.push([volName(v), v.href]);
-    else for (const a of found) out.push([`${v.label || 'Vol. ' + v.number} · ${byline(a).split(/ y | e /)[0]}`, `#/articulo/${a.id}`]);
+    else for (const a of found) out.push([`${volShort(v)} · ${byline(a).split(/ y | e /)[0]}`, `#/articulo/${a.id}`]);
   }
   return out;
 }
@@ -745,7 +757,7 @@ function glossaryView(params) {
   const volChips = () => {
     const p = L.byId[pubId] || (multi ? null : L.pubs[0]);
     if (!p) return '';
-    return [['', 'Todos'], ...p.volumes.map(v => [v.key, v.label || 'Vol. ' + v.number])].map(([k, label]) =>
+    return [['', 'Todos'], ...p.volumes.map(v => [v.key, volShort(v)])].map(([k, label]) =>
       `<button class="chip" data-v="${k}" aria-pressed="${k === vol}">${esc(label)}</button>`).join('');
   };
   const html = `<div class="wrap">
@@ -772,7 +784,7 @@ function glossaryView(params) {
       const items = L.glossary.filter(e => (!pubId || e.pub.id === pubId) && (!vol || e.v.key === vol) && (!bridges || e.bridge)
         && (!f || fold(e.c.term).includes(f) || fold(e.c.definition).includes(f)));
       $('#g-count').textContent = `${items.length} conceptos`;
-      list.innerHTML = items.slice(0, 400).map(e => `<a class="list-item" href="#/articulo/${e.a.id}/3" data-vol="${e.v.key}">
+      list.innerHTML = items.slice(0, 400).map(e => `<a class="list-item" href="#/articulo/${e.a.id}/${TAB.conceptos}" data-vol="${e.v.key}">
         <h3 style="font-weight:700"><span style="color:var(--vol)">▪</span> ${highlight(e.c.term, q)}${multi && e.bridge ? ' <span class="tag olive">puente</span>' : ''}</h3><p>${highlight(e.c.definition, q)}</p>
         <div class="src">${multi && !e.v.label ? 'Marx XXI · ' : ''}${esc(volName(e.v))} · ${esc(byline(e.a))} · ${esc(e.a.title)}</div></a>`).join('') || '<p class="empty">Sin resultados.</p>';
     };
@@ -813,7 +825,7 @@ function synthesisView(tab = 0, params) {
     `<a href="${thesesHref(p)}?t=${n}">${n}</a>`).join(', ') : '—';
   const artChip = x => {
     const hit = article(x.article);
-    return hit ? `<a class="chip" href="#/articulo/${hit.a.id}/3" data-vol="${hit.v.key}"><i class="m-dot"></i>${esc(volShort(hit.v))} · ${esc(byline(hit.a))}${x.term && fold(x.term) !== fold(hit.a.title) ? ` — <i>${esc(x.term)}</i>` : ''}</a>` : '';
+    return hit ? `<a class="chip" href="#/articulo/${hit.a.id}/${TAB.conceptos}" data-vol="${hit.v.key}"><i class="m-dot"></i>${esc(volShort(hit.v))} · ${esc(byline(hit.a))}${x.term && fold(x.term) !== fold(hit.a.title) ? ` — <i>${esc(x.term)}</i>` : ''}</a>` : '';
   };
   let body;
   if (tab === 0) {
@@ -883,7 +895,7 @@ function mapsView(params) {
           ${titled(`<b>Mapa ${v.label ? 'del número' : 'del volumen'}</b> · ${esc(v.label ? v.title : volName(v))}`, v.concept_map, `${v.href}/3`)}
           ${v.articles.filter(a => a.diagrams.length).map(a => titled(
             `<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
-            a.diagrams[0], `#/articulo/${a.id}/2`) + a.diagrams.slice(1).map(d => `<div class="dg-item">${figure(d)}</div>`).join('')).join('')}
+            a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`) + a.diagrams.slice(1).map(d => `<div class="dg-item">${figure(d)}</div>`).join('')).join('')}
         </div>
       </details>`;
       }).join('')}
@@ -957,7 +969,7 @@ function searchView(params) {
     const item = h => {
       const [label, color] = KIND[h.kind];
       const href = h.kind === 'fulltext' ? `#/leer/${h.a.id}?b=${h.block}&q=${encodeURIComponent(input.value.trim())}`
-        : h.a ? `#/articulo/${h.a.id}/${h.kind === 'argument' ? 1 : h.kind === 'concept' ? 3 : 0}`
+        : h.a ? `#/articulo/${h.a.id}/${h.kind === 'argument' ? TAB.pildoras : h.kind === 'concept' ? TAB.conceptos : h.kind === 'summary' ? TAB.resumen : TAB.pildoras}`
           : h.kind === 'thesis' ? thesesHref(h.pub)
             : h.kind === 'synthesis' ? `#/sintesis/1?t=${h.n}` : `${h.v.href}/2`;
       // la publicación como prefijo cuando hay más de una
@@ -973,7 +985,7 @@ function searchView(params) {
       history.replaceState(null, '', '#/buscar' + (q ? `?q=${encodeURIComponent(q)}${full ? '&en=textos' : ''}` : ''));
       $('#s-prog').hidden = true;
       if (q.length < 2) {
-        list.innerHTML = `<p class="empty">Busca en resúmenes, argumentos, conceptos, conclusiones y tesis comunes. Cambia a «Textos íntegros» para buscar dentro de los ${lib().allArticles.length} artículos completos.</p>`;
+        list.innerHTML = `<p class="empty">Busca en resúmenes, píldoras, conceptos, conclusiones y tesis comunes. Cambia a «Textos íntegros» para buscar dentro de los ${lib().allArticles.length} artículos completos.</p>`;
         return;
       }
       if (!full) {
@@ -1222,7 +1234,7 @@ async function route() {
     case 'marx-xxi': case 'nuevo-ciclo': out = collectionView(pub(parts[0])); break;
     case 'volumen': case 'tomo': out = volumeView(pub('marx-xxi'), +parts[1], parts[2] != null ? +parts[2] : 1); break;
     case 'numero': out = volumeView(pub('nuevo-ciclo'), +parts[1], parts[2] != null ? +parts[2] : 1); break;
-    case 'articulo': out = articleView(parts[1], +(parts[2] || 0)); break;
+    case 'articulo': out = articleView(parts[1], +(parts[2] || TAB.pildoras)); break;
     case 'leer': out = await readerView(parts[1], params); break;
     case 'tesis': {
       const other = parts[1] && !/^\d+$/.test(parts[1]); // #/tesis/nuevo-ciclo[/n] o #/tesis[/n]

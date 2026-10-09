@@ -73,7 +73,10 @@ const isNumbered = v => !!v.label;
 /** «Volumen 3» · «Nuevo Ciclo #003» */
 export const volName = v => isNumbered(v) ? `${v.pub.name} ${v.label}` : `${v.pub.unit} ${v.number}`;
 /** «Vol. 3» · «#003» */
-export const volShort = v => isNumbered(v) ? v.label : `${v.pub.unit_short || 'Vol.'} ${v.number}`;
+/** Sigla de una publicación: «NC» para Nuevo Ciclo (iniciales del nombre), salvo que el manifiesto dé `short`. */
+export const pubShort = p => p.short || p.name.split(/\s+/).map(w => w[0]).join('').toUpperCase();
+/** «Vol. 3» · «NC#003» */
+export const volShort = v => isNumbered(v) ? `${pubShort(v.pub)}${v.label}` : `${v.pub.unit_short || 'Vol.'} ${v.number}`;
 /** Cabecera de volumen: «Volumen 3 · Independencia política» · «Nuevo Ciclo #003 · marzo de 2026» */
 export const volHead = v => isNumbered(v) ? `${volName(v)} · ${monthName(v.month)}` : `${volName(v)} · ${v.title}`;
 /** Fecha corta del volumen: «2024» · «marzo de 2026» */
@@ -234,7 +237,7 @@ export function snippet(textStr, q, radius = 90) {
 // ---------- búsqueda ----------
 
 export const KIND = {
-  title: ['Título', 'soft'], summary: ['Resumen', 'soft'], argument: ['Argumento', 'soft'],
+  title: ['Título', 'soft'], summary: ['Resumen', 'soft'], argument: ['Píldoras', 'soft'],
   concept: ['Concepto', ''], conclusion: ['Conclusión', 'olive'], thesis: ['Tesis común', 'olive'],
   synthesis: ['Síntesis', 'olive'], fulltext: ['Texto íntegro', ''],
 };
