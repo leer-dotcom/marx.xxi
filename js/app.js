@@ -302,19 +302,19 @@ function volumeView(n, tab = 1) {
     body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada artículo o ve directamente al texto íntegro.</p>` +
       v.articles.map(a => {
         const p = pos[a.id]?.progress || 0;
-        return `<div class="card">
-          <div class="row-actions"><span class="eyebrow vol">Art. ${a.number}</span><span class="muted" style="font-size:15px">≈ ${minutes(a.word_count)} min</span><span class="grow"></span>${read.has(a.id) ? '<span class="check">✓ leído</span>' : ''}</div>
-          <h3><a href="#/articulo/${a.id}" style="color:inherit;text-decoration:none">${esc(a.title)}</a></h3>
-          <div class="muted small">${esc(a.author)}</div>
-          <div class="art-row">
+        return `<div class="card art-card">
+          <div class="art-main">
+            <div class="row-actions"><span class="eyebrow vol">Art. ${a.number}</span><span class="muted" style="font-size:15px">≈ ${minutes(a.word_count)} min</span><span class="grow"></span>${read.has(a.id) ? '<span class="check">✓ leído</span>' : ''}</div>
+            <h3><a href="#/articulo/${a.id}" style="color:inherit;text-decoration:none">${esc(a.title)}</a></h3>
+            <div class="muted small">${esc(a.author)}</div>
             <div class="art-sum">
               ${a.summary[0] ? `<p class="small">${esc(a.summary[0])}</p>` : ''}
               ${p > 0 ? `<div class="progress" title="${pct(p)} % leído"><i style="width:${pct(p)}%"></i></div>` : ''}
             </div>
-            <div class="art-actions">
-              <a class="btn stack" href="#/leer/${a.id}">${ICON.book}<span>Texto<br>completo</span></a>
-              <a class="btn ghost stack" href="#/articulo/${a.id}/0">${ICON.guide}<span>Guía de<br>estudio</span></a>
-            </div>
+          </div>
+          <div class="art-actions" role="group" aria-label="Abrir ${esc(a.title)}">
+            <a class="btn stack" href="#/leer/${a.id}">${ICON.book}<span>Texto<br>completo</span></a>
+            <a class="btn ghost stack" href="#/articulo/${a.id}/0">${ICON.guide}<span>Guía de<br>estudio</span></a>
           </div>
         </div>`;
       }).join('');
