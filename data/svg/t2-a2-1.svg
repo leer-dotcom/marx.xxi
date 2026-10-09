@@ -7,7 +7,7 @@
 <line class="sv-line" marker-end="url(#m2-2-arrow)" x1="365" x2="390" y1="57" y2="57"></line>
 <rect class="sv-box" height="50" rx="2" width="160" x="390" y="32"></rect><text class="sv-t" text-anchor="middle" x="470" y="53">Centralización de</text><text class="sv-t" text-anchor="middle" x="470" y="69">capital en el Estado</text>
 <line class="sv-line" marker-end="url(#m2-2-arrow)" x1="550" x2="575" y1="57" y2="57"></line>
-<rect class="sv-box-red" height="50" rx="2" width="160" x="575" y="32"></rect><text class="sv-tr" text-anchor="middle" x="655" y="53">Socialdemocracia clásica</text><text class="sv-t2" text-anchor="middle" x="655" y="69">salario indirecto</text>
+<rect class="sv-box-red" height="50" rx="2" width="160" x="575" y="32"></rect><text class="sv-tr" text-anchor="middle" x="655" y="53" style="font-size:13.4px;letter-spacing:0">Socialdemocracia clásica</text><text class="sv-t2" text-anchor="middle" x="655" y="69">salario indirecto</text>
 <path class="sv-line-dash" d="M655 82 L655 104 L100 104 L100 126" marker-end="url(#m2-2-arrow)"></path>
 <text class="sv-t3" text-anchor="middle" x="380" y="99">ofensiva neoliberal</text>
 <text class="sv-t3" x="20" y="120">FASE 2 · crisis</text>

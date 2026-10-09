@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Marx XXI · Lector</title>
+  <title>Lector de Marx XXI</title>
   <meta name="description" content="Lector de la revista Marx XXI: textos íntegros de los cinco tomos con resúmenes, esquemas, conceptos y glosario.">
   <meta name="theme-color" content="#2c332f">
   <link rel="manifest" href="manifest.webmanifest">
@@ -23,16 +23,15 @@
   <a class="skip" href="#view">Saltar al contenido</a>
   <header class="appbar" id="appbar">
     <div class="lead">
+      <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú" aria-haspopup="dialog"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <button class="icon-btn" id="btn-back" aria-label="Volver" hidden>
         <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
       </button>
-      <a class="icon-btn" id="btn-home" href="#/" aria-label="Inicio"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></a>
     </div>
-    <a class="brand" href="#/">Marx XXI</a>
+    <a class="brand" href="#/"><span class="brand-pre">Lector de</span> Marx XXI</a>
     <div class="appbar-title" id="appbar-title"></div>
     <nav class="appbar-actions" aria-label="Herramientas">
       <a class="icon-btn" href="#/buscar" aria-label="Buscar" title="Buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
-      <a class="icon-btn opt" href="#/marcadores" aria-label="Marcadores" title="Marcadores"><svg viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></svg></a>
       <a class="icon-btn" href="#/ajustes" aria-label="Ajustes de lectura" title="Ajustes de lectura"><svg viewBox="0 0 24 24"><path d="M4 18L9 6l5 12M5.8 14h6.4M15 18l3-7 3 7M15.9 16h4.2"/></svg></a>
     </nav>
   </header>
@@ -45,6 +44,14 @@
       <button class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="sheet-body" id="sheet-body"></div>
+  </dialog>
+
+  <dialog id="menu" class="drawer" aria-label="Menú">
+    <div class="drawer-head">
+      <a class="drawer-brand" href="#/"><span class="brand-pre">Lector de</span> Marx XXI</a>
+      <button class="icon-btn" data-close aria-label="Cerrar menú"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <nav class="drawer-body" id="menu-body" aria-label="Secciones"></nav>
   </dialog>
 
   <dialog id="zoom" class="zoom" aria-label="Esquema ampliado">

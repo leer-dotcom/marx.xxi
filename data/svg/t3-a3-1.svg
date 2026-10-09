@@ -18,12 +18,12 @@
 <path class="sv-line" d="M557 62 H580" marker-end="url(#m3-3-arrow)"></path>
 <rect class="sv-box-green" height="60" rx="2" width="166" x="582" y="32"></rect>
 <text class="sv-t" text-anchor="middle" x="665" y="54">Socialismo</text>
-<text class="sv-t2" text-anchor="middle" x="665" y="70">desarrollo pleno de los individuos</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="70" style="font-size:10.9px;letter-spacing:0">desarrollo pleno de los individuos</text>
 <text class="sv-t3" text-anchor="middle" x="665" y="85">fin</text>
 <text class="sv-t3" x="12" y="134">RAZONES FRENTE A RECETAS</text>
 <rect class="sv-box-green" height="66" rx="2" width="175" x="95" y="150"></rect>
 <text class="sv-t" text-anchor="middle" x="182" y="172">Conciencia socialista</text>
-<text class="sv-t2" text-anchor="middle" x="182" y="188">razones objetivas y comunicables</text>
+<text class="sv-t2" text-anchor="middle" x="182" y="188" style="font-size:11.6px;letter-spacing:0">razones objetivas y comunicables</text>
 <text class="sv-t2" text-anchor="middle" x="182" y="203">«fórmula en construcción»</text>
 <path class="sv-line-dash" d="M150 216 L80 330"></path>
 <path class="sv-line-dash" d="M215 216 L285 330"></path>
@@ -32,12 +32,12 @@
 <rect class="sv-box-red" height="72" rx="2" width="160" x="12" y="332"></rect>
 <text class="sv-tr" text-anchor="middle" x="92" y="354">Dogmatismo / secta</text>
 <text class="sv-t2" text-anchor="middle" x="92" y="370">receta, autoridad externa,</text>
-<text class="sv-t2" text-anchor="middle" x="92" y="385">«porque lo dice el marxismo»</text>
+<text class="sv-t2" text-anchor="middle" x="92" y="385" style="font-size:11.9px;letter-spacing:0">«porque lo dice el marxismo»</text>
 <rect class="sv-box-red" height="72" rx="2" width="168" x="192" y="332"></rect>
-<text class="sv-tr" text-anchor="middle" x="276" y="354">Oportunismo / eclecticismo</text>
-<text class="sv-t2" text-anchor="middle" x="276" y="370">sacrifica el fin, modas teóricas,</text>
+<text class="sv-tr" text-anchor="middle" x="276" y="354" style="font-size:12.9px;letter-spacing:0">Oportunismo / eclecticismo</text>
+<text class="sv-t2" text-anchor="middle" x="276" y="370" style="font-size:12.0px;letter-spacing:0">sacrifica el fin, modas teóricas,</text>
 <text class="sv-t2" text-anchor="middle" x="276" y="385">conciencia económica</text>
-<text class="sv-t2" text-anchor="middle" x="186" y="440">El dogma se refuta a sí mismo: toda autoridad es concedida activamente</text>
+<text class="sv-t2" text-anchor="middle" x="186" y="440" style="transform:translateX(8.1px)">El dogma se refuta a sí mismo: toda autoridad es concedida activamente</text>
 <text class="sv-t3" x="400" y="134">DIFUSIÓN: DE LA CABEZA AL PARTIDO DE MASAS</text>
 <rect class="sv-box" height="300" rx="2" width="348" x="400" y="146"></rect>
 <text class="sv-t" text-anchor="middle" x="574" y="166">Partido de masas políticamente independiente</text>

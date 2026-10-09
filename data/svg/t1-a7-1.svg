@@ -18,7 +18,7 @@
 <text class="sv-t3" text-anchor="end" x="130" y="330">espontáneamente</text>
 <rect class="sv-box" height="48" rx="2" width="200" x="20" y="392"></rect>
 <text class="sv-t" text-anchor="middle" x="120" y="412">Oportunismo</text>
-<text class="sv-t2" text-anchor="middle" x="120" y="428">Bernstein: «el movimiento lo es todo»</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="428" style="font-size:11.8px;letter-spacing:0">Bernstein: «el movimiento lo es todo»</text>
 <line class="sv-line-red" marker-end="url(#m1-7-arrow)" x1="335" x2="430" y1="235" y2="390"></line>
 <text class="sv-t3" x="404" y="330">lucha teórica</text>
 <text class="sv-t3" x="412" y="344">y organización</text>

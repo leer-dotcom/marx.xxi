@@ -9,7 +9,7 @@
 <text class="sv-t3" text-anchor="middle" x="380" y="266">1921</text>
 <text class="sv-t3" text-anchor="middle" x="380" y="328">Lenin</text>
 <rect class="sv-box-blue" height="52" rx="2" width="235" x="12" y="50"></rect>
-<text class="sv-t" text-anchor="middle" x="129" y="71">Zetkin: «cuestión femenina moderna»</text>
+<text class="sv-t" text-anchor="middle" x="129" y="71" style="font-size:13.2px;letter-spacing:0">Zetkin: «cuestión femenina moderna»</text>
 <text class="sv-t2" text-anchor="middle" x="129" y="88">lucha de clase; voto como instrumento</text>
 <path class="sv-line" d="M129 102 V110" marker-end="url(#m3-4-arrow)"></path>
 <rect class="sv-box-blue" height="52" rx="2" width="235" x="12" y="112"></rect>
@@ -22,18 +22,18 @@
 <path class="sv-line" d="M129 226 V234" marker-end="url(#m3-4-arrow)"></path>
 <rect class="sv-box-blue" height="52" rx="2" width="235" x="12" y="236"></rect>
 <text class="sv-t" text-anchor="middle" x="129" y="257">III Congreso de la Comintern</text>
-<text class="sv-t2" text-anchor="middle" x="129" y="274">tesis para la propaganda entre las mujeres</text>
+<text class="sv-t2" text-anchor="middle" x="129" y="274" style="font-size:12.8px;letter-spacing:0">tesis para la propaganda entre las mujeres</text>
 <path class="sv-line" d="M129 288 V296" marker-end="url(#m3-4-arrow)"></path>
 <rect class="sv-box-blue" height="52" rx="2" width="235" x="12" y="298"></rect>
 <text class="sv-t" text-anchor="middle" x="129" y="319">Lenin: organismos específicos</text>
 <text class="sv-t2" text-anchor="middle" x="129" y="336">del partido, no organizaciones separadas</text>
 <rect class="sv-box-gold" height="52" rx="2" width="235" x="513" y="50"></rect>
-<text class="sv-t" text-anchor="middle" x="630" y="71">Economicismo + salarización masiva</text>
+<text class="sv-t" text-anchor="middle" x="630" y="71" style="font-size:13.7px;letter-spacing:0">Economicismo + salarización masiva</text>
 <text class="sv-t2" text-anchor="middle" x="630" y="88">años 60-70: condiciones del feminismo</text>
 <path class="sv-line" d="M630 102 V110" marker-end="url(#m3-4-arrow)"></path>
 <rect class="sv-box-gold" height="52" rx="2" width="235" x="513" y="112"></rect>
 <text class="sv-t" text-anchor="middle" x="630" y="133">Feminismo hegemónico</text>
-<text class="sv-t2" text-anchor="middle" x="630" y="150">moviliza, pero sin programa emancipador</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="150" style="font-size:12.8px;letter-spacing:0">moviliza, pero sin programa emancipador</text>
 <path class="sv-line" d="M630 164 V172" marker-end="url(#m3-4-arrow)"></path>
 <rect class="sv-box-gold" height="52" rx="2" width="235" x="513" y="174"></rect>
 <text class="sv-t" text-anchor="middle" x="630" y="195">Sujetos devaluados, miseria moral</text>
@@ -49,9 +49,9 @@
 <text class="sv-tw" text-anchor="middle" x="380" y="417">forma transitoria para construir el Partido Comunista</text>
 <rect class="sv-box-red" height="56" rx="2" width="150" x="12" y="376"></rect>
 <text class="sv-tr" text-anchor="middle" x="87" y="396">Error: identitarismo</text>
-<text class="sv-t2" text-anchor="middle" x="87" y="412">«oprimido = revolucionario»</text>
+<text class="sv-t2" text-anchor="middle" x="87" y="412" style="font-size:11.4px;letter-spacing:0">«oprimido = revolucionario»</text>
 <rect class="sv-box-red" height="56" rx="2" width="150" x="598" y="376"></rect>
-<text class="sv-tr" text-anchor="middle" x="673" y="396">Error: falso universalismo</text>
+<text class="sv-tr" text-anchor="middle" x="673" y="396" style="font-size:11.7px;letter-spacing:0">Error: falso universalismo</text>
 <text class="sv-t2" text-anchor="middle" x="673" y="412">economicista</text>
 <path class="sv-line" d="M380 432 V444 M82 444 H674 M82 444 V454 M230 444 V454 M378 444 V454 M526 444 V454 M674 444 V454"></path>
 <rect class="sv-box-green" height="48" rx="2" width="140" x="12" y="456"></rect>

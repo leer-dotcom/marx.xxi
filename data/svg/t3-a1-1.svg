@@ -3,7 +3,7 @@
 <text class="sv-t3" x="12" y="20">CADENA DE MEDIACIONES</text>
 <rect class="sv-box-ink" height="64" rx="2" width="165" x="12" y="30"></rect>
 <text class="sv-tw" text-anchor="middle" x="94" y="56">Cosmovisión capitalista</text>
-<text class="sv-tw" text-anchor="middle" x="94" y="74">formas naturalizadas, raíz</text>
+<text class="sv-tw" text-anchor="middle" x="94" y="74" style="font-size:13.0px;letter-spacing:0">formas naturalizadas, raíz</text>
 <path class="sv-line" d="M177 62 H200" marker-end="url(#m3-1-arrow)"></path>
 <rect class="sv-box-blue" height="64" rx="2" width="165" x="202" y="30"></rect>
 <text class="sv-t" text-anchor="middle" x="284" y="52">Bloques culturales</text>
@@ -28,7 +28,7 @@
 <text class="sv-t2" text-anchor="middle" x="140" y="228">afectos, hechos</text>
 <rect class="sv-box-blue" height="48" rx="2" width="180" x="50" y="248"></rect>
 <text class="sv-t" text-anchor="middle" x="140" y="268">Propaganda</text>
-<text class="sv-t2" text-anchor="middle" x="140" y="284">razón, nexo coyuntura-estrategia</text>
+<text class="sv-t2" text-anchor="middle" x="140" y="284" style="font-size:12.3px;letter-spacing:0">razón, nexo coyuntura-estrategia</text>
 <rect class="sv-box" height="48" rx="2" width="240" x="20" y="304"></rect>
 <text class="sv-t" text-anchor="middle" x="140" y="324">Teoría</text>
 <text class="sv-t2" text-anchor="middle" x="140" y="340">base científica (CEP + bolchevismo)</text>
@@ -37,7 +37,7 @@
 <path class="sv-line" d="M230 272 H328" marker-end="url(#m3-1-arrow)"></path>
 <rect class="sv-box-green" height="48" rx="2" width="170" x="330" y="192"></rect>
 <text class="sv-t" text-anchor="middle" x="415" y="212">Hegemonización</text>
-<text class="sv-t2" text-anchor="middle" x="415" y="228">nueva cultura política proletaria</text>
+<text class="sv-t2" text-anchor="middle" x="415" y="228" style="font-size:11.9px;letter-spacing:0">nueva cultura política proletaria</text>
 <rect class="sv-box-green" height="48" rx="2" width="170" x="330" y="248"></rect>
 <text class="sv-t" text-anchor="middle" x="415" y="268">Unificación</text>
 <text class="sv-t2" text-anchor="middle" x="415" y="284">debate racional + juventud</text>

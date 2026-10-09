@@ -3,15 +3,15 @@
 <rect class="sv-box" height="44" rx="2" width="160" x="10" y="28"></rect>
 <text class="sv-t" text-anchor="middle" x="90" y="46">Ley del valor</text><text class="sv-t2" text-anchor="middle" x="90" y="62">mercado mundial</text>
 <rect class="sv-box" height="44" rx="2" width="160" x="203" y="28"></rect>
-<text class="sv-t" text-anchor="middle" x="283" y="46">Estado capitalista</text><text class="sv-t2" text-anchor="middle" x="283" y="62">sistema interestatal jerárquico</text>
+<text class="sv-t" text-anchor="middle" x="283" y="46">Estado capitalista</text><text class="sv-t2" text-anchor="middle" x="283" y="62" style="font-size:11.9px;letter-spacing:0">sistema interestatal jerárquico</text>
 <rect class="sv-box-red" height="44" rx="2" width="160" x="397" y="28"></rect>
-<text class="sv-tr" text-anchor="middle" x="477" y="46">Imperialismo</text><text class="sv-t2" text-anchor="middle" x="477" y="62">forma política del mercado mundial</text>
+<text class="sv-tr" text-anchor="middle" x="477" y="46">Imperialismo</text><text class="sv-t2" text-anchor="middle" x="477" y="62" style="font-size:9.9px;letter-spacing:0">forma política del mercado mundial</text>
 <rect class="sv-box-gold" height="44" rx="2" width="160" x="590" y="28"></rect>
 <text class="sv-t" text-anchor="middle" x="670" y="46">Hegemonía de EE. UU.</text><text class="sv-t2" text-anchor="middle" x="670" y="62">dólar, OTAN, FMI, bases</text>
 <rect class="sv-box-ink" height="44" rx="2" width="160" x="10" y="122"></rect>
-<text class="sv-tw" text-anchor="middle" x="90" y="140">Internacional comunista</text><text class="sv-tw" text-anchor="middle" x="90" y="157">partido de masas internacional</text>
+<text class="sv-tw" text-anchor="middle" x="90" y="140" style="font-size:13.7px;letter-spacing:0">Internacional comunista</text><text class="sv-tw" text-anchor="middle" x="90" y="157" style="font-size:10.8px;letter-spacing:0">partido de masas internacional</text>
 <rect class="sv-box-gold" height="44" rx="2" width="160" x="397" y="122"></rect>
-<text class="sv-t" text-anchor="middle" x="477" y="140">Multipolaridad / BRICS+</text><text class="sv-t2" text-anchor="middle" x="477" y="156">China, Rusia</text>
+<text class="sv-t" text-anchor="middle" x="477" y="140" style="font-size:13.0px;letter-spacing:0">Multipolaridad / BRICS+</text><text class="sv-t2" text-anchor="middle" x="477" y="156">China, Rusia</text>
 <rect class="sv-box-green" height="44" rx="2" width="160" x="590" y="122"></rect>
 <text class="sv-tgr" text-anchor="middle" x="670" y="140">Derrotismo / defensismo</text><text class="sv-t2" text-anchor="middle" x="670" y="156">doble delimitación táctica</text>
 <rect class="sv-box-blue" height="44" rx="2" width="160" x="203" y="216"></rect>
@@ -19,7 +19,7 @@
 <rect class="sv-box-green" height="44" rx="2" width="160" x="397" y="216"></rect>
 <text class="sv-tgr" text-anchor="middle" x="477" y="234">Independencia política</text><text class="sv-t2" text-anchor="middle" x="477" y="250">de clase</text>
 <rect class="sv-box-red" height="44" rx="2" width="160" x="590" y="216"></rect>
-<text class="sv-tr" text-anchor="middle" x="670" y="234">Cuestión colonial</text><text class="sv-t2" text-anchor="middle" x="670" y="250">Palestina: lucha anticolonial</text>
+<text class="sv-tr" text-anchor="middle" x="670" y="234">Cuestión colonial</text><text class="sv-t2" text-anchor="middle" x="670" y="250" style="font-size:12.6px;letter-spacing:0">Palestina: lucha anticolonial</text>
 <rect class="sv-box-blue" height="44" rx="2" width="160" x="10" y="310"></rect>
 <text class="sv-tb" text-anchor="middle" x="90" y="328">Estalinismo</text><text class="sv-t2" text-anchor="middle" x="90" y="344">socialismo en un solo país</text>
 <rect class="sv-box-blue" height="44" rx="2" width="160" x="590" y="310"></rect>

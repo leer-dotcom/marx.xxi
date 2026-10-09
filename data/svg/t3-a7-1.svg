@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, árbol genealógico de las familias del comunismo según el momento de la caída; en medio, las cuatro condiciones históricas del frente único con la marca de que hoy solo se cumple la cuarta; abajo, matriz de contraste en tres filas entre el canon trotskista (Programa de Transición, frente único, consejos como doble poder) y la propuesta del Movimiento Socialista (reformas como acumulación de fuerzas, independencia política primero, consejos socialistas)" role="img" viewBox="0 0 760 490">
 <defs><marker id="m3-7-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
 <rect class="sv-box-ink" height="44" rx="2" width="150" x="12" y="14"></rect>
-<text class="sv-tw" text-anchor="middle" x="87" y="32">Comunismo del siglo XX</text>
+<text class="sv-tw" text-anchor="middle" x="87" y="32" style="font-size:12.5px;letter-spacing:0">Comunismo del siglo XX</text>
 <text class="sv-tw" text-anchor="middle" x="87" y="48">«¿cuándo se jodió?»</text>
 <path class="sv-line" d="M162 36 H188" marker-end="url(#m3-7-arrow)"></path>
 <rect class="sv-soft" height="44" rx="2" width="128" x="190" y="14"></rect>

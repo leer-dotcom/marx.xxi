@@ -12,12 +12,12 @@
 <rect class="sv-soft" height="140" rx="2" width="300" x="140" y="194"></rect>
 <rect class="sv-soft" height="140" rx="2" width="300" x="450" y="194"></rect>
 <rect class="sv-box" height="70" rx="2" width="135" x="150" y="54"></rect>
-<text class="sv-t" text-anchor="middle" x="217" y="72">Materialismo vulgar</text>
+<text class="sv-t" text-anchor="middle" x="217" y="72" style="font-size:13.4px;letter-spacing:0">Materialismo vulgar</text>
 <text class="sv-t2" text-anchor="middle" x="217" y="87">primacía de las</text>
 <text class="sv-t2" text-anchor="middle" x="217" y="101">fuerzas productivas,</text>
 <text class="sv-t2" text-anchor="middle" x="217" y="115">leyes técnicas</text>
 <rect class="sv-box" height="70" rx="2" width="135" x="295" y="54"></rect>
-<text class="sv-t" text-anchor="middle" x="362" y="72">Dualismo de Sanjuán</text>
+<text class="sv-t" text-anchor="middle" x="362" y="72" style="font-size:12.8px;letter-spacing:0">Dualismo de Sanjuán</text>
 <text class="sv-t2" text-anchor="middle" x="362" y="87">cesura kantiana;</text>
 <text class="sv-t2" text-anchor="middle" x="362" y="101">superación como</text>
 <text class="sv-t2" text-anchor="middle" x="362" y="115">contingencia</text>

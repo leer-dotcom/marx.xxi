@@ -15,7 +15,7 @@
 <text class="sv-t" text-anchor="middle" x="210" y="144">Familia</text>
 <rect class="sv-box-blue" height="48" rx="2" width="180" x="330" y="116"></rect>
 <text class="sv-tb" text-anchor="middle" x="420" y="136">Sociedad civil</text>
-<text class="sv-t2" text-anchor="middle" x="420" y="152">sistema de necesidades, mercado</text>
+<text class="sv-t2" text-anchor="middle" x="420" y="152" style="font-size:12.3px;letter-spacing:0">sistema de necesidades, mercado</text>
 <rect class="sv-box-green" height="48" rx="2" width="180" x="540" y="116"></rect>
 <text class="sv-tgr" text-anchor="middle" x="630" y="136">Estado</text>
 <text class="sv-t2" text-anchor="middle" x="630" y="152">libertad concreta</text>

@@ -2,8 +2,8 @@
 <defs><marker id="m5-2-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
 <path class="sv-line" d="M14 160 L746 160" marker-end="url(#m5-2-tl)"></path>
 <path class="sv-line-dash" d="M30 160 L30 140"></path><circle class="sv-dot" cx="30" cy="160" r="4"></circle>
-<text class="sv-t3" text-anchor="middle" x="30" y="132">1944</text>
-<text class="sv-t2" text-anchor="middle" x="30" y="101">Bretton Woods:</text><text class="sv-t2" text-anchor="middle" x="30" y="116">dólar = oro</text>
+<text class="sv-t3" text-anchor="middle" x="30" y="132" style="transform:translateX(13.6px)">1944</text>
+<text class="sv-t2" text-anchor="middle" x="30" y="101" style="transform:translateX(13.6px)">Bretton Woods:</text><text class="sv-t2" text-anchor="middle" x="30" y="116" style="transform:translateX(13.6px)">dólar = oro</text>
 <path class="sv-line-dash" d="M84 160 L84 180"></path><circle class="sv-dot-b" cx="84" cy="160" r="4"></circle>
 <text class="sv-t3" text-anchor="middle" x="84" y="194">1947</text>
 <text class="sv-t2" text-anchor="middle" x="84" y="212">Doctrina</text><text class="sv-t2" text-anchor="middle" x="84" y="227">Truman</text>
@@ -41,8 +41,8 @@
 <text class="sv-t3" text-anchor="middle" x="678" y="132">2003</text>
 <text class="sv-t2" text-anchor="middle" x="678" y="101">Irak: decretos</text><text class="sv-t2" text-anchor="middle" x="678" y="116">de privatización</text>
 <path class="sv-line-dash" d="M732 160 L732 180"></path><circle class="sv-dot-b" cx="732" cy="160" r="4"></circle>
-<text class="sv-t3" text-anchor="middle" x="732" y="194">2008</text>
-<text class="sv-t2" text-anchor="middle" x="732" y="212">crisis: fin</text><text class="sv-t2" text-anchor="middle" x="732" y="227">del impulso</text>
+<text class="sv-t3" text-anchor="middle" x="732" y="194" style="transform:translateX(-5.2px)">2008</text>
+<text class="sv-t2" text-anchor="middle" x="732" y="212" style="transform:translateX(-5.2px)">crisis: fin</text><text class="sv-t2" text-anchor="middle" x="732" y="227" style="transform:translateX(-5.2px)">del impulso</text>
 <rect class="sv-box-green" height="40" rx="2" width="332" x="20" y="258"></rect>
 <text class="sv-t3" text-anchor="middle" x="186" y="274">1945-1965</text><text class="sv-t2" text-anchor="middle" x="186" y="290">contención: concesiones (zanahoria) y palo</text>
 <rect class="sv-box-gold" height="40" rx="2" width="200" x="356" y="258"></rect>

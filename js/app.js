@@ -15,19 +15,22 @@ const ICON = {
   mark: '<svg viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></svg>',
   aa: '<svg viewBox="0 0 24 24"><path d="M4 18L9 6l5 12M5.8 14h6.4M15 18l3-7 3 7M15.9 16h4.2"/></svg>',
   info: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
+  guide: '<svg viewBox="0 0 24 24"><path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c3 2.3 8 2.3 11 0V11"/></svg>',
+  home: '<svg viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5"/></svg>',
   x: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
 };
 export { ICON };
 
 // ---------------------------------------------------------------- utilidades de UI
 
-export function setBar(title, { back = true } = {}) {
+/** Título y botón «atrás». `up` es el nivel superior (no la pantalla anterior del historial). */
+export function setBar(title, { back = true, up = '#/' } = {}) {
   $('#appbar-title').textContent = title || '';
   $('#btn-back').hidden = !back;
-  $('#btn-home').hidden = back;
-  document.title = title ? `${title} · Marx XXI` : 'Marx XXI · Lector';
+  $('#btn-back').dataset.up = up;
+  document.title = title ? `${title} · Lector de Marx XXI` : 'Lector de Marx XXI';
 }
-$('#btn-back').addEventListener('click', () => (history.length > 1 ? history.back() : (location.hash = '#/')));
+$('#btn-back').addEventListener('click', e => { location.hash = e.currentTarget.dataset.up || '#/'; });
 
 export function toast(msg) {
   const t = $('#toast');
@@ -129,12 +132,73 @@ export function figure(f) {
   </figure>`;
 }
 
+// ---------------------------------------------------------------- menú lateral
+// Todas las secciones de la app, con desplegables por volumen y por lista de artículos.
+function menuHtml() {
+  const L = lib();
+  const here = location.hash || '#/';
+  const m = here.match(/^#\/(?:volumen|tomo)\/(\d)|^#\/(?:articulo|leer)\/t(\d)-|^#\/leer\/tomo-(\d)/);
+  const curVol = m ? +(m[1] || m[2] || m[3]) : 0;
+  const curArt = (here.match(/^#\/(?:articulo|leer)\/(t\d-a\d+)/) || [])[1];
+  const on = href => (here === href || here.split('?')[0] === href) ? ' aria-current="page"' : '';
+  const link = (href, label, icon = '') => `<a class="m-link" href="${href}"${on(href)}>${icon}<span>${label}</span></a>`;
+  const lastId = store.last();
+  const last = lastId && !lastId.startsWith('tomo-') ? article(lastId) : null;
+  const vols = L.volumes.map(v => {
+    const sub = [
+      v.presentation_text || v.presentation?.length ? link(`#/volumen/${v.number}/0`, 'Presentación') : '',
+      `<details class="m-arts"${curArt && curArt.startsWith(`t${v.number}-`) ? ' open' : ''}>
+         <summary><span>Artículos</span><span class="m-count">${v.articles.length}</span></summary>
+         ${v.articles.map(a => `<div class="m-art${a.id === curArt ? ' on' : ''}">
+           <a class="m-art-title" href="#/articulo/${a.id}/0"><b>${a.number}.</b> ${esc(a.title)}<small>${esc(a.author)}</small></a>
+           <a class="m-art-read" href="#/leer/${a.id}" aria-label="Texto completo de ${esc(a.title)}" title="Texto completo">${ICON.book}</a>
+         </div>`).join('')}
+       </details>`,
+      link(`#/volumen/${v.number}/2`, 'Conclusiones'),
+      link(`#/volumen/${v.number}/3`, 'Mapa conceptual'),
+      link(`#/volumen/${v.number}/4`, 'Relaciones'),
+    ].join('');
+    return `<details class="m-vol" data-vol="${v.number}"${v.number === curVol ? ' open' : ''}>
+      <summary><i class="m-dot"></i><span><small>Volumen ${v.number}</small>${esc(v.title)}</span></summary>
+      <div class="m-sub">${link(`#/volumen/${v.number}`, 'Índice del volumen')}${sub}</div>
+    </details>`;
+  }).join('');
+  return `
+    ${link('#/', 'Inicio', ICON.home)}
+    ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
+    <div class="m-group">Volúmenes</div>
+    ${vols}
+    <div class="m-group">Estudio</div>
+    ${link('#/tesis', 'Conclusiones comunes', ICON.hub)}
+    ${link('#/glosario', 'Glosario', ICON.az)}
+    ${link('#/buscar', 'Búsqueda', ICON.search)}
+    ${link('#/marcadores', 'Marcadores', ICON.mark)}
+    <div class="m-group">Aplicación</div>
+    ${link('#/ajustes', 'Modo lectura', ICON.aa)}
+    ${link('#/acerca', 'Acerca de y créditos', ICON.info)}`;
+}
+
+export function openMenu() {
+  const d = $('#menu');
+  $('#menu-body').innerHTML = menuHtml();
+  d.showModal();
+  (d.querySelector('[aria-current="page"]') || d.querySelector('.m-art.on'))?.scrollIntoView({ block: 'center' });
+}
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-open-menu]')) { e.preventDefault(); openMenu(); return; }
+  // cualquier enlace del menú lo cierra (aunque lleve a la pantalla actual)
+  const a = e.target.closest('#menu a[href]');
+  if (a) $('#menu').close();
+});
+$('#menu').addEventListener('click', e => { if (e.target.id === 'menu') e.currentTarget.close(); });
+
 const minutes = w => Math.max(1, Math.round(w / 230));
 const pct = p => Math.round((p || 0) * 100);
 const paras = list => list.map(p => `<p>${esc(p)}</p>`).join('');
-function tabs(base, names, current) {
+/** Pestañas; `primary` marca la principal (Artículos en el volumen, Texto completo en el artículo). */
+function tabs(base, names, current, primary = -1) {
   return `<nav class="tabs" aria-label="Secciones">${names.map((n, i) =>
-    `<a href="${base}/${i}" ${i === current ? 'aria-current="page"' : ''}>${esc(n)}</a>`).join('')}</nav>`;
+    `<a href="${base}/${i}"${i === primary ? ' class="primary"' : ''}${i === current ? ' aria-current="page"' : ''}>${esc(n)}</a>`).join('')}</nav>`;
 }
 
 // ---------------------------------------------------------------- vistas
@@ -210,12 +274,15 @@ function volumeView(n, tab = 1) {
           <div class="row-actions"><span class="eyebrow vol">Art. ${a.number}</span><span class="muted" style="font-size:15px">≈ ${minutes(a.word_count)} min</span><span class="grow"></span>${read.has(a.id) ? '<span class="check">✓ leído</span>' : ''}</div>
           <h3><a href="#/articulo/${a.id}" style="color:inherit;text-decoration:none">${esc(a.title)}</a></h3>
           <div class="muted small">${esc(a.author)}</div>
-          ${a.summary[0] ? `<p class="small" style="margin:8px 0 0;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${esc(a.summary[0])}</p>` : ''}
-          ${p > 0 ? `<div class="progress"><i style="width:${pct(p)}%"></i></div>` : ''}
-          <div class="chips">
-            <a class="chip" href="#/articulo/${a.id}/0">Resumen</a>
-            <a class="chip" href="#/articulo/${a.id}/2">Esquema</a>
-            <a class="chip primary" href="#/leer/${a.id}">${p > 0 ? 'Seguir leyendo' : 'Leer'}</a>
+          <div class="art-row">
+            <div class="art-sum">
+              ${a.summary[0] ? `<p class="small">${esc(a.summary[0])}</p>` : ''}
+              ${p > 0 ? `<div class="progress" title="${pct(p)} % leído"><i style="width:${pct(p)}%"></i></div>` : ''}
+            </div>
+            <div class="art-actions">
+              <a class="btn stack" href="#/leer/${a.id}">${ICON.book}<span>Texto<br>completo</span></a>
+              <a class="btn ghost stack" href="#/articulo/${a.id}/0">${ICON.guide}<span>Guía de<br>estudio</span></a>
+            </div>
           </div>
         </div>`;
       }).join('');
@@ -235,7 +302,7 @@ function volumeView(n, tab = 1) {
     <header class="page-head"><div class="eyebrow vol">${esc(v.eyebrow)}</div><h1>${esc(v.title)}</h1>
       ${v.subtitle ? `<div class="sub">${esc(v.subtitle)}</div>` : ''}
       ${v.editor ? `<div class="muted small" style="margin-top:6px">Edición: ${esc(v.editor)}</div>` : ''}</header>
-    ${tabs(`#/volumen/${v.number}`, VOL_TABS, tab)}
+    ${tabs(`#/volumen/${v.number}`, VOL_TABS, tab, 1)}
     ${body}
   </div>`;
 }
@@ -270,7 +337,7 @@ function articleView(id, tab = 0) {
   const hit = article(id);
   if (!hit) return notFound();
   const { v, a } = hit;
-  setBar(`Volumen ${v.number} · Art. ${a.number}`);
+  setBar(`Volumen ${v.number} · Art. ${a.number}`, { up: `#/volumen/${v.number}` });
   const p = store.position(a.id)?.progress || 0;
   const { prev, next } = neighbours(a.id);
   let body;
@@ -289,14 +356,25 @@ function articleView(id, tab = 0) {
   return `<div class="wrap" data-vol="${v.number}">
     <header class="page-head"><a class="eyebrow vol" href="#/volumen/${v.number}" style="text-decoration:none">Volumen ${v.number} · ${esc(v.title)}</a>
       <h1>${esc(a.title)}</h1><div class="by">${esc(a.author)}</div></header>
-    ${tabs(`#/articulo/${a.id}`, ART_TABS, tab)}
+    ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, ART_TABS.length - 1)}
     ${body}
     <nav class="neighbours" aria-label="Artículos contiguos">
-      ${prev ? `<a href="#/articulo/${prev.id}"><small>← Anterior</small>${esc(prev.title)}</a>` : '<span></span>'}
-      ${next ? `<a class="next" href="#/articulo/${next.id}"><small>Siguiente →</small>${esc(next.title)}</a>` : '<span></span>'}
+      ${prev ? neighbourLink(prev, 'prev') : '<span></span>'}
+      ${next ? neighbourLink(next, 'next') : '<span></span>'}
     </nav>
   </div>
   <a class="btn fab" href="#/leer/${a.id}" data-vol="${v.number}">${ICON.book}${p > 0 ? 'Seguir leyendo' : 'Leer texto completo'}</a>`;
+}
+
+/** Enlace al artículo anterior/siguiente: volumen, título del volumen, título y autor (cruza de volumen). */
+function neighbourLink(a, dir) {
+  const v = article(a.id)?.v;
+  return `<a class="${dir}" href="#/articulo/${a.id}" data-vol="${v?.number || ''}">
+    <small>${dir === 'next' ? 'Siguiente →' : '← Anterior'}</small>
+    ${v ? `<span class="nb-vol">Volumen ${v.number} · ${esc(v.title)}</span>` : ''}
+    <span class="nb-title">${esc(a.title)}</span>
+    <span class="nb-author">${esc(a.author)}</span>
+  </a>`;
 }
 
 function thesesView() {

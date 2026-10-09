@@ -2,8 +2,8 @@
 <defs><marker id="m5-4-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
 <path class="sv-line" d="M14 160 L746 160" marker-end="url(#m5-4-tl)"></path>
 <path class="sv-line-dash" d="M30 160 L30 140"></path><circle class="sv-dot-b" cx="30" cy="160" r="4"></circle>
-<text class="sv-t3" text-anchor="middle" x="30" y="132">1917</text>
-<text class="sv-t2" text-anchor="middle" x="30" y="101">Octubre: toma</text><text class="sv-t2" text-anchor="middle" x="30" y="116">del poder</text>
+<text class="sv-t3" text-anchor="middle" x="30" y="132" style="transform:translateX(10.2px)">1917</text>
+<text class="sv-t2" text-anchor="middle" x="30" y="101" style="transform:translateX(10.2px)">Octubre: toma</text><text class="sv-t2" text-anchor="middle" x="30" y="116" style="transform:translateX(10.2px)">del poder</text>
 <path class="sv-line-dash" d="M84 160 L84 180"></path><circle class="sv-dot" cx="84" cy="160" r="5"></circle>
 <text class="sv-t3" text-anchor="middle" x="84" y="194">1918</text>
 <text class="sv-t2" text-anchor="middle" x="84" y="212">Brest-Litovsk</text><text class="sv-tr" text-anchor="middle" x="84" y="227">Retirada 1</text>
@@ -41,8 +41,8 @@
 <text class="sv-t3" text-anchor="middle" x="678" y="132">1947</text>
 <text class="sv-t2" text-anchor="middle" x="678" y="101">Plan Marshall;</text><text class="sv-t2" text-anchor="middle" x="678" y="116">Cominform</text>
 <path class="sv-line-dash" d="M732 160 L732 180"></path><circle class="sv-dot-b" cx="732" cy="160" r="4"></circle>
-<text class="sv-t3" text-anchor="middle" x="732" y="194">1949</text>
-<text class="sv-t2" text-anchor="middle" x="732" y="212">victoria de Mao;</text><text class="sv-t2" text-anchor="middle" x="732" y="227">Kostov y Rajk</text>
+<text class="sv-t3" text-anchor="middle" x="732" y="194" style="transform:translateX(-18.0px)">1949</text>
+<text class="sv-t2" text-anchor="middle" x="732" y="212" style="transform:translateX(-18.0px)">victoria de Mao;</text><text class="sv-t2" text-anchor="middle" x="732" y="227" style="transform:translateX(-18.0px)">Kostov y Rajk</text>
 <rect class="sv-box-red" height="40" rx="2" width="70" x="20" y="262"></rect>
 <text class="sv-t3" text-anchor="middle" x="55" y="278">1919-23</text><text class="sv-t2" text-anchor="middle" x="55" y="294">ofensiva</text>
 <rect class="sv-box" height="40" rx="2" width="98" x="94" y="262"></rect>
@@ -52,11 +52,11 @@
 <rect class="sv-box" height="40" rx="2" width="92" x="298" y="262"></rect>
 <text class="sv-t3" text-anchor="middle" x="344" y="278">1935-39</text><text class="sv-t2" text-anchor="middle" x="344" y="294">frente popular</text>
 <rect class="sv-box" height="40" rx="2" width="88" x="394" y="262"></rect>
-<text class="sv-t3" text-anchor="middle" x="438" y="278">1939-41</text><text class="sv-t2" text-anchor="middle" x="438" y="294">pacto con Hitler</text>
+<text class="sv-t3" text-anchor="middle" x="438" y="278">1939-41</text><text class="sv-t2" text-anchor="middle" x="438" y="294" style="font-size:11.1px;letter-spacing:0">pacto con Hitler</text>
 <rect class="sv-box" height="40" rx="2" width="98" x="486" y="262"></rect>
-<text class="sv-t3" text-anchor="middle" x="535" y="278">1941-43</text><text class="sv-t2" text-anchor="middle" x="535" y="294">guerra patriótica</text>
+<text class="sv-t3" text-anchor="middle" x="535" y="278">1941-43</text><text class="sv-t2" text-anchor="middle" x="535" y="294" style="font-size:12.4px;letter-spacing:0">guerra patriótica</text>
 <rect class="sv-box" height="40" rx="2" width="90" x="588" y="262"></rect>
-<text class="sv-t3" text-anchor="middle" x="633" y="278">1944-47</text><text class="sv-t2" text-anchor="middle" x="633" y="294">unidad nacional</text>
+<text class="sv-t3" text-anchor="middle" x="633" y="278">1944-47</text><text class="sv-t2" text-anchor="middle" x="633" y="294" style="font-size:11.6px;letter-spacing:0">unidad nacional</text>
 <rect class="sv-box" height="40" rx="2" width="64" x="682" y="262"></rect>
-<text class="sv-t3" text-anchor="middle" x="714" y="278">1947-</text><text class="sv-t2" text-anchor="middle" x="714" y="294">dos campos</text>
+<text class="sv-t3" text-anchor="middle" x="714" y="278">1947-</text><text class="sv-t2" text-anchor="middle" x="714" y="294" style="font-size:10.4px;letter-spacing:0">dos campos</text>
 </svg>

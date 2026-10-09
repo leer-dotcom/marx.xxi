@@ -25,7 +25,7 @@
 <text class="sv-t3" x="12" y="296">DOS SENTIDOS DE HEGEMONÍA</text>
 <rect class="sv-box-red" height="110" rx="2" width="165" x="12" y="304"></rect>
 <text class="sv-tr" text-anchor="middle" x="94" y="326">Hegemonía populista</text>
-<text class="sv-t2" text-anchor="middle" x="94" y="345">discurso, «sentidos comunes»</text>
+<text class="sv-t2" text-anchor="middle" x="94" y="345" style="font-size:12.2px;letter-spacing:0">discurso, «sentidos comunes»</text>
 <text class="sv-t2" text-anchor="middle" x="94" y="360">99 % contra 1 %</text>
 <text class="sv-t2" text-anchor="middle" x="94" y="375">el Estado como instrumento</text>
 <text class="sv-t2" text-anchor="middle" x="94" y="390">alianzas interclasistas</text>
@@ -34,7 +34,7 @@
 <text class="sv-tb" text-anchor="middle" x="289" y="326">Hegemonía gramsciana</text>
 <text class="sv-t2" text-anchor="middle" x="289" y="345">unidad de lo económico,</text>
 <text class="sv-t2" text-anchor="middle" x="289" y="360">lo político y lo militar</text>
-<text class="sv-t2" text-anchor="middle" x="289" y="375">bloque histórico: tres grados</text>
+<text class="sv-t2" text-anchor="middle" x="289" y="375" style="font-size:12.8px;letter-spacing:0">bloque histórico: tres grados</text>
 <text class="sv-t2" text-anchor="middle" x="289" y="390">de relación de fuerzas</text>
 <path class="sv-line-red" d="M638 246 V290" marker-end="url(#m3-6-arrow)"></path>
 <rect class="sv-box-ink" height="52" rx="2" width="348" x="400" y="292"></rect>
@@ -49,10 +49,10 @@
 <rect class="sv-box-green" height="58" rx="2" width="108" x="520" y="382"></rect>
 <text class="sv-t" text-anchor="middle" x="574" y="400">2. Subordinar</text>
 <text class="sv-t2" text-anchor="middle" x="574" y="415">sectores al</text>
-<text class="sv-t2" text-anchor="middle" x="574" y="430">proyecto comunista</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="430" style="font-size:11.6px;letter-spacing:0">proyecto comunista</text>
 <path class="sv-line" d="M628 411 H638" marker-end="url(#m3-6-arrow)"></path>
 <rect class="sv-box-green" height="58" rx="2" width="108" x="640" y="352"></rect>
 <text class="sv-t" text-anchor="middle" x="694" y="370">3. Apoyos</text>
 <text class="sv-t2" text-anchor="middle" x="694" y="385">tácticos, con</text>
-<text class="sv-t2" text-anchor="middle" x="694" y="400">separación orgánica</text>
+<text class="sv-t2" text-anchor="middle" x="694" y="400" style="font-size:11.5px;letter-spacing:0">separación orgánica</text>
 </svg>

@@ -13,6 +13,7 @@ const SVG = {
   up: '<svg viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>',
   down: '<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>',
   x: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
 };
 
 function blockHtml(b, i, q, marked, firstPara) {
@@ -36,7 +37,7 @@ export async function readerView(key, params) {
   const path = pv ? pv.presentation_text : a.text_file;
   const title = a ? a.title : (v.number === 5 ? 'Nota introductoria' : 'Presentación');
   const author = a ? a.author : (v.editor || '');
-  document.title = `${title} · Marx XXI`;
+  document.title = `${title} · Lector de Marx XXI`;
 
   let blocks;
   try { blocks = await text(path); }
@@ -53,6 +54,7 @@ export async function readerView(key, params) {
 
   const html = `
   <div class="reader-top"><div class="inner" id="r-top">
+    <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
     <a class="icon-btn" href="${a ? '#/articulo/' + a.id : '#/volumen/' + v.number + '/0'}" aria-label="Volver" id="r-back">${SVG.back}</a>
     <div class="titles"><b>${esc(title)}</b><span>${esc(author)}</span></div>
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
@@ -77,7 +79,7 @@ export async function readerView(key, params) {
     <div class="seek"><input type="range" id="r-seek" min="0" max="1000" value="0" aria-label="Posición en el texto"><span class="pct" id="r-pct">0 %</span></div>
     <div class="buttons">
       <button class="bar-btn" id="r-index">${SVG.list}Índice</button>
-      ${a ? `<button class="bar-btn" id="r-guide">${SVG.guide}Guía</button>` : ''}
+      ${a ? `<button class="bar-btn" id="r-guide">${SVG.guide}Guía de estudio</button>` : ''}
       <button class="bar-btn" id="r-aa">${SVG.aa}Aa</button>
     </div>
   </div></div>`;
@@ -260,7 +262,7 @@ function mount({ key, a, blocks, marks, params }) {
     const names = ART_TABS.slice(0, 5);
     const render = t => `<nav class="tabs" aria-label="Guía">${names.map((n, i) =>
       `<a href="#" data-gt="${i}" ${i === t ? 'aria-current="page"' : ''}>${n}</a>`).join('')}</nav><div id="g-body">${guideTab(a, t)}</div>`;
-    openSheet('Guía del artículo', render(0), body => {
+    openSheet('Guía de estudio', render(0), body => {
       body.onclick = e => {
         const t = e.target.closest('[data-gt]'); if (!t) return;
         e.preventDefault(); body.innerHTML = render(+t.dataset.gt); body.scrollTop = 0;
@@ -283,7 +285,7 @@ function mount({ key, a, blocks, marks, params }) {
 
   // --- teclado (escritorio)
   function onKey(e) {
-    if (e.target.matches('input,textarea') || $('#sheet').open) return;
+    if (e.target.matches('input,textarea') || $('#sheet').open || $('#menu').open) return;
     if ((e.ctrlKey || e.metaKey) && e.key === 'f') { e.preventDefault(); openFind(); }
     else if (e.key === 'Escape' && finding) closeFind();
   }

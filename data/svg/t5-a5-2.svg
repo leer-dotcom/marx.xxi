@@ -2,8 +2,8 @@
 <defs><marker id="m5-5-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
 <path class="sv-line" d="M12 160 L748 160" marker-end="url(#m5-5-tl)"></path>
 <path class="sv-line-dash" d="M25 160 L25 140"></path><circle class="sv-dot" cx="25" cy="160" r="4"></circle>
-<text class="sv-t3" text-anchor="middle" x="25" y="132">1864</text>
-<text class="sv-t2" text-anchor="middle" x="25" y="101">fundación</text><text class="sv-t2" text-anchor="middle" x="25" y="116">de la AIT</text>
+<text class="sv-t3" text-anchor="middle" x="25" y="132" style="transform:translateX(3.6px)">1864</text>
+<text class="sv-t2" text-anchor="middle" x="25" y="101" style="transform:translateX(3.6px)">fundación</text><text class="sv-t2" text-anchor="middle" x="25" y="116" style="transform:translateX(3.6px)">de la AIT</text>
 <path class="sv-line-dash" d="M75 160 L75 180"></path><circle class="sv-dot-b" cx="75" cy="160" r="4"></circle>
 <text class="sv-t3" text-anchor="middle" x="75" y="194">1868</text>
 <text class="sv-t2" text-anchor="middle" x="75" y="212">Bruselas: huelgas</text><text class="sv-t2" text-anchor="middle" x="75" y="227">y socialización</text>
