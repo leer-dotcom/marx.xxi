@@ -545,8 +545,12 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .about-banner{grid-column:1/-1;display:grid;grid-template-columns:subgrid;gap:12px;align-items:center;padding:12px;border-radius:6px;
   background:color-mix(in srgb,var(--mark) 16%,var(--bg));border:1px solid color-mix(in srgb,var(--mark) 40%,var(--line))}
 .about-banner .card{background:color-mix(in srgb,var(--bg) 70%,transparent);align-self:stretch}
-.about-banner p{grid-column:2/-1;margin:0;font-size:16px;line-height:1.5;color:var(--ink)}
-@media (max-width:540px){.about-banner p{grid-column:1/-1}}
+.about-banner p{grid-column:2/-1;margin:0;font-size:14.5px;line-height:1.45;letter-spacing:.01em;color:var(--ink-2);text-wrap:pretty;hyphens:auto}
+@media (max-width:540px){
+  .about-banner{gap:10px;padding:10px}
+  .about-banner .card{padding:10px 14px}
+  .about-banner p{grid-column:1/-1;font-size:14px;padding:0 4px 2px}
+}
 
 /* mapas conceptuales (#/mapas): galerías de mapas y esquemas por revista, volumen o número */
 .dg-vol{margin-top:22px}
