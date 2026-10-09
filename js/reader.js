@@ -1,5 +1,5 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
-import { article, volume, neighbours, text, esc, highlight, fold, store, MK } from './data.js';
+import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS } from './data.js';
 import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, toast } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -14,7 +14,9 @@ const SVG = {
   down: '<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>',
   x: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+  note: '<svg viewBox="0 0 24 24"><path d="M5 4h14v12H10l-5 4z"/><path d="M8.5 8.5h7M8.5 12h4.5"/></svg>',
 };
+const hlColor = k => (HL_COLORS[k] || HL_COLORS.yellow)[1];
 
 /** Convierte las marcas internas (cursiva, negrita, llamadas a nota, página impresa) en HTML. */
 function rich(html) {
@@ -35,19 +37,65 @@ function inner(b, q) {
   return mk + rich(highlight(b.t, q)) + cite;
 }
 
-function blockHtml(b, i, q, marked, firstPara) {
+function blockHtml(b, i, q, firstPara) {
   const t = inner(b, q);
-  const bm = marked ? ' bm' : '';
   switch (b.k) {
     case 'h': {
       const l = b.lvl >= 4 ? 4 : b.lvl === 3 ? 3 : 2;
-      return `<h${l} class="sect l${l}${bm}" data-b="${i}">${t}</h${l}>`;
+      return `<h${l} class="sect l${l}" data-b="${i}">${t}</h${l}>`;
     }
-    case 'n': return `<p class="note${bm}" data-b="${i}">${t}</p>`;
-    case 'e': return `<p class="epi${bm}" data-b="${i}">${t}</p>`;
-    case 'q': return `<p class="bq${bm}" data-b="${i}">${t}</p>`;
-    case 'li': return `<p class="li${bm}" data-b="${i}">${t}</p>`;
-    default: return `<p class="${firstPara && !b.cont ? 'first' : ''}${b.cont ? ' cont' : ''}${bm}" data-b="${i}">${t}</p>`;
+    case 'n': return `<p class="note" data-b="${i}">${t}</p>`;
+    case 'e': return `<p class="epi" data-b="${i}">${t}</p>`;
+    case 'q': return `<p class="bq" data-b="${i}">${t}</p>`;
+    case 'li': return `<p class="li" data-b="${i}">${t}</p>`;
+    default: return `<p class="${firstPara && !b.cont ? 'first' : ''}${b.cont ? ' cont' : ''}" data-b="${i}">${t}</p>`;
+  }
+}
+
+// ---------------------------------------------------------------- subrayados
+// Las posiciones se cuentan sobre el texto visible del bloque sin llamadas a nota, viñetas ni
+// fuente de la cita: coincide con el texto sin marcas (b.p), así que no depende del HTML.
+const SKIP = '.fn,.mk,.cite';
+function textNodes(el) {
+  const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => n.parentElement.closest(SKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
+  });
+  const out = [];
+  for (let n; (n = w.nextNode());) out.push(n);
+  return out;
+}
+/** Carácter del bloque `el` en el que cae el punto (node, off) de una selección. */
+function offsetAt(el, node, off) {
+  const r = document.createRange();
+  r.setStart(el, 0);
+  try { r.setEnd(node, off); } catch { return 0; }
+  let n = 0;
+  for (const t of textNodes(el)) {
+    if (t === node) return n + off;
+    if (r.comparePoint(t, t.length) <= 0) n += t.length; else break;
+  }
+  return n;
+}
+/** Envuelve en <mark> los caracteres [from, to) del bloque. */
+function paint(el, from, to, h) {
+  const segs = [];
+  let pos = 0;
+  for (const t of textNodes(el)) {
+    const a = pos, b = pos + t.length;
+    pos = b;
+    const s = Math.max(from, a), e = Math.min(to, b);
+    if (e > s) segs.push([t, s - a, e - a]);
+  }
+  for (const [t, s, e] of segs) {
+    let x = t;
+    if (s > 0) x = x.splitText(s);
+    if (e - s < x.length) x.splitText(e - s);
+    const m = document.createElement('mark');
+    m.className = 'hl' + (h.note ? ' has-note' : '');
+    m.dataset.hl = h.uid;
+    m.style.setProperty('--hl', hlColor(h.color));
+    x.replaceWith(m);
+    m.append(x);
   }
 }
 
@@ -68,26 +116,28 @@ export async function readerView(key, params) {
   catch (e) { return `<div class="wrap"><p class="empty">No se pudo cargar el texto (${esc(e.message)}).</p></div>`; }
 
   const next = a ? neighbours(a.id).next : null;
-  const marks = new Set(store.bookmarks().filter(b => b.id === key).map(b => b.block));
   let prevKind = null;
   const body = blocks.map((b, i) => {
     const first = b.k === 'p' && prevKind !== 'p';
     prevKind = b.k;
-    return blockHtml(b, i, '', marks.has(i), first);
+    return blockHtml(b, i, '', first);
   }).join('');
 
   const html = `
   <div class="reader-top"><div class="inner" id="r-top">
     <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
     <a class="icon-btn" href="${a ? '#/articulo/' + a.id : '#/volumen/' + v.number + '/0'}" aria-label="Volver" id="r-back">${SVG.back}</a>
-    <div class="titles"><b>${esc(title)}</b><span>${esc(author)}</span></div>
+    <div class="titles"><b>${esc(title)}</b><span>Vol. ${v.number}${author ? ' · ' + esc(author) : ''}</span></div>
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
-    <button class="icon-btn" id="r-mark" aria-label="Marcador en este pasaje">${SVG.mark}</button>
   </div></div>
+  <div class="hl-bar" id="hl-bar" role="toolbar" aria-label="Subrayar el pasaje seleccionado" hidden>
+    ${Object.entries(HL_COLORS).map(([k, [n, c]]) => `<button type="button" class="hl-sw" data-color="${k}" style="--hl:${c}" aria-label="Subrayar en ${n.toLowerCase()}" title="${n}"></button>`).join('')}
+    <button type="button" class="hl-add-note" data-color="note" aria-label="Subrayar y añadir una nota" title="Subrayar y añadir nota">${SVG.note}</button>
+  </div>
 
   <article class="reader" id="reader" lang="es" data-vol="${v.number}">
     <header class="r-head">
-      <div class="eyebrow">Marx XXI · Volumen ${v.number}${a ? ' · Art. ' + a.number : ''}</div>
+      <a class="eyebrow r-vol" href="#/volumen/${v.number}">Volumen ${v.number} · ${esc(v.title)}${a ? ' · Art. ' + a.number : ''}</a>
       <h1>${esc(title)}${(blocks.titleNotes || []).map(n => rich(String.fromCodePoint(MK.note + n))).join('')}</h1>
       ${author ? `<div class="by">${esc(author)}</div>` : ''}
     </header>
@@ -111,17 +161,149 @@ export async function readerView(key, params) {
     </div>
   </div></div>`;
 
-  return [html, () => mount({ key, a, blocks, marks, params })];
+  return [html, () => mount({ key, a, blocks, params })];
 }
 
-function mount({ key, a, blocks, marks, params }) {
+function mount({ key, a, blocks, params }) {
   document.body.classList.add('reading');
   document.body.dataset.vol = $('#reader').dataset.vol;
   const reader = $('#reader');
   let s = store.settings();
   styleReader(reader, s);
   const els = [...reader.querySelectorAll('[data-b]')];
+  const elByB = new Map(els.map(e => [+e.dataset.b, e]));
   const topH = () => ($('.reader-top')?.offsetHeight || 56) + 8;
+
+  // --- subrayados: pintar, crear y editar
+  let hls = store.highlights(key), curQ = '';
+  const end = h => (h.o1 < 0 ? Infinity : h.o1);
+  function paintBlock(i) {
+    const el = elByB.get(i); if (!el) return;
+    for (const h of [...hls].reverse()) { // los más recientes, encima
+      if (i < h.b0 || i > h.b1) continue;
+      paint(el, i === h.b0 ? h.o0 : 0, i === h.b1 ? end(h) : Infinity, h);
+    }
+  }
+  function renderBlock(i, q = curQ) {
+    const el = elByB.get(i); if (!el) return;
+    el.innerHTML = inner(blocks[i], q);
+    paintBlock(i);
+  }
+  const repaint = h => { for (let i = h.b0; i <= h.b1; i++) renderBlock(i); };
+  new Set(hls.flatMap(h => Array.from({ length: h.b1 - h.b0 + 1 }, (_, k) => h.b0 + k))).forEach(paintBlock);
+
+  function hlText(h) {
+    const parts = [];
+    for (let i = h.b0; i <= h.b1; i++) {
+      const p = blocks[i]?.p || '';
+      parts.push(p.slice(i === h.b0 ? h.o0 : 0, i === h.b1 && h.o1 >= 0 ? h.o1 : p.length));
+    }
+    return parts.join(' ').replace(/\s+/g, ' ').trim();
+  }
+  /** Selección actual → { b0, o0, b1, o1 } o null. */
+  function selectionRange() {
+    const sel = getSelection();
+    if (!sel.rangeCount || sel.isCollapsed) return null;
+    const r = sel.getRangeAt(0);
+    if (!reader.contains(r.commonAncestorContainer)) return null;
+    const hit = els.filter(e => e.offsetParent !== null && r.intersectsNode(e));
+    if (!hit.length) return null;
+    const len = e => blocks[+e.dataset.b].p.length;
+    let o0 = hit[0].contains(r.startContainer) ? offsetAt(hit[0], r.startContainer, r.startOffset) : 0;
+    let o1 = hit.at(-1).contains(r.endContainer) ? offsetAt(hit.at(-1), r.endContainer, r.endOffset) : len(hit.at(-1));
+    // triple clic: la selección acaba al principio del bloque siguiente (o empieza al final del anterior)
+    while (hit.length > 1 && o1 === 0) { hit.pop(); o1 = len(hit.at(-1)); }
+    while (hit.length > 1 && o0 >= len(hit[0])) { hit.shift(); o0 = 0; }
+    const h = { b0: +hit[0].dataset.b, o0, b1: +hit.at(-1).dataset.b, o1 };
+    if (h.b0 === h.b1 && h.o0 >= h.o1) return null;
+    return hlText(h) ? h : null;
+  }
+
+  const bar = $('#hl-bar');
+  let pending = null, selT = 0;
+  function placeBar() {
+    pending = selectionRange();
+    if (!pending) { bar.hidden = true; return; }
+    const rects = getSelection().getRangeAt(0).getClientRects();
+    const first = rects[0], last = rects[rects.length - 1] || first;
+    bar.hidden = false;
+    const bw = bar.offsetWidth, bh = bar.offsetHeight;
+    const bottomBar = document.body.classList.contains('chrome-hidden') ? 0 : ($('.reader-bottom')?.offsetHeight || 0);
+    // debajo de la selección (en el móvil el menú del sistema aparece encima); si no cabe, encima
+    let top = last.bottom + 12;
+    if (top + bh > innerHeight - bottomBar - 8) top = Math.max(8, first.top - bh - 12);
+    const cx = (first.left + last.right) / 2;
+    bar.style.top = top + 'px';
+    bar.style.left = Math.min(innerWidth - bw - 8, Math.max(8, cx - bw / 2)) + 'px';
+  }
+  const onSel = () => { clearTimeout(selT); selT = setTimeout(placeBar, 150); };
+  document.addEventListener('selectionchange', onSel);
+  bar.addEventListener('pointerdown', e => e.preventDefault()); // no perder la selección
+  bar.addEventListener('click', e => {
+    const b = e.target.closest('[data-color]'); if (!b || !pending) return;
+    const withNote = b.dataset.color === 'note';
+    const h = store.addHighlight({ key, ...pending, color: withNote ? store.lastColor() : b.dataset.color, text: hlText(pending) });
+    hls = store.highlights(key);
+    getSelection().removeAllRanges();
+    bar.hidden = true; pending = null;
+    repaint(h);
+    if (withNote) openHighlight(h.uid, true);
+    else toast('Subrayado guardado · tócalo para añadir una nota');
+  });
+
+  function openHighlight(id, focusNote = false) {
+    const h = hls.find(x => x.uid === id); if (!h) return;
+    const colors = cur => Object.entries(HL_COLORS).map(([k, [n, c]]) =>
+      `<button type="button" class="hl-sw" data-color="${k}" style="--hl:${c}" aria-pressed="${k === cur}" aria-label="${n}" title="${n}"></button>`).join('');
+    openSheet('Subrayado', `
+      <blockquote class="hl-quote" style="--hl:${hlColor(h.color)}">${esc(h.text.length > 600 ? h.text.slice(0, 600) + '…' : h.text)}</blockquote>
+      <div class="hl-colors" role="group" aria-label="Color del subrayado">${colors(h.color)}</div>
+      <label class="hl-label" for="hl-note">Nota propia</label>
+      <textarea id="hl-note" rows="5" placeholder="Escribe aquí tu comentario sobre este pasaje…">${esc(h.note)}</textarea>
+      <div class="hl-actions">
+        <button type="button" class="btn" data-done>Guardar</button>
+        <button type="button" class="btn ghost" data-remove>Quitar subrayado</button>
+      </div>
+      <p class="muted small" style="margin-top:14px">Los subrayados y sus notas se guardan en este navegador y aparecen en <a href="#/marcadores" data-close>Marcadores</a>.</p>`,
+    body => {
+      const ta = $('#hl-note', body);
+      let t = 0;
+      const save = () => {
+        clearTimeout(t);
+        if (ta.value === h.note || !hls.includes(h)) return;
+        h.note = ta.value;
+        store.updateHighlight(h.uid, { note: h.note });
+        repaint(h);
+      };
+      body.oninput = e => { if (e.target === ta) { clearTimeout(t); t = setTimeout(save, 400); } };
+      body.onclick = e => {
+        const sw = e.target.closest('.hl-colors [data-color]');
+        if (sw) {
+          h.color = sw.dataset.color;
+          store.updateHighlight(h.uid, { color: h.color });
+          body.querySelectorAll('.hl-colors [data-color]').forEach(b => b.setAttribute('aria-pressed', b === sw));
+          $('.hl-quote', body).style.setProperty('--hl', hlColor(h.color));
+          repaint(h);
+        } else if (e.target.closest('[data-done]')) { save(); closeSheet(); }
+        else if (e.target.closest('[data-remove]')) {
+          if (h.note.trim() && !confirm('¿Quitar el subrayado y su nota?')) return;
+          clearTimeout(t);
+          store.removeHighlight(h.uid);
+          hls = store.highlights(key);
+          repaint(h);
+          closeSheet();
+          toast('Subrayado eliminado');
+        }
+      };
+      $('#sheet').addEventListener('close', () => { save(); body.oninput = body.onclick = null; }, { once: true });
+      if (focusNote) ta.focus();
+    });
+  }
+  if (!store.highlights().length) {
+    let seen = true;
+    try { seen = !!sessionStorage.getItem('mx.hlHint'); sessionStorage.setItem('mx.hlHint', '1'); } catch { /* sin almacenamiento */ }
+    if (!seen) setTimeout(() => toast('Selecciona un pasaje para subrayarlo'), 900);
+  }
 
   // --- bloque actual (búsqueda binaria sobre las posiciones en pantalla)
   function currentBlock() {
@@ -160,13 +342,11 @@ function mount({ key, a, blocks, marks, params }) {
 
   // --- scroll: progreso, guardado, ocultar barras
   let lastY = scrollY, saveT = 0, ticking = false;
-  const seek = $('#r-seek'), pctEl = $('#r-pct'), markBtn = $('#r-mark');
+  const seek = $('#r-seek'), pctEl = $('#r-pct');
   function updateUi() {
     const p = progress();
     if (!seek.matches(':active')) seek.value = Math.round(p * 1000);
     pctEl.textContent = Math.round(p * 100) + ' %';
-    const cb = currentBlock();
-    markBtn.classList.toggle('on', marks.has(cb));
   }
   function onScroll() {
     if (ticking) return;
@@ -192,7 +372,7 @@ function mount({ key, a, blocks, marks, params }) {
 
   // --- tocar el texto muestra/oculta las barras
   reader.addEventListener('click', e => {
-    if (e.target.closest('a,button') || String(getSelection()).length) return;
+    if (e.target.closest('a,button,mark.hl') || String(getSelection()).length) return;
     document.body.classList.toggle('chrome-hidden');
   });
 
@@ -206,14 +386,11 @@ function mount({ key, a, blocks, marks, params }) {
       : `<p class="empty">No se encontró la nota ${esc(n)}.</p>`);
   });
 
-  // --- marcadores
-  markBtn.addEventListener('click', () => {
-    const cb = currentBlock();
-    const on = store.toggleBookmark(key, cb, blocks[cb]?.p || '');
-    on ? marks.add(cb) : marks.delete(cb);
-    elOf(cb)?.classList.toggle('bm', on);
-    toast(on ? 'Marcador guardado' : 'Marcador eliminado');
-    updateUi();
+  // --- tocar un subrayado abre su nota
+  reader.addEventListener('click', e => {
+    const m = e.target.closest('mark.hl');
+    if (!m || e.target.closest('[data-note]') || String(getSelection()).length) return;
+    openHighlight(m.dataset.hl);
   });
 
   // --- búsqueda en el texto
@@ -221,7 +398,8 @@ function mount({ key, a, blocks, marks, params }) {
   const topInner = $('#r-top'), topNormal = topInner.innerHTML;
   function renderMatches(q) {
     const f = fold(q).trim();
-    for (const i of lit) { const el = els.find(e => +e.dataset.b === i); if (el) el.innerHTML = inner(blocks[i], ''); }
+    curQ = q;
+    for (const i of lit) renderBlock(i, '');
     lit = new Set();
     hits = [];
     if (f.length < 2) return;
@@ -229,7 +407,7 @@ function mount({ key, a, blocks, marks, params }) {
       if (fold(b.p).includes(f)) {
         const el = els.find(e => +e.dataset.b === i);
         if (!el || el.offsetParent === null) return; // nota oculta
-        el.innerHTML = inner(b, q);
+        renderBlock(i, q);
         lit.add(i); hits.push(i);
       }
     });
@@ -274,25 +452,29 @@ function mount({ key, a, blocks, marks, params }) {
   }
   function bindTop() {
     $('#r-find').onclick = () => openFind();
-    const mb = $('#r-mark');
-    if (mb !== markBtn) mb.replaceWith(markBtn);
     updateUi();
   }
   bindTop();
 
-  // --- índice (secciones + marcadores)
+  // --- índice (secciones + subrayados)
   $('#r-index').onclick = () => {
-    const items = blocks.map((b, i) => ({ b, i })).filter(({ b, i }) => b.k === 'h' || marks.has(i));
-    const lvlOf = b => (b.k === 'h' && b.lvl >= 3 ? ' sub' + (b.lvl >= 4 ? 2 : 1) : '');
+    const cut = t => esc(t.length > 140 ? t.slice(0, 140) + '…' : t);
+    const lvlOf = b => (b.lvl >= 3 ? ' sub' + (b.lvl >= 4 ? 2 : 1) : '');
+    const items = [
+      ...blocks.map((b, i) => b.k === 'h' && { i, o: -1, html: `<a href="#" data-jump="${i}" class="${lvlOf(b)}">${cut(b.p)}</a>` }).filter(Boolean),
+      ...hls.map(h => ({ i: h.b0, o: h.o0, html: `<a href="#" data-jump="${h.b0}" class="mark${h.note ? ' has-note' : ''}" style="--hl:${hlColor(h.color)}">${cut(h.text)}</a>` })),
+    ].sort((x, y) => x.i - y.i || x.o - y.o);
     openSheet('Índice del texto', `<div class="toc-list">
       <a href="#" data-jump="0">Inicio del texto</a>
-      ${items.map(({ b, i }) => `<a href="#" data-jump="${i}" class="${b.k === 'h' ? '' : 'mark'}${lvlOf(b)}">${esc(b.p.length > 140 ? b.p.slice(0, 140) + '…' : b.p)}</a>`).join('')}
-      ${items.length ? '' : '<p class="muted small" style="margin-top:12px">No se han detectado secciones en este texto y aún no hay marcadores.</p>'}
-    </div>`, body => body.addEventListener('click', e => {
-      const j = e.target.closest('[data-jump]'); if (!j) return;
-      e.preventDefault(); closeSheet();
-      +j.dataset.jump === 0 ? window.scrollTo(0, 0) : goTo(+j.dataset.jump, { flash: true });
-    }));
+      ${items.map(x => x.html).join('')}
+      ${items.length ? '' : '<p class="muted small" style="margin-top:12px">No se han detectado secciones en este texto y aún no hay subrayados.</p>'}
+    </div>`, body => {
+      body.onclick = e => {
+        const j = e.target.closest('[data-jump]'); if (!j) return;
+        e.preventDefault(); closeSheet();
+        +j.dataset.jump === 0 ? window.scrollTo(0, 0) : goTo(+j.dataset.jump, { flash: true });
+      };
+    });
   };
 
   // --- guía del artículo sin salir del texto
@@ -345,6 +527,8 @@ function mount({ key, a, blocks, marks, params }) {
     store.savePosition(key, currentBlock(), progress());
     removeEventListener('scroll', onScroll);
     removeEventListener('keydown', onKey);
+    document.removeEventListener('selectionchange', onSel);
+    clearTimeout(selT);
     document.removeEventListener('visibilitychange', onVis);
     clearTimeout(saveT);
     requestWake(false);

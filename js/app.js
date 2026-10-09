@@ -1,7 +1,7 @@
 // Marx XXI · lector web. SPA sin dependencias con rutas por hash (compatible con GitHub Pages).
 import {
   loadLibrary, lib, dataUrl, volume, article, neighbours, text, esc, highlight, fold,
-  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS,
+  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS, HL_COLORS,
 } from './data.js';
 import { readerView } from './reader.js';
 
@@ -179,7 +179,7 @@ function menuHtml() {
   const vols = L.volumes.map(v => {
     const sub = [
       v.presentation_text || v.presentation?.length ? link(`#/volumen/${v.number}/0`, 'Presentación') : '',
-      `<details class="m-arts"${curArt && curArt.startsWith(`t${v.number}-`) ? ' open' : ''}>
+      `<details class="m-arts">
          <summary><span>Artículos</span><span class="m-count">${v.articles.length}</span></summary>
          ${v.articles.map(a => `<div class="m-art${a.id === curArt ? ' on' : ''}">
            <a class="m-art-title" href="#/articulo/${a.id}/0"><b>${a.number}.</b> ${esc(a.title)}<small>${esc(a.author)}</small></a>
@@ -190,7 +190,7 @@ function menuHtml() {
       link(`#/volumen/${v.number}/3`, 'Mapa conceptual'),
       link(`#/volumen/${v.number}/4`, 'Relaciones'),
     ].join('');
-    return `<details class="m-vol" data-vol="${v.number}"${v.number === curVol ? ' open' : ''}>
+    return `<details class="m-vol${v.number === curVol ? ' here' : ''}" data-vol="${v.number}">
       <summary><i class="m-dot"></i><span><small>Volumen ${v.number}</small>${esc(v.title)}</span></summary>
       <div class="m-sub">${link(`#/volumen/${v.number}`, 'Índice del volumen')}${sub}</div>
     </details>`;
@@ -213,8 +213,8 @@ function menuHtml() {
 export function openMenu() {
   const d = $('#menu');
   $('#menu-body').innerHTML = menuHtml();
-  d.showModal();
-  (d.querySelector('[aria-current="page"]') || d.querySelector('.m-art.on'))?.scrollIntoView({ block: 'center' });
+  d.showModal(); // siempre con los volúmenes plegados
+  $('#menu-body').scrollTop = 0;
 }
 document.addEventListener('click', e => {
   if (e.target.closest('[data-open-menu]')) { e.preventDefault(); openMenu(); return; }
@@ -272,7 +272,7 @@ function homeView() {
       ${tool('#/tesis', 'hub', 'Conclusiones comunes', `${cv.theses.length} tesis transversales`)}
       ${tool('#/glosario', 'az', 'Glosario', `${L.glossary.length} conceptos`)}
       ${tool('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
-      ${tool('#/marcadores', 'mark', 'Marcadores', 'Pasajes guardados')}
+      ${tool('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
       ${tool('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
       ${tool('#/acerca', 'info', 'Acerca de', 'La revista, créditos y licencia')}
     </div>
@@ -336,7 +336,21 @@ function volumeView(n, tab = 1) {
       ${v.editor ? `<div class="muted small" style="margin-top:6px">Edición: ${esc(v.editor)}</div>` : ''}</header>
     ${tabs(`#/volumen/${v.number}`, VOL_TABS, tab, 1)}
     ${body}
+    <nav class="neighbours" aria-label="Volúmenes contiguos">
+      ${volume(n - 1) ? volNeighbourLink(volume(n - 1), 'prev') : '<span></span>'}
+      ${volume(n + 1) ? volNeighbourLink(volume(n + 1), 'next') : '<span></span>'}
+    </nav>
   </div>`;
+}
+
+/** Enlace al volumen anterior/siguiente: número, título y nº de artículos. */
+function volNeighbourLink(v, dir) {
+  return `<a class="${dir}" href="#/volumen/${v.number}" data-vol="${v.number}">
+    <small>${dir === 'next' ? 'Siguiente →' : '← Anterior'}</small>
+    <span class="nb-vol">Volumen ${v.number}${v.year ? ' · ' + v.year : ''}</span>
+    <span class="nb-title">${esc(v.title)}</span>
+    <span class="nb-author">${v.articles.length} artículos</span>
+  </a>`;
 }
 
 export const ART_TABS = ['Resumen', 'Argumento', 'Esquema', 'Conceptos', 'Cita y conclusión', 'Texto completo'];
@@ -385,7 +399,7 @@ function articleView(id, tab = 0) {
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;
   } else body = guideTab(a, tab);
-  return `<div class="wrap" data-vol="${v.number}">
+  return `<div class="wrap has-fab" data-vol="${v.number}">
     <header class="page-head"><a class="eyebrow vol" href="#/volumen/${v.number}" style="text-decoration:none">Volumen ${v.number} · ${esc(v.title)}</a>
       <h1>${esc(a.title)}</h1><div class="by">${esc(a.author)}</div></header>
     ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, ART_TABS.length - 1)}
@@ -540,27 +554,52 @@ function searchView(params) {
   }];
 }
 
-function bookmarksView() {
+/** Marcadores = subrayados del modo lectura (con su color y nota propia), agrupados por texto. */
+function bookmarksView(params) {
   setBar('Marcadores');
-  const marks = store.bookmarks();
+  const all = store.highlights();
+  const color = params.get('c') || '';
+  const shown = color ? all.filter(h => h.color === color) : all;
+  const titleOf = key => {
+    const hit = article(key);
+    if (hit) return { v: hit.v, title: hit.a.title, author: hit.a.author, order: lib().allArticles.indexOf(hit) };
+    const n = +key.replace('tomo-', '');
+    return { v: volume(n), title: n === 5 ? 'Nota introductoria' : 'Presentación', author: '', order: -100 + n };
+  };
+  // agrupar por texto, en el orden de la revista; dentro de cada texto, en el orden del pasaje
+  const groups = [...new Set(shown.map(h => h.key))].map(key => ({ key, ...titleOf(key),
+    items: shown.filter(h => h.key === key).sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0) }))
+    .sort((x, y) => (x.v?.number - y.v?.number) || x.order - y.order);
+  const used = new Set(all.map(h => h.color));
   const html = `<div class="wrap">
-    <header class="page-head"><h1>Marcadores</h1></header>
-    ${marks.length ? marks.map(b => {
-      const hit = article(b.id);
-      const title = hit ? hit.a.title : `Presentación del volumen ${b.id.replace('tomo-', '')}`;
-      return `<div class="list-item row-actions" style="align-items:flex-start">
-        <a href="#/leer/${b.id}?b=${b.block}" style="flex:1;color:inherit;text-decoration:none">
-          <div class="src" style="margin:0">${hit ? `Volumen ${hit.v.number} · ${esc(hit.a.author)}` : ''} · ${new Date(b.t).toLocaleDateString('es')}</div>
-          <h3>${esc(title)}</h3><p>${esc(b.excerpt)}…</p></a>
-        <button class="icon-btn" data-del="${esc(b.id)}|${b.block}" aria-label="Eliminar marcador">${ICON.x}</button>
-      </div>`;
-    }).join('') : '<p class="empty">Aún no hay marcadores. En el modo lectura, toca el icono de marcador para guardar el pasaje que estás leyendo.</p>'}
+    <header class="page-head"><h1>Marcadores</h1>
+      <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias.</div></header>
+    ${used.size > 1 ? `<div class="chips hl-filter" role="group" aria-label="Filtrar por color">
+      <a class="chip" href="#/marcadores"${color ? '' : ' aria-pressed="true"'}>Todos <span class="m-count">${all.length}</span></a>
+      ${Object.entries(HL_COLORS).filter(([k]) => used.has(k)).map(([k, [n, c]]) =>
+        `<a class="chip" href="#/marcadores?c=${k}"${k === color ? ' aria-pressed="true"' : ''}><i class="hl-dot" style="--hl:${c}"></i>${n}</a>`).join('')}
+    </div>` : ''}
+    ${groups.length ? groups.map(g => `<section class="hl-group" data-vol="${g.v?.number || ''}">
+      <div class="eyebrow vol">Volumen ${g.v?.number || ''} · ${esc(g.v?.title || '')}</div>
+      <h2 class="hl-group-title"><a href="#/leer/${g.key}">${esc(g.title)}</a></h2>
+      ${g.author ? `<div class="muted small">${esc(g.author)}</div>` : ''}
+      ${g.items.map(h => `<div class="hl-item" style="--hl:${(HL_COLORS[h.color] || HL_COLORS.yellow)[1]}">
+        <a class="hl-link" href="#/leer/${g.key}?b=${h.b0}">
+          <p class="hl-text">${esc(h.text.length > 320 ? h.text.slice(0, 320) + '…' : h.text)}</p>
+          ${h.note ? `<p class="hl-own">${esc(h.note).replace(/\n/g, '<br>')}</p>` : ''}
+          <span class="src">${new Date(h.t).toLocaleDateString('es')}</span>
+        </a>
+        <button class="icon-btn" data-del="${esc(h.uid)}" aria-label="Eliminar subrayado">${ICON.x}</button>
+      </div>`).join('')}
+    </section>`).join('')
+    : `<div class="empty">Aún no hay marcadores.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`}
   </div>`;
   return [html, () => {
     view.addEventListener('click', e => {
       const b = e.target.closest('[data-del]'); if (!b) return;
-      const [id, block] = b.dataset.del.split('|');
-      store.removeBookmark(id, +block);
+      const h = all.find(x => x.uid === b.dataset.del);
+      if (h?.note.trim() && !confirm('¿Eliminar el subrayado y su nota?')) return;
+      store.removeHighlight(b.dataset.del);
       route();
     });
   }];
@@ -725,7 +764,7 @@ async function route() {
     case 'tesis': out = thesesView(); break;
     case 'glosario': out = glossaryView(params); break;
     case 'buscar': out = searchView(params); break;
-    case 'marcadores': out = bookmarksView(); break;
+    case 'marcadores': out = bookmarksView(params); break;
     case 'ajustes': out = settingsView(); break;
     case 'acerca': out = aboutView(); break;
     default: out = notFound();
@@ -745,7 +784,7 @@ let currentKey = location.hash;
 window.addEventListener('hashchange', () => {
   scrollMemory.set(currentKey, window.scrollY);
   currentKey = location.hash;
-  route();
+  if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });
 
 function bindOffline() {

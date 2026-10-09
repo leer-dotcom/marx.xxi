@@ -219,4 +219,35 @@ export const store = {
     return !had;
   },
   removeBookmark(id, block) { LS.set('mx.bm', this.bookmarks().filter(b => !(b.id === id && b.block === block))); },
+
+  // Subrayados (son los «Marcadores» de la app): { uid, key, b0, o0, b1, o1, color, text, note, t }
+  // b0/o0 … b1/o1 = bloque y carácter (sobre el texto sin marcas) de inicio y fin; o1 = -1 → fin del bloque.
+  highlights(key) {
+    let all = LS.get('mx.hl', null);
+    if (!all) { // primera vez: los marcadores antiguos (un párrafo entero) pasan a subrayados amarillos
+      all = LS.get('mx.bm', []).map(b => ({ uid: uid(), key: b.id, b0: b.block, o0: 0, b1: b.block, o1: -1, color: 'yellow', text: b.excerpt, note: '', t: b.t }));
+      LS.set('mx.hl', all);
+    }
+    return (key ? all.filter(h => h.key === key) : all).sort((a, b) => b.t - a.t);
+  },
+  addHighlight(h) {
+    const n = { uid: uid(), note: '', t: Date.now(), ...h };
+    LS.set('mx.hl', [...this.highlights(), n]);
+    LS.set('mx.hlColor', n.color);
+    return n;
+  },
+  updateHighlight(id, patch) {
+    LS.set('mx.hl', this.highlights().map(h => h.uid === id ? { ...h, ...patch } : h));
+    if (patch.color) LS.set('mx.hlColor', patch.color);
+  },
+  removeHighlight(id) { LS.set('mx.hl', this.highlights().filter(h => h.uid !== id)); },
+  lastColor() { return LS.get('mx.hlColor', 'yellow'); },
+};
+
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+
+/** Colores de subrayado: clave → [nombre, color]. */
+export const HL_COLORS = {
+  yellow: ['Amarillo', '#f2cf4a'], green: ['Verde', '#7fd36f'], blue: ['Azul', '#6fb4ee'],
+  pink: ['Rosa', '#f08ab5'], orange: ['Naranja', '#f5a04f'],
 };
