@@ -657,9 +657,11 @@ div.dg-title{color:var(--ink)}
 .ph-art{font-weight:700;letter-spacing:.07em}
 
 /* guía de un artículo: para distinguirla de la página del volumen, la cabecera lleva una franja en color
-   pastel del volumen (a todo el ancho) y el resto de la página un gris muy claro */
-body.art-page{background:var(--paper)}
-body.art-page .tabs{background:var(--paper)}
-.art-band{--band:color-mix(in srgb,var(--vol) 13%,var(--paper));background:var(--band);
-  box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);margin-top:-16px;padding-top:36px;padding-bottom:18px;margin-bottom:6px}
+   pastel del volumen (a todo el ancho) y el resto de la página un gris algo más oscuro que el habitual */
+body.art-page{--art-bg:color-mix(in srgb,var(--bg) 97.5%,#000);background:var(--art-bg)}
+/* debajo de la franja, la barra de pestañas (fija al bajar) en un gris algo más oscuro que la página */
+body.art-page .wrap[data-vol]{--band:color-mix(in srgb,var(--vol) 13%,var(--art-bg))}
+.art-band{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);
+  margin-top:-16px;padding-top:36px;padding-bottom:6px;margin-bottom:0}
+body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 95%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;border-bottom-color:transparent}
 .art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 70%,transparent)}
