@@ -665,3 +665,11 @@ body.art-page .wrap[data-vol]{--band:color-mix(in srgb,var(--vol) 13%,var(--art-
   margin-top:-16px;padding-top:36px;padding-bottom:6px;margin-bottom:0}
 body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 95%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;border-bottom-color:transparent}
 .art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 70%,transparent)}
+
+/* barras de pestañas desplazables: flecha fija en el borde derecho mientras quedan pestañas por ver */
+.tabs{--tabs-bg:var(--bg)}
+.sheet-body .tabs{--tabs-bg:var(--bg)}
+.tabs-more{display:none;position:sticky;right:0;margin-left:auto;flex:none;align-self:stretch;border:0;cursor:pointer;
+  padding:0 10px 4px 44px;margin-right:-10px;font:inherit;font-size:32px;font-weight:700;line-height:1;color:var(--vol);
+  background:linear-gradient(to right,color-mix(in srgb,var(--tabs-bg) 0%,transparent),var(--tabs-bg) 60%)}
+.tabs.more-right .tabs-more{display:block}

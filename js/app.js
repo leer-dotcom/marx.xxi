@@ -90,7 +90,35 @@ function hydrateDiagrams(root = document) {
     });
   }
 }
-new MutationObserver(() => hydrateDiagrams()).observe(document.body, { childList: true, subtree: true });
+new MutationObserver(() => { hydrateDiagrams(); initTabs(); }).observe(document.body, { childList: true, subtree: true });
+
+// ---------------------------------------------------------------- barras de pestañas desplazables
+// En pantallas estrechas no caben todas las pestañas: una flecha «›» fija en el borde derecho (con un
+// degradado sobre la última pestaña visible) indica que hay más y, al tocarla, desplaza la barra.
+// Al abrir la página, la pestaña actual se lleva a la vista.
+function updateTabs(nav) {
+  const more = nav.scrollWidth - nav.clientWidth - nav.scrollLeft > 4;
+  nav.classList.toggle('more-right', more);
+}
+function initTabs(root = document) {
+  for (const nav of root.querySelectorAll('nav.tabs:not([data-tabs-ready])')) {
+    nav.dataset.tabsReady = '';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tabs-more';
+    btn.setAttribute('aria-label', 'Ver más pestañas');
+    btn.tabIndex = -1;
+    btn.textContent = '›';
+    btn.onclick = e => { e.preventDefault(); nav.scrollBy({ left: nav.clientWidth * 0.7, behavior: 'smooth' }); };
+    nav.append(btn);
+    nav.addEventListener('scroll', () => updateTabs(nav), { passive: true });
+    const cur = nav.querySelector('[aria-current="page"]');
+    if (cur && cur.offsetLeft + cur.offsetWidth > nav.clientWidth - 40) nav.scrollLeft = cur.offsetLeft - 24;
+    updateTabs(nav);
+  }
+}
+addEventListener('resize', () => document.querySelectorAll('nav.tabs').forEach(updateTabs));
+document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(updateTabs));
 
 let zoomScale = 1;
 // Esquemas que se recorren con ‹ › y las flechas del teclado: los visibles de la pantalla (o de la hoja) de partida
