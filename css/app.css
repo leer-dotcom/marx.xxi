@@ -619,7 +619,9 @@ div.dg-title{color:var(--ink)}
 .hn-text span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
 .ph-nav .hn-off{padding:2px 8px}
 @media (max-width:600px){
-  .page-head.with-aside{grid-template-columns:minmax(0,1fr) 92px;grid-template-areas:"main cover" "nav nav";column-gap:14px}
+  /* portada algo mayor y centrada en vertical junto al texto (no pegada a la esquina superior) */
+  .page-head.with-aside{grid-template-columns:minmax(0,1fr) 112px;grid-template-areas:"main cover" "nav nav";column-gap:16px}
+  .page-head.with-aside .ph-cover{align-self:center}
   .page-head.with-aside:not(:has(.ph-cover)){grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "nav"}
   .page-head.with-aside:not(:has(.ph-cover)) .ph-nav{grid-row:auto;grid-column:1 / -1}
   .ph-nav{margin-top:12px;grid-template-columns:1fr 1fr}
