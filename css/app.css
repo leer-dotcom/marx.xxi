@@ -278,7 +278,7 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .zoom-bar{display:flex;align-items:center;gap:4px;padding:calc(6px + var(--safe-t)) 8px 6px;background:#2c332f;color:#efecec;font-size:15px}
 .zoom-bar .icon-btn{color:#efecec}
 .zoom-bar .grow{flex:1}
-.zoom-stage{flex:1;overflow:auto;touch-action:pan-x pan-y pinch-zoom;padding:12px}
+.zoom-stage{flex:1;overflow:auto;touch-action:pan-x pan-y;overscroll-behavior:contain;padding:12px}
 .zoom-stage .dg{margin:0 auto;max-width:none;background:none}
 .zoom-caption{margin:0;padding:10px 16px calc(12px + var(--safe-b));font-size:16px;color:var(--ink-2);border-top:1px solid var(--line);max-height:22vh;overflow:auto;background:var(--bg)}
 
@@ -372,3 +372,13 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .neighbours .nb-vol{font-family:var(--f-sc);font-size:13.5px;text-transform:lowercase;letter-spacing:.04em;color:var(--vol)}
 .neighbours .nb-title{font-size:17px;line-height:1.25;color:var(--ink)}
 .neighbours .nb-author{font-size:14.5px;font-style:italic;color:var(--ink-2)}
+
+/* ---------- móvil: esquemas y objetivos táctiles ---------- */
+@media (max-width:600px){
+  figure.diagram button::after{content:"toca para leer";font-size:14px;padding:3px 10px}
+  #zoom-level{min-width:52px;text-align:center}
+}
+@media (pointer:coarse){
+  .chip{min-height:44px;padding:8px 14px}
+  .chips{gap:10px}
+}

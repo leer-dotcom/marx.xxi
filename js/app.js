@@ -96,22 +96,54 @@ function openZoom(host) {
   st.innerHTML = `<div class="dg">${host.querySelector('.dg')?.innerHTML || ''}</div>`;
   $('#zoom-caption').textContent = host.dataset.caption || '';
   const box = st.firstChild;
-  const apply = () => {
-    const base = Math.min(st.clientWidth - 24, 1400);
-    box.style.width = Math.round(base * zoomScale) + 'px';
+  const fit = () => Math.min(st.clientWidth - 24, 1400);
+  // En pantallas estrechas «ajustar» deja el texto del esquema en ~5 px: se abre a un tamaño legible
+  // (el ancho propio del viewBox, donde el texto mide 12-15 px) y se recorre desplazando.
+  const readable = () => {
+    const vbW = box.querySelector('svg')?.viewBox?.baseVal?.width || 760;
+    return Math.max(1, (vbW * 1.1) / fit());
+  };
+  // Cambia la escala manteniendo fijo el punto (cx, cy) del visor (centro por defecto)
+  const apply = (next = zoomScale, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
+    next = Math.min(6, Math.max(0.5, next));
+    const k = next / zoomScale;
+    const sx = (st.scrollLeft + cx) * k - cx, sy = (st.scrollTop + cy) * k - cy;
+    zoomScale = next;
+    box.style.width = Math.round(fit() * zoomScale) + 'px';
+    st.scrollLeft = sx; st.scrollTop = sy;
     $('#zoom-level').textContent = Math.round(zoomScale * 100) + ' %';
   };
   dlg.onclick = e => {
     const b = e.target.closest('[data-z]');
     if (!b) return;
     const z = b.dataset.z;
-    zoomScale = z === '0' ? 1 : Math.min(6, Math.max(0.5, zoomScale * (z === '+' ? 1.4 : 1 / 1.4)));
-    apply();
+    if (z === '0') apply(zoomScale > 1.01 ? 1 : readable());
+    else apply(zoomScale * (z === '+' ? 1.4 : 1 / 1.4));
   };
-  box.ondblclick = () => { zoomScale = zoomScale > 1 ? 1 : 2.5; apply(); };
+  box.ondblclick = e => {
+    const r = st.getBoundingClientRect();
+    apply(zoomScale > readable() + 0.01 || zoomScale < 0.99 ? readable() : zoomScale * 1.8, e.clientX - r.left, e.clientY - r.top);
+  };
+  // Pellizcar con dos dedos para ampliar o reducir dentro del visor
+  const pts = new Map();
+  let pinch = null;
+  st.onpointerdown = e => { if (e.pointerType === 'touch') pts.set(e.pointerId, e); };
+  st.onpointermove = e => {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, e);
+    if (pts.size !== 2) return;
+    const [a, b] = [...pts.values()];
+    const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+    const r = st.getBoundingClientRect();
+    const cx = (a.clientX + b.clientX) / 2 - r.left, cy = (a.clientY + b.clientY) / 2 - r.top;
+    if (!pinch) pinch = { d, s: zoomScale };
+    else apply(pinch.s * d / pinch.d, cx, cy);
+  };
+  st.onpointerup = st.onpointercancel = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; };
   dlg.showModal();
   zoomScale = 1;
-  requestAnimationFrame(apply);
+  st.scrollLeft = st.scrollTop = 0;
+  apply(readable(), 0, 0);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-zoom]');
