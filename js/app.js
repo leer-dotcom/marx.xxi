@@ -214,7 +214,7 @@ function menuHtml() {
     const sub = [
       v.presentation_text || v.presentation?.length ? link(`${v.href}/0`, 'Presentación') : '',
       `<details class="m-arts">
-         <summary><span>${v.label ? 'Textos' : 'Artículos'}</span><span class="m-count">${v.articles.length}</span></summary>
+         <summary><span>Artículos</span><span class="m-count">${v.articles.length}</span></summary>
          ${v.articles.map(a => `<div class="m-art${a.id === curArt ? ' on' : ''}">
            <a class="m-art-title" href="#/articulo/${a.id}/0"><b>${isInterview(a) ? 'Entrevista.' : a.number + '.'}</b> ${esc(a.title)}<small>${esc(byline(a))}</small></a>
            <a class="m-art-read" href="#/leer/${a.id}" aria-label="Texto completo de ${esc(a.title)}" title="Texto completo">${ICON.book}</a>
@@ -276,11 +276,11 @@ document.addEventListener('click', e => {
   if (a) $('#menu').close();
 });
 $('#menu').addEventListener('click', e => { if (e.target.id === 'menu') e.currentTarget.close(); });
-// Títulos de revista y de volumen/número: el primer toque despliega; ya desplegado, lleva a su página.
-// La flecha de la derecha (último tramo del título) siempre pliega y despliega.
+// Títulos de volumen/número: un toque lleva a su página; la flecha de la derecha (último tramo del título)
+// pliega y despliega sus apartados.
 $('#menu').addEventListener('click', e => {
   const sum = e.target.closest('#menu summary[data-href]');
-  if (!sum || !sum.parentElement.open) return;
+  if (!sum) return;
   if (e.clientX > sum.getBoundingClientRect().right - 48) return; // flecha
   e.preventDefault();
   $('#menu').close();
@@ -324,7 +324,7 @@ function volCard(v, read, pos) {
   const done = v.articles.filter(a => read.has(a.id)).length;
   const avg = v.articles.reduce((s, a) => s + (pos[a.id]?.progress || 0), 0) / v.articles.length;
   const n = v.articles.length;
-  const what = v.label ? (n === 1 ? 'texto' : 'textos') : 'artículos';
+  const what = n === 1 ? 'artículo' : 'artículos';
   return `<a class="card vol-card" href="${v.href}" data-vol="${v.key}">
     ${coverHtml(v, done === n)}
     <div class="vc-body">
@@ -380,7 +380,7 @@ function libraryView() {
       <div class="vc-body">
         <div class="eyebrow">${esc(p.kind)}</div>
         <h3>${esc(p.name)}</h3>
-        <div class="meta"><span>${numWord(p.volumes.length)} ${esc(p.unit_plural)}</span><span>${n} textos</span><span>${esc(span(p))}</span></div>
+        <div class="meta"><span>${numWord(p.volumes.length)} ${esc(p.unit_plural)}</span><span>${n} artículos</span><span>${esc(span(p))}</span></div>
         ${p.description ? `<p class="pub-desc">${esc(p.description)}</p>` : ''}
         <p class="small muted pub-last">Último: ${esc(volName(last))}${last.label ? '' : ' · ' + esc(last.title)}</p>
       </div>
@@ -449,7 +449,7 @@ function collectionView(p) {
       ${toolCard(`#/glosario?p=${p.id}`, 'az', 'Glosario', `${L.glossary.filter(e => e.pub === p).length} conceptos`)}
       ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
-      ${mx ? toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado') : toolCard('#/autores', 'people', 'Autores', 'Sus textos en las dos revistas')}
+      ${mx ? toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado') : toolCard('#/autores', 'people', 'Autores', 'Sus artículos en las dos revistas')}
       ${toolCard('#/acerca', 'info', 'Acerca de', 'La revista, créditos y licencia')}
     </div>
     ${cv.arc ? `<h2 class="sec-title">${mx ? 'El arco de la colección' : 'Cómo leer la revista'}</h2>${figure(cv.arc)}` : ''}
@@ -473,7 +473,7 @@ function volumeView(p, n, tab = 1) {
     body = `<div class="eyebrow">Tesis del volumen según la presentación</div><div class="prose" style="margin-top:10px">${paras(v.presentation)}</div>
       ${v.presentation_text ? `<a class="btn ghost block" href="#/leer/tomo-${v.number}">${ICON.book}${v.number === 5 ? 'Leer la nota introductoria completa' : 'Leer la presentación completa'}</a>` : ''}`;
   } else if (tab === 1) {
-    body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada ${v.label ? 'texto' : 'artículo'} o ve directamente al texto íntegro.</p>` +
+    body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada artículo o ve directamente al texto íntegro.</p>` +
       v.articles.map(a => {
         const p = pos[a.id]?.progress || 0;
         return `<div class="card art-card">
@@ -520,7 +520,7 @@ function volumeView(p, n, tab = 1) {
         next ? { href: `${next.href}/${tab}`, label: volShort(next), tip: volHead(next), vol: next.key }
           : { href: thesesHref(p), label: 'Concl.', tip: `${p.name}: Síntesis`, vol: v.key },
         v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
-    ${tabs(v.href, hasPres ? VOL_TABS : [null, v.label ? 'Textos' : 'Artículos', ...VOL_TABS.slice(2)], tab, 1)}
+    ${tabs(v.href, hasPres ? VOL_TABS : [null, ...VOL_TABS.slice(1)], tab, 1)}
     ${body}
     <nav class="neighbours" aria-label="${v.label ? 'Números contiguos' : 'Volúmenes contiguos'}">
       ${prev ? volNeighbourLink(prev, 'prev', tab) : '<span></span>'}
@@ -546,7 +546,7 @@ function volNeighbourLink(v, dir, tab) {
     <small>${dir === 'next' ? 'Siguiente →' : '← Anterior'}</small>
     <span class="nb-vol">${v.label ? `${esc(v.label)} · ${esc(monthName(v.month))}` : `Volumen ${v.number}${v.year ? ' · ' + v.year : ''}`}</span>
     <span class="nb-title">${esc(v.label ? v.subtitle || v.title : v.title)}</span>
-    <span class="nb-author">${v.articles.length} ${v.label ? 'textos' : 'artículos'}</span>
+    <span class="nb-author">${v.articles.length} artículos</span>
   </a>`;
 }
 
@@ -596,7 +596,7 @@ function relatedPanel(a) {
   return `<section class="related" aria-labelledby="rel-h">
     <h2 id="rel-h" class="rel-title">${ICON.link}Relacionado</h2>
     ${out.length ? out.map(item).join('') : ''}
-    ${inn.length ? `<div class="eyebrow" style="margin-top:14px">Textos que remiten a este</div>${inn.map(item).join('')}` : ''}
+    ${inn.length ? `<div class="eyebrow" style="margin-top:14px">Artículos que remiten a este</div>${inn.map(item).join('')}` : ''}
   </section>`;
 }
 
@@ -622,15 +622,22 @@ function articleView(id, tab = 0) {
     </div>`;
   } else body = guideTab(a, tab);
   return `<div class="wrap has-fab" data-vol="${v.key}">
-    <header class="page-head with-aside"><div class="ph-main"><a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v))}${isInterview(a) ? ' · Entrevista' : ''}</a>
+    <header class="page-head with-aside vol-head"><div class="ph-main">
+      <a class="eyebrow ph-pub" href="${v.pub.home}">${esc(v.pub.name)}</a>
+      <a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v).replace(v.pub.name + ' ', ''))}${isInterview(a) ? ' · Entrevista' : ''}</a>
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
       ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
-      ${headNav(...[prev, next].map(x => x && (({ v: xv }) => ({ href: `#/articulo/${x.id}/${tab}`,
-        label: (xv !== v ? volShort(xv) + ' · ' : '') + artLabel(x), title: x.title, vol: xv.key }))(article(x.id))), 'Textos contiguos')}</header>
+      ${(() => {
+        // paso dentro del volumen o número: antes del primero y después del último, el propio volumen
+        const i = v.articles.indexOf(a), pa = v.articles[i - 1], na = v.articles[i + 1];
+        const toVol = { href: v.href, label: volShort(v), tip: volHead(v), vol: v.key };
+        const toArt = x => ({ href: `#/articulo/${x.id}/${tab}`, label: artLabel(x), tip: x.title, vol: v.key });
+        return headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toVol, 'Artículos contiguos');
+      })()}</header>
     ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, ART_TABS.length - 1)}
     ${body}
     ${tab !== 5 ? relatedPanel(a) : ''}
-    <nav class="neighbours" aria-label="Textos contiguos">
+    <nav class="neighbours" aria-label="Artículos contiguos">
       ${prev ? neighbourLink(prev, 'prev', tab) : '<span></span>'}
       ${next ? neighbourLink(next, 'next', tab) : '<span></span>'}
     </nav>
@@ -662,7 +669,7 @@ function thesesView(p, tab = 0, params) {
   const cv = p.cross_volume, n = numWord(p.volumes.length);
   const openT = params?.get('t');
   const body = tab === 0
-    ? `<p class="muted small">Tesis que atraviesan los ${n} ${esc(p.unit_plural)}. Despliega cada una para leerla, ver dónde aparece e ir a los ${mx ? 'artículos' : 'textos'}.</p>
+    ? `<p class="muted small">Tesis que atraviesan los ${n} ${esc(p.unit_plural)}. Despliega cada una para leerla, ver dónde aparece e ir a los artículos.</p>
       ${cv.theses.map((t, i) => `<details class="card thesis" id="tesis-${i + 1}"${String(i + 1) === openT ? ' open' : ''}>
         <summary><div class="eyebrow">Tesis ${i + 1}</div><h3>${esc(t.title)}</h3></summary>
         <div class="thesis-body"><p style="margin:0">${esc(t.text)}</p>
@@ -713,7 +720,7 @@ function glossaryView(params) {
       `<button class="chip" data-v="${k}" aria-pressed="${k === vol}">${esc(label)}</button>`).join('');
   };
   const html = `<div class="wrap">
-    <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los textos de las dos revistas' : 'los artículos'}. Toca uno para ir a su ${multi ? 'texto' : 'artículo'}.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div></header>
+    <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los artículos de las dos revistas' : 'los artículos'}. Toca uno para ir a su artículo.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div></header>
     <div class="sticky-tools">
       <label class="field">${ICON.search}<input id="g-q" type="search" placeholder="Buscar concepto o definición" value="${esc(params.get('q') || '')}" autocomplete="off"></label>
       ${multi ? `<div class="chips" id="g-pub">${[['', 'Toda la biblioteca'], ...L.pubs.map(p => [p.id, p.name]), ['puentes', 'Puentes']].map(([k, label]) =>
@@ -793,7 +800,7 @@ function synthesisView(tab = 0, params) {
       <p class="muted small synth-align">Tesis originales: Marx XXI ${thesisLinks(t.marx_xxi_theses, mx)} · Nuevo Ciclo ${thesisLinks(t.nuevo_ciclo_theses, nc)}</p>
     </div>`).join('');
   } else {
-    body = `${S.bridge_concepts?.length ? `<p class="muted small">Conceptos definidos en las dos revistas: cada uno enlaza con sus textos en una y otra.</p>
+    body = `${S.bridge_concepts?.length ? `<p class="muted small">Conceptos definidos en las dos revistas: cada uno enlaza con sus artículos en una y otra.</p>
       ${S.bridge_concepts.map(b => `<div class="list-item">
         <h3 style="font-weight:700">${esc(b.term)}</h3>${b.note ? `<p>${esc(b.note)}</p>` : ''}
         <div class="chips">${[...(b.marx_xxi || []), ...(b.nuevo_ciclo || [])].map(artChip).join('')}</div></div>`).join('')}` : ''}
@@ -1146,7 +1153,7 @@ function aboutView() {
     <section class="card about" id="creditos">
       <h2>${esc(ab.credits_title || 'Créditos')}</h2>
       ${L.pubs.map(p => `${L.pubs.length > 1 ? `<h3 class="credit-pub">${esc(p.name)}</h3>` : ''}
-        <p class="muted small">Autores y ${p.volumes[0]?.label ? 'textos de cada número' : 'artículos de cada volumen'}, en el orden de la revista.</p>
+        <p class="muted small">Autores y ${p.volumes[0]?.label ? 'artículos de cada número' : 'artículos de cada volumen'}, en el orden de la revista.</p>
         ${credits(p)}`).join('')}
     </section>
 
