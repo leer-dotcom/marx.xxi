@@ -499,22 +499,37 @@ function volumeView(p, n, tab = 1) {
   }
   const prev = volume(n - 1, p.id), next = volume(n + 1, p.id);
   return `<div class="wrap" data-vol="${v.key}">
-    <header class="page-head"><div class="eyebrow vol">${esc(v.eyebrow)}</div><h1>${esc(v.title)}</h1>
+    <header class="page-head with-aside"><div class="ph-main"><div class="eyebrow vol">${esc(v.eyebrow)}</div><h1>${esc(v.title)}</h1>
       ${v.subtitle ? `<div class="sub">${esc(v.subtitle)}</div>` : ''}
       ${v.editor ? `<div class="muted small" style="margin-top:6px">Edición: ${esc(v.editor)}${v.issn ? ` · ISSN ${esc(v.issn)}` : ''}${v.deposito_legal ? ` · D. L. ${esc(v.deposito_legal)}` : ''}</div>` : ''}
-      ${v.data_notes ? `<details class="vol-notes"><summary>Ficha del número</summary><p>${esc(v.data_notes)}</p></details>` : ''}</header>
+      ${v.data_notes ? `<details class="vol-notes"><summary>Ficha del número</summary><p>${esc(v.data_notes)}</p></details>` : ''}</div>
+      ${v.cover ? `<div class="ph-cover">${coverHtml(v)}</div>` : ''}
+      ${headNav(prev && { href: `${prev.href}/${tab}`, label: volShort(prev), title: prev.label ? monthName(prev.month) : prev.title, vol: prev.key },
+                next && { href: `${next.href}/${tab}`, label: volShort(next), title: next.label ? monthName(next.month) : next.title, vol: next.key },
+                v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
     ${tabs(v.href, hasPres ? VOL_TABS : [null, v.label ? 'Textos' : 'Artículos', ...VOL_TABS.slice(2)], tab, 1)}
     ${body}
     <nav class="neighbours" aria-label="${v.label ? 'Números contiguos' : 'Volúmenes contiguos'}">
-      ${prev ? volNeighbourLink(prev, 'prev') : '<span></span>'}
-      ${next ? volNeighbourLink(next, 'next') : '<span></span>'}
+      ${prev ? volNeighbourLink(prev, 'prev', tab) : '<span></span>'}
+      ${next ? volNeighbourLink(next, 'next', tab) : '<span></span>'}
     </nav>
   </div>`;
 }
 
+/** Paso compacto al anterior / siguiente junto al título (volumen, número o artículo).
+ *  prev y next: { href, label, title, vol } o null. */
+function headNav(prev, next, aria) {
+  const one = (x, dir) => x
+    ? `<a class="hn-${dir}" href="${x.href}" data-vol="${x.vol}" title="${esc(x.title)}">
+        <span class="hn-arrow" aria-hidden="true">${dir === 'prev' ? '‹' : '›'}</span>
+        <span class="hn-text"><small>${esc(x.label)}</small><span>${esc(x.title)}</span></span></a>`
+    : `<span class="hn-${dir} hn-off" aria-hidden="true"><span class="hn-arrow">${dir === 'prev' ? '‹' : '›'}</span></span>`;
+  return `<nav class="ph-nav" aria-label="${esc(aria)}">${one(prev, 'prev')}${one(next, 'next')}</nav>`;
+}
+
 /** Enlace al volumen o número anterior/siguiente: número, título y nº de artículos. */
-function volNeighbourLink(v, dir) {
-  return `<a class="${dir}" href="${v.href}" data-vol="${v.key}">
+function volNeighbourLink(v, dir, tab) {
+  return `<a class="${dir}" href="${v.href}${tab != null ? '/' + tab : ''}" data-vol="${v.key}">
     <small>${dir === 'next' ? 'Siguiente →' : '← Anterior'}</small>
     <span class="nb-vol">${v.label ? `${esc(v.label)} · ${esc(monthName(v.month))}` : `Volumen ${v.number}${v.year ? ' · ' + v.year : ''}`}</span>
     <span class="nb-title">${esc(v.label ? v.subtitle || v.title : v.title)}</span>
@@ -594,24 +609,26 @@ function articleView(id, tab = 0) {
     </div>`;
   } else body = guideTab(a, tab);
   return `<div class="wrap has-fab" data-vol="${v.key}">
-    <header class="page-head"><a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v))}${isInterview(a) ? ' · Entrevista' : ''}</a>
+    <header class="page-head with-aside"><div class="ph-main"><a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v))}${isInterview(a) ? ' · Entrevista' : ''}</a>
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
-      ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</header>
+      ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
+      ${headNav(...[prev, next].map(x => x && (({ v: xv }) => ({ href: `#/articulo/${x.id}/${tab}`,
+        label: (xv !== v ? volShort(xv) + ' · ' : '') + artLabel(x), title: x.title, vol: xv.key }))(article(x.id))), 'Textos contiguos')}</header>
     ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, ART_TABS.length - 1)}
     ${body}
     ${tab !== 5 ? relatedPanel(a) : ''}
     <nav class="neighbours" aria-label="Textos contiguos">
-      ${prev ? neighbourLink(prev, 'prev') : '<span></span>'}
-      ${next ? neighbourLink(next, 'next') : '<span></span>'}
+      ${prev ? neighbourLink(prev, 'prev', tab) : '<span></span>'}
+      ${next ? neighbourLink(next, 'next', tab) : '<span></span>'}
     </nav>
   </div>
   <a class="btn fab" href="#/leer/${a.id}" data-vol="${v.key}">${ICON.book}${p > 0 ? 'Seguir leyendo' : 'Leer texto completo'}</a>`;
 }
 
 /** Enlace al artículo anterior/siguiente: volumen, título del volumen, título y autor (cruza de volumen). */
-function neighbourLink(a, dir) {
+function neighbourLink(a, dir, tab) {
   const v = article(a.id)?.v;
-  return `<a class="${dir}" href="#/articulo/${a.id}" data-vol="${v?.key || ''}">
+  return `<a class="${dir}" href="#/articulo/${a.id}${tab != null ? '/' + tab : ''}" data-vol="${v?.key || ''}">
     <small>${dir === 'next' ? 'Siguiente →' : '← Anterior'}</small>
     ${v ? `<span class="nb-vol">${esc(volHead(v))}</span>` : ''}
     <span class="nb-title">${esc(a.title)}</span>
@@ -633,7 +650,7 @@ function thesesView(p, params) {
         <div class="chips">${whereLinks(t.where, p).map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : ''}
     </div>`).join('')}
     ${cv.map ? `<h2 class="sec-title">Mapa conceptual común</h2>${figure(cv.map)}` : ''}
-    ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis">Cómo se alinean estas tesis con las de la otra revista: síntesis de la biblioteca →</a></p>` : ''}
+    ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la biblioteca →</a></p>` : ''}
   </div>`;
   return [html, () => {
     const t = params?.get('t');
@@ -721,9 +738,12 @@ function glossaryView(params) {
 
 /** Síntesis de la biblioteca: tesis comunes (principio en Marx XXI → aplicación en Nuevo Ciclo), conceptos
  *  puente y aportes propios de cada revista (data/library-synthesis.json). */
-function synthesisView() {
+const SYNTH_TABS = ['Mapa conceptual', 'Tesis comunes', 'Conceptos puente'];
+
+function synthesisView(tab = 0, params) {
   const S = lib().synthesis;
   if (!S) return notFound();
+  if (!(tab >= 0 && tab < SYNTH_TABS.length)) tab = 0;
   setBar('Síntesis de la biblioteca');
   const mx = pub('marx-xxi'), nc = pub('nuevo-ciclo');
   const chipsFor = (where, p) => p && where ? `<div class="chips">${whereLinks(where, p).map(([label, href]) =>
@@ -734,20 +754,21 @@ function synthesisView() {
     const hit = article(x.article);
     return hit ? `<a class="chip" href="#/articulo/${hit.a.id}/3" data-vol="${hit.v.key}"><i class="m-dot"></i>${esc(volShort(hit.v))} · ${esc(byline(hit.a))}${x.term && fold(x.term) !== fold(hit.a.title) ? ` — <i>${esc(x.term)}</i>` : ''}</a>` : '';
   };
-  return `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Biblioteca · Marx XXI y Nuevo Ciclo</div><h1>Síntesis de la biblioteca</h1>
-      <div class="sub">${esc(S.intro)}</div></header>
-    ${S.map ? figure(S.map) : ''}
-    <h2 class="sec-title">Tesis comunes</h2>
-    ${S.theses.map(t => `<div class="card synth" id="sintesis-${t.number}">
+  let body;
+  if (tab === 0) {
+    body = `<div class="prose synth-intro"><p>${esc(S.intro)}</p></div>
+      ${S.map ? figure(S.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : ''}
+      ${S.method ? `<details class="card synth-method"><summary>Cómo se ha hecho esta síntesis</summary><p>${esc(S.method)}</p></details>` : ''}`;
+  } else if (tab === 1) {
+    body = S.theses.map(t => `<div class="card synth" id="sintesis-${t.number}">
       <div class="row-actions"><span class="eyebrow">Tesis ${t.number}</span><span class="grow"></span>${t.status ? `<span class="tag ${t.status === 'común' ? 'soft' : 'olive'}">${esc(t.status)}</span>` : ''}</div>
       <h3>${esc(t.title)}</h3>
       ${t.principle ? `<div class="synth-col"><div class="eyebrow vol">Principio · Marx XXI</div><p>${esc(t.principle)}</p>${chipsFor(t.where_marx_xxi, mx)}</div>` : ''}
       ${t.application ? `<div class="synth-col" data-vol="n1"><div class="eyebrow vol">Aplicación · Nuevo Ciclo</div><p>${esc(t.application)}</p>${chipsFor(t.where_nuevo_ciclo, nc)}</div>` : ''}
       <p class="muted small synth-align">Tesis originales: Marx XXI ${thesisLinks(t.marx_xxi_theses, mx)} · Nuevo Ciclo ${thesisLinks(t.nuevo_ciclo_theses, nc)}</p>
-    </div>`).join('')}
-    ${S.bridge_concepts?.length ? `<h2 class="sec-title">Conceptos puente</h2>
-      <p class="muted small">Conceptos definidos en las dos revistas: cada uno enlaza con sus textos en una y otra.</p>
+    </div>`).join('');
+  } else {
+    body = `${S.bridge_concepts?.length ? `<p class="muted small">Conceptos definidos en las dos revistas: cada uno enlaza con sus textos en una y otra.</p>
       ${S.bridge_concepts.map(b => `<div class="list-item">
         <h3 style="font-weight:700">${esc(b.term)}</h3>${b.note ? `<p>${esc(b.note)}</p>` : ''}
         <div class="chips">${[...(b.marx_xxi || []), ...(b.nuevo_ciclo || [])].map(artChip).join('')}</div></div>`).join('')}` : ''}
@@ -757,10 +778,19 @@ function synthesisView() {
           ${(S.only_marx_xxi || []).map(x => `<div class="only-item"><b>${esc(x.term)}</b>${x.where ? `<div class="muted small">${esc(x.where)}</div>` : ''}${chipsFor(x.where, mx)}</div>`).join('')}</div>
         <div class="card" data-vol="n1"><div class="eyebrow vol">Solo en Nuevo Ciclo</div>
           ${(S.only_nuevo_ciclo || []).map(x => `<div class="only-item"><b>${esc(x.term)}</b>${x.note ? `<div class="muted small">${esc(x.note)}</div>` : ''}<div class="chips">${artChip({ article: x.article })}</div></div>`).join('')}</div>
-      </div>` : ''}
-    ${S.method ? `<details class="card synth-method"><summary>Cómo se ha hecho esta síntesis</summary><p>${esc(S.method)}</p></details>` : ''}
+      </div>` : ''}`;
+  }
+  const html = `<div class="wrap">
+    <header class="page-head"><div class="eyebrow">Biblioteca · Marx XXI y Nuevo Ciclo</div><h1>Síntesis de la biblioteca</h1>
+      <div class="sub">${S.theses.length} tesis comunes · ${S.bridge_concepts?.length || 0} conceptos puente</div></header>
+    ${tabs('#/sintesis', SYNTH_TABS, tab)}
+    ${body}
     ${aiNote()}
   </div>`;
+  return [html, () => {
+    const t = params?.get('t');
+    if (t) requestAnimationFrame(() => document.getElementById('sintesis-' + t)?.scrollIntoView());
+  }];
 }
 
 /** Mapas conceptuales y esquemas de todos los niveles: biblioteca, cada revista (arco y mapa común),
@@ -868,7 +898,7 @@ function searchView(params) {
       const href = h.kind === 'fulltext' ? `#/leer/${h.a.id}?b=${h.block}&q=${encodeURIComponent(input.value.trim())}`
         : h.a ? `#/articulo/${h.a.id}/${h.kind === 'argument' ? 1 : h.kind === 'concept' ? 3 : 0}`
           : h.kind === 'thesis' ? (h.pub.id === 'marx-xxi' ? '#/tesis' : `#/tesis/${h.pub.id}`)
-            : h.kind === 'synthesis' ? '#/sintesis' : `${h.v.href}/2`;
+            : h.kind === 'synthesis' ? `#/sintesis/1?t=${h.n}` : `${h.v.href}/2`;
       // la publicación como prefijo cuando hay más de una
       const pre = lib().pubs.length > 1 && h.pub && !h.v?.label ? h.pub.name + ' · ' : '';
       const src = h.kind === 'synthesis' ? 'Biblioteca' : h.kind === 'thesis' ? `${esc(h.pub.name)} · colección`
@@ -1132,7 +1162,7 @@ async function route() {
     case 'articulo': out = articleView(parts[1], +(parts[2] || 0)); break;
     case 'leer': out = await readerView(parts[1], params); break;
     case 'tesis': out = thesesView(pub(parts[1] || 'marx-xxi'), params); break;
-    case 'sintesis': out = synthesisView(); break;
+    case 'sintesis': out = synthesisView(+(parts[1] || 0), params); break;
     case 'autores': out = authorsView(params); break;
     case 'mapas': out = mapsView(params); break;
     case 'glosario': out = glossaryView(params); break;

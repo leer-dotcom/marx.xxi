@@ -591,3 +591,30 @@ div.dg-title{color:var(--ink)}
 .maps-sub > .dg-gallery{margin:4px 0 18px}
 /* visor: anterior / siguiente */
 .zoom-pos{min-width:56px;text-align:center;font-size:14px;opacity:.85}
+
+/* síntesis: al saltar a una tesis (?t=N) queda por debajo de la cabecera y las pestañas fijas */
+.card.synth{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 64px)}
+
+/* cabecera de volumen, número y artículo: portada y paso anterior/siguiente a la derecha del título */
+.page-head.with-aside{display:grid;grid-template-columns:minmax(0,1fr) 210px;grid-template-areas:"main cover" "main nav";column-gap:24px;align-items:start}
+.page-head.with-aside .ph-main{grid-area:main;min-width:0}
+.ph-cover{grid-area:cover;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.ph-cover .cover.photo img{aspect-ratio:4/5;transform:scale(1.1)}
+.ph-cover .cover:not(.photo){padding:16px 0}
+.ph-nav{grid-area:nav;display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px;align-self:start}
+.page-head.with-aside:not(:has(.ph-cover)) .ph-nav{grid-row:1 / span 2;margin-top:4px}
+.ph-nav a,.ph-nav .hn-off{display:flex;align-items:center;gap:4px;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:6px;color:var(--ink);text-decoration:none;background:var(--bg)}
+.ph-nav a:hover{border-color:var(--ink-3)}
+.ph-nav .hn-next{flex-direction:row-reverse;text-align:right}
+.ph-nav .hn-off{opacity:.35;justify-content:center}
+.hn-arrow{font-size:24px;line-height:1;color:var(--vol);flex:none}
+.hn-text{min-width:0;line-height:1.2}
+.hn-text small{display:block;font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-size:13px;color:var(--vol)}
+.hn-text span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
+.ph-nav .hn-off{padding:2px 8px}
+@media (max-width:600px){
+  .page-head.with-aside{grid-template-columns:minmax(0,1fr) 92px;grid-template-areas:"main cover" "nav nav";column-gap:14px}
+  .page-head.with-aside:not(:has(.ph-cover)){grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "nav"}
+  .page-head.with-aside:not(:has(.ph-cover)) .ph-nav{grid-row:auto;grid-column:1 / -1}
+  .ph-nav{margin-top:12px;grid-template-columns:1fr 1fr}
+}
