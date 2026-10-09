@@ -283,7 +283,7 @@ function menuHtml() {
     ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
     ${pubs}
     <details class="m-pub"${openIf(inSection(['#/sintesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
-    ${L.synthesis ? link('#/sintesis', 'Síntesis de la biblioteca', ICON.hub) : ''}
+    ${L.synthesis ? link('#/sintesis', 'Síntesis de la colección', ICON.hub) : ''}
     ${link('#/glosario', 'Glosario', ICON.az)}
     ${link('#/mapas', 'Mapas conceptuales', ICON.map)}
     ${link('#/autores', 'Autores', ICON.people)}
@@ -384,6 +384,30 @@ function continueCard() {
 
 const toolCard = (href, icon, title, sub) => `<a class="card tool" href="${href}">${ICON[icon]}<div><strong>${title}</strong><span>${sub}</span></div></a>`;
 
+/** Herramientas de estudio: aviso «Acerca de» y las seis tarjetas. Con `p`, glosario y autores
+ *  se cuentan solo en esa publicación y los mapas abren su sección. */
+function studyTools(p) {
+  const L = lib();
+  const gl = p ? L.glossary.filter(e => e.pub === p) : L.glossary;
+  const au = p ? L.authors.filter(x => x.items.some(i => i.v.pub.id === p.id)) : L.authors;
+  return `<h2 class="sec-title">Herramientas de estudio</h2>
+    <div class="grid two">
+      <div class="about-banner">
+        ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, créditos y licencia')}
+        <p>Esta aplicación sirve para leer y subrayar las revistas cómodamente desde dispositivos digitales. Los resúmenes y esquemas
+        que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic, uno de los modelos de IA más avanzados,
+        como apoyo al estudio. Aun así, son resúmenes hechos con IA: no sustituyen a los textos íntegros, y podrían no
+        reflejarlos con exactitud.</p>
+      </div>
+      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'De la biblioteca, cada revista, volumen, número y artículo')}
+      ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
+      ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
+      ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
+      ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
+      ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
+    </div>`;
+}
+
 function siteFoot(colophon) {
   const L = lib();
   return `<footer class="site-foot">
@@ -422,7 +446,7 @@ function libraryView() {
   return `<div class="wrap">
     <section class="hero">
       <div class="eyebrow">Biblioteca</div>
-      <h1>${L.pubs.map(p => esc(p.name)).join(' <span class="amp">·</span> ')}</h1>
+      <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       <p class="lede">${L.pubs.length > 1
         ? 'Dos revistas de un mismo proyecto socialista. Marx XXI es la de fondo: cada volumen fija a conciencia una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre pone ese marco a prueba frente a lo que está ocurriendo. Textos íntegros, guías de estudio y los enlaces entre ambas.'
         : esc(L.pubs[0].cross_volume.lede || '')}</p>
@@ -430,29 +454,14 @@ function libraryView() {
     ${continueCard()}
     <h2 class="sec-title">Publicaciones</h2>
     <div class="grid pubs">${L.pubs.map(pubCard).join('')}</div>
-    <h2 class="sec-title">Herramientas de estudio</h2>
-    <div class="grid two">
-      <div class="about-banner">
-        ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, créditos y licencia')}
-        <p>Esta aplicación sirve para leer y subrayar las revistas cómodamente desde dispositivos digitales. Los resúmenes y esquemas
-        que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic, uno de los modelos de IA más avanzados,
-        como apoyo al estudio. Aun así, son resúmenes hechos con IA: no sustituyen a los textos íntegros, y podrían no
-        reflejarlos con exactitud.</p>
-      </div>
-      ${toolCard('#/mapas', 'map', 'Mapas conceptuales', 'De la biblioteca, cada revista, volumen, número y artículo')}
-      ${toolCard('#/glosario', 'az', 'Glosario', `${L.glossary.length} conceptos`)}
-      ${toolCard('#/autores', 'people', 'Autores', `${L.authors.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
-      ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
-      ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
-      ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
-    </div>
-    ${S ? `<h2 class="sec-title">Síntesis de la biblioteca</h2>
+    ${studyTools()}
+    ${S ? `<h2 class="sec-title">Síntesis de la colección</h2>
       <div class="prose synth-intro"><p>Marx XXI y Nuevo Ciclo son dos caras de un mismo proyecto: los volúmenes fijan el marco
         (qué es el marxismo, por qué no la socialdemocracia, el partido, el derecho a la revolución, la escala internacional)
         y los números lo ponen a prueba en la coyuntura. La síntesis reúne las dos revistas en <b>${S.theses.length} tesis comunes</b>,
         cada una con su principio en Marx XXI y su aplicación en Nuevo Ciclo, y las alinea con las tesis propias de cada revista.
         Recoge además los ${S.bridge_concepts?.length || 0} conceptos que hacen de puente entre ambas y lo que aporta cada una en exclusiva.</p></div>
-      <a class="card tool synth-link" href="#/sintesis">${ICON.hub}<strong>Leer la síntesis de la biblioteca</strong></a>
+      <a class="card tool synth-link" href="#/sintesis">${ICON.hub}<strong>Leer la síntesis de la colección</strong></a>
       ${S.map ? figure(S.map) : ''}` : ''}
     ${siteFoot()}
   </div>`;
@@ -471,23 +480,21 @@ function collectionView(p) {
     <section class="hero">
       <div class="eyebrow">${mx ? 'Publicación temática anual de teoría socialista' : `${esc(p.kind)} · ${esc(p.publisher || '')}`}</div>
       <h1>${esc(p.name)}</h1>
-      ${cv.lede ? `<p class="lede">${esc(cv.lede)}</p>` : ''}
+      ${cv.intro?.length
+        ? `<div class="lede sm"><p>${esc(cv.intro[0])}</p>${cv.lede ? `<p>${esc(cv.lede)}</p>` : ''}</div>`
+        : cv.lede ? `<p class="lede">${esc(cv.lede)}</p>` : ''}
     </section>
     ${mx ? continueCard() : ''}
     <h2 class="sec-title">Los ${numWord(n)} ${esc(p.unit_plural)}</h2>
     <div class="grid vols">${p.volumes.map(v => volCard(v, read, pos)).join('')}</div>
-    <h2 class="sec-title">Herramientas de estudio</h2>
-    <div class="grid two">
-      ${toolCard(tesis, 'hub', 'Síntesis', `${cv.theses.length} tesis transversales y mapa común`)}
-      ${toolCard(`#/glosario?p=${p.id}`, 'az', 'Glosario', `${L.glossary.filter(e => e.pub === p).length} conceptos`)}
-      ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
-      ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
-      ${mx ? toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado') : toolCard('#/autores', 'people', 'Autores', 'Sus artículos en las dos revistas')}
-      ${toolCard('#/acerca', 'info', 'Acerca de', 'La revista, créditos y licencia')}
-    </div>
-    ${cv.arc ? `<h2 class="sec-title">${mx ? 'El arco de la colección' : 'Cómo leer la revista'}</h2>${figure(cv.arc)}` : ''}
-    ${cv.intro?.length ? `<h2 class="sec-title">Qué une a los ${numWord(n)} ${esc(p.unit_plural)}</h2><div class="prose">${paras(cv.intro)}</div>` : ''}
-    ${cv.map ? `<h2 class="sec-title">Mapa conceptual común</h2>${figure(cv.map)}` : ''}
+    ${cv.arc ? `<h2 class="sec-title">Trayectoria de la publicación</h2>${figure(cv.arc)}` : ''}
+    ${studyTools(p)}
+    <h2 class="sec-title">Síntesis de la publicación: ${esc(p.name)}</h2>
+    <div class="prose synth-intro"><p>Reúne en <b>${cv.theses.length} tesis transversales</b> lo que los ${numWord(n)} ${esc(p.unit_plural)}
+      de ${esc(p.name)} sostienen en común: ninguna la defiende un solo autor, y cada ${esc(p.unit.toLowerCase())} las reformula
+      desde su propio problema. Cada tesis se despliega para leerla entera, y el mapa conceptual común las ordena de un vistazo.</p></div>
+    <a class="card tool synth-link" href="${tesis}">${ICON.hub}<strong>Leer la síntesis de ${esc(p.name)}</strong></a>
+    ${cv.map ? figure(cv.map) : ''}
     ${siteFoot(cv.colophon)}
   </div>`;
 }
@@ -652,7 +659,8 @@ function articleView(id, tab = 0) {
     body = `<div class="card">
       <div class="eyebrow">Texto íntegro del artículo</div>
       <p style="margin:8px 0 2px">≈ ${a.word_count.toLocaleString('es')} palabras · ${minutes(a.word_count)} min de lectura</p>
-      ${a.pdf_pages ? `<div class="muted small">PDF original (${esc(v.pdf)}): páginas ${a.pdf_pages.from}–${a.pdf_pages.to}</div>` : ''}
+      <div class="muted small">${esc(volName(v))}${v.label ? '' : ' · ' + esc(v.title)}${a.pdf_pages ? ` — Páginas ${a.pdf_pages.from}–${a.pdf_pages.to}` : ''}</div>
+      ${v.url ? `<div class="muted small"><a href="${esc(v.url)}" target="_blank" rel="noopener">PDF disponible en marxxxi.com</a></div>` : ''}
       ${a.printed_pages && v.label ? `<div class="muted small">En la revista impresa: páginas ${a.printed_pages.from}–${a.printed_pages.to}</div>` : ''}
       <div style="display:grid;gap:8px;margin-top:16px">
         <a class="btn block" href="#/leer/${a.id}">${ICON.book}${p > 0 ? `Seguir leyendo (${pct(p)} %)` : 'Abrir en modo lectura'}</a>
@@ -717,7 +725,7 @@ function thesesView(p, tab = 0, params) {
         ${t.where ? `<p class="muted small" style="margin:10px 0 0;font-style:italic">${esc(t.where)}</p>
           <div class="chips">${whereLinks(t.where, p).map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : ''}</div>
       </details>`).join('')}
-      ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la biblioteca →</a></p>` : ''}`
+      ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la colección →</a></p>` : ''}`
     : `${cv.map ? figure(cv.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : '<p class="empty">Esta revista no tiene mapa común.</p>'}`;
   const html = `<div class="wrap">
     <header class="page-head"><a class="eyebrow ph-pub" href="${p.home}">${esc(p.name)}</a><h1>${esc(p.name)}: Síntesis</h1>
@@ -809,7 +817,7 @@ function glossaryView(params) {
   }];
 }
 
-/** Síntesis de la biblioteca: tesis comunes (principio en Marx XXI → aplicación en Nuevo Ciclo), conceptos
+/** Síntesis de la colección: tesis comunes (principio en Marx XXI → aplicación en Nuevo Ciclo), conceptos
  *  puente y aportes propios de cada revista (data/library-synthesis.json). */
 const SYNTH_TABS = ['Mapa conceptual', 'Tesis comunes', 'Conceptos puente'];
 
@@ -817,7 +825,7 @@ function synthesisView(tab = 0, params) {
   const S = lib().synthesis;
   if (!S) return notFound();
   if (!(tab >= 0 && tab < SYNTH_TABS.length)) tab = 0;
-  setBar('Síntesis de la biblioteca');
+  setBar('Síntesis de la colección');
   const mx = pub('marx-xxi'), nc = pub('nuevo-ciclo');
   const chipsFor = (where, p) => p && where ? `<div class="chips">${whereLinks(where, p).map(([label, href]) =>
     `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : '';
@@ -830,16 +838,19 @@ function synthesisView(tab = 0, params) {
   let body;
   if (tab === 0) {
     body = `<div class="prose synth-intro"><p>${esc(S.intro)}</p></div>
-      ${S.map ? figure(S.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : ''}
-      ${S.method ? `<details class="card synth-method"><summary>Cómo se ha hecho esta síntesis</summary><p>${esc(S.method)}</p></details>` : ''}`;
+      ${S.map ? figure(S.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : ''}`;
   } else if (tab === 1) {
-    body = S.theses.map(t => `<div class="card synth" id="sintesis-${t.number}">
-      <div class="row-actions"><span class="eyebrow">Tesis ${t.number}</span><span class="grow"></span>${t.status ? `<span class="tag ${t.status === 'común' ? 'soft' : 'olive'}">${esc(t.status)}</span>` : ''}</div>
-      <h3>${esc(t.title)}</h3>
+    // plegables como las tesis de cada revista; ?t=N llega con esa tesis desplegada
+    const openT = params?.get('t');
+    body = `<p class="muted small">Tesis que comparten las dos revistas. Despliega cada una para leer el principio en Marx XXI, su aplicación en Nuevo Ciclo e ir a los artículos.</p>
+      ${S.theses.map(t => `<details class="card thesis synth" id="sintesis-${t.number}"${String(t.number) === openT ? ' open' : ''}>
+      <summary><div class="row-actions"><span class="eyebrow">Tesis ${t.number}</span><span class="grow"></span>${t.status ? `<span class="tag ${t.status === 'común' ? 'soft' : 'olive'}">${esc(t.status)}</span>` : ''}</div>
+      <h3>${esc(t.title)}</h3></summary>
+      <div class="thesis-body">
       ${t.principle ? `<div class="synth-col"><div class="eyebrow vol">Principio · Marx XXI</div><p>${esc(t.principle)}</p>${chipsFor(t.where_marx_xxi, mx)}</div>` : ''}
       ${t.application ? `<div class="synth-col" data-vol="n1"><div class="eyebrow vol">Aplicación · Nuevo Ciclo</div><p>${esc(t.application)}</p>${chipsFor(t.where_nuevo_ciclo, nc)}</div>` : ''}
       <p class="muted small synth-align">Tesis originales: Marx XXI ${thesisLinks(t.marx_xxi_theses, mx)} · Nuevo Ciclo ${thesisLinks(t.nuevo_ciclo_theses, nc)}</p>
-    </div>`).join('');
+    </div></details>`).join('')}`;
   } else {
     body = `${S.bridge_concepts?.length ? `<p class="muted small">Conceptos definidos en las dos revistas: cada uno enlaza con sus artículos en una y otra.</p>
       ${S.bridge_concepts.map(b => `<div class="list-item">
@@ -854,7 +865,7 @@ function synthesisView(tab = 0, params) {
       </div>` : ''}`;
   }
   const html = `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Biblioteca · Marx XXI y Nuevo Ciclo</div><h1>Síntesis de la biblioteca</h1>
+    <header class="page-head"><div class="eyebrow">Biblioteca · Marx XXI y Nuevo Ciclo</div><h1>Síntesis de la colección</h1>
       <div class="sub">${S.theses.length} tesis comunes · ${S.bridge_concepts?.length || 0} conceptos puente</div></header>
     ${tabs('#/sintesis', SYNTH_TABS, tab)}
     ${body}
@@ -876,13 +887,13 @@ function mapsView(params) {
   const pubSection = p => {
     const cv = p.cross_volume, mx = p.id === 'marx-xxi';
     const tesis = thesesHref(p, 1); // pestaña Mapa conceptual
-    return `<details class="maps-sec" id="mapas-${p.id}" open>
+    return `<details class="maps-sec" id="mapas-${p.id}">
       <summary><h2 class="sec-title">${esc(p.name)}</h2></summary>
-      <details class="maps-sub" open>
+      <details class="maps-sub">
         <summary>Mapas comunes de la revista</summary>
         <div class="dg-gallery">
-          ${titled(mx ? 'El arco de la colección' : 'Cómo leer la revista', cv.arc, p.home)}
           ${titled('Mapa conceptual común', cv.map, tesis)}
+          ${titled('Trayectoria de la publicación', cv.arc, p.home)}
           ${p.volumes.map(v => `<div data-vol="${v.key}">${titled(
             `<b>${esc(volShort(v))}</b> · ${esc(v.label ? monthName(v.month) : v.title)}`, v.concept_map, `${v.href}/3`)}</div>`).join('')}
         </div>
@@ -908,7 +919,7 @@ function mapsView(params) {
       ${S?.map ? '<button class="chip" data-go="mapas-biblioteca">Biblioteca</button>' : ''}
       ${L.pubs.map(p => `<button class="chip" data-go="mapas-${p.id}">${esc(p.name)}</button>`).join('')}
     </nav>
-    ${S?.map ? `<details class="maps-sec" id="mapas-biblioteca" open><summary><h2 class="sec-title">Biblioteca</h2></summary>
+    ${S?.map ? `<details class="maps-sec" id="mapas-biblioteca"><summary><h2 class="sec-title">Biblioteca</h2></summary>
       <div class="dg-gallery wide">${titled('Mapa de la biblioteca: Marx XXI y Nuevo Ciclo', S.map, '#/sintesis')}</div></details>` : ''}
     ${L.pubs.map(pubSection).join('')}
     ${aiNote()}

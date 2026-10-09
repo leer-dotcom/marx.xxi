@@ -67,7 +67,7 @@ _TERMS = {"tomo": "volumen", "tomos": "volúmenes", "Tomo": "Volumen", "Tomos": 
           "TOMO": "VOLUMEN", "TOMOS": "VOLÚMENES"}
 _TERM_RE = re.compile(r"\b(tomos?|Tomos?|TOMOS?)\b(?!-)")
 # campos que no se tocan: identificadores, rutas, citas literales y referencias bibliográficas
-_TERM_SKIP_KEYS = {"id", "slug", "file", "pdf", "text_file", "source_text_file", "presentation_text",
+_TERM_SKIP_KEYS = {"id", "slug", "file", "pdf", "url", "text_file", "source_text_file", "presentation_text",
                    "source_text_files", "quote", "references", "article", "marx_xxi", "nuevo_ciclo"}
 
 
@@ -124,6 +124,11 @@ def words(blocks):
     return n
 
 
+def shop_url(n):
+    """Ficha del número en la tienda oficial (el #001 es «nuevo-ciclo»; los demás, «nuevo-ciclo-002»…)."""
+    return "https://marxxxi.com/products/nuevo-ciclo" + ("" if n == 1 else f"-{n:03d}")
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     if not os.path.isdir(HANDOFF):
@@ -160,6 +165,7 @@ def main():
     for v in data["volumes"]:
         v["concept_map"]["file"] = fix(v["concept_map"]["file"])
         v["presentation_text"] = None  # la revista no lleva presentación
+        v.setdefault("url", shop_url(v["number"]))
         for a in v["articles"]:
             for d in a["diagrams"]:
                 d["file"] = fix(d["file"])
