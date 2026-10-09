@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 431" role="img" aria-label="El Estado dual trumpista: Estado normativo y Estado prerrogativo bajo un mismo techo, el bloque que lo sostiene, el límite de clase, la comparación con el caso nazi y los escenarios de fascistización.">
+<defs><marker id="nc-n3a1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="12" y="30" width="736" height="48" rx="2"/>
+<text class="sv-tw" x="380" y="50.5" text-anchor="middle">Estado dual trumpista (Fraenkel)</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="65.5" text-anchor="middle">Estado de excepción de facto sin partido-milicia</text>
+<rect class="sv-box-blue" x="12" y="108" width="360" height="57" rx="2"/>
+<text class="sv-tb" x="192" y="125.5" text-anchor="middle">Estado normativo</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="140.5" text-anchor="middle">derecho privado, contratos, política económica, Reserva</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="155.5" text-anchor="middle">Federal: intocado</text>
+<rect class="sv-box-red" x="388" y="108" width="360" height="57" rx="2"/>
+<text class="sv-tr" x="568" y="125.5" text-anchor="middle">Estado prerrogativo</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="140.5" text-anchor="middle">ICE, deportaciones, ejecutivo unitario, Anexo F,</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="155.5" text-anchor="middle">persecución de la izquierda</text>
+<rect class="sv-box" x="12" y="195" width="360" height="57" rx="2"/>
+<text class="sv-t" x="192" y="212.5" text-anchor="middle">Bloque reaccionario</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="227.5" text-anchor="middle">gran capital fósil y tecnológico · MAGA y milicias · GOP ·</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="242.5" text-anchor="middle">aparato cultural</text>
+<rect class="sv-box-gold" x="388" y="195" width="360" height="57" rx="2"/>
+<text class="sv-tg" x="568" y="212.5" text-anchor="middle">Límite de clase</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="227.5" text-anchor="middle">el gran capital frena la absorción de funciones (Fed,</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="242.5" text-anchor="middle">deportaciones suspendidas por granjeros y hoteleros)</text>
+<rect class="sv-box" x="12" y="282" width="360" height="57" rx="2"/>
+<text class="sv-t" x="192" y="307.0" text-anchor="middle">Caso nazi: el partido-milicia conquista el Estado</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="322.0" text-anchor="middle">amenaza revolucionaria + Estado débil</text>
+<rect class="sv-box" x="388" y="282" width="360" height="57" rx="2"/>
+<text class="sv-t" x="568" y="299.5" text-anchor="middle">Caso trumpista: el Estado integra al movimiento</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="314.5" text-anchor="middle">ni amenaza revolucionaria ni Estado débil: dual, no</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="329.5" text-anchor="middle">(todavía) fascista</text>
+<rect class="sv-box-gold" x="12" y="369" width="736" height="48" rx="2"/>
+<text class="sv-tg" x="380" y="389.5" text-anchor="middle">Escenarios de fascistización: conflicto federal-estados, guerra, Insurrection Act, midterms 2026 con el ICE</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="404.5" text-anchor="middle">«dictadura de la burguesía como último recurso» (Thalheimer)</text>
+<path class="sv-line" d="M380 78 V93 H192 V108" marker-end="url(#nc-n3a1-arrow)"/>
+<path class="sv-line" d="M380 78 V93 H568 V108" marker-end="url(#nc-n3a1-arrow)"/>
+<path class="sv-line" d="M192 195 V180 H568 V165" marker-end="url(#nc-n3a1-arrow)"/>
+<text class="sv-t3" x="320" y="176" text-anchor="middle">alimenta</text>
+<line class="sv-line-dash" x1="568" y1="195" x2="568" y2="165" marker-end="url(#nc-n3a1-arrow)"/>
+<text class="sv-t3" x="592" y="176" text-anchor="middle">frena</text>
+<path class="sv-line-dash" d="M568 339 V354 H380 V369" marker-end="url(#nc-n3a1-arrow)"/>
+</svg>

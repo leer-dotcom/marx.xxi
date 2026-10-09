@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 374" role="img" aria-label="Mapa conceptual del número 1 con diez nodos unidos por aristas que indican los artículos que desarrollan cada relación.">
+<defs><marker id="nc-m1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="263" y="30" width="235" height="57" rx="2"/>
+<text class="sv-tw" x="380" y="47.5" text-anchor="middle">Declive del capitalismo</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="62.5" text-anchor="middle">nueva era de crisis, guerras y</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="77.5" text-anchor="middle">autoritarismo (1, 2, 4)</text>
+<rect class="sv-box" x="12" y="121" width="235" height="57" rx="2"/>
+<text class="sv-t" x="129" y="138.5" text-anchor="middle">Militarismo y guerra</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="153.5" text-anchor="middle">condición estructural; rearme europeo</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="168.5" text-anchor="middle">(2)</text>
+<rect class="sv-box" x="263" y="121" width="235" height="57" rx="2"/>
+<text class="sv-t" x="380" y="146.0" text-anchor="middle">Genocidio en Gaza</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="161.0" text-anchor="middle">operación del bloque occidental (4, 6)</text>
+<rect class="sv-box" x="513" y="121" width="235" height="57" rx="2"/>
+<text class="sv-t" x="631" y="146.0" text-anchor="middle">Giro autoritario y penal</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="161.0" text-anchor="middle">terrorismo = disidencia (5)</text>
+<rect class="sv-box" x="12" y="212" width="235" height="57" rx="2"/>
+<text class="sv-t" x="129" y="229.5" text-anchor="middle">Ciclo reaccionario español</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="244.5" text-anchor="middle">impasse, austeridad, aparatos</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="259.5" text-anchor="middle">insumisos (3)</text>
+<rect class="sv-box" x="263" y="212" width="235" height="57" rx="2"/>
+<text class="sv-t" x="380" y="237.0" text-anchor="middle">Debilidad del proletariado</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="252.0" text-anchor="middle">protestas sin partido (1, 3, 4)</text>
+<rect class="sv-box" x="513" y="212" width="235" height="57" rx="2"/>
+<text class="sv-t" x="631" y="229.5" text-anchor="middle">Antimperialismo sin campismo</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="244.5" text-anchor="middle">«el enemigo principal está en casa»</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="259.5" text-anchor="middle">(2, 4, 6)</text>
+<rect class="sv-box" x="12" y="303" width="235" height="57" rx="2"/>
+<text class="sv-t" x="129" y="328.0" text-anchor="middle">Racionalidad del marxismo</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="343.0" text-anchor="middle">ni adanismo ni hagiografía (1, 6)</text>
+<rect class="sv-box-red" x="263" y="303" width="235" height="57" rx="2"/>
+<text class="sv-tr" x="380" y="320.5" text-anchor="middle">Partido comunista de masas e</text>
+<text class="sv-tr" x="380" y="335.5" text-anchor="middle">internacional</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="350.5" text-anchor="middle">independencia política (1, 2, 3, 4)</text>
+<rect class="sv-box" x="513" y="303" width="235" height="57" rx="2"/>
+<text class="sv-t" x="631" y="320.5" text-anchor="middle">Deslinde con el reformismo</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="335.5" text-anchor="middle">unidad de acción sobre mínimos (2, 3,</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="350.5" text-anchor="middle">4)</text>
+<path class="sv-line" d="M380 87 V104 H129 V121" marker-end="url(#nc-m1-arrow)"/>
+<line class="sv-line" x1="380" y1="87" x2="380" y2="121" marker-end="url(#nc-m1-arrow)"/>
+<path class="sv-line" d="M380 87 V104 H631 V121" marker-end="url(#nc-m1-arrow)"/>
+<line class="sv-line" x1="129" y1="178" x2="129" y2="212" marker-end="url(#nc-m1-arrow)"/>
+<text class="sv-t3" x="135" y="199" text-anchor="start">rearme y austeridad (2, 3)</text>
+<line class="sv-line" x1="380" y1="178" x2="380" y2="212" marker-end="url(#nc-m1-arrow)"/>
+<text class="sv-t3" x="386" y="199" text-anchor="start">desproporción (4)</text>
+<line class="sv-line" x1="631" y1="178" x2="631" y2="212" marker-end="url(#nc-m1-arrow)"/>
+<text class="sv-t3" x="637" y="199" text-anchor="start" style="font-size:10.7px;letter-spacing:0">Palestine Action (4, 5)</text>
+<line class="sv-line-red" x1="380" y1="269" x2="380" y2="303" marker-end="url(#nc-m1-arrow)"/>
+<path class="sv-line-red" d="M129 269 V286 H380 V303" marker-end="url(#nc-m1-arrow)"/>
+<path class="sv-line-red" d="M631 269 V286 H380 V303" marker-end="url(#nc-m1-arrow)"/>
+<line class="sv-line" x1="247" y1="332" x2="263" y2="332" marker-end="url(#nc-m1-arrow)"/>
+<line class="sv-line" x1="513" y1="332" x2="497" y2="332" marker-end="url(#nc-m1-arrow)"/>
+</svg>

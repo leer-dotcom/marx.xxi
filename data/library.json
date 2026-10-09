@@ -1,0 +1,39 @@
+{
+ "publications": [
+  {
+   "id": "marx-xxi",
+   "name": "Marx XXI",
+   "kind": "Revista-libro temática",
+   "content": "content.json",
+   "unit": "Volumen",
+   "unit_plural": "volúmenes",
+   "unit_short": "Vol.",
+   "route": "volumen",
+   "key": "",
+   "home": "#/marx-xxi",
+   "periodicity": null,
+   "complete": true,
+   "cover": "img/mxxi{n}.webp",
+   "description": "Fija el marco de una estrategia socialista. Cada volumen trabaja a fondo un problema: qué es el marxismo, por qué no la socialdemocracia, el partido, el Estado-Comuna, la Internacional."
+  },
+  {
+   "id": "nuevo-ciclo",
+   "name": "Nuevo Ciclo",
+   "kind": "Revista trimestral",
+   "content": "nuevo-ciclo/content.json",
+   "unit": "Número",
+   "unit_plural": "números",
+   "unit_short": "",
+   "route": "numero",
+   "key": "n",
+   "home": "#/nuevo-ciclo",
+   "periodicity": "trimestral",
+   "complete": false,
+   "about": "nuevo-ciclo/about.json",
+   "cover": "img/nc{n}.webp",
+   "description": "Aplica ese marco a la coyuntura, número a número: Trump y el Estado dual, Gaza y el rearme, la Ley de Extranjería, los juicios a militantes, las huelgas en Europa."
+  }
+ ],
+ "library_version": "2026-10-09",
+ "synthesis": "library-synthesis.json"
+}

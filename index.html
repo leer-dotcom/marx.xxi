@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Lector de Marx XXI</title>
-  <meta name="description" content="Lector de la revista Marx XXI: textos íntegros de los cinco tomos con resúmenes, esquemas, conceptos y glosario.">
+  <meta name="description" content="Lector de Marx XXI y Nuevo Ciclo: textos íntegros de los cinco volúmenes y de los números de la revista trimestral, con resúmenes, esquemas, conceptos y glosario.">
   <meta name="theme-color" content="#2c332f">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="img/icon.svg" type="image/svg+xml">
@@ -61,6 +61,9 @@
       <button class="icon-btn" data-z="+" aria-label="Ampliar"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
       <button class="icon-btn" data-z="0" aria-label="Ajustar"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
       <span class="grow"></span>
+      <button class="icon-btn" data-zstep="-1" aria-label="Esquema anterior" title="Anterior (←)"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <span id="zoom-pos" class="zoom-pos"></span>
+      <button class="icon-btn" data-zstep="1" aria-label="Esquema siguiente" title="Siguiente (→)"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
       <button class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="zoom-stage" id="zoom-stage"></div>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 233" role="img" aria-label="Cadena de la crisis de hegemonía estadounidense a la fascistización contemporánea y bifurcación entre la izquierda conservadora y una política anticapitalista de masas con instituciones propias.">
+<defs><marker id="nc-n4a6-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box" x="12" y="30" width="172" height="87" rx="2"/>
+<text class="sv-t" x="98" y="55.0" text-anchor="middle">Crisis de hegemonía</text>
+<text class="sv-t" x="98" y="70.0" text-anchor="middle">(Arrighi)</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="85.0" text-anchor="middle">Vietnam, crisis señal →</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="100.0" text-anchor="middle">Irak, crisis terminal</text>
+<rect class="sv-box" x="200" y="30" width="172" height="87" rx="2"/>
+<text class="sv-t" x="286" y="55.0" text-anchor="middle" style="font-size:13.5px;letter-spacing:0">Dominación sin hegemonía</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="70.0" text-anchor="middle">supremacía transaccional:</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="85.0" text-anchor="middle">aranceles, Groenlandia,</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="100.0" text-anchor="middle">doctrina «Donroe»</text>
+<rect class="sv-box" x="388" y="30" width="172" height="87" rx="2"/>
+<text class="sv-t" x="474" y="55.0" text-anchor="middle">Fin del discurso del</text>
+<text class="sv-t" x="474" y="70.0" text-anchor="middle">fanatismo</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="85.0" text-anchor="middle">fuerza pura: la «violenta</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="100.0" text-anchor="middle">incoherencia» como norma</text>
+<rect class="sv-box-red" x="576" y="30" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="662" y="47.5" text-anchor="middle">Fascistización</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="62.5" text-anchor="middle">libertad para dominar y</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="77.5" text-anchor="middle">humillar; contradicciones</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="92.5" text-anchor="middle">productivas; marketing</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="107.5" text-anchor="middle">microdirigido</text>
+<rect class="sv-box-gold" x="12" y="147" width="360" height="72" rx="2"/>
+<text class="sv-tg" x="192" y="172.0" text-anchor="middle">Izquierda conservadora / «frente impopular»</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="187.0" text-anchor="middle">defender los restos del siglo XX; luchas de circulación;</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="202.0" text-anchor="middle">alianzas con liberales</text>
+<rect class="sv-box-green" x="388" y="147" width="360" height="72" rx="2"/>
+<text class="sv-tgr" x="568" y="164.5" text-anchor="middle">Política anticapitalista de masas</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="179.5" text-anchor="middle">trabajo territorial, institucional y pedagógico →</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="194.5" text-anchor="middle">experiencias de poder popular → «instituciones comunistas</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="209.5" text-anchor="middle">por inventar»</text>
+<line class="sv-line" x1="184" y1="74" x2="200" y2="74" marker-end="url(#nc-n4a6-arrow)"/>
+<line class="sv-line" x1="372" y1="74" x2="388" y2="74" marker-end="url(#nc-n4a6-arrow)"/>
+<line class="sv-line" x1="560" y1="74" x2="576" y2="74" marker-end="url(#nc-n4a6-arrow)"/>
+<path class="sv-line-dash" d="M662 117 V132 H192 V147" marker-end="url(#nc-n4a6-arrow)"/>
+<path class="sv-line-red" d="M662 117 V132 H568 V147" marker-end="url(#nc-n4a6-arrow)"/>
+</svg>

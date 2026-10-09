@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 342" role="img" aria-label="Línea temporal del franquismo en tres fases, con el movimiento obrero como espejo que fuerza cada mutación del régimen hasta el régimen del 78.">
+<defs><marker id="nc-n2a1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="16" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="27">1936-1959 · CONTRARREVOLUCIÓN Y AUTARQUÍA</text>
+<rect class="sv-soft" x="4" y="147" width="752" height="102" rx="2"/>
+<rect class="sv-box" x="12" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="98" y="63.0" text-anchor="middle">Crisis de la Restauración</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="78.0" text-anchor="middle">agraria, política,</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="93.0" text-anchor="middle">colonial; la República la</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="108.0" text-anchor="middle">agudiza</text>
+<rect class="sv-box-red" x="200" y="38" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="286" y="63.0" text-anchor="middle">Guerra de exterminio y</text>
+<text class="sv-tr" x="286" y="78.0" text-anchor="middle">botín de guerra</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="93.0" text-anchor="middle">LRP 1939: acumulación por</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="108.0" text-anchor="middle">desposesión</text>
+<rect class="sv-box" x="388" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="474" y="55.5" text-anchor="middle">Coalición de clase +</text>
+<text class="sv-t" x="474" y="70.5" text-anchor="middle">Estado nuevo</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="85.5" text-anchor="middle">Caudillo, Fuero del</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="100.5" text-anchor="middle">Trabajo, OSE,</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="115.5" text-anchor="middle">partido-Estado</text>
+<rect class="sv-box" x="576" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="662" y="63.0" text-anchor="middle">Autarquía: disciplina</text>
+<text class="sv-t" x="662" y="78.0" text-anchor="middle">salarial</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="93.0" text-anchor="middle">trabajo pagado por debajo</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="108.0" text-anchor="middle">de su valor</text>
+<rect class="sv-box" x="12" y="169" width="172" height="72" rx="2"/>
+<text class="sv-t" x="98" y="186.5" text-anchor="middle">Crisis 1956-59 → Plan de</text>
+<text class="sv-t" x="98" y="201.5" text-anchor="middle">Estabilización</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="216.5" text-anchor="middle">periferia del centro</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="231.5" text-anchor="middle">imperialista europeo</text>
+<rect class="sv-box" x="200" y="169" width="172" height="72" rx="2"/>
+<text class="sv-t" x="286" y="194.0" text-anchor="middle">Reformismo falangista</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="209.0" text-anchor="middle">OSE, elecciones sindicales</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="224.0" text-anchor="middle">(Solís, Fraga)</text>
+<rect class="sv-box" x="388" y="169" width="172" height="72" rx="2"/>
+<text class="sv-t" x="474" y="194.0" text-anchor="middle">Reformismo tecnócrata</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="209.0" text-anchor="middle">despolitización por el</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="224.0" text-anchor="middle">consumo; «Estado fuerte»</text>
+<rect class="sv-box-red" x="576" y="169" width="172" height="72" rx="2"/>
+<text class="sv-tr" x="662" y="194.0" text-anchor="middle">Ofensiva obrera 1968-73</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="209.0" text-anchor="middle">dictadura materialmente</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="224.0" text-anchor="middle">inviable</text>
+<rect class="sv-box-ink" x="12" y="271" width="360" height="57" rx="2"/>
+<text class="sv-tw" x="192" y="296.0" text-anchor="middle">Movimiento obrero: el «espejo» obsesivo del régimen</text>
+<text class="sv-tw" style="font-weight:400" x="192" y="311.0" text-anchor="middle">la relación capital-trabajo rige cada mutación</text>
+<rect class="sv-box-blue" x="388" y="271" width="360" height="57" rx="2"/>
+<text class="sv-tb" x="568" y="288.5" text-anchor="middle">Régimen del 78: continuidad del Estado, discontinuidad</text>
+<text class="sv-tb" x="568" y="303.5" text-anchor="middle">del régimen</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="318.5" text-anchor="middle">«la ruptura política pendiente»</text>
+<line class="sv-line" x1="184" y1="82" x2="200" y2="82" marker-end="url(#nc-n2a1-arrow)"/>
+<line class="sv-line" x1="372" y1="82" x2="388" y2="82" marker-end="url(#nc-n2a1-arrow)"/>
+<line class="sv-line" x1="560" y1="82" x2="576" y2="82" marker-end="url(#nc-n2a1-arrow)"/>
+<path class="sv-line" d="M662 125 V147 H98 V169" marker-end="url(#nc-n2a1-arrow)"/>
+<line class="sv-line" x1="184" y1="205" x2="200" y2="205" marker-end="url(#nc-n2a1-arrow)"/>
+<line class="sv-line" x1="372" y1="205" x2="388" y2="205" marker-end="url(#nc-n2a1-arrow)"/>
+<line class="sv-line" x1="560" y1="205" x2="576" y2="205" marker-end="url(#nc-n2a1-arrow)"/>
+<path class="sv-line-red" d="M192 271 V256 H286 V241" marker-end="url(#nc-n2a1-arrow)"/>
+<path class="sv-line-red" d="M662 241 V256 H568 V271" marker-end="url(#nc-n2a1-arrow)"/>
+<text class="sv-t3" x="10" y="158" style="paint-order:stroke;stroke:color-mix(in srgb,var(--d-ink) 5.5%,var(--d-bg));stroke-width:5px;stroke-linejoin:round">1959-1978 · DESARROLLISMO, REFORMISMOS Y CRISIS</text>
+</svg>

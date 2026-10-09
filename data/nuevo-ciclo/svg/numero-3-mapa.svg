@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 387" role="img" aria-label="Mapa conceptual del número 3 con diez nodos: declive, Estado dual, austeridad, OTAN, separación economía/política, programa, desmantelar OTAN y UE, género, reformismo y escala continental.">
+<defs><marker id="nc-m3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="263" y="30" width="235" height="56" rx="2"/>
+<text class="sv-tw" x="380" y="54.5" text-anchor="middle">Declive: caída de la rentabilidad</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="69.5" text-anchor="middle">«fin de juego» (6, 1, 5)</text>
+<rect class="sv-box" x="12" y="120" width="235" height="56" rx="2"/>
+<text class="sv-t" x="129" y="144.5" text-anchor="middle">Estado dual trumpista</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="159.5" text-anchor="middle">prerrogativo sin partido-milicia (1)</text>
+<rect class="sv-box" x="263" y="120" width="235" height="56" rx="2"/>
+<text class="sv-t" x="380" y="144.5" text-anchor="middle">Austeridad → reacción</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="159.5" text-anchor="middle">Weimar, Italia, franquismo, hoy (5)</text>
+<rect class="sv-box" x="513" y="120" width="235" height="56" rx="2"/>
+<text class="sv-t" x="631" y="144.5" text-anchor="middle">OTAN y Gladio: dictadura de clase</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="159.5" text-anchor="middle">democracia liberal como fachada (2, 3)</text>
+<rect class="sv-box" x="12" y="210" width="235" height="57" rx="2"/>
+<text class="sv-t" x="129" y="227.5" text-anchor="middle">Separación economía / política</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="242.5" text-anchor="middle">el núcleo que el fascismo radicaliza</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="257.5" text-anchor="middle">(1, 4, 5)</text>
+<rect class="sv-box" x="263" y="210" width="235" height="57" rx="2"/>
+<text class="sv-t" x="380" y="227.5" text-anchor="middle">Programa mínimo-máximo</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="242.5" text-anchor="middle">disputar el poder, no administrarlo</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="257.5" text-anchor="middle">(5)</text>
+<rect class="sv-box" x="513" y="210" width="235" height="57" rx="2"/>
+<text class="sv-t" x="631" y="227.5" text-anchor="middle">Desmantelar OTAN y UE</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="242.5" text-anchor="middle">milicia popular; EE. UU. Socialistas</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="257.5" text-anchor="middle">de Europa (2)</text>
+<rect class="sv-box" x="12" y="301" width="235" height="72" rx="2"/>
+<text class="sv-t" x="129" y="326.0" text-anchor="middle">Género: comprensión unitaria de la</text>
+<text class="sv-t" x="129" y="341.0" text-anchor="middle">clase</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="356.0" text-anchor="middle">contra el economicismo (4)</text>
+<rect class="sv-box-red" x="263" y="301" width="235" height="72" rx="2"/>
+<text class="sv-tr" x="380" y="318.5" text-anchor="middle">Fuerza independiente a escala</text>
+<text class="sv-tr" x="380" y="333.5" text-anchor="middle">continental</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="348.5" text-anchor="middle">Partido Comunista Europeo, nueva</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="363.5" text-anchor="middle">Internacional (2, 6)</text>
+<rect class="sv-box" x="513" y="301" width="235" height="72" rx="2"/>
+<text class="sv-t" x="631" y="326.0" text-anchor="middle">El reformismo gobernante alimenta</text>
+<text class="sv-t" x="631" y="341.0" text-anchor="middle">la reacción</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="356.0" text-anchor="middle">IU 1986→2026; Sumar; Podemos (3, 5, 2)</text>
+<path class="sv-line" d="M380 86 V103 H129 V120" marker-end="url(#nc-m3-arrow)"/>
+<line class="sv-line" x1="380" y1="86" x2="380" y2="120" marker-end="url(#nc-m3-arrow)"/>
+<path class="sv-line" d="M380 86 V103 H631 V120" marker-end="url(#nc-m3-arrow)"/>
+<line class="sv-line" x1="129" y1="176" x2="129" y2="210" marker-end="url(#nc-m3-arrow)"/>
+<text class="sv-t3" x="135" y="197" text-anchor="start">(1)</text>
+<line class="sv-line" x1="380" y1="176" x2="380" y2="210" marker-end="url(#nc-m3-arrow)"/>
+<text class="sv-t3" x="386" y="197" text-anchor="start">frente a Weber (5)</text>
+<line class="sv-line" x1="631" y1="176" x2="631" y2="210" marker-end="url(#nc-m3-arrow)"/>
+<text class="sv-t3" x="637" y="197" text-anchor="start">(2, 3)</text>
+<line class="sv-line" x1="129" y1="267" x2="129" y2="301" marker-end="url(#nc-m3-arrow)"/>
+<text class="sv-t3" x="135" y="288" text-anchor="start">dualismo (4)</text>
+<line class="sv-line-red" x1="380" y1="267" x2="380" y2="301" marker-end="url(#nc-m3-arrow)"/>
+<line class="sv-line" x1="631" y1="267" x2="631" y2="301" marker-end="url(#nc-m3-arrow)"/>
+<text class="sv-t3" x="637" y="288" text-anchor="start">(3)</text>
+<line class="sv-line" x1="247" y1="337" x2="263" y2="337" marker-end="url(#nc-m3-arrow)"/>
+<line class="sv-line" x1="513" y1="337" x2="497" y2="337" marker-end="url(#nc-m3-arrow)"/>
+</svg>

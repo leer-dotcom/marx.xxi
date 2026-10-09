@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 569" role="img" aria-label="Defensa de connivencia frente a defensa de ruptura comparadas en objetivo, destinatario, relación con el tribunal y lugar de los hechos, y gradación de sus efectos según la organización.">
+<defs><marker id="nc-n4a4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="100" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="111">OBJETIVO</text>
+<rect class="sv-soft" x="4" y="192" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="203">DESTINATARIO</text>
+<rect class="sv-soft" x="4" y="284" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="295">TRIBUNAL</text>
+<rect class="sv-soft" x="4" y="376" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="387">LOS HECHOS</text>
+<rect class="sv-soft" x="4" y="468" width="752" height="87" rx="2"/>
+<text class="sv-t3" x="10" y="479">EFECTOS DE LA RUPTURA SEGÚN EL GRADO DE ORGANIZACIÓN</text>
+<rect class="sv-box-blue" x="12" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tb" x="192" y="50.5" text-anchor="middle">Defensa de connivencia</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="65.5" text-anchor="middle">«mortífera» (Vergès)</text>
+<rect class="sv-box-red" x="388" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="568" y="50.5" text-anchor="middle">Defensa de ruptura</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="65.5" text-anchor="middle">Bebel y Liebknecht 1872, Varlin 1868, Leviné 1919</text>
+<rect class="sv-box" x="12" y="122" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="150.0" text-anchor="middle">Absolución personal; aceptar la moral burguesa</text>
+<rect class="sv-box" x="388" y="122" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="142.5" text-anchor="middle">Convertir al acusado en acusador; afirmar el derecho a</text>
+<text class="sv-t" x="568" y="157.5" text-anchor="middle">la revolución</text>
+<rect class="sv-box" x="12" y="214" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="242.0" text-anchor="middle">El tribunal</text>
+<rect class="sv-box" x="388" y="214" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="242.0" text-anchor="middle">El partido y las masas que esperan fuera</text>
+<rect class="sv-box" x="12" y="306" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="334.0" text-anchor="middle">Reconocido como juez</text>
+<rect class="sv-box" x="388" y="306" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="326.5" text-anchor="middle">Desautorizado como impostor; la «alta traición» es una</text>
+<text class="sv-t" x="568" y="341.5" text-anchor="middle">categoría política</text>
+<rect class="sv-box" x="12" y="398" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="426.0" text-anchor="middle">Primer plano: excusas y tecnicismos</text>
+<rect class="sv-box" x="388" y="398" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="418.5" text-anchor="middle">Segundo plano: hablar de política, asumir la condena</text>
+<text class="sv-t" x="568" y="433.5" text-anchor="middle">(«muertos de permiso»)</text>
+<rect class="sv-box-green" x="12" y="490" width="172" height="57" rx="2"/>
+<text class="sv-tgr" x="98" y="507.5" text-anchor="middle">Organización de masas →</text>
+<text class="sv-tgr" x="98" y="522.5" text-anchor="middle">Burgos: 16 penas de</text>
+<text class="sv-tgr" x="98" y="537.5" text-anchor="middle">muerte conmutadas</text>
+<rect class="sv-box-gold" x="200" y="490" width="172" height="57" rx="2"/>
+<text class="sv-tg" x="286" y="515.0" text-anchor="middle">Partido desarticulado →</text>
+<text class="sv-tg" x="286" y="530.0" text-anchor="middle">Grimau, PCE(r)</text>
+<rect class="sv-box-gold" x="388" y="490" width="172" height="57" rx="2"/>
+<text class="sv-tg" x="474" y="515.0" text-anchor="middle">Movilización que se</text>
+<text class="sv-tg" x="474" y="530.0" text-anchor="middle">desinfla → Hásel</text>
+<rect class="sv-box" x="576" y="490" width="172" height="57" rx="2"/>
+<text class="sv-t" x="662" y="515.0" text-anchor="middle">Soledad → Miguel</text>
+<text class="sv-t" x="662" y="530.0" text-anchor="middle">Hernández: la integridad</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 506" role="img" aria-label="Cadena causal del genocidio y de la represión del movimiento propalestino como efectos del declive capitalista, y de la debilidad del movimiento como efecto de la debilidad organizativa de la clase.">
+<defs><marker id="nc-n1a4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="200" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tw" x="380" y="58.0" text-anchor="middle">Declive capitalista / declive del bloque occidental</text>
+<rect class="sv-box" x="12" y="108" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="128.5" text-anchor="middle">Giro militarista</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="143.5" text-anchor="middle">competencia entre bloques → guerra</text>
+<rect class="sv-box" x="388" y="108" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="128.5" text-anchor="middle">Giro autoritario</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="143.5" text-anchor="middle">Estados blindados para la lucha de clases</text>
+<rect class="sv-box-red" x="12" y="186" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="192" y="206.5" text-anchor="middle">Genocidio como operación del bloque occidental</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="221.5" text-anchor="middle">Israel no es exterior a EE. UU.: división del trabajo</text>
+<rect class="sv-box-red" x="388" y="186" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="568" y="206.5" text-anchor="middle">Represión del movimiento propalestino</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="221.5" text-anchor="middle">palo y zanahoria; proporcional al vínculo con Israel</text>
+<rect class="sv-box-blue" x="12" y="264" width="736" height="48" rx="2"/>
+<text class="sv-tb" x="380" y="284.5" text-anchor="middle">Brecha de legitimidad del Estado liberal</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="299.5" text-anchor="middle">«bien común» vs. compromisos imperialistas: un movimiento consecuente es enemigo de su Estado</text>
+<rect class="sv-box" x="12" y="342" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="370.0" text-anchor="middle">Debilidad de las organizaciones obreras tras 2008-20</text>
+<rect class="sv-box" x="388" y="342" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="362.5" text-anchor="middle">Debilidad del movimiento propalestino</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="377.5" text-anchor="middle">desproporción entre los hechos y la respuesta</text>
+<rect class="sv-box-gold" x="12" y="420" width="172" height="72" rx="2"/>
+<text class="sv-tg" x="98" y="437.5" text-anchor="middle">Deslinde: el sionismo, no</text>
+<text class="sv-tg" x="98" y="452.5" text-anchor="middle">Netanyahu</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="467.5" text-anchor="middle">Estado único secular, no</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="482.5" text-anchor="middle">dos Estados</text>
+<rect class="sv-box-red" x="200" y="420" width="360" height="72" rx="2"/>
+<text class="sv-tr" x="380" y="452.5" text-anchor="middle">Partido revolucionario internacional arraigado en los</text>
+<text class="sv-tr" x="380" y="467.5" text-anchor="middle">centros de trabajo</text>
+<rect class="sv-box-gold" x="576" y="420" width="172" height="72" rx="2"/>
+<text class="sv-tg" x="662" y="452.5" text-anchor="middle">Derecho a la resistencia</text>
+<text class="sv-tg" x="662" y="467.5" text-anchor="middle">armada</text>
+<path class="sv-line" d="M380 78 V93 H192 V108" marker-end="url(#nc-n1a4-arrow)"/>
+<path class="sv-line" d="M380 78 V93 H568 V108" marker-end="url(#nc-n1a4-arrow)"/>
+<line class="sv-line" x1="192" y1="156" x2="192" y2="186" marker-end="url(#nc-n1a4-arrow)"/>
+<line class="sv-line" x1="568" y1="156" x2="568" y2="186" marker-end="url(#nc-n1a4-arrow)"/>
+<path class="sv-line" d="M192 234 V249 H380 V264" marker-end="url(#nc-n1a4-arrow)"/>
+<path class="sv-line" d="M568 234 V249 H380 V264" marker-end="url(#nc-n1a4-arrow)"/>
+<line class="sv-line" x1="372" y1="366" x2="388" y2="366" marker-end="url(#nc-n1a4-arrow)"/>
+<path class="sv-line-red" d="M568 390 V405 H380 V420" marker-end="url(#nc-n1a4-arrow)"/>
+</svg>

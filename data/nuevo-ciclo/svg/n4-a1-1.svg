@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 461" role="img" aria-label="Embudo causal del sionismo: tres bases convergen en un Estado colonial de asentamiento cuya lógica desemboca en el genocidio como esencia y no como excepción.">
+<defs><marker id="nc-n4a1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box" x="12" y="30" width="235" height="72" rx="2"/>
+<text class="sv-t" x="129" y="47.5" text-anchor="middle">Antisemitismo europeo + mito</text>
+<text class="sv-t" x="129" y="62.5" text-anchor="middle">bíblico secularizado</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="77.5" text-anchor="middle">«un pueblo, una tierra» sólo se</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="92.5" text-anchor="middle">sostiene religiosamente</text>
+<rect class="sv-box" x="263" y="30" width="235" height="72" rx="2"/>
+<text class="sv-t" x="380" y="47.5" text-anchor="middle">Interés imperial británico y</text>
+<text class="sv-t" x="380" y="62.5" text-anchor="middle">occidental</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="77.5" text-anchor="middle">Rothschild, Balfour, Mandato:</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="92.5" text-anchor="middle">«baluarte frente a Asia»</text>
+<rect class="sv-box" x="513" y="30" width="235" height="72" rx="2"/>
+<text class="sv-t" x="631" y="62.5" text-anchor="middle">Lógica de acumulación del capital</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="77.5" text-anchor="middle">apropiación violenta y guerra (Lenin)</text>
+<rect class="sv-box-ink" x="12" y="132" width="736" height="48" rx="2"/>
+<text class="sv-tw" x="380" y="152.5" text-anchor="middle">Estado colonial de asentamiento («colonia de trabajo»)</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="167.5" text-anchor="middle">los colonos ocupan la producción: el trabajo palestino sobra</text>
+<rect class="sv-box" x="12" y="210" width="360" height="72" rx="2"/>
+<text class="sv-t" x="192" y="227.5" text-anchor="middle">Proletariado palestino inservible → expulsión y</text>
+<text class="sv-t" x="192" y="242.5" text-anchor="middle">limpieza étnica</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="257.5" text-anchor="middle">consolidación del Estado y pauperización «son la misma</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="272.5" text-anchor="middle">cosa»</text>
+<rect class="sv-box" x="388" y="210" width="360" height="72" rx="2"/>
+<text class="sv-t" x="568" y="235.0" text-anchor="middle">Apartheid jurídico + economía militarizada</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="250.0" text-anchor="middle">Leyes Fundamentales, Ley de Retorno, Tzahal; perro guardián</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="265.0" text-anchor="middle">y laboratorio del imperialismo</text>
+<rect class="sv-box-red" x="12" y="312" width="485" height="57" rx="2"/>
+<text class="sv-tr" x="255" y="337.0" text-anchor="middle">Genocidio en Gaza: salto cualitativo, no excepción</text>
+<text class="sv-t2" style="font-weight:400" x="255" y="352.0" text-anchor="middle">«inscrito en su ADN»</text>
+<rect class="sv-box-gold" x="513" y="312" width="235" height="57" rx="2"/>
+<text class="sv-tg" x="631" y="329.5" text-anchor="middle">Rechazado: dos Estados, pacifismo</text>
+<text class="sv-tg" x="631" y="344.5" text-anchor="middle">liberal</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="359.5" text-anchor="middle">incapaces de pensar la acumulación</text>
+<rect class="sv-box" x="12" y="399" width="736" height="48" rx="2"/>
+<text class="sv-t" x="380" y="419.5" text-anchor="middle">Única solución: que Israel deje de existir como Estado sionista · derecho del proletariado palestino a la</text>
+<text class="sv-t" x="380" y="434.5" text-anchor="middle">resistencia</text>
+<path class="sv-line" d="M129 102 V117 H380 V132" marker-end="url(#nc-n4a1-arrow)"/>
+<line class="sv-line" x1="380" y1="102" x2="380" y2="132" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line" d="M631 102 V117 H380 V132" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line" d="M380 180 V195 H192 V210" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line" d="M380 180 V195 H568 V210" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line" d="M192 282 V297 H255 V312" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line" d="M568 282 V297 H255 V312" marker-end="url(#nc-n4a1-arrow)"/>
+<path class="sv-line-red" d="M255 369 V384 H380 V399" marker-end="url(#nc-n4a1-arrow)"/>
+</svg>

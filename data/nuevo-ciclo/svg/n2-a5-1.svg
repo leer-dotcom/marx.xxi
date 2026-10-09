@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 318" role="img" aria-label="Los cuatro órganos de prensa bolcheviques como hitos, con la función que ilustra cada uno y los adversarios frente a los que se define, bajo los principios transversales.">
+<defs><marker id="nc-n2a5-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="16" width="752" height="87" rx="2"/>
+<text class="sv-t3" x="10" y="27">PRINCIPIOS TRANSVERSALES</text>
+<rect class="sv-soft" x="4" y="117" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="128">ÓRGANOS DE PRENSA</text>
+<rect class="sv-box-ink" x="12" y="38" width="172" height="57" rx="2"/>
+<text class="sv-tw" x="98" y="63.0" text-anchor="middle">Propagandista, agitador y</text>
+<text class="sv-tw" x="98" y="78.0" text-anchor="middle">organizador colectivo</text>
+<rect class="sv-box-ink" x="200" y="38" width="172" height="57" rx="2"/>
+<text class="sv-tw" x="286" y="55.5" text-anchor="middle">Libertad de expresión</text>
+<text class="sv-tw" x="286" y="70.5" text-anchor="middle">como reverso de la</text>
+<text class="sv-tw" x="286" y="85.5" text-anchor="middle">firmeza</text>
+<rect class="sv-box-ink" x="388" y="38" width="172" height="57" rx="2"/>
+<text class="sv-tw" x="474" y="55.5" text-anchor="middle">Konspiratsiya =</text>
+<text class="sv-tw" x="474" y="70.5" text-anchor="middle">publicidad máxima, no</text>
+<text class="sv-tw" x="474" y="85.5" text-anchor="middle">zagovor</text>
+<rect class="sv-box-ink" x="576" y="38" width="172" height="57" rx="2"/>
+<text class="sv-tw" x="662" y="55.5" text-anchor="middle">El publicista de la</text>
+<text class="sv-tw" x="662" y="70.5" text-anchor="middle">revolución, no el</text>
+<text class="sv-tw" x="662" y="85.5" text-anchor="middle">dictador en la sombra</text>
+<rect class="sv-box-red" x="12" y="139" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="98" y="156.5" text-anchor="middle">Iskra 1900-03</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="171.5" text-anchor="middle">unificar el POSDR; voz</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="186.5" text-anchor="middle">pública; agitación política</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="201.5" text-anchor="middle">— contra el culto a la</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="216.5" text-anchor="middle">espontaneidad</text>
+<rect class="sv-box" x="200" y="139" width="172" height="87" rx="2"/>
+<text class="sv-t" x="286" y="156.5" text-anchor="middle">Vperiod · Proletarii</text>
+<text class="sv-t" x="286" y="171.5" text-anchor="middle">1904-09</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="186.5" text-anchor="middle">minoría subordinada a la</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="201.5" text-anchor="middle">mayoría — contra</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="216.5" text-anchor="middle">mencheviques y otzovistas</text>
+<rect class="sv-box" x="388" y="139" width="172" height="87" rx="2"/>
+<text class="sv-t" x="474" y="156.5" text-anchor="middle">Sotsial-demokrat 1908-17</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="171.5" text-anchor="middle">columna vertebral</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="186.5" text-anchor="middle">clandestina; controla al</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="201.5" text-anchor="middle">grupo parlamentario —</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="216.5" text-anchor="middle">contra liquidadores</text>
+<rect class="sv-box-red" x="576" y="139" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="662" y="156.5" text-anchor="middle">Pravda 1912-14</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="171.5" text-anchor="middle">diario legal de masas,</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="186.5" text-anchor="middle">40.000 ejemplares, tribuna</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="201.5" text-anchor="middle">obrera — contra la censura</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="216.5" text-anchor="middle">zarista</text>
+<rect class="sv-box-blue" x="12" y="256" width="736" height="48" rx="2"/>
+<text class="sv-tb" x="380" y="276.5" text-anchor="middle">«Democracia obrera independiente»: un centro de autoridad alternativo al Estado zarista</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="291.5" text-anchor="middle">«Sin Pravda, difícilmente habría sido posible»</text>
+<line class="sv-line" x1="184" y1="182" x2="200" y2="182" marker-end="url(#nc-n2a5-arrow)"/>
+<line class="sv-line" x1="372" y1="182" x2="388" y2="182" marker-end="url(#nc-n2a5-arrow)"/>
+<line class="sv-line" x1="560" y1="182" x2="576" y2="182" marker-end="url(#nc-n2a5-arrow)"/>
+<path class="sv-line" d="M662 226 V241 H380 V256" marker-end="url(#nc-n2a5-arrow)"/>
+</svg>

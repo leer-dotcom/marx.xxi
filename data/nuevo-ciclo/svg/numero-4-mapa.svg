@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 418" role="img" aria-label="Mapa conceptual del número 4 con diez nodos: coacción, genocidio, populismo punitivo, frontera, excepción y esencia, marco liberal, migrantes, legalidad e ilegalidad, organización y la ley como campo de batalla.">
+<defs><marker id="nc-m4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="263" y="30" width="235" height="57" rx="2"/>
+<text class="sv-tw" x="380" y="47.5" text-anchor="middle">La coacción pasa al primer plano</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="62.5" text-anchor="middle">consenso agotado; dominación sin</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="77.5" text-anchor="middle">hegemonía (2, 6)</text>
+<rect class="sv-box" x="12" y="121" width="235" height="56" rx="2"/>
+<text class="sv-t" x="129" y="145.5" text-anchor="middle">Genocidio: esencia del sionismo</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="160.5" text-anchor="middle">colonia de asentamiento (1)</text>
+<rect class="sv-box" x="263" y="121" width="235" height="56" rx="2"/>
+<text class="sv-t" x="380" y="145.5" text-anchor="middle">Populismo punitivo y parapolicía</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="160.5" text-anchor="middle">población sobrante (2)</text>
+<rect class="sv-box" x="513" y="121" width="235" height="56" rx="2"/>
+<text class="sv-t" x="631" y="145.5" text-anchor="middle">Frontera: imperialismo en casa</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="160.5" text-anchor="middle">subclase migrante (5)</text>
+<rect class="sv-box" x="12" y="211" width="235" height="72" rx="2"/>
+<text class="sv-t" x="129" y="236.0" text-anchor="middle">Lo «excepcional» es esencia</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="251.0" text-anchor="middle">genocidio, devoluciones, delincuencia</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="266.0" text-anchor="middle">(1, 2, 5)</text>
+<rect class="sv-box" x="263" y="211" width="235" height="72" rx="2"/>
+<text class="sv-t" x="380" y="228.5" text-anchor="middle">Marco liberal-socialdemócrata = ala</text>
+<text class="sv-t" x="380" y="243.5" text-anchor="middle">izquierda del capital</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="258.5" text-anchor="middle">derechos humanos, dos Estados,</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="273.5" text-anchor="middle">seguridad (1, 2, 5, 6)</text>
+<rect class="sv-box" x="513" y="211" width="235" height="72" rx="2"/>
+<text class="sv-t" x="631" y="243.5" text-anchor="middle">Unidad con el proletariado migrante</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="258.5" text-anchor="middle">destruir imperialismo y racismo (2, 5)</text>
+<rect class="sv-box" x="12" y="317" width="235" height="87" rx="2"/>
+<text class="sv-t" x="129" y="349.5" text-anchor="middle">Legal + ilegal; 1914 como espejo</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="364.5" text-anchor="middle">oportunismo = inversión de medios y</text>
+<text class="sv-t2" style="font-weight:400" x="129" y="379.5" text-anchor="middle">fines (3, 5)</text>
+<rect class="sv-box-red" x="263" y="317" width="235" height="87" rx="2"/>
+<text class="sv-tr" x="380" y="334.5" text-anchor="middle">Organización de masas e</text>
+<text class="sv-tr" x="380" y="349.5" text-anchor="middle">instituciones propias</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="364.5" text-anchor="middle">prensa, territorio, ruptura ante el</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="379.5" text-anchor="middle">juez, «instituciones por inventar» (2,</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="394.5" text-anchor="middle">3, 4, 6)</text>
+<rect class="sv-box" x="513" y="317" width="235" height="87" rx="2"/>
+<text class="sv-t" x="631" y="342.0" text-anchor="middle">La ley: excepción permanente y</text>
+<text class="sv-t" x="631" y="357.0" text-anchor="middle">campo de batalla</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="372.0" text-anchor="middle">Duma, proceso, delito de odio (3, 4,</text>
+<text class="sv-t2" style="font-weight:400" x="631" y="387.0" text-anchor="middle">2)</text>
+<path class="sv-line" d="M380 87 V104 H129 V121" marker-end="url(#nc-m4-arrow)"/>
+<line class="sv-line" x1="380" y1="87" x2="380" y2="121" marker-end="url(#nc-m4-arrow)"/>
+<path class="sv-line" d="M380 87 V104 H631 V121" marker-end="url(#nc-m4-arrow)"/>
+<line class="sv-line" x1="129" y1="177" x2="129" y2="211" marker-end="url(#nc-m4-arrow)"/>
+<text class="sv-t3" x="135" y="198" text-anchor="start">(1)</text>
+<line class="sv-line" x1="380" y1="177" x2="380" y2="211" marker-end="url(#nc-m4-arrow)"/>
+<text class="sv-t3" x="386" y="198" text-anchor="start">seguridad como «derecho» (2)</text>
+<line class="sv-line" x1="631" y1="177" x2="631" y2="211" marker-end="url(#nc-m4-arrow)"/>
+<text class="sv-t3" x="637" y="198" text-anchor="start">(5)</text>
+<line class="sv-line" x1="129" y1="283" x2="129" y2="317" marker-end="url(#nc-m4-arrow)"/>
+<text class="sv-t3" x="135" y="304" text-anchor="start">(1, 3)</text>
+<line class="sv-line-red" x1="380" y1="283" x2="380" y2="317" marker-end="url(#nc-m4-arrow)"/>
+<line class="sv-line" x1="631" y1="283" x2="631" y2="317" marker-end="url(#nc-m4-arrow)"/>
+<text class="sv-t3" x="637" y="304" text-anchor="start">LOEx (5)</text>
+<line class="sv-line" x1="247" y1="360" x2="263" y2="360" marker-end="url(#nc-m4-arrow)"/>
+<line class="sv-line" x1="513" y1="360" x2="497" y2="360" marker-end="url(#nc-m4-arrow)"/>
+</svg>

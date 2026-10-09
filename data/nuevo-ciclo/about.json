@@ -1,0 +1,18 @@
+{
+ "ai_short": "Resúmenes, conceptos y esquemas elaborados con Claude Fable 5.1 (IA). Lectura interpretativa: el texto íntegro es la referencia.",
+ "magazine": {
+  "title": "Sobre Nuevo Ciclo",
+  "paragraphs": [
+   "Nuevo Ciclo es la revista trimestral de la Asociación Nuevo Ciclo (Madrid), hermana de la revista-libro Marx XXI. Nació en septiembre de 2025 y cada número reúne cinco artículos y una entrevista con un autor internacional.",
+   "La revista no lleva editorial ni presentación: el primer artículo del #001 explica su nombre. Muchos de sus textos remiten a los volúmenes de Marx XXI, y varios autores escriben en las dos publicaciones; el lector enlaza esos textos en el apartado «Relacionado» de cada guía."
+  ]
+ },
+ "ai": {
+  "paragraphs": []
+ },
+ "license": {
+  "paragraphs": [
+   "Nuevo Ciclo indica en cada número que «se puede compartir, copiar y distribuir la obra de forma completamente libre en cualquiera de los formatos disponibles». Sus textos íntegros se han extraído automáticamente de los PDF; en esta revista la página del PDF coincide con la impresa."
+  ]
+ }
+}

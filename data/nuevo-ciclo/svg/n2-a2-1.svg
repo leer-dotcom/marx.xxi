@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 495" role="img" aria-label="Dos columnas enfrentadas: la hipótesis neofeudal y la crítica marxista, en los planos del valor, la acumulación, el sujeto político y las consecuencias prácticas.">
+<defs><marker id="nc-n2a2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="100" width="752" height="87" rx="2"/>
+<text class="sv-t3" x="10" y="111">VALOR</text>
+<rect class="sv-soft" x="4" y="201" width="752" height="87" rx="2"/>
+<text class="sv-t3" x="10" y="212">ACUMULACIÓN</text>
+<rect class="sv-soft" x="4" y="302" width="752" height="87" rx="2"/>
+<text class="sv-t3" x="10" y="313">SUJETO POLÍTICO</text>
+<rect class="sv-soft" x="4" y="403" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="414">CONSECUENCIAS</text>
+<rect class="sv-box-blue" x="12" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tb" x="192" y="50.5" text-anchor="middle">Hipótesis neo / tecnofeudal</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="65.5" text-anchor="middle">Dean, Varoufakis, Francia Insumisa</text>
+<rect class="sv-box-red" x="388" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="568" y="50.5" text-anchor="middle">Crítica marxista</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="65.5" text-anchor="middle">Marx, Roberts, Aguiriano</text>
+<rect class="sv-box" x="12" y="122" width="360" height="57" rx="2"/>
+<text class="sv-t" x="192" y="147.0" text-anchor="middle">Fuente del valor: datos, algoritmos, infraestructuras;</text>
+<text class="sv-t" x="192" y="162.0" text-anchor="middle">«fin del trabajo»</text>
+<rect class="sv-box" x="388" y="122" width="360" height="57" rx="2"/>
+<text class="sv-t" x="568" y="139.5" text-anchor="middle">Sólo el trabajo vivo crea valor; el trabajo muerto</text>
+<text class="sv-t" x="568" y="154.5" text-anchor="middle">transfiere. Lo que hay es invisibilización y</text>
+<text class="sv-t" x="568" y="169.5" text-anchor="middle">fragmentación del trabajo</text>
+<rect class="sv-box" x="12" y="223" width="360" height="57" rx="2"/>
+<text class="sv-t" x="192" y="248.0" text-anchor="middle">Rentismo y plataformas = regresión a la dependencia</text>
+<text class="sv-t" x="192" y="263.0" text-anchor="middle">personal feudal</text>
+<rect class="sv-box" x="388" y="223" width="360" height="57" rx="2"/>
+<text class="sv-t" x="568" y="240.5" text-anchor="middle">Rentismo y financiarización = fase de la acumulación;</text>
+<text class="sv-t" x="568" y="255.5" text-anchor="middle">expresan la crisis histórica del capital, no un nuevo</text>
+<text class="sv-t" x="568" y="270.5" text-anchor="middle">modo de producción</text>
+<rect class="sv-box" x="12" y="324" width="360" height="57" rx="2"/>
+<text class="sv-t" x="192" y="349.0" text-anchor="middle">Élites vs. multitudes; usuario vs. sistema; Estado</text>
+<text class="sv-t" x="192" y="364.0" text-anchor="middle">gestor; partido afectivo</text>
+<rect class="sv-box" x="388" y="324" width="360" height="57" rx="2"/>
+<text class="sv-t" x="568" y="341.5" text-anchor="middle">Burguesía vs. proletariado; el partido como</text>
+<text class="sv-t" x="568" y="356.5" text-anchor="middle">organización de la clase que media entre conciencia y</text>
+<text class="sv-t" x="568" y="371.5" text-anchor="middle">praxis</text>
+<rect class="sv-box" x="12" y="425" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="445.5" text-anchor="middle">Regular las plataformas: DMA, DSA, Next Generation EU,</text>
+<text class="sv-t" x="192" y="460.5" text-anchor="middle">Ley Rider</text>
+<rect class="sv-box" x="388" y="425" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="445.5" text-anchor="middle">Ajuste interno del capital: equipaje teórico de una</text>
+<text class="sv-t" x="568" y="460.5" text-anchor="middle">socialdemocracia radical confinada a la redistribución</text>
+<line class="sv-line" x1="372" y1="150" x2="388" y2="150" marker-end="url(#nc-n2a2-arrow)"/>
+<line class="sv-line" x1="372" y1="252" x2="388" y2="252" marker-end="url(#nc-n2a2-arrow)"/>
+<line class="sv-line" x1="372" y1="352" x2="388" y2="352" marker-end="url(#nc-n2a2-arrow)"/>
+<line class="sv-line" x1="372" y1="449" x2="388" y2="449" marker-end="url(#nc-n2a2-arrow)"/>
+</svg>

@@ -1,34 +1,149 @@
 // Carga de contenidos (data/), textos íntegros bajo demanda, búsqueda y almacenamiento local.
+//
+// La biblioteca reúne varias publicaciones (data/library.json): Marx XXI (volúmenes) y Nuevo Ciclo (números).
+// Cada una tiene su content.json con el mismo esquema. Los ids de artículo no se repiten entre publicaciones
+// (t1-a1 en Marx XXI, n1-a1 en Nuevo Ciclo), así que las rutas #/articulo/<id> y #/leer/<id> valen para todas.
 
 let library = null;
 const textCache = new Map();
 
+// Manifiesto por defecto (si falta data/library.json, la web funciona solo con Marx XXI)
+const DEFAULT_PUBS = [{ id: 'marx-xxi', name: 'Marx XXI', kind: 'Revista-libro temática', content: 'content.json',
+  unit: 'Volumen', unit_plural: 'volúmenes', unit_short: 'Vol.', route: 'volumen', key: '', home: '#/marx-xxi', complete: true }];
+
 export async function loadLibrary() {
   if (library) return library;
-  const res = await fetch('data/content.json', { cache: 'no-cache' });
-  if (!res.ok) throw new Error('No se pudo cargar data/content.json');
-  library = await res.json();
-  library.v = library.build ? '?v=' + library.build : '';
+  const getJson = async (path, opts) => {
+    const res = await fetch('data/' + path, opts);
+    if (!res.ok) throw new Error('No se pudo cargar data/' + path);
+    return res.json();
+  };
+  const manifest = await getJson('library.json', { cache: 'no-cache' }).catch(() => ({ publications: DEFAULT_PUBS }));
+  // El content.json de Marx XXI lleva el sello de compilación (?v=…) que usan todas las rutas de datos
+  const first = await getJson(manifest.publications[0].content, { cache: 'no-cache' });
+  const v = first.build ? '?v=' + first.build : '';
+  const pubs = await Promise.all(manifest.publications.map(async (m, i) => {
+    const content = i === 0 ? first : await getJson(m.content + v).catch(() => null);
+    if (!content) return null;
+    const about = m.about ? await getJson(m.about + v).catch(() => null) : null;
+    const pub = { ...m, ...content, about };
+    for (const vol of pub.volumes) {
+      vol.pub = pub;
+      vol.key = (m.key || '') + vol.number;            // data-vol: «1»… en Marx XXI, «n1»… en Nuevo Ciclo
+      vol.href = `#/${m.route}/${vol.number}`;
+      vol.cover = m.cover ? m.cover.replace('{n}', vol.number) : null; // img/mxxi1.webp, img/nc1.webp…
+    }
+    return pub;
+  }));
+  library = { pubs: pubs.filter(Boolean), v, manifest };
+  library.byId = Object.fromEntries(library.pubs.map(p => [p.id, p]));
   // Textos de «Acerca de» (créditos y aviso de IA); opcional
-  library.about = await fetch('data/about.json' + library.v).then(r => r.ok ? r.json() : null).catch(() => null);
-  library.allArticles = library.volumes.flatMap(v => v.articles.map(a => ({ v, a })));
-  library.glossary = library.allArticles
-    .flatMap(({ v, a }) => a.concepts.map(c => ({ c, a, v })))
-    .sort((x, y) => fold(x.c.term).localeCompare(fold(y.c.term), 'es'));
+  library.about = await getJson('about.json' + v).catch(() => null);
+  library.synthesis = manifest.synthesis ? await getJson(manifest.synthesis + v).catch(() => null) : null;
+  library.allArticles = library.pubs.flatMap(p => p.volumes.flatMap(vol => vol.articles.map(a => ({ v: vol, a }))));
+  library.byArticle = new Map(library.allArticles.map(x => [x.a.id, x]));
+  library.refs = crossRefs();
+  library.glossary = glossary();
+  library.authors = authors();
   return library;
 }
 
 export const lib = () => library;
 /** Ruta a un archivo de data/ con la versión de compilación (evita servir copias viejas de la caché). */
 export const dataUrl = path => 'data/' + path + (library?.v || '');
-export const volume = n => library.volumes.find(v => v.number === n);
-export function article(id) {
-  const hit = library.allArticles.find(x => x.a.id === id);
-  return hit || null;
-}
+/** Publicación por id ('marx-xxi', 'nuevo-ciclo'); sin id, la primera (Marx XXI). */
+export const pub = id => (id ? library.byId[id] : library.pubs[0]) || null;
+export const volume = (n, pubId) => pub(pubId)?.volumes.find(v => v.number === n) || null;
+export const article = id => library.byArticle.get(id) || null;
+/** Anterior y siguiente dentro de la misma publicación (cruza de volumen o número). */
 export function neighbours(id) {
-  const i = library.allArticles.findIndex(x => x.a.id === id);
-  return { prev: library.allArticles[i - 1]?.a || null, next: library.allArticles[i + 1]?.a || null };
+  const hit = article(id);
+  const list = library.allArticles.filter(x => x.v.pub === hit?.v.pub);
+  const i = list.findIndex(x => x.a.id === id);
+  return { prev: list[i - 1]?.a || null, next: list[i + 1]?.a || null };
+}
+
+// ---------- etiquetas según la publicación ----------
+// Marx XXI: «Volumen 3», «Vol. 3», «Art. 2». Nuevo Ciclo: «Nuevo Ciclo #003», «#003», «Art. 2» o «Entrevista».
+
+const MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+/** "2025-09" → "septiembre de 2025" */
+export const monthName = ym => { const [y, m] = (ym || '').split('-'); return m ? `${MONTHS[+m - 1]} de ${y}` : (y || ''); };
+const isNumbered = v => !!v.label;
+/** «Volumen 3» · «Nuevo Ciclo #003» */
+export const volName = v => isNumbered(v) ? `${v.pub.name} ${v.label}` : `${v.pub.unit} ${v.number}`;
+/** «Vol. 3» · «#003» */
+export const volShort = v => isNumbered(v) ? v.label : `${v.pub.unit_short || 'Vol.'} ${v.number}`;
+/** Cabecera de volumen: «Volumen 3 · Independencia política» · «Nuevo Ciclo #003 · marzo de 2026» */
+export const volHead = v => isNumbered(v) ? `${volName(v)} · ${monthName(v.month)}` : `${volName(v)} · ${v.title}`;
+/** Fecha corta del volumen: «2024» · «marzo de 2026» */
+export const volDate = v => v.month ? monthName(v.month) : (v.year ? String(v.year) : '');
+export const isInterview = a => a.type === 'interview';
+/** «Art. 2» · «Entrevista» */
+export const artLabel = a => isInterview(a) ? 'Entrevista' : `Art. ${a.number}`;
+/** Nombre destacado: el autor o, en las entrevistas, el entrevistado. */
+export const byline = a => a.interviewee || a.author;
+
+// ---------- referencias cruzadas (cross_refs de cada publicación) ----------
+// { from, to: 'marx-xxi:t4-a7' | 'n2-a5', kind: 'cita'|'tema'|'autor', why }
+
+function crossRefs() {
+  const out = [];
+  for (const p of library.pubs) {
+    for (const r of p.cross_refs || []) {
+      const to = r.to.includes(':') ? r.to.split(':')[1] : r.to;
+      if (article(r.from) && article(to)) out.push({ ...r, to });
+    }
+  }
+  return out;
+}
+/** Textos relacionados con un artículo: los que cita o trata (out) y los que lo citan (in). */
+export function related(id) {
+  return library.refs.flatMap(r => r.from === id ? [{ ...r, dir: 'out', other: article(r.to) }]
+    : r.to === id ? [{ ...r, dir: 'in', other: article(r.from) }] : []);
+}
+
+// ---------- glosario y autores unificados ----------
+
+function glossary() {
+  // Conceptos puente: los que la síntesis de la biblioteca enlaza en las dos revistas, y los términos
+  // que aparecen con el mismo nombre en publicaciones distintas.
+  const bridge = new Set();
+  for (const b of library.synthesis?.bridge_concepts || []) {
+    for (const x of [...(b.marx_xxi || []), ...(b.nuevo_ciclo || [])]) bridge.add(x.article + '|' + fold(x.term));
+  }
+  const all = library.allArticles.flatMap(({ v, a }) => a.concepts.map(c => ({ c, a, v, pub: v.pub })));
+  const pubsByTerm = new Map();
+  for (const e of all) {
+    const k = fold(e.c.term).trim();
+    if (!pubsByTerm.has(k)) pubsByTerm.set(k, new Set());
+    pubsByTerm.get(k).add(e.pub.id);
+  }
+  for (const e of all) e.bridge = bridge.has(e.a.id + '|' + fold(e.c.term)) || pubsByTerm.get(fold(e.c.term).trim()).size > 1;
+  return all.sort((x, y) => fold(x.c.term).localeCompare(fold(y.c.term), 'es'));
+}
+
+// Variantes de firma de una misma persona (revisadas a mano). «Jorge Seijo» (Marx XXI) e «Ismael Seijo»
+// (Nuevo Ciclo) se mantienen separados: no consta que sean la misma persona.
+const AUTHOR_ALIASES = {
+  'mario aguiriano beneitez': 'Mario Aguiriano', 'miasni': 'Gabriel Miasni', 'albert toscano': 'Alberto Toscano',
+};
+/** Firmas individuales de un texto («A y B», «A e B», «A, B»). */
+export function authorNames(a) {
+  const raw = a.interviewee || a.author;
+  return raw.split(/\s*,\s*|\s+y\s+|\s+e\s+(?=[A-ZÁÉÍÓÚ])/).map(s => s.trim()).filter(Boolean)
+    .map(n => AUTHOR_ALIASES[fold(n)] || n);
+}
+function authors() {
+  const map = new Map();
+  for (const x of library.allArticles) {
+    for (const n of authorNames(x.a)) {
+      const k = fold(n);
+      if (!map.has(k)) map.set(k, { name: n, items: [] });
+      map.get(k).items.push(x);
+    }
+  }
+  return [...map.values()].sort((x, y) => fold(x.name).localeCompare(fold(y.name), 'es'));
 }
 
 // Marcas internas dentro del texto de cada bloque (un solo carácter de uso privado, para que
@@ -43,7 +158,7 @@ export const plain = t => t.replace(MARK_RE, '');
 function encode(src) {
   return src
     .replace(/\[\^(\d+)\]/g, (_, n) => String.fromCodePoint(MK.note + +n))
-    .replace(/\[\[p(\d+)\]\]/g, (_, n) => String.fromCodePoint(MK.page + +n))
+    .replace(/\s?\[\[p\d+\]\]/g, '') // marcas de página impresa: no se muestran en el lector (siguen en los JSON)
     .replace(/\*\*/g, MK.bd)
     .replace(/(?<!\\)\*/g, MK.it)
     .replace(/\\\*/g, '*');
@@ -60,7 +175,13 @@ export async function text(path) {
   if (!res.ok) throw new Error('No se pudo cargar ' + path);
   const d = await res.json();
   const blocks = d.blocks.map(b => {
-    const t = encode(b.text);
+    if (b.t === 'tabla') { // tabla (Nuevo Ciclo): filas de celdas y pie; p = texto para buscar
+      const rows = (b.rows || []).map(r => r.map(c => encode(c)));
+      const caption = b.caption ? encode(b.caption) : '';
+      return { k: 'tabla', t: '', rows, caption, pg: b.pg, p: plain([...rows.flat(), caption].join(' ')) };
+    }
+    // separador «* * *» (entrevistas): los asteriscos no son cursivas
+    const t = b.t === 'sep' ? (b.text || '* * *') : encode(b.text);
     return {
       k: b.t === 'ep' ? 'e' : b.t, t, p: plain(t), pg: b.pg, lvl: b.level, mk: b.marker,
       cite: b.cite ? encode(b.cite) : '', cont: !!b.cont,
@@ -115,7 +236,7 @@ export function snippet(textStr, q, radius = 90) {
 export const KIND = {
   title: ['Título', 'soft'], summary: ['Resumen', 'soft'], argument: ['Argumento', 'soft'],
   concept: ['Concepto', ''], conclusion: ['Conclusión', 'olive'], thesis: ['Tesis común', 'olive'],
-  fulltext: ['Texto íntegro', ''],
+  synthesis: ['Síntesis', 'olive'], fulltext: ['Texto íntegro', ''],
 };
 
 export function searchGuide(q) {
@@ -123,23 +244,30 @@ export function searchGuide(q) {
   if (f.length < 2) return [];
   const has = s => fold(s || '').includes(f);
   const hits = [];
-  for (const v of library.volumes) {
-    for (const a of v.articles) {
-      if (has(a.title) || has(a.author)) hits.push({ kind: 'title', v, a, label: a.title, text: a.author });
-      for (const c of a.concepts) if (has(c.term) || has(c.definition)) hits.push({ kind: 'concept', v, a, label: c.term, text: snippet(c.definition, q) });
-      const s = a.summary.find(has);
-      if (s) hits.push({ kind: 'summary', v, a, label: a.title, text: snippet(s, q) });
-      const st = a.argument.find(x => has(x.title) || has(x.text));
-      if (st) hits.push({ kind: 'argument', v, a, label: st.title, text: snippet(st.text, q) });
+  for (const p of library.pubs) {
+    for (const v of p.volumes) {
+      for (const a of v.articles) {
+        if (has(a.title) || has(a.author) || has(a.interviewee)) hits.push({ kind: 'title', pub: p, v, a, label: a.title, text: a.author });
+        for (const c of a.concepts) if (has(c.term) || has(c.definition)) hits.push({ kind: 'concept', pub: p, v, a, label: c.term, text: snippet(c.definition, q) });
+        const s = a.summary.find(has);
+        if (s) hits.push({ kind: 'summary', pub: p, v, a, label: a.title, text: snippet(s, q) });
+        const st = a.argument.find(x => has(x.title) || has(x.text));
+        if (st) hits.push({ kind: 'argument', pub: p, v, a, label: st.title, text: snippet(st.text, q) });
+      }
+      for (const c of v.conclusions) if (has(c.title) || has(c.text)) hits.push({ kind: 'conclusion', pub: p, v, label: c.title, text: snippet(c.text, q) });
     }
-    for (const c of v.conclusions) if (has(c.title) || has(c.text)) hits.push({ kind: 'conclusion', v, label: c.title, text: snippet(c.text, q) });
+    for (const t of p.cross_volume.theses) if (has(t.title) || has(t.text)) hits.push({ kind: 'thesis', pub: p, label: t.title, text: snippet(t.text, q) });
   }
-  for (const t of library.cross_volume.theses) if (has(t.title) || has(t.text)) hits.push({ kind: 'thesis', label: t.title, text: snippet(t.text, q) });
+  for (const t of library.synthesis?.theses || []) {
+    const txt = [t.principle, t.application].find(has) || t.principle;
+    if (has(t.title) || has(t.principle) || has(t.application)) hits.push({ kind: 'synthesis', label: t.title, text: snippet(txt, q), n: t.number });
+  }
   const order = Object.keys(KIND);
-  return hits.sort((x, y) => order.indexOf(x.kind) - order.indexOf(y.kind));
+  // estable: dentro de cada tipo, el orden de la biblioteca (Marx XXI y después Nuevo Ciclo)
+  return hits.map((h, i) => [h, i]).sort(([x, i], [y, j]) => order.indexOf(x.kind) - order.indexOf(y.kind) || i - j).map(([h]) => h);
 }
 
-/** Recorre los 48 textos; llama a onHit por cada coincidencia y onProgress(i, total). Cancelable con signal. */
+/** Recorre todos los textos; llama a onHit por cada coincidencia y onProgress(i, total). Cancelable con signal. */
 export async function searchFullText(q, { onHit, onProgress, signal, perArticle = 5 }) {
   const f = fold(q).trim();
   if (f.length < 3) return;
@@ -151,7 +279,7 @@ export async function searchFullText(q, { onHit, onProgress, signal, perArticle 
     let n = 0;
     for (let b = 0; b < blocks.length && n < perArticle; b++) {
       if (fold(blocks[b].p).includes(f)) {
-        onHit({ kind: 'fulltext', v, a, label: a.title, text: snippet(blocks[b].p, q), block: b });
+        onHit({ kind: 'fulltext', pub: v.pub, v, a, label: a.title, text: snippet(blocks[b].p, q), block: b });
         n++;
       }
     }

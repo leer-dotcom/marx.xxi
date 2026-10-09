@@ -1,5 +1,5 @@
 {
-  "ai_short": "Resúmenes, conceptos y esquemas elaborados con Claude (IA). Lectura interpretativa: el texto íntegro es la referencia.",
+  "ai_short": "Resúmenes, conceptos y esquemas elaborados con Claude Fable 5.1 (IA). Lectura interpretativa: el texto íntegro es la referencia.",
   "magazine": {
     "title": "Sobre Marx XXI",
     "paragraphs": [
@@ -13,8 +13,9 @@
   "ai": {
     "title": "Sobre esta guía de lectura",
     "paragraphs": [
-      "Los resúmenes, la estructura de los argumentos, los conceptos, las citas seleccionadas, las conclusiones, las relaciones entre artículos, las tesis comunes y los esquemas de esta aplicación se han elaborado con Claude, un modelo de inteligencia artificial de Anthropic, a partir de la lectura de los cinco volúmenes.",
-      "Son una lectura interpretativa pensada como ayuda al estudio. Pueden contener errores u omisiones, no sustituyen a los textos y no expresan necesariamente la posición de sus autores ni de la revista. Las citas entre comillas son literales; ante cualquier duda, el texto íntegro es la referencia."
+      "Esta aplicación sirve para leer y subrayar las revistas cómodamente desde dispositivos digitales: el móvil, la tableta o el ordenador. Reúne los textos íntegros con un modo de lectura ajustable (tema, fuente, tamaño, interlineado y márgenes), subrayados en varios colores con notas propias, marcadores y búsqueda en todos los textos. La posición de lectura, los subrayados y las notas se guardan solo en tu dispositivo.",
+      "Cada texto va acompañado de una guía de estudio: resumen, estructura del argumento, esquema, conceptos clave, una cita seleccionada y la conclusión. Se suman las conclusiones, los mapas conceptuales y las relaciones entre artículos de cada volumen o número, las tesis comunes, el glosario y la síntesis de la biblioteca. Todo este material se ha elaborado como apoyo al estudio con Claude Fable 5.1, de Anthropic, uno de los modelos de inteligencia artificial más avanzados, a partir de la lectura íntegra de las revistas.",
+      "Aun así, son resúmenes e interpretaciones hechos con IA, pensados para acompañar la lectura y no para reemplazarla. No sustituyen a los textos íntegros y podrían no reflejarlos con exactitud: pueden contener errores u omisiones, y no expresan necesariamente la posición de los autores ni de las revistas. Las citas entre comillas son literales; ante cualquier duda, el texto íntegro es la referencia."
     ]
   },
   "license": {

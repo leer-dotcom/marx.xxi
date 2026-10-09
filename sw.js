@@ -1,9 +1,13 @@
 // Service worker: la app funciona sin conexión una vez visitada.
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
-const VERSION = 'mx-20261009-1834';
+const VERSION = 'mx-20261009-2016';
 const SHELL = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
-  'manifest.webmanifest', 'img/icon.svg', 'data/content.json', 'data/diagram.css',
+  'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
+  'data/nuevo-ciclo/content.json', 'data/diagram.css',
+  // portadas
+  'img/mxxi1.webp', 'img/mxxi2.webp', 'img/mxxi3.webp', 'img/mxxi4.webp', 'img/mxxi5.webp',
+  'img/nc1.webp', 'img/nc2.webp', 'img/nc3.webp', 'img/nc4.webp',
 ];
 
 self.addEventListener('install', e => {

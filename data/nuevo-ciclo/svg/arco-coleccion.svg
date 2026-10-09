@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 161" role="img" aria-label="Los cuatro números de Nuevo Ciclo como pasos de un mismo argumento que desemboca en el partido comunista de masas e internacional.">
+<defs><marker id="nc-hero-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box" x="12" y="30" width="134" height="117" rx="2"/>
+<text class="sv-t" x="79" y="55.0" text-anchor="middle">#001 · Septiembre</text>
+<text class="sv-t" x="79" y="70.0" text-anchor="middle">2025</text>
+<text class="sv-t2" style="font-weight:400" x="79" y="85.0" text-anchor="middle">diagnóstico de</text>
+<text class="sv-t2" style="font-weight:400" x="79" y="100.0" text-anchor="middle">época: declive,</text>
+<text class="sv-t2" style="font-weight:400" x="79" y="115.0" text-anchor="middle">guerra, represión,</text>
+<text class="sv-t2" style="font-weight:400" x="79" y="130.0" text-anchor="middle">Gaza, España</text>
+<rect class="sv-box" x="162" y="30" width="134" height="117" rx="2"/>
+<text class="sv-t" x="230" y="47.5" text-anchor="middle">#002 · Diciembre</text>
+<text class="sv-t" x="230" y="62.5" text-anchor="middle">2025</text>
+<text class="sv-t2" style="font-weight:400" x="230" y="77.5" text-anchor="middle">franquismo,</text>
+<text class="sv-t2" style="font-weight:400" x="230" y="92.5" text-anchor="middle">neofeudalismo,</text>
+<text class="sv-t2" style="font-weight:400" x="230" y="107.5" text-anchor="middle">Europa,</text>
+<text class="sv-t2" style="font-weight:400" x="230" y="122.5" text-anchor="middle">siniestralidad,</text>
+<text class="sv-t2" style="font-weight:400" x="230" y="137.5" text-anchor="middle">prensa</text>
+<rect class="sv-box" x="313" y="30" width="134" height="117" rx="2"/>
+<text class="sv-t" x="380" y="70.0" text-anchor="middle">#003 · Marzo 2026</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="85.0" text-anchor="middle">Estado dual, OTAN,</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="100.0" text-anchor="middle">género, austeridad y</text>
+<text class="sv-t2" style="font-weight:400" x="380" y="115.0" text-anchor="middle">fascismo</text>
+<rect class="sv-box" x="463" y="30" width="134" height="117" rx="2"/>
+<text class="sv-t" x="530" y="62.5" text-anchor="middle">#004 · Junio 2026</text>
+<text class="sv-t2" style="font-weight:400" x="530" y="77.5" text-anchor="middle">genocidio,</text>
+<text class="sv-t2" style="font-weight:400" x="530" y="92.5" text-anchor="middle">delincuencia,</text>
+<text class="sv-t2" style="font-weight:400" x="530" y="107.5" text-anchor="middle">ilegalidad, el juez,</text>
+<text class="sv-t2" style="font-weight:400" x="530" y="122.5" text-anchor="middle">inmigración</text>
+<rect class="sv-box-red" x="614" y="30" width="134" height="117" rx="2"/>
+<text class="sv-tr" x="681" y="55.0" text-anchor="middle">Partido comunista</text>
+<text class="sv-tr" x="681" y="70.0" text-anchor="middle">de masas,</text>
+<text class="sv-tr" x="681" y="85.0" text-anchor="middle">continental e</text>
+<text class="sv-tr" x="681" y="100.0" text-anchor="middle">internacional</text>
+<text class="sv-t2" style="font-weight:400" x="681" y="115.0" text-anchor="middle">independencia</text>
+<text class="sv-t2" style="font-weight:400" x="681" y="130.0" text-anchor="middle">política de la clase</text>
+<line class="sv-line" x1="146" y1="88" x2="162" y2="88" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line" x1="297" y1="88" x2="313" y2="88" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line" x1="447" y1="88" x2="463" y2="88" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line" x1="598" y1="88" x2="614" y2="88" marker-end="url(#nc-hero-arrow)"/>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 409" role="img" aria-label="Espiral austeridad-reacción en cuatro estaciones, las tres respuestas, de las que sólo el programa mínimo-máximo sale del ciclo, y los casos históricos y actuales.">
+<defs><marker id="nc-n3a5-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="16" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="27">ESPIRAL AUSTERIDAD → REACCIÓN</text>
+<rect class="sv-soft" x="4" y="147" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="158">RESPUESTAS</text>
+<rect class="sv-soft" x="4" y="278" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="289">CASOS</text>
+<rect class="sv-box" x="12" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="98" y="63.0" text-anchor="middle">Austeridad liberal /</text>
+<text class="sv-t" x="98" y="78.0" text-anchor="middle">progresista</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="93.0" text-anchor="middle">Brüning, Scholz-Merz,</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="108.0" text-anchor="middle">Macron, Biden</text>
+<rect class="sv-box" x="200" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="286" y="70.5" text-anchor="middle">Frustración de clases</text>
+<text class="sv-t" x="286" y="85.5" text-anchor="middle">medias y trabajadoras</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="100.5" text-anchor="middle">inflación, paro, recortes</text>
+<rect class="sv-box-red" x="388" y="38" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="474" y="63.0" text-anchor="middle">Derecha radical en el</text>
+<text class="sv-tr" x="474" y="78.0" text-anchor="middle">gobierno</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="93.0" text-anchor="middle">AfD, Le Pen, Meloni, Trump</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="108.0" text-anchor="middle">II</text>
+<rect class="sv-box-red" x="576" y="38" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="662" y="55.5" text-anchor="middle">Austeridad selectiva +</text>
+<text class="sv-tr" x="662" y="70.5" text-anchor="middle">nacionalismo económico</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="85.5" text-anchor="middle">Estado de bienestar</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="100.5" text-anchor="middle">recortado, Estado</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="115.5" text-anchor="middle">coercitivo fuerte</text>
+<rect class="sv-box-blue" x="12" y="169" width="172" height="87" rx="2"/>
+<text class="sv-tb" x="98" y="186.5" text-anchor="middle">Weber, Piketty, Zucman,</text>
+<text class="sv-tb" x="98" y="201.5" text-anchor="middle">Mamdani</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="216.5" text-anchor="middle">política económica</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="231.5" text-anchor="middle">antifascista interclasista;</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="246.5" text-anchor="middle">Estado neutral</text>
+<rect class="sv-box" x="200" y="169" width="172" height="87" rx="2"/>
+<text class="sv-t" x="286" y="194.0" text-anchor="middle">Izquierda gobernista</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="209.0" text-anchor="middle">versiones aguadas,</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="224.0" text-anchor="middle">aplazamientos, olvidos</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="239.0" text-anchor="middle">(Sumar)</text>
+<rect class="sv-box-red" x="388" y="169" width="360" height="87" rx="2"/>
+<text class="sv-tr" x="568" y="194.0" text-anchor="middle">Programa mínimo-máximo de una fuerza independiente</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="209.0" text-anchor="middle">cinco líneas: mejoras inmediatas, medidas contra el</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="224.0" text-anchor="middle">mercado, socialización, régimen laboral, servicios públicos</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="239.0" text-anchor="middle">→ revolución socialista</text>
+<rect class="sv-box-gold" x="12" y="300" width="172" height="87" rx="2"/>
+<text class="sv-tg" x="98" y="332.5" text-anchor="middle" style="font-size:13.1px;letter-spacing:0">Weimar: Brüning → NSDAP</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="347.5" text-anchor="middle">la austeridad engendra al</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="362.5" text-anchor="middle">nazismo</text>
+<rect class="sv-box-gold" x="200" y="300" width="172" height="87" rx="2"/>
+<text class="sv-tg" x="286" y="317.5" text-anchor="middle">Italia: Mussolini →</text>
+<text class="sv-tg" x="286" y="332.5" text-anchor="middle">austeridad</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="347.5" text-anchor="middle">el fascismo la aplica</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="362.5" text-anchor="middle">(Pareto, finanza</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="377.5" text-anchor="middle">anglosajona)</text>
+<rect class="sv-box-gold" x="388" y="300" width="172" height="87" rx="2"/>
+<text class="sv-tg" x="474" y="325.0" text-anchor="middle">Franquismo: autarquía</text>
+<text class="sv-tg" x="474" y="340.0" text-anchor="middle">1939-59</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="355.0" text-anchor="middle">«a cara descubierta»;</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="370.0" text-anchor="middle">quiebra de 1959</text>
+<rect class="sv-box-gold" x="576" y="300" width="172" height="87" rx="2"/>
+<text class="sv-tg" x="662" y="325.0" text-anchor="middle">Hoy: -1 % de gasto = +3 %</text>
+<text class="sv-tg" x="662" y="340.0" text-anchor="middle">de voto ultra</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="355.0" text-anchor="middle">Alemania, Francia, Italia,</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="370.0" text-anchor="middle">EE. UU.</text>
+<line class="sv-line" x1="184" y1="82" x2="200" y2="82" marker-end="url(#nc-n3a5-arrow)"/>
+<line class="sv-line" x1="372" y1="82" x2="388" y2="82" marker-end="url(#nc-n3a5-arrow)"/>
+<line class="sv-line" x1="560" y1="82" x2="576" y2="82" marker-end="url(#nc-n3a5-arrow)"/>
+<path class="sv-line-red" d="M662 125 V141 H98 V126" marker-end="url(#nc-n3a5-arrow)"/>
+<text class="sv-t3" x="380" y="136" text-anchor="middle">el ciclo se reabre: «la historia rima»</text>
+</svg>

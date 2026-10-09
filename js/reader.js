@@ -1,5 +1,5 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
-import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS } from './data.js';
+import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS, volHead, volShort, artLabel, byline } from './data.js';
 import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, toast } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -32,6 +32,14 @@ function rich(html) {
 }
 
 function inner(b, q) {
+  if (b.k === 'tabla') { // tabla de Nuevo Ciclo: la primera fila es la cabecera; las filas de una celda, subtítulos
+    const cell = c => rich(highlight(c, q));
+    const width = Math.max(...b.rows.map(r => r.length));
+    const rows = b.rows.map((r, i) => r.length === 1
+      ? `<tr class="${i ? 'tsub' : 'thead'}"><th colspan="${width}">${cell(r[0])}</th></tr>`
+      : `<tr>${r.map((c, j) => `<td${j ? ' class="num"' : ''}>${cell(c)}</td>`).join('')}${'<td></td>'.repeat(width - r.length)}</tr>`).join('');
+    return `<div class="tbl-wrap"><table>${rows}</table></div>${b.caption ? `<p class="tbl-cap">${cell(b.caption)}</p>` : ''}`;
+  }
   const cite = b.cite ? ` <span class="cite">${rich(highlight(b.cite, q))}</span>` : '';
   const mk = b.k === 'li' && b.mk ? `<span class="mk">${esc(b.mk)}</span> ` : '';
   return mk + rich(highlight(b.t, q)) + cite;
@@ -48,6 +56,9 @@ function blockHtml(b, i, q, firstPara) {
     case 'e': return `<p class="epi" data-b="${i}">${t}</p>`;
     case 'q': return `<p class="bq" data-b="${i}">${t}</p>`;
     case 'li': return `<p class="li" data-b="${i}">${t}</p>`;
+    case 'qn': return `<p class="qn" data-b="${i}">${t}</p>`; // pregunta de la entrevista
+    case 'sep': return `<p class="sep" data-b="${i}" aria-hidden="true">${esc(b.t)}</p>`;
+    case 'tabla': return `<figure class="tbl" data-b="${i}">${t}</figure>`;
     default: return `<p class="${firstPara && !b.cont ? 'first' : ''}${b.cont ? ' cont' : ''}" data-b="${i}">${t}</p>`;
   }
 }
@@ -108,7 +119,7 @@ export async function readerView(key, params) {
   const v = pv || hit.v, a = hit?.a || null;
   const path = pv ? pv.presentation_text : a.text_file;
   const title = a ? a.title : (v.number === 5 ? 'Nota introductoria' : 'Presentación');
-  const author = a ? a.author : (v.editor || '');
+  const author = a ? byline(a) : (v.editor || '');
   document.title = `${title} · Lector de Marx XXI`;
 
   let blocks;
@@ -126,8 +137,8 @@ export async function readerView(key, params) {
   const html = `
   <div class="reader-top"><div class="inner" id="r-top">
     <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
-    <a class="icon-btn" href="${a ? '#/articulo/' + a.id : '#/volumen/' + v.number + '/0'}" aria-label="Volver" id="r-back">${SVG.back}</a>
-    <div class="titles"><b>${esc(title)}</b><span>Vol. ${v.number}${author ? ' · ' + esc(author) : ''}</span></div>
+    <a class="icon-btn" href="${a ? '#/articulo/' + a.id : v.href + '/0'}" aria-label="Volver" id="r-back">${SVG.back}</a>
+    <div class="titles"><b>${esc(title)}</b><span>${esc(volShort(v))}${author ? ' · ' + esc(author) : ''}</span></div>
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
   </div></div>
   <div class="hl-bar" id="hl-bar" role="toolbar" aria-label="Subrayar el pasaje seleccionado" hidden>
@@ -135,15 +146,16 @@ export async function readerView(key, params) {
     <button type="button" class="hl-add-note" data-color="note" aria-label="Subrayar y añadir una nota" title="Subrayar y añadir nota">${SVG.note}</button>
   </div>
 
-  <article class="reader" id="reader" lang="es" data-vol="${v.number}">
+  <article class="reader" id="reader" lang="es" data-vol="${v.key}">
     <header class="r-head">
-      <a class="eyebrow r-vol" href="#/volumen/${v.number}">Volumen ${v.number} · ${esc(v.title)}${a ? ' · Art. ' + a.number : ''}</a>
+      <a class="eyebrow r-vol" href="${v.href}">${esc(volHead(v))}${a ? ' · ' + artLabel(a) : ''}</a>
       <h1>${esc(title)}${(blocks.titleNotes || []).map(n => rich(String.fromCodePoint(MK.note + n))).join('')}</h1>
       ${author ? `<div class="by">${esc(author)}</div>` : ''}
+      ${a?.interviewee ? `<div class="by-sub">${esc(a.author)}</div>` : ''}
     </header>
     ${body}
     ${blocks.orphans.length ? `<section class="orphans"><h3>Notas sin llamada en el texto</h3>
-      <p class="muted small">Estas notas figuran en el libro, pero la llamada no se imprimió en el texto.</p>
+      <p class="muted small">Estas notas figuran en ${v.label ? 'la revista' : 'el libro'}, pero la llamada no se imprimió en el texto.</p>
       ${blocks.orphans.map(n => `<p class="note" data-orphan="${n}"><b>${n}.</b> ${rich(esc(blocks.notes[n].text))}</p>`).join('')}</section>` : ''}
     <footer class="reader-end">
       <div class="fleuron" aria-hidden="true">❧</div>
@@ -161,10 +173,10 @@ export async function readerView(key, params) {
     </div>
   </div></div>`;
 
-  return [html, () => mount({ key, a, blocks, params })];
+  return [html, () => mount({ key, a, v, blocks, params })];
 }
 
-function mount({ key, a, blocks, params }) {
+function mount({ key, a, v, blocks, params }) {
   document.body.classList.add('reading');
   document.body.dataset.vol = $('#reader').dataset.vol;
   const reader = $('#reader');
@@ -206,7 +218,7 @@ function mount({ key, a, blocks, params }) {
     if (!sel.rangeCount || sel.isCollapsed) return null;
     const r = sel.getRangeAt(0);
     if (!reader.contains(r.commonAncestorContainer)) return null;
-    const hit = els.filter(e => e.offsetParent !== null && r.intersectsNode(e));
+    const hit = els.filter(e => e.offsetParent !== null && !e.classList.contains('tbl') && r.intersectsNode(e));
     if (!hit.length) return null;
     const len = e => blocks[+e.dataset.b].p.length;
     let o0 = hit[0].contains(r.startContainer) ? offsetAt(hit[0], r.startContainer, r.startOffset) : 0;
@@ -382,7 +394,7 @@ function mount({ key, a, blocks, params }) {
     e.preventDefault(); e.stopPropagation();
     const n = bt.dataset.note, nt = blocks.notes[n];
     openSheet('Nota ' + n, nt
-      ? `<div class="note-sheet"><p>${rich(esc(nt.text)).replace(/\n/g, '</p><p>')}</p>${nt.pg ? `<p class="muted small">Página ${nt.pg} del libro</p>` : ''}</div>`
+      ? `<div class="note-sheet"><p>${rich(esc(nt.text)).replace(/\n/g, '</p><p>')}</p>${nt.pg ? `<p class="muted small">Página ${nt.pg} ${v.label ? 'de la revista' : 'del libro'}</p>` : ''}</div>`
       : `<p class="empty">No se encontró la nota ${esc(n)}.</p>`);
   });
 

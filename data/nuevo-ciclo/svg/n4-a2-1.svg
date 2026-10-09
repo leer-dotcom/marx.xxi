@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 425" role="img" aria-label="Dos brazos del control social, coacción y consenso, que parten del Estado en crisis y la población sobrante, confluyen en la delincuencia como mercancía y motor de control, y la respuesta comunista.">
+<defs><marker id="nc-n4a2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="100" width="376" height="195" rx="2"/>
+<text class="sv-t3" x="10" y="111">COACCIÓN</text>
+<rect class="sv-soft" x="380" y="100" width="376" height="195" rx="2"/>
+<text class="sv-t3" x="386" y="111">CONSENSO</text>
+<rect class="sv-soft" x="4" y="309" width="752" height="102" rx="2"/>
+<rect class="sv-box-ink" x="200" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tw" x="380" y="50.5" text-anchor="middle">Estado capitalista en crisis → población sobrante</text>
+<text class="sv-tw" style="font-weight:400" x="380" y="65.5" text-anchor="middle">fin del pacto social: la coacción pasa al primer plano</text>
+<rect class="sv-box-red" x="12" y="122" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="98" y="147.0" text-anchor="middle">Populismo punitivo</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="162.0" text-anchor="middle">criminalizar pobreza y</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="177.0" text-anchor="middle">protesta; el partido del</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="192.0" text-anchor="middle">orden</text>
+<rect class="sv-box-red" x="200" y="122" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="286" y="139.5" text-anchor="middle">Parapolicía:</text>
+<text class="sv-tr" x="286" y="154.5" text-anchor="middle">desokupadoras, fascistas</text>
+<text class="sv-tr" x="286" y="169.5" text-anchor="middle">callejeros</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="184.5" text-anchor="middle">violencia externalizada y</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="199.5" text-anchor="middle">mercantilizada</text>
+<rect class="sv-box-red" x="12" y="239" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="192" y="259.5" text-anchor="middle">El migrante como enemigo interior</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="274.5" text-anchor="middle">categorías de guerra hacia dentro; los datos lo desmienten</text>
+<rect class="sv-box-blue" x="388" y="122" width="360" height="87" rx="2"/>
+<text class="sv-tb" x="568" y="154.5" text-anchor="middle">Trabajo social, RMI, escuela como gestión del riesgo</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="169.5" text-anchor="middle">policialización del trabajo social, trabajosocialización de</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="184.5" text-anchor="middle">la policía</text>
+<rect class="sv-box-blue" x="388" y="239" width="360" height="48" rx="2"/>
+<text class="sv-tb" x="568" y="259.5" text-anchor="middle">Delincuencia como mercancía y motor de control</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="274.5" text-anchor="middle">producida, gestionada y capitalizada: palo y zanahoria</text>
+<rect class="sv-box-green" x="12" y="331" width="172" height="72" rx="2"/>
+<text class="sv-tgr" x="98" y="348.5" text-anchor="middle">Organización en barrios y</text>
+<text class="sv-tgr" x="98" y="363.5" text-anchor="middle">centros de trabajo</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="378.5" text-anchor="middle">el debate: paro, vivienda,</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="393.5" text-anchor="middle">acoso policial</text>
+<rect class="sv-box-green" x="200" y="331" width="172" height="72" rx="2"/>
+<text class="sv-tgr" x="286" y="356.0" text-anchor="middle">Unidad con el</text>
+<text class="sv-tgr" x="286" y="371.0" text-anchor="middle">proletariado migrante</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="386.0" text-anchor="middle">«victoria o derrota»</text>
+<rect class="sv-box-green" x="388" y="331" width="360" height="72" rx="2"/>
+<text class="sv-tgr" x="568" y="356.0" text-anchor="middle">Gimnasios populares, gradas, autodefensa → nueva</text>
+<text class="sv-tgr" x="568" y="371.0" text-anchor="middle">normatividad socialista</text>
+<text class="sv-t2" style="font-weight:400" x="568" y="386.0" text-anchor="middle">expropiar a los ricos, no robar entre vecinos</text>
+<path class="sv-line" d="M380 78 V100 H98 V122" marker-end="url(#nc-n4a2-arrow)"/>
+<path class="sv-line" d="M380 78 V100 H568 V122" marker-end="url(#nc-n4a2-arrow)"/>
+<path class="sv-line-red" d="M192 287 V309 H98 V331" marker-end="url(#nc-n4a2-arrow)"/>
+<line class="sv-line-red" x1="568" y1="287" x2="568" y2="331" marker-end="url(#nc-n4a2-arrow)"/>
+<text class="sv-t3" x="10" y="320" style="paint-order:stroke;stroke:color-mix(in srgb,var(--d-ink) 5.5%,var(--d-bg));stroke-width:5px;stroke-linejoin:round">RESPUESTA COMUNISTA (HIPÓTESIS)</text>
+</svg>

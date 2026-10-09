@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 311" role="img" aria-label="Cadena causal de la siniestralidad laboral: de la extracción de beneficio a las muertes de 2024, con los factores que la frenan, la ocultan o la agravan, y la respuesta propuesta.">
+<defs><marker id="nc-n2a4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-box-ink" x="12" y="30" width="172" height="87" rx="2"/>
+<text class="sv-tw" x="98" y="70.0" text-anchor="middle">Extracción de beneficio:</text>
+<text class="sv-tw" x="98" y="85.0" text-anchor="middle">el capital vampiro</text>
+<rect class="sv-box" x="200" y="30" width="172" height="87" rx="2"/>
+<text class="sv-t" x="286" y="62.5" text-anchor="middle">Ritmos, jornadas,</text>
+<text class="sv-t" x="286" y="77.5" text-anchor="middle">flexibilidad, vida</text>
+<text class="sv-t" x="286" y="92.5" text-anchor="middle">laboral alargada</text>
+<rect class="sv-box" x="388" y="30" width="172" height="87" rx="2"/>
+<text class="sv-t" x="474" y="62.5" text-anchor="middle">Riesgo → siniestro</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="77.5" text-anchor="middle">condiciones, no contenido</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="92.5" text-anchor="middle">del trabajo</text>
+<rect class="sv-box-red" x="576" y="30" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="662" y="47.5" text-anchor="middle">833 muertes en 2024 (2,5</text>
+<text class="sv-tr" x="662" y="62.5" text-anchor="middle">al día)</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="77.5" text-anchor="middle">agricultura, manufactura,</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="92.5" text-anchor="middle">construcción, transporte;</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="107.5" text-anchor="middle">mayores de 55; migrantes</text>
+<rect class="sv-box-blue" x="12" y="147" width="172" height="72" rx="2"/>
+<text class="sv-tb" x="98" y="164.5" text-anchor="middle">Centro vs. periferia</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="179.5" text-anchor="middle">la barbarie se desplaza al</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="194.5" text-anchor="middle">Sur Global: 2 de cada 3</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="209.5" text-anchor="middle">muertes</text>
+<rect class="sv-box-blue" x="200" y="147" width="172" height="72" rx="2"/>
+<text class="sv-tb" x="286" y="164.5" text-anchor="middle">Freno histórico: el</text>
+<text class="sv-tb" x="286" y="179.5" text-anchor="middle">movimiento obrero</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="194.5" text-anchor="middle">Leyes de Fábrica, 8 horas,</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="209.5" text-anchor="middle">LPRL 1995</text>
+<rect class="sv-box-gold" x="388" y="147" width="172" height="72" rx="2"/>
+<text class="sv-tg" x="474" y="172.0" text-anchor="middle">Mutuas e infrarregistro</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="187.0" text-anchor="middle">8.000-8.500 muertes por</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="202.0" text-anchor="middle">enfermedad (amianto)</text>
+<rect class="sv-box-gold" x="576" y="147" width="172" height="72" rx="2"/>
+<text class="sv-tg" x="662" y="164.5" text-anchor="middle">Reformas laborales y de</text>
+<text class="sv-tg" x="662" y="179.5" text-anchor="middle">la jubilación</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="194.5" text-anchor="middle">del Gobierno progresista:</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="209.5" text-anchor="middle">«criminal»</text>
+<rect class="sv-box-red" x="12" y="249" width="736" height="48" rx="2"/>
+<text class="sv-tr" x="380" y="269.5" text-anchor="middle">Respuesta: denuncia sistemática, memoria de cada víctima, prensa obrera, socialismo como control consciente de la</text>
+<text class="sv-tr" x="380" y="284.5" text-anchor="middle">producción</text>
+<line class="sv-line" x1="184" y1="74" x2="200" y2="74" marker-end="url(#nc-n2a4-arrow)"/>
+<line class="sv-line" x1="372" y1="74" x2="388" y2="74" marker-end="url(#nc-n2a4-arrow)"/>
+<line class="sv-line" x1="560" y1="74" x2="576" y2="74" marker-end="url(#nc-n2a4-arrow)"/>
+<line class="sv-line-dash" x1="286" y1="147" x2="286" y2="117" marker-end="url(#nc-n2a4-arrow)"/>
+<text class="sv-t3" x="310" y="128" text-anchor="middle">limita</text>
+<line class="sv-line-dash" x1="474" y1="147" x2="474" y2="117" marker-end="url(#nc-n2a4-arrow)"/>
+<text class="sv-t3" x="500" y="128" text-anchor="middle">ocultan</text>
+<line class="sv-line-red" x1="662" y1="147" x2="662" y2="117" marker-end="url(#nc-n2a4-arrow)"/>
+<text class="sv-t3" x="690" y="128" text-anchor="middle">agravan</text>
+</svg>

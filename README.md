@@ -1,7 +1,9 @@
 # Marx XXI · lector web
 
-Versión web (PWA) del lector de *Marx XXI*: textos íntegros de los cinco volúmenes, con resúmenes, argumento, esquemas,
-conceptos, glosario, tesis comunes y búsqueda. Es HTML, CSS y JavaScript sin dependencias ni paso de compilación,
+Versión web (PWA) del lector de *Marx XXI*. Es una **biblioteca** con dos publicaciones del mismo proyecto editorial:
+*Marx XXI* (revista-libro, cinco volúmenes) y *Nuevo Ciclo* (revista trimestral, cuatro números hasta junio de 2026).
+Textos íntegros con resúmenes, argumento, esquemas, conceptos, glosario, tesis comunes, referencias cruzadas entre las
+dos revistas, síntesis de la biblioteca, índice de autores y búsqueda. Es HTML, CSS y JavaScript sin dependencias ni paso de compilación,
 y se puede publicar directamente en GitHub Pages.
 
 ## Estructura
@@ -14,12 +16,17 @@ js/reader.js            modo lectura
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
 manifest.webmanifest    instalación como app («Añadir a pantalla de inicio»)
-data/                   contenidos (fuente única): content.json, svg/ y texto/ (textos íntegros estructurados, ver texto/FORMATO.md)
+data/                   contenidos (fuente única), ver «Contenidos»
+img/mxxiN.webp, ncN.webp portadas de cada volumen y número
+img/nuevo-ciclo.png     isotipo de Nuevo Ciclo (portada de reserva), extraído de NC_001.pdf
 lanzar.bat              construir + servidor local sin caché (depuración)
 publicar.bat            construir + commit + push (publica en GitHub Pages)
 tools/build.py          comprueba y actualiza data/files.json; --release renueva la versión de la caché y de los datos
 tools/dev_server.py     servidor local sin caché
 tools/make_icons.py     genera los PNG del icono
+tools/importar_nuevo_ciclo.py  trae a data/nuevo-ciclo/ el material de ../app-handoff-nuevo-ciclo y ../texto-estructurado-nuevo-ciclo
+tools/ajustar_esquemas.py      comprueba (y con --aplicar corrige) que los textos de los esquemas caben en su caja con Alegreya
+docs/                   método editorial: cómo incorporar números nuevos y actualizar tesis y síntesis; plantilla de notas
 .github/workflows/      publicación automática en GitHub Pages
 ```
 
@@ -29,10 +36,51 @@ tools/make_icons.py     genera los PNG del icono
 un esquema o la guía, edita directamente el archivo en `data/` (`texto/<id>.json`, `svg/…`, `content.json`) y publica
 con `publicar.bat`, que comprueba que no falte nada y renueva la caché para que los móviles reciban los cambios.
 
+### Biblioteca
+
+```
+data/library.json             manifiesto: publicaciones (Marx XXI, Nuevo Ciclo), etiquetas y rutas de cada una
+data/content.json             Marx XXI (y el sello «build» que versiona todas las rutas de data/)
+data/svg/, data/texto/        esquemas y textos íntegros de Marx XXI
+data/nuevo-ciclo/content.json Nuevo Ciclo: mismo esquema + label «#001», month, type «interview», interviewee,
+                              quote.page, printed_pages, data_notes, issn y cross_refs (enlaces a Marx XXI y entre números)
+data/nuevo-ciclo/svg/, texto/ esquemas (ids con prefijo nc-) y textos íntegros (n1-a1.json…; bloques qn, sep y tabla)
+data/nuevo-ciclo/about.json   textos de «Acerca de» propios de Nuevo Ciclo
+data/library-synthesis.json   síntesis de las dos revistas: 12 tesis comunes, conceptos puente, aportes exclusivos
+```
+
+Los ids de artículo no se repiten entre publicaciones (`t…` en Marx XXI, `n…` en Nuevo Ciclo). Las portadas son
+`img/mxxiN.webp` e `img/ncN.webp` (patrón `cover` de `library.json`); si falta una, se dibuja una portada genérica.
+Como en Marx XXI, cada número de Nuevo Ciclo usa el color de su portada (`data-vol="n1"…` en el CSS). Su terminología
+sigue la de la app («volumen», no «tomo»).
+
+**Añadir el #005:** guardar su portada como `img/nc5.webp`, dejar su guía en `../app-handoff-nuevo-ciclo/` (mismo formato: `content.json`, `svg/`,
+`library-synthesis.json`) y su texto en `../texto-estructurado-nuevo-ciclo/nc5-a1.json…`, y ejecutar:
+
+```bash
+python tools/importar_nuevo_ciclo.py
+```
+
+```bash
+python tools/ajustar_esquemas.py data/nuevo-ciclo/svg --aplicar
+```
+
+Ojo: el importador **sobrescribe** `data/nuevo-ciclo/`; si se ha corregido algo a mano allí, hay que llevarlo antes
+a las carpetas de origen. Después, `publicar.bat` como siempre. No hace falta tocar el código.
+
+**Nuevas tesis y análisis.** Lo anterior es la parte mecánica. Cómo se leen los textos nuevos, cómo se redactan sus
+conclusiones y cómo se *enmiendan* (no se regeneran) las tesis de cada revista y la síntesis de la biblioteca está en
+[`docs/ACTUALIZACION-CONTENIDOS.md`](docs/ACTUALIZACION-CONTENIDOS.md); la plantilla de las notas de lectura, en
+[`docs/PLANTILLA-NOTAS.md`](docs/PLANTILLA-NOTAS.md). En resumen: sólo el número nuevo se lee íntegro; las capas
+superiores (conclusiones del número, tesis de la publicación, síntesis de la biblioteca) se actualizan a partir de las
+síntesis ya existentes, decidiendo tesis por tesis si el número las confirma, las matiza o aporta una nueva.
+
 ## Rutas
 
-`#/` inicio · `#/volumen/1[/pestaña]` · `#/articulo/t1-a1[/pestaña]` · `#/leer/t1-a1[?b=bloque]` · `#/leer/tomo-1`
-(presentación) · `#/tesis` · `#/glosario` · `#/buscar?q=…` · `#/marcadores` · `#/ajustes` · `#/acerca`
+`#/` biblioteca · `#/marx-xxi` y `#/nuevo-ciclo` portada de cada revista · `#/volumen/1[/pestaña]` ·
+`#/numero/1[/pestaña]` · `#/articulo/t1-a1[/pestaña]` · `#/articulo/n1-a6` · `#/leer/t1-a1[?b=bloque]` · `#/leer/tomo-1`
+(presentación) · `#/tesis[?t=3]` · `#/tesis/nuevo-ciclo` · `#/sintesis` · `#/glosario[?p=nuevo-ciclo|puentes]` ·
+`#/autores` · `#/buscar?q=…` · `#/marcadores` · `#/ajustes` · `#/acerca`
 
 Los enlaces se pueden compartir: `…/#/leer/t3-a2?b=40` abre ese texto en ese párrafo.
 

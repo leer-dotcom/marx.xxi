@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 263" role="img" aria-label="Línea temporal de la integración de España en la OTAN, con los hitos del Estado arriba y los de la izquierda abajo, mostrando cómo la lucha contra la OTAN acabó convertida en su contrario.">
+<defs><marker id="nc-n3a3-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="16" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="27">EL ESTADO</text>
+<rect class="sv-soft" x="4" y="147" width="752" height="102" rx="2"/>
+<text class="sv-t3" x="10" y="158">LA IZQUIERDA</text>
+<rect class="sv-box" x="12" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="98" y="63.0" text-anchor="middle">Franquismo: bases de 1959</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="78.0" text-anchor="middle">«apéndice» de la OTAN;</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="93.0" text-anchor="middle">socio preferente</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="108.0" text-anchor="middle">anticomunista</text>
+<rect class="sv-box-gold" x="200" y="38" width="172" height="87" rx="2"/>
+<text class="sv-tg" x="286" y="63.0" text-anchor="middle">23-F → Calvo Sotelo:</text>
+<text class="sv-tg" x="286" y="78.0" text-anchor="middle">entrada (1982)</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="93.0" text-anchor="middle">maniobra atlantista; CEE y</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="108.0" text-anchor="middle">OTAN cogidas de la mano</text>
+<rect class="sv-box" x="388" y="38" width="172" height="87" rx="2"/>
+<text class="sv-t" x="474" y="55.5" text-anchor="middle">Referéndum 12-III-1986:</text>
+<text class="sv-t" x="474" y="70.5" text-anchor="middle">sí 56,85 %</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="85.5" text-anchor="middle">tres condiciones,</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="100.5" text-anchor="middle">plebiscito sobre González,</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="115.5" text-anchor="middle">TVE</text>
+<rect class="sv-box-red" x="576" y="38" width="172" height="87" rx="2"/>
+<text class="sv-tr" x="662" y="55.5" text-anchor="middle">2026: el gobierno más</text>
+<text class="sv-tr" x="662" y="70.5" text-anchor="middle">militarista de la</text>
+<text class="sv-tr" x="662" y="85.5" text-anchor="middle">democracia</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="100.5" text-anchor="middle">mayor gasto militar</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="115.5" text-anchor="middle">«siguiendo a Trump»</text>
+<rect class="sv-box" x="12" y="169" width="172" height="72" rx="2"/>
+<text class="sv-t" x="98" y="186.5" text-anchor="middle">Suárez: vacilación</text>
+<text class="sv-t" x="98" y="201.5" text-anchor="middle">neutralista</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="216.5" text-anchor="middle">Cuba, Arafat, No Alineados</text>
+<text class="sv-t2" style="font-weight:400" x="98" y="231.5" text-anchor="middle">→ dimisión</text>
+<rect class="sv-box" x="200" y="169" width="172" height="72" rx="2"/>
+<text class="sv-t" x="286" y="186.5" text-anchor="middle">PSOE: «OTAN, de entrada</text>
+<text class="sv-t" x="286" y="201.5" text-anchor="middle">no» → «Vota sí»</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="216.5" text-anchor="middle">partido de Estado desde</text>
+<text class="sv-t2" style="font-weight:400" x="286" y="231.5" text-anchor="middle">Suresnes; el «mal menor»</text>
+<rect class="sv-box-blue" x="388" y="169" width="172" height="72" rx="2"/>
+<text class="sv-tb" x="474" y="194.0" text-anchor="middle">Movimiento anti-OTAN</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="209.0" text-anchor="middle">Torrejón 1981, CAO, CEOP:</text>
+<text class="sv-t2" style="font-weight:400" x="474" y="224.0" text-anchor="middle">«OTAN no, bases fuera»</text>
+<rect class="sv-box-blue" x="576" y="169" width="172" height="72" rx="2"/>
+<text class="sv-tb" x="662" y="186.5" text-anchor="middle" style="font-size:13.1px;letter-spacing:0">PCE → Plataforma Cívica →</text>
+<text class="sv-tb" x="662" y="201.5" text-anchor="middle">IU (29-IV-1986)</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="216.5" text-anchor="middle">salvavidas electoral;</text>
+<text class="sv-t2" style="font-weight:400" x="662" y="231.5" text-anchor="middle">frentepopulismo</text>
+<line class="sv-line" x1="184" y1="82" x2="200" y2="82" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line" x1="372" y1="82" x2="388" y2="82" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line" x1="560" y1="82" x2="576" y2="82" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line" x1="184" y1="205" x2="200" y2="205" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line" x1="372" y1="205" x2="388" y2="205" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line" x1="560" y1="205" x2="576" y2="205" marker-end="url(#nc-n3a3-arrow)"/>
+<line class="sv-line-red" x1="662" y1="169" x2="662" y2="125" marker-end="url(#nc-n3a3-arrow)"/>
+<text class="sv-t3" x="600" y="143" text-anchor="middle" style="transform:translate(-7.0px,0.0px)">cuarenta años después</text>
+</svg>

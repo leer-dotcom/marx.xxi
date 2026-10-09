@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 560" role="img" aria-label="Republicanismo burgués frente a republicanismo de Marx en tres diferencias y su consecuencia institucional, más la distinción entre instituciones de la libertad e instituciones de la transición.">
+<defs><marker id="nc-n2a6-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="100" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="111">ESTADO</text>
+<rect class="sv-soft" x="4" y="192" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="203">MERCADO</text>
+<rect class="sv-soft" x="4" y="284" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="295">ESCALA</text>
+<rect class="sv-soft" x="4" y="376" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="387">CONSECUENCIA</text>
+<rect class="sv-soft" x="4" y="468" width="752" height="78" rx="2"/>
+<text class="sv-t3" x="10" y="479">DOS CUESTIONES QUE NO COINCIDEN</text>
+<rect class="sv-box-blue" x="12" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tb" x="192" y="58.0" text-anchor="middle">Republicanismo burgués</text>
+<rect class="sv-box-red" x="388" y="30" width="360" height="48" rx="2"/>
+<text class="sv-tr" x="568" y="58.0" text-anchor="middle">Republicanismo de Marx</text>
+<rect class="sv-box" x="12" y="122" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="142.5" text-anchor="middle">Monopolio de la violencia + intercambios voluntarios =</text>
+<text class="sv-t" x="192" y="157.5" text-anchor="middle">libertad frente a toda dominación</text>
+<rect class="sv-box" x="388" y="122" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="142.5" text-anchor="middle">El Estado depende de la riqueza concentrada y la</text>
+<text class="sv-t" x="568" y="157.5" text-anchor="middle">protege</text>
+<rect class="sv-box" x="12" y="214" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="242.0" text-anchor="middle">Esfera de intercambios voluntarios sin dominación</text>
+<rect class="sv-box" x="388" y="214" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="234.5" text-anchor="middle">Mercado de trabajo: el miedo al hambre empuja a los</text>
+<text class="sv-t" x="568" y="249.5" text-anchor="middle">desposeídos a las garras de los ricos</text>
+<rect class="sv-box" x="12" y="306" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="334.0" text-anchor="middle">Imperio de la ley en un Estado local</text>
+<rect class="sv-box" x="388" y="306" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="326.5" text-anchor="middle">Economía global vs. Estado local: colonias,</text>
+<text class="sv-t" x="568" y="341.5" text-anchor="middle">migraciones, fugas</text>
+<rect class="sv-box" x="12" y="398" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="426.0" text-anchor="middle">Separar y concentrar el poder económico y el coercitivo</text>
+<rect class="sv-box" x="388" y="398" width="360" height="48" rx="2"/>
+<text class="sv-t" x="568" y="418.5" text-anchor="middle">Dispersar ambos entre el pueblo: armar al proletariado,</text>
+<text class="sv-t" x="568" y="433.5" text-anchor="middle">gestión obrera, desarticular ejército y burocracia</text>
+<rect class="sv-box" x="12" y="490" width="360" height="48" rx="2"/>
+<text class="sv-t" x="192" y="510.5" text-anchor="middle">Asociación de productores libres</text>
+<text class="sv-t2" style="font-weight:400" x="192" y="525.5" text-anchor="middle">instituciones de la libertad universal</text>
+<rect class="sv-box-gold" x="388" y="490" width="360" height="48" rx="2"/>
+<text class="sv-tg" x="568" y="510.5" text-anchor="middle">Dictadura del proletariado / «de la democracia»</text>
+<text class="sv-t2" style="font-weight:400;font-size:12.7px;letter-spacing:0" x="568" y="525.5" text-anchor="middle">dominar la dominación: pueden degenerar en nueva dominación</text>
+<line class="sv-line" x1="372" y1="146" x2="388" y2="146" marker-end="url(#nc-n2a6-arrow)"/>
+<line class="sv-line" x1="372" y1="238" x2="388" y2="238" marker-end="url(#nc-n2a6-arrow)"/>
+<line class="sv-line" x1="372" y1="330" x2="388" y2="330" marker-end="url(#nc-n2a6-arrow)"/>
+<line class="sv-line" x1="372" y1="422" x2="388" y2="422" marker-end="url(#nc-n2a6-arrow)"/>
+<line class="sv-line-dash" x1="372" y1="514" x2="388" y2="514" marker-end="url(#nc-n2a6-arrow)" marker-start="url(#nc-n2a6-arrow)"/>
+</svg>
