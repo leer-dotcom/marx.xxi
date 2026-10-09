@@ -340,12 +340,15 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .drawer details[open] > summary::after{transform:translateY(-30%) rotate(-135deg)}
 .m-vol > summary{font-size:18px;line-height:1.2;padding-right:44px}
 .m-dot{width:12px;height:16px;flex:none;background:var(--vol);clip-path:polygon(0 0,100% 50%,0 100%)}
-.m-vol[open]{background:color-mix(in srgb,var(--vol) 6%,transparent)}
-.m-sub{padding:0 0 8px 24px}
-.m-sub .m-link{font-size:16.5px;padding:8px 18px}
-.m-arts > summary{font-size:16.5px;padding:8px 44px 8px 18px}
+/* volumen en el menú: su color al pasar el cursor y, desplegado, solo en su título */
+.drawer .m-vol > summary:hover,.drawer .m-vol[open] > summary,.drawer .m-vol > summary[aria-current="page"]{background:color-mix(in srgb,var(--vol) 12%,transparent)}
+/* subapartados del volumen: color del volumen solo bajo el cursor */
+.m-vol .m-sub .m-link:hover,.m-vol .m-arts > summary:hover,.m-vol .m-art:hover{background:color-mix(in srgb,var(--vol) 12%,transparent)}
+.m-sub{padding:0 0 8px}
+.m-sub .m-link{font-size:16.5px;padding:8px 18px 8px 42px}
+.m-arts > summary{font-size:16.5px;padding:8px 44px 8px 42px}
 .m-count{font-size:14px;color:var(--ink-3)}
-.m-art{display:flex;align-items:flex-start;gap:4px;padding:2px 8px 2px 30px}
+.m-art{display:flex;align-items:flex-start;gap:4px;padding:2px 8px 2px 54px}
 .m-art.on{box-shadow:inset 3px 0 0 var(--vol)}
 .m-art-title{flex:1;padding:6px 0;color:var(--ink);text-decoration:none;font-size:15.5px;line-height:1.3}
 .m-art-title b{color:var(--vol);font-weight:500}
@@ -355,11 +358,8 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .m-art-read svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .chip svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-/* pestaña principal (Artículos / Texto completo): mismo tono que el botón principal */
+/* pestañas alineadas por la base del texto */
 .tabs{align-items:flex-end;padding-top:6px}
-.tabs a.primary{background:var(--btn);color:var(--btn-ink);border-radius:var(--radius) var(--radius) 0 0;margin:0 2px;padding-left:16px;padding-right:16px;border-bottom-color:var(--btn)}
-.tabs a.primary:hover{color:var(--btn-ink);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--btn-ink) 25%,transparent)}
-.tabs a.primary[aria-current="page"]{border-bottom-color:var(--vol);box-shadow:inset 0 -3px 0 var(--vol)}
 
 /* ---------- ajustes de cabecera, pestaña principal, tarjetas y enlaces contiguos ---------- */
 .brand{font-size:22px}
@@ -370,9 +370,6 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .drawer{margin:0 auto 0 0;box-shadow:8px 0 30px rgb(0 0 0 / .25)}
 .drawer[open]{animation:drawer-in-left .2s ease}
 @keyframes drawer-in-left{from{transform:translateX(-40px);opacity:.3}}
-/* pestaña principal: menos alta (bloque a la altura del texto) */
-.tabs a.primary{padding:4px 14px;margin:0 4px 6px;border-radius:var(--radius);border-bottom:0;align-self:center}
-.tabs a.primary[aria-current="page"]{box-shadow:inset 0 -3px 0 var(--vol)}
 /* tarjeta de artículo: resumen + botones a la derecha */
 /* Tarjeta de artículo: contenido + panel de acciones propio, teñido con el color del volumen */
 .art-card{display:grid;grid-template-columns:1fr auto;padding:0;overflow:hidden}
@@ -618,3 +615,37 @@ div.dg-title{color:var(--ink)}
   .page-head.with-aside:not(:has(.ph-cover)) .ph-nav{grid-row:auto;grid-column:1 / -1}
   .ph-nav{margin-top:12px;grid-template-columns:1fr 1fr}
 }
+
+/* menú: «Artículos» / «Textos» (desplegable) con la misma altura que Presentación, Conclusiones, etc. */
+.drawer .m-sub .m-arts > summary{padding:8px 44px 8px 42px;line-height:1.25;gap:8px}
+
+/* pestaña principal (Artículos / Textos / Texto completo): como las demás, en negrita y un punto más grande */
+.tabs a.primary{font-weight:700;font-size:18px;color:var(--ink)}
+
+/* cabecera de volumen o número: revista (enlace a su portada) en su línea; a la derecha, arriba, el paso
+   compacto (Vol. 1 · Vol. 3, Intro, Concl.) y debajo la portada */
+.ph-pub{display:block;text-decoration:none;color:var(--ink-2);margin-bottom:2px}
+.ph-pub:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.page-head.vol-head{grid-template-areas:"main nav" "main cover";grid-template-rows:auto 1fr}
+.vol-head .ph-nav{grid-template-columns:1fr 1fr;margin:0 0 8px}
+.vol-head .ph-cover{margin-top:0}
+.ph-nav a.hn-short{justify-content:center;gap:6px;padding:5px 8px}
+.ph-nav .hn-short b{font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-weight:500;font-size:15px;color:var(--vol)}
+@media (max-width:600px){
+  .page-head.vol-head{grid-template-areas:"main cover" "nav nav";grid-template-rows:auto auto}
+  .vol-head .ph-nav{margin:12px 0 0}
+}
+
+/* menú: el volumen o número de la pantalla actual queda teñido de su color aunque esté plegado */
+.drawer .m-vol.here > summary{background:color-mix(in srgb,var(--vol) 12%,transparent)}
+
+/* síntesis de cada revista: tesis plegables (Tesis N + enunciado; el desarrollo, dentro) */
+.card.thesis{padding:0}
+.card.thesis > summary{list-style:none;cursor:pointer;position:relative;padding:14px 46px 14px 18px}
+.card.thesis > summary::-webkit-details-marker{display:none}
+.card.thesis > summary::after{content:"";position:absolute;right:18px;top:24px;width:9px;height:9px;border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);transform:rotate(45deg);transition:transform .15s}
+.card.thesis[open] > summary::after{transform:translateY(4px) rotate(-135deg)}
+.card.thesis > summary h3{margin:4px 0 0}
+.card.thesis > summary:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.card.thesis .thesis-body{padding:0 18px 16px}
+.card.thesis{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 64px)}

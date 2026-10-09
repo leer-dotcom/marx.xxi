@@ -231,18 +231,25 @@ function menuHtml() {
       <div class="m-sub">${sub}</div>
     </details>`;
   }).join('');
-  // Cada revista: título plegable (abierto al abrir el menú) que, ya desplegado, lleva a su portada.
-  // Estudio y Aplicación usan el mismo bloque plegable, pero su título solo pliega y despliega.
-  const pubs = L.pubs.map(p => `<details class="m-pub" open>
-    <summary class="m-group" data-href="${p.home}"${on(p.home)}>${esc(p.name)}</summary>
+  // Secciones plegables (cada revista, Estudio, Aplicación): solo empieza desplegada la que contiene la
+  // pantalla actual; fuera de ellas (p. ej. en la biblioteca) todas empiezan plegadas.
+  const path = here.split('?')[0];
+  const curPub = curVol ? (curVol.startsWith('n') ? 'nuevo-ciclo' : 'marx-xxi')
+    : (path.match(/^#\/(marx-xxi|nuevo-ciclo)\b/) || [])[1]
+      || (/^#\/tesis(\/|$)/.test(path) ? (/^[a-z]/.test(path.split('/')[2] || '') ? path.split('/')[2] : 'marx-xxi') : '');
+  const openIf = cond => cond ? ' open' : '';
+  const inSection = routes => routes.some(r => path === r || path.startsWith(r + '/'));
+  const pubs = L.pubs.map(p => `<details class="m-pub"${openIf(p.id === curPub)}>
+    <summary class="m-group">${esc(p.name)}</summary>
+    ${link(p.home, `${esc(p.name)}: La publicación`, ICON.shelf)}
     ${vols(p)}
-    ${link(p.id === 'marx-xxi' ? '#/tesis' : `#/tesis/${p.id}`, 'Conclusiones comunes', ICON.hub)}
+    ${link(thesesHref(p), 'Síntesis', ICON.hub)}
   </details>`).join('');
   return `
     ${link('#/', 'Biblioteca', ICON.home)}
     ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
     ${pubs}
-    <details class="m-pub" open><summary class="m-group">Estudio</summary>
+    <details class="m-pub"${openIf(inSection(['#/sintesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
     ${L.synthesis ? link('#/sintesis', 'Síntesis de la biblioteca', ICON.hub) : ''}
     ${link('#/glosario', 'Glosario', ICON.az)}
     ${link('#/mapas', 'Mapas conceptuales', ICON.map)}
@@ -250,7 +257,7 @@ function menuHtml() {
     ${link('#/buscar', 'Búsqueda', ICON.search)}
     ${link('#/marcadores', 'Marcadores', ICON.mark)}
     </details>
-    <details class="m-pub" open><summary class="m-group">Aplicación</summary>
+    <details class="m-pub"${openIf(inSection(['#/ajustes', '#/acerca']))}><summary class="m-group">Aplicación</summary>
     ${link('#/ajustes', 'Modo lectura', ICON.aa)}
     ${link('#/acerca', 'Acerca de y créditos', ICON.info)}
     </details>`;
@@ -426,7 +433,7 @@ function collectionView(p) {
   const L = lib(), cv = p.cross_volume;
   const read = store.read(), pos = store.positions();
   const n = p.volumes.length;
-  const tesis = mx ? '#/tesis' : `#/tesis/${p.id}`;
+  const tesis = thesesHref(p);
   return `<div class="wrap" data-pub="${p.id}">
     <section class="hero">
       <div class="eyebrow">${mx ? 'Publicación temática anual de teoría socialista' : `${esc(p.kind)} · ${esc(p.publisher || '')}`}</div>
@@ -438,7 +445,7 @@ function collectionView(p) {
     <div class="grid vols">${p.volumes.map(v => volCard(v, read, pos)).join('')}</div>
     <h2 class="sec-title">Herramientas de estudio</h2>
     <div class="grid two">
-      ${toolCard(tesis, 'hub', 'Conclusiones comunes', `${cv.theses.length} tesis transversales`)}
+      ${toolCard(tesis, 'hub', 'Síntesis', `${cv.theses.length} tesis transversales y mapa común`)}
       ${toolCard(`#/glosario?p=${p.id}`, 'az', 'Glosario', `${L.glossary.filter(e => e.pub === p).length} conceptos`)}
       ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
@@ -499,14 +506,20 @@ function volumeView(p, n, tab = 1) {
   }
   const prev = volume(n - 1, p.id), next = volume(n + 1, p.id);
   return `<div class="wrap" data-vol="${v.key}">
-    <header class="page-head with-aside"><div class="ph-main"><div class="eyebrow vol">${esc(v.eyebrow)}</div><h1>${esc(v.title)}</h1>
+    <header class="page-head with-aside vol-head"><div class="ph-main">
+      <a class="eyebrow ph-pub" href="${p.home}">${esc(p.name)}</a>
+      <div class="eyebrow vol">${esc(v.eyebrow.replace(/^[^·]*·\s*/, ''))}</div><h1>${esc(v.title)}</h1>
       ${v.subtitle ? `<div class="sub">${esc(v.subtitle)}</div>` : ''}
       ${v.editor ? `<div class="muted small" style="margin-top:6px">Edición: ${esc(v.editor)}${v.issn ? ` · ISSN ${esc(v.issn)}` : ''}${v.deposito_legal ? ` · D. L. ${esc(v.deposito_legal)}` : ''}</div>` : ''}
       ${v.data_notes ? `<details class="vol-notes"><summary>Ficha del número</summary><p>${esc(v.data_notes)}</p></details>` : ''}</div>
       ${v.cover ? `<div class="ph-cover">${coverHtml(v)}</div>` : ''}
-      ${headNav(prev && { href: `${prev.href}/${tab}`, label: volShort(prev), title: prev.label ? monthName(prev.month) : prev.title, vol: prev.key },
-                next && { href: `${next.href}/${tab}`, label: volShort(next), title: next.label ? monthName(next.month) : next.title, vol: next.key },
-                v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
+      ${headNav(
+        // antes del primero, la portada de la revista («Intro»); después del último, sus conclusiones comunes
+        prev ? { href: `${prev.href}/${tab}`, label: volShort(prev), tip: volHead(prev), vol: prev.key }
+          : { href: p.home, label: 'Intro', tip: `Portada de ${p.name}`, vol: v.key },
+        next ? { href: `${next.href}/${tab}`, label: volShort(next), tip: volHead(next), vol: next.key }
+          : { href: thesesHref(p), label: 'Concl.', tip: `${p.name}: Síntesis`, vol: v.key },
+        v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
     ${tabs(v.href, hasPres ? VOL_TABS : [null, v.label ? 'Textos' : 'Artículos', ...VOL_TABS.slice(2)], tab, 1)}
     ${body}
     <nav class="neighbours" aria-label="${v.label ? 'Números contiguos' : 'Volúmenes contiguos'}">
@@ -517,12 +530,12 @@ function volumeView(p, n, tab = 1) {
 }
 
 /** Paso compacto al anterior / siguiente junto al título (volumen, número o artículo).
- *  prev y next: { href, label, title, vol } o null. */
+ *  prev y next: { href, label, title?, tip?, vol } o null. Sin `title`, solo la etiqueta («Vol. 1»). */
 function headNav(prev, next, aria) {
   const one = (x, dir) => x
-    ? `<a class="hn-${dir}" href="${x.href}" data-vol="${x.vol}" title="${esc(x.title)}">
+    ? `<a class="hn-${dir}${x.title ? '' : ' hn-short'}" href="${x.href}" data-vol="${x.vol}" title="${esc(x.tip || x.title)}">
         <span class="hn-arrow" aria-hidden="true">${dir === 'prev' ? '‹' : '›'}</span>
-        <span class="hn-text"><small>${esc(x.label)}</small><span>${esc(x.title)}</span></span></a>`
+        <span class="hn-text">${x.title ? `<small>${esc(x.label)}</small><span>${esc(x.title)}</span>` : `<b>${esc(x.label)}</b>`}</span></a>`
     : `<span class="hn-${dir} hn-off" aria-hidden="true"><span class="hn-arrow">${dir === 'prev' ? '‹' : '›'}</span></span>`;
   return `<nav class="ph-nav" aria-label="${esc(aria)}">${one(prev, 'prev')}${one(next, 'next')}</nav>`;
 }
@@ -636,25 +649,37 @@ function neighbourLink(a, dir, tab) {
   </a>`;
 }
 
-function thesesView(p, params) {
+const THESES_TABS = ['Conclusiones', 'Mapa conceptual'];
+/** Ruta de la síntesis de una revista: #/tesis[/pestaña] (Marx XXI) o #/tesis/nuevo-ciclo[/pestaña]. */
+const thesesHref = (p, tab) => (p.id === 'marx-xxi' ? '#/tesis' : `#/tesis/${p.id}`) + (tab ? `/${tab}` : '');
+
+/** Síntesis de una revista: sus tesis transversales (plegables) y su mapa conceptual común. */
+function thesesView(p, tab = 0, params) {
   if (!p) return notFound();
+  if (!(tab >= 0 && tab < THESES_TABS.length)) tab = 0;
   const mx = p.id === 'marx-xxi';
-  setBar(mx ? 'Conclusiones comunes' : `Conclusiones comunes · ${p.name}`, { up: p.home });
+  setBar(`${p.name}: Síntesis`, { up: p.home });
   const cv = p.cross_volume, n = numWord(p.volumes.length);
+  const openT = params?.get('t');
+  const body = tab === 0
+    ? `<p class="muted small">Tesis que atraviesan los ${n} ${esc(p.unit_plural)}. Despliega cada una para leerla, ver dónde aparece e ir a los ${mx ? 'artículos' : 'textos'}.</p>
+      ${cv.theses.map((t, i) => `<details class="card thesis" id="tesis-${i + 1}"${String(i + 1) === openT ? ' open' : ''}>
+        <summary><div class="eyebrow">Tesis ${i + 1}</div><h3>${esc(t.title)}</h3></summary>
+        <div class="thesis-body"><p style="margin:0">${esc(t.text)}</p>
+        ${t.where ? `<p class="muted small" style="margin:10px 0 0;font-style:italic">${esc(t.where)}</p>
+          <div class="chips">${whereLinks(t.where, p).map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : ''}</div>
+      </details>`).join('')}
+      ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la biblioteca →</a></p>` : ''}`
+    : `${cv.map ? figure(cv.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : '<p class="empty">Esta revista no tiene mapa común.</p>'}`;
   const html = `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">${mx ? 'Toda la colección' : `${esc(p.name)} · los ${n} ${esc(p.unit_plural)}`}</div><h1>Conclusiones comunes</h1>
-    <div class="sub">Tesis que atraviesan los ${n} ${esc(p.unit_plural)}. Cada una indica dónde aparece y enlaza con los ${mx ? 'artículos' : 'textos'}.</div></header>
-    ${cv.theses.map((t, i) => `<div class="card" id="tesis-${i + 1}">
-      <div class="eyebrow">Tesis ${i + 1}</div><h3>${esc(t.title)}</h3><p style="margin:0">${esc(t.text)}</p>
-      ${t.where ? `<p class="muted small" style="margin:10px 0 0;font-style:italic">${esc(t.where)}</p>
-        <div class="chips">${whereLinks(t.where, p).map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : ''}
-    </div>`).join('')}
-    ${cv.map ? `<h2 class="sec-title">Mapa conceptual común</h2>${figure(cv.map)}` : ''}
-    ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la biblioteca →</a></p>` : ''}
+    <header class="page-head"><a class="eyebrow ph-pub" href="${p.home}">${esc(p.name)}</a><h1>${esc(p.name)}: Síntesis</h1>
+    <div class="sub">${cv.theses.length} tesis comunes a los ${n} ${esc(p.unit_plural)} y su mapa conceptual.</div></header>
+    ${tabs(thesesHref(p), THESES_TABS, tab)}
+    ${body}
+    ${aiNote()}
   </div>`;
   return [html, () => {
-    const t = params?.get('t');
-    if (t) requestAnimationFrame(() => document.getElementById('tesis-' + t)?.scrollIntoView());
+    if (openT) requestAnimationFrame(() => document.getElementById('tesis-' + openT)?.scrollIntoView());
   }];
 }
 
@@ -749,7 +774,7 @@ function synthesisView(tab = 0, params) {
   const chipsFor = (where, p) => p && where ? `<div class="chips">${whereLinks(where, p).map(([label, href]) =>
     `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : '';
   const thesisLinks = (nums, p) => nums?.length ? nums.map(n =>
-    `<a href="${p.id === 'marx-xxi' ? '#/tesis' : '#/tesis/' + p.id}?t=${n}">${n}</a>`).join(', ') : '—';
+    `<a href="${thesesHref(p)}?t=${n}">${n}</a>`).join(', ') : '—';
   const artChip = x => {
     const hit = article(x.article);
     return hit ? `<a class="chip" href="#/articulo/${hit.a.id}/3" data-vol="${hit.v.key}"><i class="m-dot"></i>${esc(volShort(hit.v))} · ${esc(byline(hit.a))}${x.term && fold(x.term) !== fold(hit.a.title) ? ` — <i>${esc(x.term)}</i>` : ''}</a>` : '';
@@ -802,7 +827,7 @@ function mapsView(params) {
     ${href ? `<a class="dg-title" href="${href}">${title}</a>` : `<div class="dg-title">${title}</div>`}${figure(f)}</div>` : '';
   const pubSection = p => {
     const cv = p.cross_volume, mx = p.id === 'marx-xxi';
-    const tesis = mx ? '#/tesis' : `#/tesis/${p.id}`;
+    const tesis = thesesHref(p, 1); // pestaña Mapa conceptual
     return `<details class="maps-sec" id="mapas-${p.id}" open>
       <summary><h2 class="sec-title">${esc(p.name)}</h2></summary>
       <details class="maps-sub" open>
@@ -897,7 +922,7 @@ function searchView(params) {
       const [label, color] = KIND[h.kind];
       const href = h.kind === 'fulltext' ? `#/leer/${h.a.id}?b=${h.block}&q=${encodeURIComponent(input.value.trim())}`
         : h.a ? `#/articulo/${h.a.id}/${h.kind === 'argument' ? 1 : h.kind === 'concept' ? 3 : 0}`
-          : h.kind === 'thesis' ? (h.pub.id === 'marx-xxi' ? '#/tesis' : `#/tesis/${h.pub.id}`)
+          : h.kind === 'thesis' ? thesesHref(h.pub)
             : h.kind === 'synthesis' ? `#/sintesis/1?t=${h.n}` : `${h.v.href}/2`;
       // la publicación como prefijo cuando hay más de una
       const pre = lib().pubs.length > 1 && h.pub && !h.v?.label ? h.pub.name + ' · ' : '';
@@ -1161,7 +1186,11 @@ async function route() {
     case 'numero': out = volumeView(pub('nuevo-ciclo'), +parts[1], parts[2] != null ? +parts[2] : 1); break;
     case 'articulo': out = articleView(parts[1], +(parts[2] || 0)); break;
     case 'leer': out = await readerView(parts[1], params); break;
-    case 'tesis': out = thesesView(pub(parts[1] || 'marx-xxi'), params); break;
+    case 'tesis': {
+      const other = parts[1] && !/^\d+$/.test(parts[1]); // #/tesis/nuevo-ciclo[/n] o #/tesis[/n]
+      out = thesesView(pub(other ? parts[1] : 'marx-xxi'), +(other ? parts[2] : parts[1]) || 0, params);
+      break;
+    }
     case 'sintesis': out = synthesisView(+(parts[1] || 0), params); break;
     case 'autores': out = authorsView(params); break;
     case 'mapas': out = mapsView(params); break;
