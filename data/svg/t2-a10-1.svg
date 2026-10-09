@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama de bifurcación: la crisis ecosocial se ramifica en tecnoutopismo, catastrofismo y pacto verde; la versión crítica del pacto verde atraviesa el embudo de los mecanismos de contención del Estado y desemboca en transición capitalista, ecofascismo o colapso, mientras la vía del poder socialista independiente conduce al comunismo sin crecimiento" role="img" viewBox="0 0 760 490">
+<defs><marker id="m2-10-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="44" rx="2" width="150" x="305" y="12"></rect><text class="sv-tw" text-anchor="middle" x="380" y="39">Crisis ecosocial</text>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="380" x2="105" y1="56" y2="95"></line>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="380" x2="275" y1="56" y2="95"></line>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="380" x2="580" y1="56" y2="95"></line>
+<rect class="sv-box" height="50" rx="2" width="150" x="30" y="95"></rect><text class="sv-t" text-anchor="middle" x="105" y="116">Tecnoutopismo</text><text class="sv-t3" text-anchor="middle" x="105" y="133">innovación salvadora</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="200" y="95"></rect><text class="sv-t" text-anchor="middle" x="275" y="116">Catastrofismo</text><text class="sv-t3" text-anchor="middle" x="275" y="133">colapsología, huida</text>
+<text class="sv-t3" text-anchor="middle" x="190" y="166">apolíticos: descartados por el pacto verde</text>
+<rect class="sv-box-green" height="50" rx="2" width="300" x="430" y="95"></rect><text class="sv-tgr" text-anchor="middle" x="580" y="116">Pacto verde / Green New Deal</text><text class="sv-t3" text-anchor="middle" x="580" y="133">proyecto político: relanzar la acumulación</text>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="580" x2="580" y1="145" y2="180"></line>
+<rect class="sv-box" height="74" rx="2" width="300" x="430" y="180"></rect>
+<text class="sv-t" text-anchor="middle" x="580" y="200">Versión crítica: Tejero y Santiago</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="218">diagnóstico: descarbonizar, eficiencia, circular</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="236">medios: Estado, elecciones, capitales «verdes»</text>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="580" x2="580" y1="254" y2="285"></line>
+<path class="sv-box-red" d="M430 285 L730 285 L690 360 L470 360 Z"></path>
+<text class="sv-tr" text-anchor="middle" x="580" y="306">Mecanismos de contención del Estado</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="324">procedimientos · intereses de aparatos</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="342">lógica estatal · cooptación (Syriza)</text>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="580" x2="390" y1="360" y2="395"></line>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="580" x2="540" y1="360" y2="395"></line>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="580" x2="675" y1="360" y2="395"></line>
+<rect class="sv-box" height="50" rx="2" width="140" x="320" y="395"></rect><text class="sv-t" text-anchor="middle" x="390" y="416">Transición verde</text><text class="sv-t2" text-anchor="middle" x="390" y="433">capitalista</text>
+<rect class="sv-box" height="50" rx="2" width="130" x="475" y="395"></rect><text class="sv-t" text-anchor="middle" x="540" y="425">Ecofascismo</text>
+<rect class="sv-box" height="50" rx="2" width="110" x="620" y="395"></rect><text class="sv-t" text-anchor="middle" x="675" y="425">Colapso</text>
+<text class="sv-t3" text-anchor="middle" x="525" y="474">la crisis decidirá entre estas salidas si no hay poder independiente</text>
+<line class="sv-line-dash" marker-end="url(#m2-10-arrow)" x1="430" x2="200" y1="235" y2="285"></line>
+<text class="sv-t3" x="30" y="272">la discrepancia está en los medios</text>
+<rect class="sv-box-blue" height="74" rx="2" width="300" x="30" y="285"></rect>
+<text class="sv-tb" text-anchor="middle" x="180" y="306">Poder socialista independiente</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="324">reformas como medio, revolución como fin</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="342">(Luxemburgo frente al falso dilema)</text>
+<line class="sv-line" marker-end="url(#m2-10-arrow)" x1="180" x2="180" y1="359" y2="395"></line>
+<rect class="sv-box-blue" height="50" rx="2" width="250" x="55" y="395"></rect><text class="sv-tb" text-anchor="middle" x="180" y="416">Comunismo sin crecimiento</text><text class="sv-t3" text-anchor="middle" x="180" y="433">frente a la transición capitalista</text>
+</svg>

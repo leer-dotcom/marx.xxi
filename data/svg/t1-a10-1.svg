@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Tres caminos que parten de un nodo común de derrota histórica y posmodernidad: a la izquierda la vía positiva de los movimientos parciales y las organizaciones comunistas reformistas; a la derecha la vía negativa vulgar de la reacción y los rojipardos; ambas desembocan en un callejón sin salida que reproduce las dinámicas posmodernas. En el centro, la tercera postura atraviesa y supera la posmodernidad hacia un nuevo movimiento comunista." role="img" viewBox="0 0 760 400">
+<defs><marker id="m1-10-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="52" rx="2" width="340" x="210" y="14"></rect>
+<text class="sv-tw" text-anchor="middle" x="380" y="36">DERROTA HISTÓRICA → POSMODERNIDAD</text>
+<text class="sv-tw" text-anchor="middle" x="380" y="54">modernidad cansada, crisis de los metarrelatos</text>
+<line class="sv-line" marker-end="url(#m1-10-arrow)" x1="260" x2="130" y1="66" y2="130"></line>
+<line class="sv-line-red" marker-end="url(#m1-10-arrow)" x1="380" x2="380" y1="66" y2="130"></line>
+<line class="sv-line" marker-end="url(#m1-10-arrow)" x1="500" x2="630" y1="66" y2="130"></line>
+<rect class="sv-box" height="110" rx="2" width="220" x="20" y="130"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="152">Vía positiva</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="170">movimientos parciales,</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="185">interseccionalidad;</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="200">organizaciones reformistas:</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="215">economicismo, sindicalismo,</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="230">estancamiento, burocracia</text>
+<rect class="sv-box-green" height="110" rx="2" width="220" x="270" y="130"></rect>
+<text class="sv-tgr" text-anchor="middle" x="380" y="152">Tercera postura</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="170">comprender la posmodernidad,</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="185">atravesarla y superarla;</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="200">recuperar la totalidad;</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="215">sujeto universal heterogéneo;</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="230">internacionalismo</text>
+<rect class="sv-box" height="110" rx="2" width="220" x="520" y="130"></rect>
+<text class="sv-t" text-anchor="middle" x="630" y="152">Vía negativa vulgar</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="170">reacción y «rojipardos»:</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="185">nostalgia, nación, familia,</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="200">Estado fuerte, figuras</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="215">de alteridad; ontología</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="230">del todo armónico roto</text>
+<line class="sv-line" marker-end="url(#m1-10-arrow)" x1="130" x2="130" y1="240" y2="300"></line>
+<line class="sv-line" marker-end="url(#m1-10-arrow)" x1="630" x2="630" y1="240" y2="300"></line>
+<line class="sv-line-red" marker-end="url(#m1-10-arrow)" x1="380" x2="380" y1="240" y2="300"></line>
+<rect class="sv-box-red" height="56" rx="2" width="220" x="20" y="300"></rect>
+<text class="sv-tr" text-anchor="middle" x="130" y="322">Callejón sin salida</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="339">actor secundario del capital</text>
+<rect class="sv-box-red" height="56" rx="2" width="220" x="520" y="300"></rect>
+<text class="sv-tr" text-anchor="middle" x="630" y="322">Callejón sin salida</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="339">reproduce las dinámicas posmodernas</text>
+<line class="sv-line-dash" x1="240" x2="270" y1="328" y2="328"></line>
+<line class="sv-line-dash" x1="490" x2="520" y1="328" y2="328"></line>
+<rect class="sv-box-green" height="56" rx="2" width="220" x="270" y="300"></rect>
+<text class="sv-tgr" text-anchor="middle" x="380" y="322">Nuevo movimiento comunista</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="339">bloque construido desde abajo</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="384">ambas vías laterales reproducen la posmodernidad; sólo la central la atraviesa</text>
+</svg>

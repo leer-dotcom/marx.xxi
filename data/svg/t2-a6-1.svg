@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal de tres etapas de la normalidad psicológica, de la fábrica a la salud mental como sistema, con el ciclo central ideal de normalidad, medición de la desviación, diagnóstico, terapia, readaptación y refuerzo de la normalidad" role="img" viewBox="0 0 760 490">
+<defs><marker id="m2-6-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box" height="86" rx="2" width="230" x="20" y="18"></rect><text class="sv-t3" text-anchor="middle" x="135" y="38">ETAPA 1 · primera mitad del s. XX</text><text class="sv-t" text-anchor="middle" x="135" y="56">La fábrica</text><text class="sv-t2" text-anchor="middle" x="135" y="72">Mayo, taylorismo, «gran familia»</text><text class="sv-t2" text-anchor="middle" x="135" y="87">autoridad desde dentro del individuo</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="250" x2="265" y1="61" y2="61"></line>
+<rect class="sv-box" height="86" rx="2" width="230" x="265" y="18"></rect><text class="sv-t3" text-anchor="middle" x="380" y="38">ETAPA 2 · último tercio del s. XX</text><text class="sv-t" text-anchor="middle" x="380" y="56">Subsunción total de la vida</text><text class="sv-t2" text-anchor="middle" x="380" y="72">deslocalización, desapego laboral</text><text class="sv-t2" text-anchor="middle" x="380" y="87">provisión mixta pública-privada</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="495" x2="510" y1="61" y2="61"></line>
+<rect class="sv-box-red" height="86" rx="2" width="230" x="510" y="18"></rect><text class="sv-t3" text-anchor="middle" x="625" y="38">ETAPA 3 · siglo XXI</text><text class="sv-tr" text-anchor="middle" x="625" y="56">Salud mental como sistema</text><text class="sv-t2" text-anchor="middle" x="625" y="72">Estado mayorista, privados minoristas</text><text class="sv-t2" text-anchor="middle" x="625" y="87">la socialdemocracia, beneficiaria</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="140">en las tres etapas opera el mismo ciclo</text>
+<line class="sv-line-dash" marker-end="url(#m2-6-arrow)" x1="380" x2="380" y1="146" y2="172"></line>
+<rect class="sv-box-ink" height="40" rx="2" width="140" x="310" y="175"></rect><text class="sv-tw" text-anchor="middle" x="380" y="199">Ideal de normalidad</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="450" x2="520" y1="205" y2="240"></line>
+<rect class="sv-box" height="40" rx="2" width="140" x="520" y="230"></rect><text class="sv-t" text-anchor="middle" x="590" y="248">Medición de</text><text class="sv-t" text-anchor="middle" x="590" y="262">la desviación</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="590" x2="590" y1="270" y2="348"></line>
+<rect class="sv-box-red" height="40" rx="2" width="140" x="520" y="350"></rect><text class="sv-tr" text-anchor="middle" x="590" y="368">Diagnóstico /</text><text class="sv-tr" text-anchor="middle" x="590" y="382">enfermedad</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="520" x2="450" y1="380" y2="415"></line>
+<rect class="sv-box" height="40" rx="2" width="140" x="310" y="405"></rect><text class="sv-t" text-anchor="middle" x="380" y="423">Terapia /</text><text class="sv-t" text-anchor="middle" x="380" y="437">reconocimiento</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="310" x2="240" y1="415" y2="380"></line>
+<rect class="sv-box" height="40" rx="2" width="140" x="100" y="350"></rect><text class="sv-t" text-anchor="middle" x="170" y="362">Readaptación al</text><text class="sv-t2" text-anchor="middle" x="170" y="375">sentido común</text><text class="sv-t2" text-anchor="middle" x="170" y="387">capitalista</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="170" x2="170" y1="350" y2="272"></line>
+<rect class="sv-box" height="40" rx="2" width="140" x="100" y="230"></rect><text class="sv-t" text-anchor="middle" x="170" y="248">Refuerzo de</text><text class="sv-t" text-anchor="middle" x="170" y="262">la normalidad</text>
+<line class="sv-line" marker-end="url(#m2-6-arrow)" x1="240" x2="310" y1="240" y2="205"></line>
+<text class="sv-t2" text-anchor="middle" x="380" y="300">ciclo de la normalidad psicológica</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="317">«espejismo al que nadie puede llegar»</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="334">enquistamiento perpetuo del conflicto</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="476">vías rechazadas: conservadurismo · privatización liberal — la crítica apunta a la totalidad</text>
+</svg>

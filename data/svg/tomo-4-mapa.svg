@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa conceptual del volumen 4: en el centro el derecho a la revolución, fundado por la soberanía popular, puesto a la orden del día por la crisis revolucionaria y ejercido por el partido comunista; revoca el Estado capitalista, cuyo giro autoritario recorta los derechos políticos que son condición del partido; partido y crisis conquistan el Estado-Comuna, que realiza la soberanía popular y cuya pérdida genera oportunismo e izquierdismo; la guerra imperialista acelera el giro autoritario y el derrotismo exige un internacionalismo que es condición de supervivencia del Estado-Comuna" role="img" viewBox="0 0 760 500">
+<defs><marker id="m4-s-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<!-- aristas largas de ruta -->
+<path class="sv-line" d="M645 50V24H24V212H40" marker-end="url(#m4-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="19">la realiza plenamente (pueblo armado, revocabilidad, fin de la separación de poderes)</text>
+<path class="sv-line-dash" d="M585 50V36H115V50" marker-end="url(#m4-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="245" y="47">su pérdida</text>
+<path class="sv-line" d="M720 352H746V72H730" marker-end="url(#m4-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" transform="rotate(-90 738 220)" x="738" y="220">condición de supervivencia</text>
+<!-- fila A -->
+<rect class="sv-box" height="44" rx="2" width="150" x="40" y="50"></rect>
+<text class="sv-t" text-anchor="middle" x="115" y="69">Izquierdismo</text>
+<text class="sv-t2" text-anchor="middle" x="115" y="85">sectarismo</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="300" y="50"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="69">Crisis</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="85">revolucionaria</text>
+<rect class="sv-box-blue" height="44" rx="2" width="170" x="560" y="50"></rect>
+<text class="sv-tb" text-anchor="middle" x="645" y="69">Estado-Comuna</text>
+<text class="sv-t2" text-anchor="middle" x="645" y="85">república democrática</text>
+<!-- fila B -->
+<rect class="sv-box-blue" height="44" rx="2" width="150" x="40" y="190"></rect>
+<text class="sv-tb" text-anchor="middle" x="115" y="209">Soberanía popular</text>
+<text class="sv-t2" text-anchor="middle" x="115" y="225">democracia íntegra</text>
+<rect class="sv-box-red" height="50" rx="2" width="180" x="290" y="190"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="211">Derecho a la revolución</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="229">núcleo del volumen</text>
+<rect class="sv-box-green" height="50" rx="2" width="160" x="560" y="190"></rect>
+<text class="sv-tgr" text-anchor="middle" x="640" y="211">Partido comunista</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="229">de masas</text>
+<!-- fila C -->
+<rect class="sv-box-ink" height="44" rx="2" width="150" x="40" y="330"></rect>
+<text class="sv-tw" text-anchor="middle" x="115" y="349">Estado capitalista</text>
+<text class="sv-tw" text-anchor="middle" x="115" y="366">imperio de la Ley</text>
+<rect class="sv-box-green" height="44" rx="2" width="160" x="300" y="330"></rect>
+<text class="sv-tgr" text-anchor="middle" x="380" y="349">Derechos políticos</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="365">armas, no fines</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="560" y="330"></rect>
+<text class="sv-tb" text-anchor="middle" x="640" y="349">Internacionalismo</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="365">partido europeo</text>
+<!-- fila D -->
+<rect class="sv-box" height="44" rx="2" width="150" x="40" y="440"></rect>
+<text class="sv-t" text-anchor="middle" x="115" y="459">Oportunismo</text>
+<text class="sv-t2" text-anchor="middle" x="115" y="475">reformismo, frentismo</text>
+<rect class="sv-box-gold" height="44" rx="2" width="160" x="300" y="440"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="459">Giro autoritario</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="475">penal · UE · rearme</text>
+<rect class="sv-box-gold" height="44" rx="2" width="170" x="560" y="440"></rect>
+<text class="sv-tg" text-anchor="middle" x="645" y="459">Guerra imperialista</text>
+<text class="sv-t2" text-anchor="middle" x="645" y="475">derrotismo doble</text>
+<!-- aristas cortas -->
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="190" x2="300" y1="72" y2="72"></line>
+<text class="sv-t3" text-anchor="middle" x="245" y="66">la presupone</text>
+<text class="sv-t3" text-anchor="middle" x="245" y="86">falsamente</text>
+<line class="sv-line-red" marker-end="url(#m4-s-arrow)" x1="380" x2="380" y1="94" y2="190"></line>
+<text class="sv-t3" text-anchor="end" x="373" y="145">a la orden del día</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="460" x2="560" y1="72" y2="72"></line>
+<text class="sv-t3" text-anchor="middle" x="510" y="66">mayoría</text>
+<text class="sv-t3" text-anchor="middle" x="510" y="86">decisiva</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="640" x2="640" y1="190" y2="94"></line>
+<text class="sv-t3" text-anchor="end" x="633" y="145">conquista del poder</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="190" x2="290" y1="212" y2="212"></line>
+<text class="sv-t3" text-anchor="middle" x="240" y="206">funda</text>
+<line class="sv-line-red" marker-end="url(#m4-s-arrow)" x1="560" x2="470" y1="215" y2="215"></line>
+<text class="sv-t3" text-anchor="middle" x="515" y="208">ejerce y</text>
+<text class="sv-t3" text-anchor="middle" x="515" y="230">prepara</text>
+<line class="sv-line-red" marker-end="url(#m4-s-arrow)" x1="300" x2="190" y1="240" y2="330"></line>
+<text class="sv-t3" x="262" y="283">revoca</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="115" x2="115" y1="440" y2="374"></line>
+<text class="sv-t3" x="121" y="412">se integra</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="190" x2="300" y1="374" y2="440"></line>
+<text class="sv-t3" text-anchor="end" x="255" y="425">produce en</text>
+<text class="sv-t3" text-anchor="end" x="255" y="439">la crisis</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="380" x2="380" y1="440" y2="374"></line>
+<text class="sv-t3" x="387" y="412">recorta</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="460" x2="560" y1="345" y2="235"></line>
+<text class="sv-t3" x="518" y="296">condición de</text>
+<text class="sv-t3" x="518" y="311">posibilidad</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="560" x2="460" y1="462" y2="462"></line>
+<text class="sv-t3" text-anchor="middle" x="510" y="456">acelera</text>
+<line class="sv-line" marker-end="url(#m4-s-arrow)" x1="645" x2="645" y1="440" y2="374"></line>
+<text class="sv-t3" text-anchor="end" x="638" y="412">derrotismo: lo exige</text>
+</svg>

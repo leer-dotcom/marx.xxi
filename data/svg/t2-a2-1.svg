@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Cadena causal en dos fases: fase ascendente que produce la socialdemocracia clásica y fase de crisis que, pasando por la fragmentación de la clase y el péndulo integración-resistencialismo, desemboca en el populismo, su moderación y la represión; una salida alternativa lleva a la autoorganización socialista" role="img" viewBox="0 0 760 500">
+<defs><marker id="m2-2-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">FASE 1 · ascenso de la acumulación</text>
+<rect class="sv-box" height="50" rx="2" width="160" x="20" y="32"></rect><text class="sv-t" text-anchor="middle" x="100" y="53">Desarrollo de las</text><text class="sv-t" text-anchor="middle" x="100" y="69">fuerzas productivas</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="180" x2="205" y1="57" y2="57"></line>
+<rect class="sv-box" height="50" rx="2" width="160" x="205" y="32"></rect><text class="sv-t" text-anchor="middle" x="285" y="53">Unidad relativa</text><text class="sv-t" text-anchor="middle" x="285" y="69">de la clase</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="365" x2="390" y1="57" y2="57"></line>
+<rect class="sv-box" height="50" rx="2" width="160" x="390" y="32"></rect><text class="sv-t" text-anchor="middle" x="470" y="53">Centralización de</text><text class="sv-t" text-anchor="middle" x="470" y="69">capital en el Estado</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="550" x2="575" y1="57" y2="57"></line>
+<rect class="sv-box-red" height="50" rx="2" width="160" x="575" y="32"></rect><text class="sv-tr" text-anchor="middle" x="655" y="53">Socialdemocracia clásica</text><text class="sv-t2" text-anchor="middle" x="655" y="69">salario indirecto</text>
+<path class="sv-line-dash" d="M655 82 L655 104 L100 104 L100 126" marker-end="url(#m2-2-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="99">ofensiva neoliberal</text>
+<text class="sv-t3" x="20" y="120">FASE 2 · crisis</text>
+<rect class="sv-box" height="50" rx="2" width="160" x="20" y="128"></rect><text class="sv-t2" text-anchor="middle" x="100" y="146">Automatización,</text><text class="sv-t2" text-anchor="middle" x="100" y="160">internacionalización</text><text class="sv-t2" text-anchor="middle" x="100" y="174">y desempleo</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="180" x2="205" y1="153" y2="153"></line>
+<rect class="sv-box" height="50" rx="2" width="160" x="205" y="128"></rect><text class="sv-t" text-anchor="middle" x="285" y="149">Fragmentación de</text><text class="sv-t" text-anchor="middle" x="285" y="165">la clase en estratos</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="365" x2="390" y1="153" y2="153"></line>
+<rect class="sv-box" height="50" rx="2" width="160" x="390" y="128"></rect><text class="sv-t" text-anchor="middle" x="470" y="149">Crisis de la social-</text><text class="sv-t" text-anchor="middle" x="470" y="165">democracia clásica</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="550" x2="575" y1="153" y2="153"></line>
+<rect class="sv-box-gold" height="50" rx="2" width="160" x="575" y="128"></rect><text class="sv-tg" text-anchor="middle" x="655" y="149">Ciudadanismo</text><text class="sv-t2" text-anchor="middle" x="655" y="165">interclasista</text>
+<path class="sv-line" d="M655 178 L655 205 L420 205 L420 226" marker-end="url(#m2-2-arrow)"></path>
+<path class="sv-line" d="M655 205 L645 205 L645 226" marker-end="url(#m2-2-arrow)"></path>
+<rect class="sv-box" height="50" rx="2" width="180" x="330" y="228"></rect><text class="sv-t" text-anchor="middle" x="420" y="249">Integración:</text><text class="sv-t2" text-anchor="middle" x="420" y="265">demandas al Estado</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" marker-start="url(#m2-2-arrow)" x1="512" x2="553" y1="253" y2="253"></line>
+<rect class="sv-box" height="50" rx="2" width="180" x="555" y="228"></rect><text class="sv-t" text-anchor="middle" x="645" y="249">Resistencialismo:</text><text class="sv-t2" text-anchor="middle" x="645" y="265">«afuera» del capital</text>
+<text class="sv-t3" text-anchor="middle" x="532" y="296">péndulo movimentista: ambos polos se agotan en el Estado</text>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="420" x2="420" y1="278" y2="323"></line>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="645" x2="645" y1="278" y2="323"></line>
+<rect class="sv-box-red" height="62" rx="2" width="405" x="330" y="325"></rect>
+<text class="sv-tr" text-anchor="middle" x="532" y="347">POPULISMO: «ciudadanismo para tiempos de crisis»</text>
+<text class="sv-t2" text-anchor="middle" x="532" y="364">Pueblo · Líder · anti-pueblo («casta») · lógica de la demanda</text>
+<text class="sv-t3" text-anchor="middle" x="532" y="379">ilusión: un capitalismo sin contradicciones</text>
+<rect class="sv-box-gold" height="62" rx="2" width="250" x="20" y="325"></rect>
+<text class="sv-tg" text-anchor="middle" x="145" y="347">Programa de las clases medias</text>
+<text class="sv-t2" text-anchor="middle" x="145" y="364">frenar su desposesión</text><text class="sv-t2" text-anchor="middle" x="145" y="379">canalizándola por el Estado</text>
+<line class="sv-line-dash" marker-end="url(#m2-2-arrow)" x1="270" x2="330" y1="356" y2="356"></line>
+<line class="sv-line" marker-end="url(#m2-2-arrow)" x1="425" x2="425" y1="387" y2="423"></line>
+<rect class="sv-box" height="50" rx="2" width="190" x="330" y="425"></rect><text class="sv-t" text-anchor="middle" x="425" y="446">Moderación de promesas</text><text class="sv-t2" text-anchor="middle" x="425" y="462">→ cinismo</text>
+<line class="sv-line-red" marker-end="url(#m2-2-arrow)" x1="520" x2="545" y1="450" y2="450"></line>
+<rect class="sv-box-ink" height="50" rx="2" width="190" x="545" y="425"></rect><text class="sv-tw" text-anchor="middle" x="640" y="446">Miedo → represión</text><text class="sv-tw" text-anchor="middle" x="640" y="462">(Cádiz, Chile)</text>
+<rect class="sv-box-green" height="50" rx="2" width="250" x="20" y="425"></rect><text class="sv-tgr" text-anchor="middle" x="145" y="446">Salida: revuelta espontánea</text><text class="sv-tgr" text-anchor="middle" x="145" y="462">→ autoorganización socialista</text>
+<line class="sv-line-dash" marker-end="url(#m2-2-arrow)" x1="330" x2="270" y1="465" y2="465"></line>
+</svg>

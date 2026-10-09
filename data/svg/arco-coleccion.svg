@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arco temático de los cinco volúmenes: del marxismo como teoría a la organización internacional" role="img" viewBox="0 0 760 250">
+<defs><marker id="m0-arc" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" text-anchor="middle" x="380" y="22">EL ARCO DE LA COLECCIÓN: DE LA CRÍTICA TEÓRICA A LA ORGANIZACIÓN INTERNACIONAL</text>
+<path class="sv-line-red" d="M86 150 H674" marker-end="url(#m0-arc)"></path>
+<g>
+<rect class="sv-box" height="72" rx="2" width="132" x="20" y="52"></rect>
+<text class="sv-tr" text-anchor="middle" x="86" y="74">VOLUMEN 1 · 2021</text>
+<text class="sv-t" text-anchor="middle" x="86" y="93">Qué marxismo</text>
+<text class="sv-t2" text-anchor="middle" x="86" y="110">unidad teoría-política</text>
+<circle class="sv-dot" cx="86" cy="150" r="6"></circle>
+<text class="sv-t2" text-anchor="middle" x="86" y="182">Totalidad, crisis,</text>
+<text class="sv-t2" text-anchor="middle" x="86" y="197">Hegel, fetichismo</text>
+</g>
+<g>
+<rect class="sv-box" height="72" rx="2" width="132" x="167" y="52"></rect>
+<text class="sv-tr" text-anchor="middle" x="233" y="74">VOLUMEN 2 · 2022</text>
+<text class="sv-t" text-anchor="middle" x="233" y="93">Deslinde de campos</text>
+<text class="sv-t2" text-anchor="middle" x="233" y="110">frente al reformismo</text>
+<circle class="sv-dot" cx="233" cy="150" r="6"></circle>
+<text class="sv-t2" text-anchor="middle" x="233" y="182">Estado no neutral,</text>
+<text class="sv-t2" text-anchor="middle" x="233" y="197">redistribuir ≠ criticar</text>
+</g>
+<g>
+<rect class="sv-box" height="72" rx="2" width="132" x="314" y="52"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="74">VOLUMEN 3 · 2024</text>
+<text class="sv-t" text-anchor="middle" x="380" y="93">Independencia</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="110">construir el partido</text>
+<circle class="sv-dot" cx="380" cy="150" r="6"></circle>
+<text class="sv-t2" text-anchor="middle" x="380" y="182">Conciencia socialista,</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="197">hegemonía, transición</text>
+</g>
+<g>
+<rect class="sv-box" height="72" rx="2" width="132" x="461" y="52"></rect>
+<text class="sv-tr" text-anchor="middle" x="527" y="74">VOLUMEN 4 · 2025</text>
+<text class="sv-t" text-anchor="middle" x="527" y="93">Revolución y Estado</text>
+<text class="sv-t2" text-anchor="middle" x="527" y="110">Estado y Comuna</text>
+<circle class="sv-dot" cx="527" cy="150" r="6"></circle>
+<text class="sv-t2" text-anchor="middle" x="527" y="182">Giro autoritario,</text>
+<text class="sv-t2" text-anchor="middle" x="527" y="197">derechos como armas</text>
+</g>
+<g>
+<rect class="sv-box" height="72" rx="2" width="132" x="608" y="52"></rect>
+<text class="sv-tr" text-anchor="middle" x="674" y="74">VOLUMEN 5 · 2026</text>
+<text class="sv-t" text-anchor="middle" x="674" y="93">Internacionalismo</text>
+<text class="sv-t2" text-anchor="middle" x="674" y="110">guerra e Internacional</text>
+<circle class="sv-dot" cx="674" cy="150" r="6"></circle>
+<text class="sv-t2" text-anchor="middle" x="674" y="182">Derrotismo, Palestina,</text>
+<text class="sv-t2" text-anchor="middle" x="674" y="197">balance del estalinismo</text>
+</g>
+<text class="sv-t3" text-anchor="middle" x="380" y="236">TEORÍA  →  CRÍTICA DE LOS "FALSOS AMIGOS"  →  SUJETO  →  PODER  →  ESCALA MUNDIAL</text>
+</svg>

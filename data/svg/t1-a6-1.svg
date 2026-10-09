@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Tres posiciones sobre la relación entre teoría y praxis: dualismo absoluto del positivismo, identidad inmediata del activismo y, en el centro, la discontinuidad o tensión máxima de Adorno, con una flecha de ida y vuelta entre teoría y praxis verdadera. Debajo, la cadena principio de intercambio, pensamiento identificante, pensamiento cosificado y praxis ilusoria." role="img" viewBox="0 0 760 350">
+<defs><marker id="m1-6-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">TRES POSICIONES Y UNA TENSIÓN</text>
+<rect class="sv-box" height="74" rx="2" width="220" x="20" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="56">Dualismo absoluto</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="73">positivismo: teoría y praxis</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="89">separadas</text>
+<rect class="sv-box-green" height="74" rx="2" width="220" x="270" y="34"></rect>
+<text class="sv-tgr" text-anchor="middle" x="380" y="56">Discontinuidad</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="73">tensión máxima (Adorno):</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="89">no-identidad en la identidad</text>
+<rect class="sv-box-red" height="74" rx="2" width="220" x="520" y="34"></rect>
+<text class="sv-tr" text-anchor="middle" x="630" y="56">Identidad inmediata</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="73">idealismo subjetivo / activismo:</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="89">la teoría como criada</text>
+<line class="sv-line-dash" x1="240" x2="270" y1="71" y2="71"></line>
+<line class="sv-line-dash" x1="490" x2="520" y1="71" y2="71"></line>
+<line class="sv-line" marker-end="url(#m1-6-arrow)" x1="380" x2="380" y1="108" y2="140"></line>
+<rect class="sv-box-blue" height="56" rx="2" width="220" x="130" y="140"></rect>
+<text class="sv-tb" text-anchor="middle" x="240" y="163">Teoría</text>
+<text class="sv-t2" text-anchor="middle" x="240" y="180">figura no idéntica de la praxis</text>
+<rect class="sv-box-blue" height="56" rx="2" width="220" x="410" y="140"></rect>
+<text class="sv-tb" text-anchor="middle" x="520" y="163">Praxis verdadera</text>
+<text class="sv-t2" text-anchor="middle" x="520" y="180">en relación con las tensiones objetivas</text>
+<line class="sv-line-red" marker-end="url(#m1-6-arrow)" marker-start="url(#m1-6-arrow)" x1="350" x2="410" y1="168" y2="168"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="214">la contemplación es un momento de la praxis; pensar es un hacer</text>
+<text class="sv-t3" x="20" y="252">CADENA DE CORRESPONDENCIAS</text>
+<rect class="sv-box" height="56" rx="2" width="160" x="20" y="264"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="287">Principio de</text>
+<text class="sv-t" text-anchor="middle" x="100" y="303">intercambio</text>
+<rect class="sv-box" height="56" rx="2" width="160" x="200" y="264"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="287">Pensamiento</text>
+<text class="sv-t" text-anchor="middle" x="280" y="303">identificante</text>
+<rect class="sv-box-red" height="56" rx="2" width="160" x="380" y="264"></rect>
+<text class="sv-tr" text-anchor="middle" x="460" y="287">Pensamiento</text>
+<text class="sv-tr" text-anchor="middle" x="460" y="303">cosificado</text>
+<rect class="sv-box-red" height="56" rx="2" width="160" x="580" y="264"></rect>
+<text class="sv-tr" text-anchor="middle" x="660" y="287">Praxis ilusoria</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="303">activismo irreflexivo</text>
+<line class="sv-line" marker-end="url(#m1-6-arrow)" x1="180" x2="200" y1="292" y2="292"></line>
+<line class="sv-line" marker-end="url(#m1-6-arrow)" x1="360" x2="380" y1="292" y2="292"></line>
+<line class="sv-line-red" marker-end="url(#m1-6-arrow)" marker-start="url(#m1-6-arrow)" x1="540" x2="580" y1="292" y2="292"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="340">iguala lo desigual → anula las diferencias → programa instrumental ↔ pseudo-actividad</text>
+</svg>

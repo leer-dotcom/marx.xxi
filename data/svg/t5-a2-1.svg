@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Tres pilares fundidos del poder imperial estadounidense: financiero-monetario, normativo-institucional y militar, sobre la base de la apropiación de plusvalor global" role="img" viewBox="0 0 760 380">
+<defs><marker id="m5-2-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="50" rx="2" width="720" x="20" y="14"></rect>
+<text class="sv-tw" text-anchor="middle" x="380" y="35">Hegemonía estadounidense</text>
+<text class="sv-tw" text-anchor="middle" x="380" y="53">un orden particular presentado como interés universal (coerción + consentimiento)</text>
+<rect class="sv-box-gold" height="200" rx="2" width="220" x="20" y="84"></rect>
+<text class="sv-tg" text-anchor="middle" x="130" y="108">Financiero-monetario</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="134">dólar como dinero mundial</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="158">señoreaje y bonos del Tesoro</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="182">FMI y Banco Mundial: deuda</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="206">petrodólar</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="230">sanciones y SWIFT</text>
+<text class="sv-t3" text-anchor="middle" x="130" y="262">«guerra por otros medios»</text>
+<rect class="sv-box-blue" height="200" rx="2" width="220" x="270" y="84"></rect>
+<text class="sv-tb" text-anchor="middle" x="380" y="108">Normativo-institucional</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="134">Bretton Woods (1944)</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="158">Doctrina Truman y «mundo libre»</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="182">Consenso de Washington</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="206">orden «basado en reglas»</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="230">socialdemocracia cómplice</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="262">reproducir la correlación de fuerzas</text>
+<rect class="sv-box-red" height="200" rx="2" width="220" x="520" y="84"></rect>
+<text class="sv-tr" text-anchor="middle" x="630" y="108">Militar</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="134">OTAN (1949)</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="158">NSC-68: militarización permanente</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="182">complejo militar-industrial</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="206">~520 bases en el exterior</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="230">Defensa Antimisiles</text>
+<text class="sv-t3" text-anchor="middle" x="630" y="262">garantía última del orden</text>
+<path class="sv-line" d="M130 322 L130 290" marker-end="url(#m5-2-arrow)"></path>
+<path class="sv-line" d="M380 322 L380 290" marker-end="url(#m5-2-arrow)"></path>
+<path class="sv-line" d="M630 322 L630 290" marker-end="url(#m5-2-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="720" x="20" y="322"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="342">Base: apropiación de plusvalor global</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="359">cadenas globales de valor · división salarial internacional · intercambio desigual por composición orgánica</text>
+</svg>

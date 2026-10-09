@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, matriz de tres acuerdos compartidos y un desacuerdo entre socialdemocracia y socialismo; abajo, cadena causal desde la proliferación de sistemas nacionales de innovación hasta el estancamiento secular, que bifurca en barbarie o socialización de la inversión" role="img" viewBox="0 0 760 470">
+<defs><marker id="m2-9-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">ARGUMENTO 1 · qué es el capital</text>
+<rect class="sv-box-red" height="26" rx="2" width="250" x="230" y="30"></rect><text class="sv-tr" text-anchor="middle" x="355" y="47">Socialdemocracia</text>
+<rect class="sv-box-blue" height="26" rx="2" width="250" x="490" y="30"></rect><text class="sv-tb" text-anchor="middle" x="615" y="47">Socialismo</text>
+<rect class="sv-soft" height="28" rx="2" width="200" x="20" y="62"></rect><text class="sv-t2" text-anchor="middle" x="120" y="80">1. florecimiento humano parcial</text>
+<rect class="sv-box" height="28" rx="2" width="510" x="230" y="62"></rect><text class="sv-t2" text-anchor="middle" x="485" y="80">acuerdo: el capitalismo lo impulsó</text>
+<rect class="sv-soft" height="28" rx="2" width="200" x="20" y="96"></rect><text class="sv-t2" text-anchor="middle" x="120" y="114">2. limitado y precario</text>
+<rect class="sv-box" height="28" rx="2" width="510" x="230" y="96"></rect><text class="sv-t2" text-anchor="middle" x="485" y="114">acuerdo</text>
+<rect class="sv-soft" height="28" rx="2" width="200" x="20" y="130"></rect><text class="sv-t2" text-anchor="middle" x="120" y="148">3. imperativo de un mundo mejor</text>
+<rect class="sv-box" height="28" rx="2" width="510" x="230" y="130"></rect><text class="sv-t2" text-anchor="middle" x="485" y="148">acuerdo</text>
+<rect class="sv-soft" height="46" rx="2" width="200" x="20" y="164"></rect><text class="sv-t" text-anchor="middle" x="120" y="184">4. los defectos son…</text><text class="sv-t3" text-anchor="middle" x="120" y="200">el desacuerdo</text>
+<rect class="sv-box-red" height="46" rx="2" width="250" x="230" y="164"></rect><text class="sv-t2" text-anchor="middle" x="355" y="184">remediables con regulación</text><text class="sv-t3" text-anchor="middle" x="355" y="200">codeterminación, renta mínima…</text>
+<rect class="sv-box-blue" height="46" rx="2" width="250" x="490" y="164"></rect><text class="sv-t2" text-anchor="middle" x="615" y="184">intrínsecos: «features, not bugs»</text><text class="sv-t3" text-anchor="middle" x="615" y="200">valorización como fin → superación</text>
+<text class="sv-t3" x="20" y="240">ARGUMENTO 2 · en qué se ha convertido el capitalismo</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="20" y="248"></rect><text class="sv-t" text-anchor="middle" x="105" y="268">Proliferan los sistemas</text><text class="sv-t2" text-anchor="middle" x="105" y="284">nacionales de innovación</text>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="190" x2="205" y1="273" y2="273"></line>
+<rect class="sv-box" height="50" rx="2" width="170" x="205" y="248"></rect><text class="sv-t" text-anchor="middle" x="290" y="268">Duplicación rápida</text><text class="sv-t2" text-anchor="middle" x="290" y="284">de las innovaciones</text>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="375" x2="390" y1="273" y2="273"></line>
+<rect class="sv-box" height="50" rx="2" width="170" x="390" y="248"></rect><text class="sv-t" text-anchor="middle" x="475" y="268">Ventana de ganancia</text><text class="sv-t2" text-anchor="middle" x="475" y="284">extraordinaria más corta</text>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="560" x2="575" y1="273" y2="273"></line>
+<rect class="sv-box" height="50" rx="2" width="170" x="575" y="248"></rect><text class="sv-t" text-anchor="middle" x="660" y="268">Sobreacumulación</text><text class="sv-t2" text-anchor="middle" x="660" y="284">en los sectores dinámicos</text>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="660" x2="660" y1="298" y2="320"></line>
+<rect class="sv-box" height="44" rx="2" width="170" x="575" y="322"></rect><text class="sv-t" text-anchor="middle" x="660" y="340">Caída de la tasa</text><text class="sv-t2" text-anchor="middle" x="660" y="356">de ganancia</text>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="575" x2="552" y1="344" y2="344"></line>
+<rect class="sv-box-ink" height="44" rx="2" width="260" x="290" y="322"></rect><text class="sv-tw" text-anchor="middle" x="420" y="340">Estancamiento secular</text><text class="sv-tw" text-anchor="middle" x="420" y="356">«no habrá más eras doradas»</text>
+<line class="sv-line-red" marker-end="url(#m2-9-arrow)" x1="380" x2="240" y1="366" y2="402"></line>
+<line class="sv-line" marker-end="url(#m2-9-arrow)" x1="460" x2="580" y1="366" y2="402"></line>
+<rect class="sv-box-red" height="50" rx="2" width="320" x="50" y="404"></rect><text class="sv-tr" text-anchor="middle" x="210" y="424">Formas brutales de valorización: barbarie</text><text class="sv-t2" text-anchor="middle" x="210" y="440">guerra al trabajo · propiedad intelectual · burbujas</text>
+<rect class="sv-box-green" height="50" rx="2" width="320" x="420" y="404"></rect><text class="sv-tgr" text-anchor="middle" x="580" y="424">Socialización radical de la inversión</text><text class="sv-t2" text-anchor="middle" x="580" y="440">socialismo (el Green New Deal no basta)</text>
+</svg>

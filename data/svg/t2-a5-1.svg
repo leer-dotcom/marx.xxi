@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Tres capas: triángulo de posiciones con la estrategia socialista en el vértice frente a eclecticismo y antifeminismo; cadena causal desde la necesidad de reproducir la fuerza de trabajo hasta la opresión de género; y matriz de las cuatro separaciones criticadas con la respuesta de la crítica de la economía política" role="img" viewBox="0 0 760 520">
+<defs><marker id="m2-5-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-green" height="52" rx="2" width="240" x="260" y="16"></rect><text class="sv-tgr" text-anchor="middle" x="380" y="36">Estrategia socialista</text><text class="sv-t2" text-anchor="middle" x="380" y="53">lo particular en y a través de lo universal</text>
+<line class="sv-line-dash" x1="300" x2="160" y1="68" y2="98"></line><line class="sv-line-dash" x1="460" x2="600" y1="68" y2="98"></line>
+<line class="sv-line-dash" x1="260" x2="500" y1="125" y2="125"></line><text class="sv-t3" text-anchor="middle" x="380" y="121">misma oposición abstracta</text>
+<rect class="sv-box-red" height="50" rx="2" width="230" x="30" y="100"></rect><text class="sv-tr" text-anchor="middle" x="145" y="120">Eclecticismo sociologista</text><text class="sv-t2" text-anchor="middle" x="145" y="137">lo universal disuelto en particulares</text>
+<rect class="sv-box-red" height="50" rx="2" width="230" x="500" y="100"></rect><text class="sv-tr" text-anchor="middle" x="615" y="120">Antifeminismo reaccionario</text><text class="sv-t2" text-anchor="middle" x="615" y="137">lo particular disuelto en lo abstracto</text>
+<text class="sv-t3" x="20" y="180">GÉNESIS DE LA OPRESIÓN DE GÉNERO</text>
+<rect class="sv-box" height="50" rx="2" width="165" x="20" y="190"></rect><text class="sv-t" text-anchor="middle" x="102" y="210">Capital social global</text><text class="sv-t2" text-anchor="middle" x="102" y="226">reproduce la clase obrera</text>
+<line class="sv-line" marker-end="url(#m2-5-arrow)" x1="185" x2="205" y1="215" y2="215"></line>
+<rect class="sv-box" height="50" rx="2" width="165" x="205" y="190"></rect><text class="sv-t" text-anchor="middle" x="287" y="206">Familia nuclear</text><text class="sv-t2" text-anchor="middle" x="287" y="220">heterosexual</text><text class="sv-t2" text-anchor="middle" x="287" y="234">(fijada por el Estado)</text>
+<line class="sv-line" marker-end="url(#m2-5-arrow)" x1="370" x2="390" y1="215" y2="215"></line>
+<rect class="sv-box" height="50" rx="2" width="165" x="390" y="190"></rect><text class="sv-t" text-anchor="middle" x="472" y="210">División sexual</text><text class="sv-t2" text-anchor="middle" x="472" y="226">del trabajo</text>
+<line class="sv-line" marker-end="url(#m2-5-arrow)" x1="555" x2="575" y1="215" y2="215"></line>
+<rect class="sv-box-red" height="50" rx="2" width="165" x="575" y="190"></rect><text class="sv-tr" text-anchor="middle" x="657" y="210">División de género</text><text class="sv-t2" text-anchor="middle" x="657" y="226">opresión</text>
+<line class="sv-line-dash" marker-end="url(#m2-5-arrow)" x1="287" x2="287" y1="240" y2="268"></line>
+<rect class="sv-box" height="50" rx="2" width="165" x="205" y="270"></rect><text class="sv-t" text-anchor="middle" x="287" y="290">Incorporación</text><text class="sv-t2" text-anchor="middle" x="287" y="306">contradictoria de la mujer</text>
+<line class="sv-line" marker-end="url(#m2-5-arrow)" x1="370" x2="390" y1="295" y2="295"></line>
+<rect class="sv-box-gold" height="50" rx="2" width="350" x="390" y="270"></rect><text class="sv-tg" text-anchor="middle" x="565" y="290">Competencia intraclase</text><text class="sv-t2" text-anchor="middle" x="565" y="306">salarios más bajos · «ejército de reserva doméstico»</text>
+<text class="sv-t3" x="20" y="352">CUATRO SEPARACIONES CRITICADAS</text>
+<rect class="sv-box-ink" height="26" rx="2" width="300" x="20" y="360"></rect><text class="sv-tw" text-anchor="middle" x="170" y="378">Separación (también en la TRS)</text>
+<rect class="sv-box-ink" height="26" rx="2" width="410" x="330" y="360"></rect><text class="sv-tw" text-anchor="middle" x="535" y="378">Respuesta de la CEP</text>
+<rect class="sv-box" height="28" rx="2" width="300" x="20" y="392"></rect><text class="sv-t2" text-anchor="middle" x="170" y="410">Valor naturalizado (salario doméstico)</text>
+<rect class="sv-box-blue" height="28" rx="2" width="410" x="330" y="392"></rect><text class="sv-t2" text-anchor="middle" x="535" y="410">Trabajo doméstico: necesario pero improductivo</text>
+<rect class="sv-box" height="28" rx="2" width="300" x="20" y="426"></rect><text class="sv-t2" text-anchor="middle" x="170" y="444">Producción / reproducción</text>
+<rect class="sv-box-blue" height="28" rx="2" width="410" x="330" y="426"></rect><text class="sv-t2" text-anchor="middle" x="535" y="444">Unidad bajo el capital social global</text>
+<rect class="sv-box" height="28" rx="2" width="300" x="20" y="460"></rect><text class="sv-t2" text-anchor="middle" x="170" y="478">Teoría / historia (Arruzza)</text>
+<rect class="sv-box-blue" height="28" rx="2" width="410" x="330" y="460"></rect><text class="sv-t2" text-anchor="middle" x="535" y="478">Historicidad derivada de la lógica inmanente del capital</text>
+<rect class="sv-box" height="20" rx="2" width="300" x="20" y="494"></rect><text class="sv-t2" text-anchor="middle" x="170" y="508">Reconocimiento / redistribución</text>
+<rect class="sv-box-blue" height="20" rx="2" width="410" x="330" y="494"></rect><text class="sv-t2" text-anchor="middle" x="535" y="508">El Estado no es neutro: «ilusión del estado social»</text>
+</svg>

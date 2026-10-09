@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Círculos concéntricos: en el centro las luchas económicas y sindicales, rodeadas por el movimiento de clase del proletariado y, como sector más avanzado dentro de ese anillo, la vanguardia y la teoría revolucionaria. Dos flechas salen del centro: espontáneamente hacia el oportunismo y, mediante lucha teórica y organización, hacia el potencial revolucionario. A la derecha, la línea temporal rusa 1880, 1890 y 1900." role="img" viewBox="0 0 760 460">
+<defs><marker id="m1-7-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<circle class="sv-box-blue" cx="270" cy="200" r="160"></circle>
+<circle class="sv-box" cx="270" cy="200" r="70"></circle>
+<text class="sv-t" text-anchor="middle" x="270" y="196">Luchas económicas</text>
+<text class="sv-t2" text-anchor="middle" x="270" y="212">sindicales, restringidas</text>
+<text class="sv-tb" text-anchor="middle" x="270" y="316">Movimiento de clase</text>
+<text class="sv-tb" text-anchor="middle" x="270" y="331">del proletariado</text>
+<text class="sv-t2" text-anchor="middle" x="270" y="346">organizaciones, teoría, internacionalismo</text>
+<rect class="sv-box-red" height="48" rx="2" width="180" x="180" y="58"></rect>
+<text class="sv-tr" text-anchor="middle" x="270" y="78">Vanguardia</text>
+<text class="sv-t2" text-anchor="middle" x="270" y="94">teoría revolucionaria</text>
+<line class="sv-line-red" marker-end="url(#m1-7-arrow)" x1="270" x2="270" y1="130" y2="110"></line>
+<text class="sv-t3" x="20" y="24">desde fuera de la lucha económica,</text>
+<text class="sv-t3" x="20" y="38">pero desde dentro del movimiento</text>
+<line class="sv-line-dash" x1="150" x2="175" y1="40" y2="66"></line>
+<line class="sv-line-dash" marker-end="url(#m1-7-arrow)" x1="205" x2="100" y1="235" y2="390"></line>
+<text class="sv-t3" text-anchor="end" x="130" y="330">espontáneamente</text>
+<rect class="sv-box" height="48" rx="2" width="200" x="20" y="392"></rect>
+<text class="sv-t" text-anchor="middle" x="120" y="412">Oportunismo</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="428">Bernstein: «el movimiento lo es todo»</text>
+<line class="sv-line-red" marker-end="url(#m1-7-arrow)" x1="335" x2="430" y1="235" y2="390"></line>
+<text class="sv-t3" x="404" y="330">lucha teórica</text>
+<text class="sv-t3" x="412" y="344">y organización</text>
+<rect class="sv-box-red" height="48" rx="2" width="230" x="300" y="392"></rect>
+<text class="sv-tr" text-anchor="middle" x="415" y="412">Potencial revolucionario</text>
+<text class="sv-t2" text-anchor="middle" x="415" y="428">autonegación del proletariado</text>
+<text class="sv-t3" x="560" y="24">EL CASO RUSO</text>
+<line class="sv-line" marker-end="url(#m1-7-arrow)" x1="600" x2="600" y1="60" y2="340"></line>
+<circle class="sv-dot" cx="600" cy="80" r="5"></circle>
+<text class="sv-t" x="614" y="76">1880</text>
+<text class="sv-t2" x="614" y="92">núcleos intelectuales</text>
+<text class="sv-t2" x="614" y="106">sin movimiento</text>
+<circle class="sv-dot" cx="600" cy="170" r="5"></circle>
+<text class="sv-t" x="614" y="166">1890</text>
+<text class="sv-t2" x="614" y="182">oleada huelguística;</text>
+<text class="sv-t2" x="614" y="196">los marxistas como</text>
+<text class="sv-t2" x="614" y="210">destacamento</text>
+<circle class="sv-dot" cx="600" cy="270" r="5"></circle>
+<text class="sv-t" x="614" y="266">1900</text>
+<text class="sv-t2" x="614" y="282">economismo →</text>
+<text class="sv-t2" x="614" y="296">oportunismo</text>
+</svg>

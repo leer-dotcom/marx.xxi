@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal de 1848 a 1919 sobre dos columnas enfrentadas: programa socialdemócrata de Kautsky y programa comunista de Luxemburg, Pannekoek y Lenin, con un nodo intermedio para Lenin antes de 1914" role="img" viewBox="0 0 760 500">
+<defs><marker id="m2-1-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<line class="sv-line" marker-end="url(#m2-1-arrow)" x1="30" x2="740" y1="70" y2="70"></line>
+<circle class="sv-dot-b" cx="50" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="50" y="42">1848–71</text><text class="sv-t2" text-anchor="middle" x="50" y="92">Marx: Brumario,</text><text class="sv-t2" text-anchor="middle" x="50" y="106">Comuna</text>
+<circle class="sv-dot" cx="135" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="135" y="42">1891</text><text class="sv-t2" text-anchor="middle" x="135" y="92">Programa</text><text class="sv-t2" text-anchor="middle" x="135" y="106">de Erfurt</text>
+<circle class="sv-dot" cx="215" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="215" y="42">1895</text><text class="sv-t2" text-anchor="middle" x="215" y="92">Introducción</text><text class="sv-t2" text-anchor="middle" x="215" y="106">de Engels</text>
+<circle class="sv-dot-b" cx="295" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="295" y="42">1905–06</text><text class="sv-t2" text-anchor="middle" x="295" y="92">Rev. rusa /</text><text class="sv-t2" text-anchor="middle" x="295" y="106">Huelga de masas</text>
+<circle class="sv-dot" cx="375" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="375" y="42">1910</text><text class="sv-t2" text-anchor="middle" x="375" y="92">Luxemburg vs</text><text class="sv-t2" text-anchor="middle" x="375" y="106">Kautsky</text>
+<circle class="sv-dot" cx="455" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="455" y="42">1911–12</text><text class="sv-t2" text-anchor="middle" x="455" y="92">Kautsky vs</text><text class="sv-t2" text-anchor="middle" x="455" y="106">Pannekoek</text>
+<circle class="sv-dot" cx="540" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="540" y="42">1914</text><text class="sv-t2" text-anchor="middle" x="540" y="92">4 de agosto:</text><text class="sv-t2" text-anchor="middle" x="540" y="106">créditos</text><text class="sv-t2" text-anchor="middle" x="540" y="120">de guerra</text>
+<circle class="sv-dot-b" cx="625" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="625" y="42">1917</text><text class="sv-t2" text-anchor="middle" x="625" y="92">El Estado y</text><text class="sv-t2" text-anchor="middle" x="625" y="106">la revolución</text>
+<circle class="sv-dot-b" cx="705" cy="70" r="5"></circle><text class="sv-t3" text-anchor="middle" x="705" y="42">1919</text><text class="sv-t2" text-anchor="middle" x="705" y="92">III</text><text class="sv-t2" text-anchor="middle" x="705" y="106">Internacional</text>
+<line class="sv-line-dash" x1="415" x2="415" y1="112" y2="150"></line>
+<text class="sv-t3" text-anchor="middle" x="415" y="140">los debates de 1910–1912 gestan dos doctrinas</text>
+<line class="sv-line" marker-end="url(#m2-1-arrow)" x1="415" x2="165" y1="150" y2="165"></line>
+<line class="sv-line" marker-end="url(#m2-1-arrow)" x1="415" x2="595" y1="150" y2="165"></line>
+<rect class="sv-box-red" height="300" rx="2" width="270" x="30" y="168"></rect>
+<text class="sv-tr" text-anchor="middle" x="165" y="192">Programa socialdemócrata</text><text class="sv-t3" text-anchor="middle" x="165" y="208">Erfurt · Engels 1895 · Kautsky</text>
+<text class="sv-t" text-anchor="middle" x="165" y="240">Estado como instrumento neutro</text>
+<text class="sv-t" text-anchor="middle" x="165" y="270">Mayorías parlamentarias</text>
+<text class="sv-t" text-anchor="middle" x="165" y="300">Revolución dentro del Estado</text>
+<text class="sv-t" text-anchor="middle" x="165" y="330">Conquistas como concesiones</text>
+<text class="sv-t" text-anchor="middle" x="165" y="360">Etapismo: hoy demostraciones,</text><text class="sv-t" text-anchor="middle" x="165" y="375">mañana la revolución</text>
+<text class="sv-t" text-anchor="middle" x="165" y="405">«Vieja y probada táctica»</text>
+<text class="sv-t3" text-anchor="middle" x="165" y="440">reeditada por la nueva socialdemocracia</text>
+<rect class="sv-box-blue" height="300" rx="2" width="270" x="460" y="168"></rect>
+<text class="sv-tb" text-anchor="middle" x="595" y="192">Programa comunista</text><text class="sv-t3" text-anchor="middle" x="595" y="208">Luxemburg · Pannekoek · Lenin 1917</text>
+<text class="sv-t" text-anchor="middle" x="595" y="240">Lucha de masas como estrategia</text>
+<text class="sv-t" text-anchor="middle" x="595" y="270">La fuerza «descansa fuera»</text><text class="sv-t" text-anchor="middle" x="595" y="285">del parlamento</text>
+<text class="sv-t" text-anchor="middle" x="595" y="315">Destrucción del Estado</text>
+<text class="sv-t" text-anchor="middle" x="595" y="345">Organización independiente</text>
+<text class="sv-t" text-anchor="middle" x="595" y="375">Soviets contra parlamentos</text>
+<text class="sv-t3" text-anchor="middle" x="595" y="405">límite: poder burgués como</text><text class="sv-t3" text-anchor="middle" x="595" y="419">«fortaleza estatal»</text>
+<rect class="sv-box-gold" height="60" rx="2" width="130" x="315" y="285"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="310">Lenin</text><text class="sv-t2" text-anchor="middle" x="380" y="328">antes de 1914</text>
+<line class="sv-line-dash" x1="315" x2="300" y1="315" y2="315"></line>
+<line class="sv-line-dash" x1="445" x2="460" y1="315" y2="315"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="365">Erfurt como modelo,</text><text class="sv-t3" text-anchor="middle" x="380" y="379">apoyo a Kautsky en 1910,</text><text class="sv-t3" text-anchor="middle" x="380" y="393">pero «sin modelos listos»</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="490">continuidades y ruptura: ni antagonismo absoluto II/III ni «traición» de 1914</text>
+</svg>

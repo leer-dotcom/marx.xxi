@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Marx XXI · Lector</title>
+  <meta name="description" content="Lector de la revista Marx XXI: textos íntegros de los cinco tomos con resúmenes, esquemas, conceptos y glosario.">
+  <meta name="theme-color" content="#2c332f">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Alegreya+SC:wght@400;500&family=Alegreya+Sans:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="data/diagram.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script>
+    // Aplicar el tema antes de pintar para evitar parpadeo
+    try { var s = JSON.parse(localStorage.getItem('mx.settings') || '{}'); if (s.theme && s.theme !== 'system') document.documentElement.dataset.theme = s.theme; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#view">Saltar al contenido</a>
+  <header class="appbar" id="appbar">
+    <div class="lead">
+      <button class="icon-btn" id="btn-back" aria-label="Volver" hidden>
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <a class="icon-btn" id="btn-home" href="#/" aria-label="Inicio"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></a>
+    </div>
+    <a class="brand" href="#/">Marx XXI</a>
+    <div class="appbar-title" id="appbar-title"></div>
+    <nav class="appbar-actions" aria-label="Herramientas">
+      <a class="icon-btn" href="#/buscar" aria-label="Buscar" title="Buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+      <a class="icon-btn opt" href="#/marcadores" aria-label="Marcadores" title="Marcadores"><svg viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></svg></a>
+      <a class="icon-btn" href="#/ajustes" aria-label="Ajustes de lectura" title="Ajustes de lectura"><svg viewBox="0 0 24 24"><path d="M4 18L9 6l5 12M5.8 14h6.4M15 18l3-7 3 7M15.9 16h4.2"/></svg></a>
+    </nav>
+  </header>
+
+  <main id="view" tabindex="-1" aria-live="polite"></main>
+
+  <dialog id="sheet" class="sheet" aria-labelledby="sheet-title">
+    <div class="sheet-head">
+      <h2 id="sheet-title"></h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </dialog>
+
+  <dialog id="zoom" class="zoom" aria-label="Esquema ampliado">
+    <div class="zoom-bar">
+      <button class="icon-btn" data-z="-" aria-label="Reducir"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+      <span id="zoom-level">100 %</span>
+      <button class="icon-btn" data-z="+" aria-label="Ampliar"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+      <button class="icon-btn" data-z="0" aria-label="Ajustar"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+      <span class="grow"></span>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="zoom-stage" id="zoom-stage"></div>
+    <p class="zoom-caption" id="zoom-caption"></p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <noscript><p style="padding:20px">Esta aplicación necesita JavaScript.</p></noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

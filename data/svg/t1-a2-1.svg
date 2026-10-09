@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, la triple operación de la economía política que desemboca en la fórmula trinitaria; abajo, un árbol en que la concepción burguesa de la producción se ramifica en economía política clásica, socialdemocracia, estalinismo y teoría radical contemporánea, frente al nodo de Marx." role="img" viewBox="0 0 760 440">
+<defs><marker id="m1-2-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">LA TRIPLE OPERACIÓN DE LA ECONOMÍA POLÍTICA</text>
+<rect class="sv-box" height="60" rx="2" width="160" x="20" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="56">1. Separar</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="71">forma social /</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="85">contenido natural</text>
+<rect class="sv-box" height="60" rx="2" width="160" x="200" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="56">2. Naturalizar</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="71">el contenido</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="85">(la producción)</text>
+<rect class="sv-box" height="60" rx="2" width="160" x="380" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="56">3. Naturalizar</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="71">la forma</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="85">(la distribución)</text>
+<rect class="sv-box-gold" height="60" rx="2" width="180" x="560" y="34"></rect>
+<text class="sv-tg" text-anchor="middle" x="650" y="54">Fórmula trinitaria</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="69">capital-interés, tierra-renta,</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="84">trabajo-salario</text>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="180" x2="200" y1="64" y2="64"></line>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="360" x2="380" y1="64" y2="64"></line>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="540" x2="560" y1="64" y2="64"></line>
+<line class="sv-line-dash" marker-end="url(#m1-2-arrow)" x1="380" x2="380" y1="94" y2="150"></line>
+<text class="sv-t3" x="390" y="126">naturaliza las apariencias</text>
+<rect class="sv-box-red" height="56" rx="2" width="360" x="200" y="150"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="172">Raíz común: concepción burguesa de la producción</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="190">como base técnica + relaciones de distribución</text>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="380" x2="100" y1="206" y2="270"></line>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="380" x2="280" y1="206" y2="270"></line>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="380" x2="460" y1="206" y2="270"></line>
+<line class="sv-line" marker-end="url(#m1-2-arrow)" x1="380" x2="640" y1="206" y2="270"></line>
+<rect class="sv-box" height="60" rx="2" width="170" x="15" y="270"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="292">Economía política</text>
+<text class="sv-t" text-anchor="middle" x="100" y="307">clásica</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="322">Smith, Mill</text>
+<rect class="sv-box" height="60" rx="2" width="170" x="195" y="270"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="292">Socialdemocracia</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="307">Kautsky: reformismo</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="322">como consecuencia</text>
+<rect class="sv-box" height="60" rx="2" width="170" x="375" y="270"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="292">«Marxismo ortodoxo»</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="307">estalinista: base técnica</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="322">+ distribución</text>
+<rect class="sv-box" height="60" rx="2" width="185" x="555" y="270"></rect>
+<text class="sv-t" text-anchor="middle" x="647" y="292">Teoría «radical» actual</text>
+<text class="sv-t2" text-anchor="middle" x="647" y="307">Brown, Deleuze-Guattari,</text>
+<text class="sv-t2" text-anchor="middle" x="647" y="322">«Marx failed to consider»</text>
+<text class="sv-tr" text-anchor="middle" x="380" y="358">frente a todas ellas</text>
+<rect class="sv-box-ink" height="56" rx="2" width="500" x="130" y="370"></rect>
+<text class="sv-tw" text-anchor="middle" x="380" y="392">MARX: la contradicción está dentro de la producción;</text>
+<text class="sv-tw" text-anchor="middle" x="380" y="410">el capital es una relación social; el fetichismo es real</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Triángulo de tendencias del movimiento obrero con el marxismo en el vértice superior y espontaneísmo y reformismo como vértices complementarios; debajo, la ecuación independencia política igual a partido igual a fusión de socialismo y movimiento, con los seis pilares del partido; a la derecha, la escalera del proceso socialista desde la oposición revolucionaria hasta la sociedad sin clases, con el rótulo de qué deshacer; al pie, línea temporal de la constitución de la clase en partido de 1848 a 1917" role="img" viewBox="0 0 760 500">
+<defs><marker id="m3-8-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="20">TRES TENDENCIAS DEL MOVIMIENTO OBRERO</text>
+<rect class="sv-box-green" height="52" rx="2" width="210" x="135" y="30"></rect>
+<text class="sv-tgr" text-anchor="middle" x="240" y="51">Revolucionaria-política</text>
+<text class="sv-t2" text-anchor="middle" x="240" y="68">marxismo: acción política independiente</text>
+<path class="sv-line" d="M200 82 L110 152"></path>
+<path class="sv-line" d="M280 82 L370 152"></path>
+<rect class="sv-box-red" height="70" rx="2" width="200" x="12" y="154"></rect>
+<text class="sv-tr" text-anchor="middle" x="112" y="175">Espontaneísmo / movimentismo</text>
+<text class="sv-t2" text-anchor="middle" x="112" y="192">acción directa, antipolítica,</text>
+<text class="sv-t2" text-anchor="middle" x="112" y="207">huelga de masas, consejos fetichizados</text>
+<rect class="sv-box-red" height="70" rx="2" width="200" x="268" y="154"></rect>
+<text class="sv-tr" text-anchor="middle" x="368" y="175">Reformismo</text>
+<text class="sv-t2" text-anchor="middle" x="368" y="192">colaboración de clases, partido</text>
+<text class="sv-t2" text-anchor="middle" x="368" y="207">obrero burgués, gobernar el Estado</text>
+<path class="sv-line-red" d="M212 189 H268" marker-end="url(#m3-8-arrow)" marker-start="url(#m3-8-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="240" y="244">complementarios: el movimiento es el cuerpo, el partido reformista la cabeza</text>
+<rect class="sv-box-ink" height="44" rx="2" width="456" x="12" y="256"></rect>
+<text class="sv-tw" text-anchor="middle" x="240" y="283">Independencia política = Partido = Fusión socialismo + movimiento proletario</text>
+<text class="sv-t3" x="12" y="320">SEIS PILARES DEL PARTIDO</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="12" y="328"></rect>
+<text class="sv-t" text-anchor="middle" x="85" y="350">Conciencia socialista</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="167" y="328"></rect>
+<text class="sv-t" text-anchor="middle" x="240" y="350">Independencia política</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="322" y="328"></rect>
+<text class="sv-t" text-anchor="middle" x="395" y="350">Carácter de masas</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="12" y="370"></rect>
+<text class="sv-t" text-anchor="middle" x="85" y="392">Centralismo democrático</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="167" y="370"></rect>
+<text class="sv-t" text-anchor="middle" x="240" y="392">Internacionalismo</text>
+<rect class="sv-box" height="34" rx="2" width="146" x="322" y="370"></rect>
+<text class="sv-t" text-anchor="middle" x="395" y="392">Lucha por el poder</text>
+<rect class="sv-box-red" height="70" rx="2" width="248" x="500" y="14"></rect>
+<text class="sv-tr" text-anchor="middle" x="624" y="35">Qué deshacer</text>
+<text class="sv-t2" text-anchor="middle" x="624" y="52">yugo socialdemócrata (eslabón juvenil),</text>
+<text class="sv-t2" text-anchor="middle" x="624" y="67">sectarismo, economicismo, oportunismo</text>
+<text class="sv-t3" x="500" y="110">PROCESO SOCIALISTA</text>
+<rect class="sv-box-green" height="56" rx="2" width="122" x="626" y="120"></rect>
+<text class="sv-t" text-anchor="middle" x="687" y="143">Sociedad</text>
+<text class="sv-t" text-anchor="middle" x="687" y="159">sin clases</text>
+<rect class="sv-box-blue" height="56" rx="2" width="122" x="584" y="190"></rect>
+<text class="sv-t" text-anchor="middle" x="645" y="213">Estado Socialista</text>
+<text class="sv-t2" text-anchor="middle" x="645" y="229">forma-comuna</text>
+<rect class="sv-box-blue" height="56" rx="2" width="122" x="542" y="260"></rect>
+<text class="sv-t" text-anchor="middle" x="603" y="283">Partido</text>
+<text class="sv-t" text-anchor="middle" x="603" y="299">Comunista</text>
+<rect class="sv-box-gold" height="74" rx="2" width="122" x="500" y="330"></rect>
+<text class="sv-tg" text-anchor="middle" x="561" y="351">Hoy: oposición</text>
+<text class="sv-tg" text-anchor="middle" x="561" y="367">revolucionaria</text>
+<text class="sv-t2" text-anchor="middle" x="561" y="383">fase de movimiento,</text>
+<text class="sv-t2" text-anchor="middle" x="561" y="397">ruptura y unificación</text>
+<path class="sv-line" d="M561 330 V318" marker-end="url(#m3-8-arrow)"></path>
+<path class="sv-line" d="M603 260 V248" marker-end="url(#m3-8-arrow)"></path>
+<path class="sv-line" d="M645 190 V178" marker-end="url(#m3-8-arrow)"></path>
+<text class="sv-t3" x="12" y="428">CONSTITUCIÓN DE LA CLASE EN PARTIDO</text>
+<path class="sv-line" d="M20 456 H740"></path>
+<circle class="sv-dot" cx="40" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="40" y="447">Cartismo</text>
+<circle class="sv-dot" cx="125" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="125" y="475">1848 · Circular</text><text class="sv-t2" text-anchor="middle" x="125" y="489">de 1850</text>
+<circle class="sv-dot" cx="210" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="210" y="447">AIT 1864–72</text>
+<circle class="sv-dot" cx="295" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="295" y="475">Comuna 1871</text>
+<circle class="sv-dot" cx="380" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="380" y="447">Gotha 1875</text>
+<circle class="sv-dot" cx="465" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="465" y="475">Circular 1879</text>
+<circle class="sv-dot" cx="550" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="550" y="447">II Internacional</text>
+<circle class="sv-dot" cx="635" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="635" y="475">1912 · 1914</text>
+<circle class="sv-dot" cx="720" cy="456" r="4"></circle><text class="sv-t2" text-anchor="middle" x="720" y="447">1917 · III Int.</text>
+</svg>

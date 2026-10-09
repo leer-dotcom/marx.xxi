@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal 1864-1943 de las tres Internacionales con sus congresos decisivos y, debajo, la tarea de cada una" role="img" viewBox="0 0 760 312">
+<defs><marker id="m5-5-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-line" d="M12 160 L748 160" marker-end="url(#m5-5-tl)"></path>
+<path class="sv-line-dash" d="M25 160 L25 140"></path><circle class="sv-dot" cx="25" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="25" y="132">1864</text>
+<text class="sv-t2" text-anchor="middle" x="25" y="101">fundación</text><text class="sv-t2" text-anchor="middle" x="25" y="116">de la AIT</text>
+<path class="sv-line-dash" d="M75 160 L75 180"></path><circle class="sv-dot-b" cx="75" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="75" y="194">1868</text>
+<text class="sv-t2" text-anchor="middle" x="75" y="212">Bruselas: huelgas</text><text class="sv-t2" text-anchor="middle" x="75" y="227">y socialización</text>
+<path class="sv-line-dash" d="M125 160 L125 140"></path><circle class="sv-dot" cx="125" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="125" y="132">1871</text>
+<text class="sv-t2" text-anchor="middle" x="125" y="101">Comuna; Conf.</text><text class="sv-t2" text-anchor="middle" x="125" y="116">de Londres</text>
+<path class="sv-line-dash" d="M175 160 L175 180"></path><circle class="sv-dot-b" cx="175" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="175" y="194">1872</text>
+<text class="sv-t2" text-anchor="middle" x="175" y="212">La Haya:</text><text class="sv-t2" text-anchor="middle" x="175" y="227">expulsión</text><text class="sv-t2" text-anchor="middle" x="175" y="242">de Bakunin</text>
+<path class="sv-line-dash" d="M225 160 L225 140"></path><circle class="sv-dot" cx="225" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="225" y="132">1876</text>
+<text class="sv-t2" text-anchor="middle" x="225" y="101">disolución</text><text class="sv-t2" text-anchor="middle" x="225" y="116">de la AIT</text>
+<path class="sv-line-dash" d="M275 160 L275 180"></path><circle class="sv-dot-b" cx="275" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="275" y="194">1889</text>
+<text class="sv-t2" text-anchor="middle" x="275" y="212">II Internacional;</text><text class="sv-t2" text-anchor="middle" x="275" y="227">Primero de Mayo</text>
+<path class="sv-line-dash" d="M325 160 L325 140"></path><circle class="sv-dot" cx="325" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="325" y="132">1896</text>
+<text class="sv-t2" text-anchor="middle" x="325" y="101">Londres: fuera</text><text class="sv-t2" text-anchor="middle" x="325" y="116">los anarquistas</text>
+<path class="sv-line-dash" d="M375 160 L375 180"></path><circle class="sv-dot-b" cx="375" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="375" y="194">1904</text>
+<text class="sv-t2" text-anchor="middle" x="375" y="212">Ámsterdam:</text><text class="sv-t2" text-anchor="middle" x="375" y="227">ministerialismo</text><text class="sv-t2" text-anchor="middle" x="375" y="242">y colonialismo</text>
+<path class="sv-line-dash" d="M425 160 L425 140"></path><circle class="sv-dot" cx="425" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="425" y="132">1907</text>
+<text class="sv-t2" text-anchor="middle" x="425" y="101">Stuttgart:</text><text class="sv-t2" text-anchor="middle" x="425" y="116">militarismo</text>
+<path class="sv-line-dash" d="M475 160 L475 180"></path><circle class="sv-dot-b" cx="475" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="475" y="194">1914</text>
+<text class="sv-t2" text-anchor="middle" x="475" y="212">créditos</text><text class="sv-t2" text-anchor="middle" x="475" y="227">de guerra</text>
+<path class="sv-line-dash" d="M525 160 L525 140"></path><circle class="sv-dot" cx="525" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="525" y="132">1919</text>
+<text class="sv-t2" text-anchor="middle" x="525" y="101">I Congreso</text><text class="sv-t2" text-anchor="middle" x="525" y="116">de la IC</text>
+<path class="sv-line-dash" d="M575 160 L575 180"></path><circle class="sv-dot-b" cx="575" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="575" y="194">1920</text>
+<text class="sv-t2" text-anchor="middle" x="575" y="212">II Congreso;</text><text class="sv-t2" text-anchor="middle" x="575" y="227">Bakú</text>
+<path class="sv-line-dash" d="M625 160 L625 140"></path><circle class="sv-dot" cx="625" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="625" y="132">1922</text>
+<text class="sv-t2" text-anchor="middle" x="625" y="101">IV Congreso:</text><text class="sv-t2" text-anchor="middle" x="625" y="116">Frente Único</text>
+<path class="sv-line-dash" d="M675 160 L675 180"></path><circle class="sv-dot-b" cx="675" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="675" y="194">1935</text>
+<text class="sv-t2" text-anchor="middle" x="675" y="212">VII: frente</text><text class="sv-t2" text-anchor="middle" x="675" y="227">popular</text>
+<path class="sv-line-dash" d="M725 160 L725 140"></path><circle class="sv-dot" cx="725" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="725" y="132">1943</text>
+<text class="sv-t2" text-anchor="middle" x="725" y="101">disolución</text><text class="sv-t2" text-anchor="middle" x="725" y="116">de la IC</text>
+<rect class="sv-box" height="40" rx="2" width="226" x="14" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="127" y="278">1864-1876 · AIT</text><text class="sv-t2" text-anchor="middle" x="127" y="294">tarea: preparar el camino</text>
+<rect class="sv-box-blue" height="40" rx="2" width="230" x="260" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="375" y="278">1889-1914 · II INTERNACIONAL</text><text class="sv-t2" text-anchor="middle" x="375" y="294">tarea: extender la palabra</text>
+<rect class="sv-box-red" height="40" rx="2" width="236" x="510" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="628" y="278">1919-1943 · III INTERNACIONAL</text><text class="sv-t2" text-anchor="middle" x="628" y="294">tarea: consumar la palabra</text>
+</svg>

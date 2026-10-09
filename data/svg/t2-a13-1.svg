@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Curva en arco de la acumulación en el tiempo: en la pendiente ascendente, la socialdemocracia como etapa hacia el comunismo; en la cima, la contradicción en movimiento; en la descendente, la gestión pragmática del capitalismo sin crecimiento sobre una zona sombreada de devastación ecológica; al final, el tenedor ante la sopa: superar, no gestionar" role="img" viewBox="0 0 760 400">
+<defs><marker id="m2-13-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-soft" d="M520 330 L740 330 L740 235 Z"></path>
+<line class="sv-line" marker-end="url(#m2-13-arrow)" x1="40" x2="740" y1="330" y2="330"></line>
+<line class="sv-line" marker-end="url(#m2-13-arrow)" x1="40" x2="40" y1="330" y2="40"></line>
+<text class="sv-t3" x="50" y="52">acumulación / valor</text>
+<text class="sv-t3" x="48" y="348">tiempo</text>
+<path class="sv-line-red" d="M60 310 Q380 -120 700 310"></path>
+<circle class="sv-dot" cx="380" cy="95" r="5"></circle>
+<circle class="sv-dot" cx="700" cy="310" r="5"></circle>
+<rect class="sv-box-gold" height="44" rx="2" width="240" x="260" y="30"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="49">Contradicción en movimiento</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="66">la expansión produce su propio fin</text>
+<rect class="sv-box-blue" height="80" rx="2" width="200" x="140" y="240"></rect>
+<text class="sv-tb" text-anchor="middle" x="240" y="260">Argumento 2: etapa hacia</text>
+<text class="sv-t2" text-anchor="middle" x="240" y="277">el comunismo: poder de clase,</text>
+<text class="sv-t2" text-anchor="middle" x="240" y="293">movimiento obrero industrial</text>
+<text class="sv-t3" text-anchor="middle" x="240" y="311">fase ascendente del arco</text>
+<rect class="sv-box-red" height="80" rx="2" width="200" x="390" y="200"></rect>
+<text class="sv-tr" text-anchor="middle" x="490" y="220">Argumento 1: gestión</text>
+<text class="sv-t2" text-anchor="middle" x="490" y="237">pragmática del capitalismo</text>
+<text class="sv-t2" text-anchor="middle" x="490" y="253">sin crecimiento</text>
+<text class="sv-t3" text-anchor="middle" x="490" y="271">fase descendente del arco</text>
+<text class="sv-tr" text-anchor="end" x="690" y="324">devastación ecológica</text>
+<text class="sv-t3" text-anchor="end" x="740" y="96">los dos argumentos</text>
+<text class="sv-t3" text-anchor="end" x="740" y="110">no coinciden en el tiempo:</text>
+<text class="sv-tr" text-anchor="end" x="740" y="127">hay que elegir</text>
+<text class="sv-t3" text-anchor="end" x="740" y="353">la socialdemocracia es un tenedor</text>
+<text class="sv-t3" text-anchor="end" x="740" y="367">y estamos ante un plato de sopa</text>
+<text class="sv-tr" text-anchor="end" x="740" y="386">superar, no gestionar</text>
+</svg>

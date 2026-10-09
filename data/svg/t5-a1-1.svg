@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Escala móvil del sistema interestatal en seis niveles, del hegemón a los territorios bajo dominación extrema, con los cuatro rasgos que fijan la posición de cada país" role="img" viewBox="0 0 760 400">
+<defs><marker id="m5-1-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" text-anchor="middle" x="235" y="26">ESCALA MÓVIL DEL SISTEMA INTERESTATAL</text>
+<rect class="sv-box-red" height="48" rx="2" width="150" x="160" y="44"></rect>
+<text class="sv-t" text-anchor="middle" x="235" y="63">Hegemón</text>
+<text class="sv-t2" text-anchor="middle" x="235" y="80">EE. UU.</text>
+<rect class="sv-box-gold" height="48" rx="2" width="210" x="130" y="100"></rect>
+<text class="sv-t" text-anchor="middle" x="235" y="119">Imperialismos secundarios</text>
+<text class="sv-t2" text-anchor="middle" x="235" y="136">Europa occ., Japón, Canadá</text>
+<rect class="sv-box-blue" height="48" rx="2" width="270" x="100" y="156"></rect>
+<text class="sv-t" text-anchor="middle" x="235" y="175">Aspirantes</text>
+<text class="sv-t2" text-anchor="middle" x="235" y="192">China (no consolidado)</text>
+<rect class="sv-box" height="48" rx="2" width="330" x="70" y="212"></rect>
+<text class="sv-t" text-anchor="middle" x="235" y="231">Dependientes con proyección regional</text>
+<text class="sv-t2" text-anchor="middle" x="235" y="248">Rusia, Brasil, Irán</text>
+<rect class="sv-box" height="48" rx="2" width="390" x="40" y="268"></rect>
+<text class="sv-t" text-anchor="middle" x="235" y="287">Dependientes en sentido fuerte</text>
+<text class="sv-t2" text-anchor="middle" x="235" y="304">restricción externa: deuda, devaluación, austeridad</text>
+<rect class="sv-box-ink" height="48" rx="2" width="450" x="10" y="324"></rect>
+<text class="sv-tw" text-anchor="middle" x="235" y="343">Territorios bajo dominación extrema</text>
+<text class="sv-tw" text-anchor="middle" x="235" y="361">Palestina, Sáhara, Haití</text>
+<text class="sv-t3" text-anchor="middle" x="620" y="26">RASGOS QUE FIJAN LA POSICIÓN</text>
+<rect class="sv-box-blue" height="48" rx="2" width="260" x="490" y="44"></rect>
+<text class="sv-t" text-anchor="middle" x="620" y="63">Exportación estructural</text>
+<text class="sv-t" text-anchor="middle" x="620" y="80">de capital</text>
+<rect class="sv-box-blue" height="48" rx="2" width="260" x="490" y="102"></rect>
+<text class="sv-t" text-anchor="middle" x="620" y="121">Respaldo estatal</text>
+<text class="sv-t2" text-anchor="middle" x="620" y="138">diplomático, jurídico, militar</text>
+<rect class="sv-box-blue" height="48" rx="2" width="260" x="490" y="160"></rect>
+<text class="sv-t" text-anchor="middle" x="620" y="179">Posición monetaria</text>
+<text class="sv-t" text-anchor="middle" x="620" y="196">y financiera fuerte</text>
+<rect class="sv-box-blue" height="48" rx="2" width="260" x="490" y="218"></rect>
+<text class="sv-t" text-anchor="middle" x="620" y="237">Control de fuerzas productivas</text>
+<text class="sv-t2" text-anchor="middle" x="620" y="254">de vanguardia y nodos logísticos</text>
+<path class="sv-line-dash" d="M490 155 L466 155" marker-end="url(#m5-1-arrow)"></path>
+<rect class="sv-box-red" height="82" rx="2" width="260" x="490" y="290"></rect>
+<text class="sv-tr" text-anchor="middle" x="620" y="312">Posiciones móviles</text>
+<text class="sv-t2" text-anchor="middle" x="620" y="330">se ganan o se pierden en las crisis:</text>
+<text class="sv-t2" text-anchor="middle" x="620" y="345">la desvalorización se descarga</text>
+<text class="sv-t2" text-anchor="middle" x="620" y="360">sobre los espacios más débiles</text>
+<text class="sv-t3" text-anchor="middle" x="235" y="392">↑ poder de subordinación · ↓ subordinación sufrida</text>
+</svg>

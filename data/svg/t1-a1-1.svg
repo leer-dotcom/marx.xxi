@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Oposición entre la teoría de la realización y la teoría de la valorización, y cadena cíclica de la valorización: competencia, innovación, composición orgánica, caída de la tasa de ganancia, detención de la acumulación, crisis, concentración y nueva fase de acumulación." role="img" viewBox="0 0 760 390">
+<defs><marker id="m1-1-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-soft" height="165" rx="2" width="350" x="20" y="10"></rect>
+<rect class="sv-box-blue" height="32" rx="2" width="330" x="30" y="20"></rect>
+<text class="sv-tb" text-anchor="middle" x="195" y="41">Teoría de la realización (subconsumismo)</text>
+<text class="sv-t3" x="30" y="72">CAUSA</text>
+<text class="sv-t2" x="30" y="88">contradicción producción-consumo; anarquía del mercado</text>
+<text class="sv-t3" x="30" y="110">SÍNTOMA LEÍDO COMO CAUSA</text>
+<text class="sv-t2" x="30" y="126">sobreproducción, demanda insuficiente, salarios bajos</text>
+<text class="sv-t3" x="30" y="148">IMPLICACIÓN POLÍTICA</text>
+<text class="sv-t2" x="30" y="164">reformismo keynesiano: capitalismo injusto pero eterno</text>
+<rect class="sv-soft" height="165" rx="2" width="350" x="390" y="10"></rect>
+<rect class="sv-box-red" height="32" rx="2" width="330" x="400" y="20"></rect>
+<text class="sv-tr" text-anchor="middle" x="565" y="41">Teoría de la valorización (rentabilidad)</text>
+<text class="sv-t3" x="400" y="72">CAUSA</text>
+<text class="sv-t2" x="400" y="88">rentabilidad: la crisis nace en la acumulación misma</text>
+<text class="sv-t3" x="400" y="110">LO QUE SE VE COMO SÍNTOMA</text>
+<text class="sv-t2" x="400" y="126">mercancías invendibles = escasez de plusvalía</text>
+<text class="sv-t3" x="400" y="148">IMPLICACIÓN POLÍTICA</text>
+<text class="sv-t2" x="400" y="164">crisis inherente al capital; sólo cabe su abolición</text>
+<text class="sv-t3" x="20" y="200">CADENA CÍCLICA DE LA VALORIZACIÓN</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="20" y="212"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="238">Competencia</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="200" y="212"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="231">Innovación técnica</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="246">(más capital fijo)</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="380" y="212"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="231">↑ composición</text>
+<text class="sv-t" text-anchor="middle" x="460" y="246">orgánica del capital</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="560" y="212"></rect>
+<text class="sv-tr" text-anchor="middle" x="640" y="238">↓ tasa de ganancia</text>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="180" x2="200" y1="234" y2="234"></line>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="360" x2="380" y1="234" y2="234"></line>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="540" x2="560" y1="234" y2="234"></line>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="640" x2="640" y1="256" y2="330"></line>
+<text class="sv-t3" x="650" y="297">ley tendencial</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="560" y="330"></rect>
+<text class="sv-t" text-anchor="middle" x="640" y="349">Detención de</text>
+<text class="sv-t" text-anchor="middle" x="640" y="364">la acumulación</text>
+<rect class="sv-box-ink" height="44" rx="2" width="160" x="380" y="330"></rect>
+<text class="sv-tw" text-anchor="middle" x="460" y="349">CRISIS</text>
+<text class="sv-tw" text-anchor="middle" x="460" y="364">reajuste violento</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="200" y="330"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="349">↑ concentración</text>
+<text class="sv-t" text-anchor="middle" x="280" y="364">↑ tasa de explotación</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="20" y="330"></rect>
+<text class="sv-tb" text-anchor="middle" x="100" y="349">Nueva fase</text>
+<text class="sv-tb" text-anchor="middle" x="100" y="364">de acumulación</text>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="560" x2="540" y1="352" y2="352"></line>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="380" x2="360" y1="352" y2="352"></line>
+<line class="sv-line" marker-end="url(#m1-1-arrow)" x1="200" x2="180" y1="352" y2="352"></line>
+<line class="sv-line-red" marker-end="url(#m1-1-arrow)" x1="100" x2="100" y1="330" y2="256"></line>
+<text class="sv-t3" x="108" y="297">el ciclo se reabre</text>
+</svg>

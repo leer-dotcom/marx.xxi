@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal en tres ciclos de acumulación (keynesiano, neoliberal y nuevo keynesianismo de ofensiva, dividido en dominancia monetaria y fiscal) con la tasa de ganancia descendiendo en escalones; debajo, las lecciones de cada tramo convergen en el nodo final: Partido independiente a escala europea e internacional" role="img" viewBox="0 0 760 440">
+<defs><marker id="m3-2-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-tr" x="12" y="20">tasa de ganancia: cae en escalones y nunca recupera los niveles previos</text>
+<path class="sv-line-red" d="M20 44 H232 L262 70 H490 L520 94 H745"></path>
+<circle class="sv-dot" cx="247" cy="57" r="5"></circle><text class="sv-t3" text-anchor="middle" x="247" y="88">crisis 70s</text>
+<circle class="sv-dot" cx="505" cy="82" r="5"></circle><text class="sv-t3" text-anchor="middle" x="505" y="112">crisis 2008</text>
+<rect class="sv-box-blue" height="70" rx="2" width="222" x="12" y="120"></rect>
+<text class="sv-t" text-anchor="middle" x="123" y="142">Ciclo keynesiano · 1945–70s</text>
+<text class="sv-t2" text-anchor="middle" x="123" y="159">integración sistémica, pacto</text>
+<text class="sv-t2" text-anchor="middle" x="123" y="174">interclasista «de pies de barro»</text>
+<rect class="sv-box-gold" height="70" rx="2" width="222" x="268" y="120"></rect>
+<text class="sv-t" text-anchor="middle" x="379" y="142">Ciclo neoliberal · 80s–2008</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="159">ofensiva de clase: Estado + mercado,</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="174">UE como dispositivo, financiarización</text>
+<rect class="sv-box-red" height="70" rx="2" width="222" x="526" y="120"></rect>
+<text class="sv-t" text-anchor="middle" x="637" y="142">Nuevo keynesianismo · 2008–</text>
+<text class="sv-t2" text-anchor="middle" x="637" y="159">de ofensiva: el Estado sostiene</text>
+<text class="sv-t2" text-anchor="middle" x="637" y="174">a un capital estructuralmente débil</text>
+<path class="sv-line" d="M580 190 V202" marker-end="url(#m3-2-arrow)"></path>
+<path class="sv-line" d="M694 190 V202" marker-end="url(#m3-2-arrow)"></path>
+<rect class="sv-box" height="76" rx="2" width="108" x="526" y="204"></rect>
+<text class="sv-t" text-anchor="middle" x="580" y="222">Dominancia</text>
+<text class="sv-t" text-anchor="middle" x="580" y="237">monetaria</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="253">2008–2020</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="268">BC market maker</text>
+<rect class="sv-box" height="76" rx="2" width="108" x="640" y="204"></rect>
+<text class="sv-t" text-anchor="middle" x="694" y="222">Dominancia</text>
+<text class="sv-t" text-anchor="middle" x="694" y="237">fiscal</text>
+<text class="sv-t2" text-anchor="middle" x="694" y="253">pandemia–</text>
+<text class="sv-t2" text-anchor="middle" x="694" y="268">industria, rearme</text>
+<path class="sv-line-dash" d="M123 190 V298" marker-end="url(#m3-2-arrow)"></path>
+<path class="sv-line-dash" d="M379 190 V298" marker-end="url(#m3-2-arrow)"></path>
+<path class="sv-line-dash" d="M637 280 V298" marker-end="url(#m3-2-arrow)"></path>
+<rect class="sv-soft" height="64" rx="2" width="222" x="12" y="300"></rect>
+<text class="sv-tb" text-anchor="middle" x="123" y="320">Lección</text>
+<text class="sv-t2" text-anchor="middle" x="123" y="336">el reformismo fracasa incluso</text>
+<text class="sv-t2" text-anchor="middle" x="123" y="351">como proyecto armonizador</text>
+<rect class="sv-soft" height="64" rx="2" width="222" x="268" y="300"></rect>
+<text class="sv-tb" text-anchor="middle" x="379" y="320">Lección</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="336">no ideología sino reacción de clase;</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="351">cada ciclo deja bases más endebles</text>
+<rect class="sv-soft" height="64" rx="2" width="222" x="526" y="300"></rect>
+<text class="sv-tb" text-anchor="middle" x="637" y="320">Lección</text>
+<text class="sv-t2" text-anchor="middle" x="637" y="336">austeridad de clase, liberalismo</text>
+<text class="sv-t2" text-anchor="middle" x="637" y="351">autoritario, rearme y guerra</text>
+<path class="sv-line" d="M123 364 V380 H378"></path>
+<path class="sv-line" d="M637 364 V380 H382"></path>
+<path class="sv-line" d="M380 364 V386" marker-end="url(#m3-2-arrow)"></path>
+<rect class="sv-box-ink" height="44" rx="2" width="460" x="150" y="388"></rect>
+<text class="sv-tw" text-anchor="middle" x="380" y="407">Partido independiente, a escala europea como mínimo e internacional</text>
+<text class="sv-tw" text-anchor="middle" x="380" y="424">construido antes de la crisis: «paciencia estratégica»</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, oposición en dos columnas entre Estado capitalista y Estado-Comuna; abajo, línea temporal con bifurcaciones entre la línea de la democracia popular (1793, Marx, Comuna, Octubre) y la línea de la máquina estatal (imperio de la Ley, Termidor, Kautsky, burocracia, marxismo-leninismo, eurocomunismo)" role="img" viewBox="0 0 760 400">
+<defs><marker id="m4-7-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="26" rx="2" width="345" x="20" y="12"></rect><text class="sv-tw" text-anchor="middle" x="192" y="30">ESTADO CAPITALISTA</text>
+<rect class="sv-box" height="114" rx="2" width="345" x="20" y="38"></rect>
+<text class="sv-t2" x="32" y="57">· separado de la sociedad civil, erigido sobre ella</text>
+<text class="sv-t2" x="32" y="74">· imperio de la Ley: la propiedad sobre la voluntad popular</text>
+<text class="sv-t2" x="32" y="91">· separación de poderes y contrapesos oligárquicos</text>
+<text class="sv-t2" x="32" y="108">· ejército permanente y burocracia (herencia absolutista)</text>
+<text class="sv-t2" x="32" y="125">· jueces y funcionarios no electos</text>
+<text class="sv-t2" x="32" y="142">· partido-Estado del orden: los partidos legales son sus ramas</text>
+<text class="sv-tr" text-anchor="middle" x="380" y="100">vs.</text>
+<rect class="sv-box-red" height="26" rx="2" width="345" x="395" y="12"></rect><text class="sv-tr" text-anchor="middle" x="567" y="30">ESTADO-COMUNA</text>
+<rect class="sv-box-red" height="114" rx="2" width="345" x="395" y="38"></rect>
+<text class="sv-t2" x="407" y="57">· subordinado a la sociedad: «reabsorción» del poder estatal</text>
+<text class="sv-t2" x="407" y="74">· voluntad popular sin más límite que sus propios derechos</text>
+<text class="sv-t2" x="407" y="91">· poder concentrado en representantes revocables</text>
+<text class="sv-t2" x="407" y="108">· pueblo armado en lugar de ejército permanente</text>
+<text class="sv-t2" x="407" y="125">· jueces y funcionarios electos, con salario obrero</text>
+<text class="sv-t2" x="407" y="142">· partido del Estado-Comuna: la democracia total</text>
+<text class="sv-tr" text-anchor="middle" x="380" y="176">eje estratégico: partido comunista ↔ Estado-Comuna</text>
+<text class="sv-t3" x="14" y="246">democracia popular</text>
+<text class="sv-t3" x="14" y="326">máquina estatal</text>
+<path class="sv-line-red" d="M119 250 L193 250"></path><path class="sv-line-red" d="M267 250 L341 250"></path><path class="sv-line-red" d="M341 250 L489 250"></path>
+<path class="sv-line-dash" d="M193 250 L267 250"></path>
+<path class="sv-line" d="M45 330 L193 330"></path><path class="sv-line-dash" d="M193 330 L415 330"></path><path class="sv-line-dash" d="M415 330 L489 330"></path><path class="sv-line" d="M563 330 L711 330"></path><path class="sv-line-dash" d="M489 330 L563 330"></path>
+<path class="sv-line-dash" d="M119 250 L193 330" marker-end="url(#m4-7-arrow)"></path>
+<path class="sv-line-dash" d="M341 250 L415 330" marker-end="url(#m4-7-arrow)"></path>
+<path class="sv-line-dash" d="M489 250 L563 330" marker-end="url(#m4-7-arrow)"></path>
+<path class="sv-line-dash" d="M45 330 L119 250" marker-end="url(#m4-7-arrow)"></path>
+<circle class="sv-dot" cx="119" cy="250" r="5"></circle><circle class="sv-dot" cx="267" cy="250" r="5"></circle><circle class="sv-dot" cx="341" cy="250" r="5"></circle><circle class="sv-dot" cx="489" cy="250" r="5"></circle>
+<circle class="sv-dot-b" cx="45" cy="330" r="5"></circle><circle class="sv-dot-b" cx="193" cy="330" r="5"></circle><circle class="sv-dot-b" cx="415" cy="330" r="5"></circle><circle class="sv-dot-b" cx="563" cy="330" r="5"></circle><circle class="sv-dot-b" cx="637" cy="330" r="5"></circle><circle class="sv-dot-b" cx="711" cy="330" r="5"></circle>
+<text class="sv-tr" text-anchor="middle" x="119" y="205">1793</text><text class="sv-t2" text-anchor="middle" x="119" y="220">jacobinismo:</text><text class="sv-t2" text-anchor="middle" x="119" y="234">democracia fugaz</text>
+<text class="sv-tr" text-anchor="middle" x="267" y="205">1843-50</text><text class="sv-t2" text-anchor="middle" x="267" y="220">Marx: democracia</text><text class="sv-t2" text-anchor="middle" x="267" y="234">+ socialismo</text>
+<text class="sv-tr" text-anchor="middle" x="341" y="205">1871</text><text class="sv-t2" text-anchor="middle" x="341" y="220">Comuna: forma</text><text class="sv-t2" text-anchor="middle" x="341" y="234">al fin hallada</text>
+<text class="sv-tr" text-anchor="middle" x="489" y="205">1917</text><text class="sv-t2" text-anchor="middle" x="489" y="220">Octubre: todo el</text><text class="sv-t2" text-anchor="middle" x="489" y="234">poder a los soviets</text>
+<text class="sv-tb" text-anchor="middle" x="45" y="352">1649-1788</text><text class="sv-t2" text-anchor="middle" x="45" y="366">imperio de</text><text class="sv-t2" text-anchor="middle" x="45" y="380">la Ley</text>
+<text class="sv-tb" text-anchor="middle" x="193" y="352">1794-1815</text><text class="sv-t2" text-anchor="middle" x="193" y="366">Termidor y</text><text class="sv-t2" text-anchor="middle" x="193" y="380">Napoleón</text>
+<text class="sv-tb" text-anchor="middle" x="415" y="352">1899-1914</text><text class="sv-t2" text-anchor="middle" x="415" y="366">Kautsky / SPD:</text><text class="sv-t2" text-anchor="middle" x="415" y="380">centrismo</text>
+<text class="sv-tb" text-anchor="middle" x="563" y="352">1918-24</text><text class="sv-t2" text-anchor="middle" x="563" y="366">burocracia y</text><text class="sv-t2" text-anchor="middle" x="563" y="380">partido militar.</text>
+<text class="sv-tb" text-anchor="middle" x="637" y="352">1924+</text><text class="sv-t2" text-anchor="middle" x="637" y="366">marxismo-</text><text class="sv-t2" text-anchor="middle" x="637" y="380">leninismo</text>
+<text class="sv-tb" text-anchor="middle" x="711" y="352">1945-hoy</text><text class="sv-t2" text-anchor="middle" x="711" y="366">eurocomunismo</text><text class="sv-t2" text-anchor="middle" x="711" y="380">liberalismo</text>
+<text class="sv-t3" text-anchor="middle" x="156" y="296">recaída</text>
+<text class="sv-t3" text-anchor="middle" x="378" y="296">oscurece</text>
+<text class="sv-t3" text-anchor="middle" x="526" y="296">deforma</text>
+<text class="sv-t3" text-anchor="middle" x="90" y="296">irrupción</text>
+</svg>

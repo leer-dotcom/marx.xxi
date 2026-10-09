@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Escalera ascendente de niveles de organización y conciencia, desde la lucha económica hasta el socialismo, con la desviación propia de cada peldaño anotada debajo" role="img" viewBox="0 0 760 400">
+<defs><marker id="m4-3-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="18">ESCALERA DE LA BATALLA POR LA DEMOCRACIA</text>
+<path class="sv-line-dash" d="M12 345 L12 40" marker-end="url(#m4-3-arrow)"></path>
+<text class="sv-t3" x="22" y="46">+ organización · + conciencia</text>
+<path class="sv-line" d="M30 322 L152 322 L152 276 L274 276 L274 230 L396 230 L396 184 L518 184 L518 138 L640 138 L640 92 L748 92"></path>
+<rect class="sv-box" height="46" rx="2" width="118" x="30" y="276"></rect><text class="sv-t" text-anchor="middle" x="89" y="295">Lucha económica</text><text class="sv-t2" text-anchor="middle" x="89" y="311">sindicato · escuela</text>
+<rect class="sv-box" height="46" rx="2" width="118" x="152" y="230"></rect><text class="sv-t" text-anchor="middle" x="211" y="249">Acción política</text><text class="sv-t2" text-anchor="middle" x="211" y="265">partido · programa</text>
+<rect class="sv-box-blue" height="46" rx="2" width="118" x="274" y="184"></rect><text class="sv-tb" text-anchor="middle" x="333" y="199">Derechos políticos</text><text class="sv-t2" text-anchor="middle" x="333" y="212">= armas</text><text class="sv-t2" text-anchor="middle" x="333" y="225">prensa · parlamento</text>
+<rect class="sv-box" height="46" rx="2" width="118" x="396" y="138"></rect><text class="sv-t" text-anchor="middle" x="455" y="153">República</text><text class="sv-t2" text-anchor="middle" x="455" y="166">democrática</text><text class="sv-t3" text-anchor="middle" x="455" y="179">programa mínimo</text>
+<rect class="sv-box" height="46" rx="2" width="118" x="518" y="92"></rect><text class="sv-t" text-anchor="middle" x="577" y="111">Toma del poder</text><text class="sv-t2" text-anchor="middle" x="577" y="127">gobierno provisional</text>
+<rect class="sv-box-red" height="46" rx="2" width="108" x="640" y="46"></rect><text class="sv-tr" text-anchor="middle" x="694" y="65">Socialismo</text><text class="sv-t2" text-anchor="middle" x="694" y="81">emancipación</text>
+<path class="sv-line" d="M148 299 L162 299 L162 278" marker-end="url(#m4-3-arrow)"></path>
+<path class="sv-line" d="M270 253 L284 253 L284 232" marker-end="url(#m4-3-arrow)"></path>
+<path class="sv-line" d="M392 207 L406 207 L406 186" marker-end="url(#m4-3-arrow)"></path>
+<path class="sv-line" d="M514 161 L528 161 L528 140" marker-end="url(#m4-3-arrow)"></path>
+<path class="sv-line" d="M636 115 L650 115 L650 94" marker-end="url(#m4-3-arrow)"></path>
+<line class="sv-line-dash" x1="30" x2="748" y1="340" y2="340"></line>
+<text class="sv-t3" x="30" y="358">DESVIACIÓN EN CADA PELDAÑO</text>
+<text class="sv-tg" text-anchor="middle" x="89" y="380">economicismo</text>
+<text class="sv-tg" text-anchor="middle" x="211" y="380">blanquismo /</text><text class="sv-tg" text-anchor="middle" x="211" y="394">terrorismo</text>
+<text class="sv-tg" text-anchor="middle" x="333" y="380">cretinismo</text><text class="sv-tg" text-anchor="middle" x="333" y="394">parlamentario</text>
+<text class="sv-tg" text-anchor="middle" x="455" y="380">derechos plenos sin</text><text class="sv-tg" text-anchor="middle" x="455" y="394">destruir el Estado</text>
+<text class="sv-tg" text-anchor="middle" x="577" y="380">vía parlamentaria</text><text class="sv-tg" text-anchor="middle" x="577" y="394">pacífica</text>
+<text class="sv-tg" text-anchor="middle" x="694" y="380">separar democracia</text><text class="sv-tg" text-anchor="middle" x="694" y="394">y socialismo</text>
+<path class="sv-line-dash" d="M89 365 L89 326"></path>
+<path class="sv-line-dash" d="M211 365 L211 280"></path>
+<path class="sv-line-dash" d="M333 365 L333 234"></path>
+<path class="sv-line-dash" d="M455 365 L455 188"></path>
+<path class="sv-line-dash" d="M577 365 L577 142"></path>
+<path class="sv-line-dash" d="M694 365 L694 96"></path>
+</svg>

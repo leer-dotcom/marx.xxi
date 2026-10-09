@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Doble vía desde un nodo central de disolución de la comunidad real bajo el dinero y la Ley: una vía superior de reapropiación alienada que conduce a las comunidades ilusorias (religión, nación, Estado, derechos) y, en un desvío, a los partidos socialistas que imitan al Estado; una vía inferior de reapropiación real que pasa por la socialización del trabajo, la auto-organización de la clase, la democracia de la clase como un todo y el control social de la producción. Flechas de crítica positiva conectan ambas vías." role="img" viewBox="0 0 760 420">
+<defs><marker id="m1-11-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="80" rx="2" width="200" x="20" y="170"></rect>
+<text class="sv-tw" text-anchor="middle" x="120" y="194">Disolución de la</text>
+<text class="sv-tw" text-anchor="middle" x="120" y="211">comunidad real</text>
+<text class="sv-tw" text-anchor="middle" x="120" y="228">bajo el dinero y la Ley</text>
+<text class="sv-t3" x="20" y="268">alienación de los poderes sociales;</text>
+<text class="sv-t3" x="20" y="282">existencia desdoblada del individuo</text>
+<path class="sv-line-red" d="M220 190 C 260 190, 260 70, 300 70" marker-end="url(#m1-11-arrow)"></path>
+<text class="sv-tr" x="20" y="60">REAPROPIACIÓN ALIENADA</text>
+<rect class="sv-box-red" height="80" rx="2" width="200" x="300" y="30"></rect>
+<text class="sv-tr" text-anchor="middle" x="400" y="54">Comunidades ilusorias</text>
+<text class="sv-t2" text-anchor="middle" x="400" y="71">religión, nación, Estado,</text>
+<text class="sv-t2" text-anchor="middle" x="400" y="86">lucha por derechos;</text>
+<text class="sv-t2" text-anchor="middle" x="400" y="101">límites de la democracia</text>
+<line class="sv-line-dash" marker-end="url(#m1-11-arrow)" x1="500" x2="540" y1="70" y2="70"></line>
+<text class="sv-t3" text-anchor="middle" x="520" y="20">desvío</text>
+<rect class="sv-box" height="80" rx="2" width="200" x="540" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="640" y="54">Partidos socialistas</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="71">orientados al poder estatal:</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="86">imitan la comunidad ilusoria</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="101">del Estado (fracaso contingente)</text>
+<path class="sv-line-dash" d="M400 110 V250" marker-end="url(#m1-11-arrow)"></path>
+<text class="sv-tgr" x="408" y="170">crítica positiva:</text>
+<text class="sv-t2" x="408" y="186">reconocer las aspiraciones</text>
+<text class="sv-t2" x="408" y="200">genuinas bajo la forma alienada</text>
+<path class="sv-line-red" d="M220 230 C 260 230, 260 290, 300 290" marker-end="url(#m1-11-arrow)"></path>
+<text class="sv-tgr" x="20" y="320">REAPROPIACIÓN REAL</text>
+<rect class="sv-box-green" height="60" rx="2" width="200" x="300" y="250"></rect>
+<text class="sv-tgr" text-anchor="middle" x="400" y="274">Socialización del trabajo</text>
+<text class="sv-t2" text-anchor="middle" x="400" y="291">el capital reúne a los obreros</text>
+<rect class="sv-box-green" height="60" rx="2" width="200" x="540" y="250"></rect>
+<text class="sv-tgr" text-anchor="middle" x="640" y="274">Auto-organización</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="291">de la clase obrera</text>
+<line class="sv-line" marker-end="url(#m1-11-arrow)" x1="500" x2="540" y1="280" y2="280"></line>
+<line class="sv-line" marker-end="url(#m1-11-arrow)" x1="640" x2="640" y1="310" y2="340"></line>
+<rect class="sv-box-green" height="60" rx="2" width="200" x="540" y="340"></rect>
+<text class="sv-tgr" text-anchor="middle" x="640" y="364">Democracia de la clase</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="381">como un todo</text>
+<line class="sv-line" marker-end="url(#m1-11-arrow)" x1="540" x2="500" y1="370" y2="370"></line>
+<rect class="sv-box-green" height="60" rx="2" width="200" x="300" y="340"></rect>
+<text class="sv-tgr" text-anchor="middle" x="400" y="364">Control social de</text>
+<text class="sv-t2" text-anchor="middle" x="400" y="381">la producción: comunidad real</text>
+</svg>

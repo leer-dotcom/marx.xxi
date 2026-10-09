@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Cadena causal en dos niveles. Nivel global: acumulación mundial, centro y periferia, transferencia de valor al centro, imposibilidad de compensar con productividad, superexplotación y profundización neoliberal. Nivel de la ciudadanía: ciudadanía marshalliana, neoliberalización, despojo de derechos sociales con deuda e individuación, derechos civiles y políticos formales y anticiudadanía. Una flecha de salida apunta a la ciudadanía sustantiva centrada en lo común." role="img" viewBox="0 0 760 440">
+<defs><marker id="m1-13-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">NIVEL GLOBAL: LA DEPENDENCIA</text>
+<rect class="sv-box" height="56" rx="2" width="220" x="20" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="57">Acumulación a escala</text>
+<text class="sv-t" text-anchor="middle" x="130" y="73">mundial</text>
+<rect class="sv-box" height="56" rx="2" width="220" x="270" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="57">Centro / periferia</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="73">unidad diferenciada (Osorio)</text>
+<rect class="sv-box-gold" height="56" rx="2" width="220" x="520" y="34"></rect>
+<text class="sv-tg" text-anchor="middle" x="630" y="57">Transferencia de valor</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="73">al centro (intercambio desigual)</text>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="240" x2="270" y1="62" y2="62"></line>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="490" x2="520" y1="62" y2="62"></line>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="630" x2="630" y1="90" y2="118"></line>
+<rect class="sv-box" height="56" rx="2" width="220" x="520" y="118"></rect>
+<text class="sv-t" text-anchor="middle" x="630" y="141">No puede compensar</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="157">baja composición orgánica</text>
+<rect class="sv-box-red" height="56" rx="2" width="220" x="270" y="118"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="141">Superexplotación</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="157">jornada, intensidad, salario bajo el valor</text>
+<rect class="sv-box" height="56" rx="2" width="220" x="20" y="118"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="141">El neoliberalismo la profundiza</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="157">privatización, reprimarización</text>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="520" x2="490" y1="146" y2="146"></line>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="270" x2="240" y1="146" y2="146"></line>
+<line class="sv-line-dash" marker-end="url(#m1-13-arrow)" x1="130" x2="130" y1="174" y2="232"></line>
+<text class="sv-t3" x="140" y="208">restauración del poder de clase</text>
+<text class="sv-t3" x="400" y="208">NIVEL DE LA CIUDADANÍA</text>
+<rect class="sv-box-blue" height="56" rx="2" width="220" x="20" y="232"></rect>
+<text class="sv-tb" text-anchor="middle" x="130" y="255">Ciudadanía marshalliana</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="271">1930-1970: derechos sociales</text>
+<rect class="sv-box" height="56" rx="2" width="220" x="270" y="232"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="255">Neoliberalización</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="271">desde 1973 (Harvey, Garretón)</text>
+<rect class="sv-box" height="56" rx="2" width="220" x="520" y="232"></rect>
+<text class="sv-t" text-anchor="middle" x="630" y="255">Despojo + deuda + individuación</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="271">empresario de sí (Lazzarato)</text>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="240" x2="270" y1="260" y2="260"></line>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="490" x2="520" y1="260" y2="260"></line>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="630" x2="630" y1="288" y2="316"></line>
+<rect class="sv-box" height="56" rx="2" width="220" x="520" y="316"></rect>
+<text class="sv-t" text-anchor="middle" x="630" y="339">Derechos civiles y políticos</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="355">formales sin los sociales</text>
+<rect class="sv-box-red" height="56" rx="2" width="220" x="270" y="316"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="339">Anticiudadanía</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="355">incompatible incluso con el liberalismo</text>
+<line class="sv-line" marker-end="url(#m1-13-arrow)" x1="520" x2="490" y1="344" y2="344"></line>
+<rect class="sv-box-green" height="56" rx="2" width="220" x="20" y="316"></rect>
+<text class="sv-tgr" text-anchor="middle" x="130" y="339">Ciudadanía sustantiva</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="355">interdependencia en lo común</text>
+<line class="sv-line-red" marker-end="url(#m1-13-arrow)" x1="270" x2="240" y1="344" y2="344"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="408">salida: fuera de la lógica del intercambio y de la propiedad estatal, desde el sur</text>
+</svg>

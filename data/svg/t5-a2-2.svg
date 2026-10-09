@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal de la hegemonía estadounidense de 1944 a 2008 con sus hitos y las cuatro fases: contención, rollback, hegemonía sin contrapeso y declive" role="img" viewBox="0 0 760 310">
+<defs><marker id="m5-2-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-line" d="M14 160 L746 160" marker-end="url(#m5-2-tl)"></path>
+<path class="sv-line-dash" d="M30 160 L30 140"></path><circle class="sv-dot" cx="30" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="30" y="132">1944</text>
+<text class="sv-t2" text-anchor="middle" x="30" y="101">Bretton Woods:</text><text class="sv-t2" text-anchor="middle" x="30" y="116">dólar = oro</text>
+<path class="sv-line-dash" d="M84 160 L84 180"></path><circle class="sv-dot-b" cx="84" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="84" y="194">1947</text>
+<text class="sv-t2" text-anchor="middle" x="84" y="212">Doctrina</text><text class="sv-t2" text-anchor="middle" x="84" y="227">Truman</text>
+<path class="sv-line-dash" d="M138 160 L138 140"></path><circle class="sv-dot" cx="138" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="138" y="132">1948</text>
+<text class="sv-t2" text-anchor="middle" x="138" y="116">Plan Marshall</text>
+<path class="sv-line-dash" d="M192 160 L192 180"></path><circle class="sv-dot-b" cx="192" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="192" y="194">1949</text>
+<text class="sv-t2" text-anchor="middle" x="192" y="212">OTAN</text>
+<path class="sv-line-dash" d="M246 160 L246 140"></path><circle class="sv-dot" cx="246" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="246" y="132">1950</text>
+<text class="sv-t2" text-anchor="middle" x="246" y="101">NSC-68 y</text><text class="sv-t2" text-anchor="middle" x="246" y="116">Guerra de Corea</text>
+<path class="sv-line-dash" d="M300 160 L300 180"></path><circle class="sv-dot-b" cx="300" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="300" y="194">1961</text>
+<text class="sv-t2" text-anchor="middle" x="300" y="212">Eisenhower: el</text><text class="sv-t2" text-anchor="middle" x="300" y="227">complejo militar-</text><text class="sv-t2" text-anchor="middle" x="300" y="242">industrial</text>
+<path class="sv-line-dash" d="M354 160 L354 140"></path><circle class="sv-dot" cx="354" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="354" y="132">1965</text>
+<text class="sv-t2" text-anchor="middle" x="354" y="101">Indonesia:</text><text class="sv-t2" text-anchor="middle" x="354" y="116">método Yakarta</text>
+<path class="sv-line-dash" d="M408 160 L408 180"></path><circle class="sv-dot-b" cx="408" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="408" y="194">1971</text>
+<text class="sv-t2" text-anchor="middle" x="408" y="212">fin de la</text><text class="sv-t2" text-anchor="middle" x="408" y="227">convertibilidad</text>
+<path class="sv-line-dash" d="M462 160 L462 140"></path><circle class="sv-dot" cx="462" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="462" y="132">1973</text>
+<text class="sv-t2" text-anchor="middle" x="462" y="116">petrodólar</text>
+<path class="sv-line-dash" d="M516 160 L516 180"></path><circle class="sv-dot-b" cx="516" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="516" y="194">1983</text>
+<text class="sv-t2" text-anchor="middle" x="516" y="212">Iniciativa de</text><text class="sv-t2" text-anchor="middle" x="516" y="227">Defensa</text><text class="sv-t2" text-anchor="middle" x="516" y="242">Estratégica</text>
+<path class="sv-line-dash" d="M570 160 L570 140"></path><circle class="sv-dot" cx="570" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="570" y="132">1991</text>
+<text class="sv-t2" text-anchor="middle" x="570" y="101">caída URSS;</text><text class="sv-t2" text-anchor="middle" x="570" y="116">OTAN al Este</text>
+<path class="sv-line-dash" d="M624 160 L624 180"></path><circle class="sv-dot-b" cx="624" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="624" y="194">2001</text>
+<text class="sv-t2" text-anchor="middle" x="624" y="212">11-S, guerra</text><text class="sv-t2" text-anchor="middle" x="624" y="227">contra el terror</text>
+<path class="sv-line-dash" d="M678 160 L678 140"></path><circle class="sv-dot" cx="678" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="678" y="132">2003</text>
+<text class="sv-t2" text-anchor="middle" x="678" y="101">Irak: decretos</text><text class="sv-t2" text-anchor="middle" x="678" y="116">de privatización</text>
+<path class="sv-line-dash" d="M732 160 L732 180"></path><circle class="sv-dot-b" cx="732" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="732" y="194">2008</text>
+<text class="sv-t2" text-anchor="middle" x="732" y="212">crisis: fin</text><text class="sv-t2" text-anchor="middle" x="732" y="227">del impulso</text>
+<rect class="sv-box-green" height="40" rx="2" width="332" x="20" y="258"></rect>
+<text class="sv-t3" text-anchor="middle" x="186" y="274">1945-1965</text><text class="sv-t2" text-anchor="middle" x="186" y="290">contención: concesiones (zanahoria) y palo</text>
+<rect class="sv-box-gold" height="40" rx="2" width="200" x="356" y="258"></rect>
+<text class="sv-t3" text-anchor="middle" x="456" y="274">1965-1991</text><text class="sv-t2" text-anchor="middle" x="456" y="290">rollback y neoliberalismo</text>
+<rect class="sv-box-blue" height="40" rx="2" width="100" x="560" y="258"></rect>
+<text class="sv-t3" text-anchor="middle" x="610" y="274">1991-2008</text><text class="sv-t2" text-anchor="middle" x="610" y="290">sin contrapeso</text>
+<rect class="sv-box-red" height="40" rx="2" width="82" x="664" y="258"></rect>
+<text class="sv-t3" text-anchor="middle" x="705" y="274">2008-hoy</text><text class="sv-t2" text-anchor="middle" x="705" y="290">declive</text>
+</svg>

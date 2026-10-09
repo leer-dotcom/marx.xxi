@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, cadena causal de la competencia entre capitales a la guerra imperialista y el recorte de derechos; abajo, triángulo de respuestas: centrismo y frente-populismo, frentismo antiimperialista, y en el vértice el derrotismo revolucionario doble con sus mediaciones" role="img" viewBox="0 0 760 450">
+<defs><marker id="m4-2-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="16">DE LA COMPETENCIA A LA GUERRA</text>
+<rect class="sv-box" height="62" rx="2" width="136" x="12" y="26"></rect><text class="sv-t" text-anchor="middle" x="80" y="50">Competencia</text><text class="sv-t" text-anchor="middle" x="80" y="66">entre capitales</text>
+<path class="sv-line" d="M148 57 L158 57" marker-end="url(#m4-2-arrow)"></path>
+<rect class="sv-box" height="62" rx="2" width="136" x="160" y="26"></rect><text class="sv-t" text-anchor="middle" x="228" y="46">Caída de la tasa</text><text class="sv-t" text-anchor="middle" x="228" y="61">de ganancia</text><text class="sv-t2" text-anchor="middle" x="228" y="77">sobreproducción</text>
+<path class="sv-line" d="M296 57 L306 57" marker-end="url(#m4-2-arrow)"></path>
+<rect class="sv-box" height="62" rx="2" width="136" x="308" y="26"></rect><text class="sv-t" text-anchor="middle" x="376" y="46">Nacionalismo</text><text class="sv-t" text-anchor="middle" x="376" y="61">económico</text><text class="sv-t2" text-anchor="middle" x="376" y="77">aranceles · rearme</text>
+<path class="sv-line-red" d="M444 57 L454 57" marker-end="url(#m4-2-arrow)"></path>
+<rect class="sv-box-red" height="62" rx="2" width="136" x="456" y="26"></rect><text class="sv-tr" text-anchor="middle" x="524" y="50">Guerra</text><text class="sv-tr" text-anchor="middle" x="524" y="66">imperialista</text>
+<path class="sv-line" d="M592 57 L602 57" marker-end="url(#m4-2-arrow)"></path>
+<rect class="sv-box" height="62" rx="2" width="136" x="604" y="26"></rect><text class="sv-t" text-anchor="middle" x="672" y="46">Austeridad y</text><text class="sv-t" text-anchor="middle" x="672" y="61">recorte de</text><text class="sv-t" text-anchor="middle" x="672" y="77">derechos políticos</text>
+<path class="sv-line-red" d="M524 88 L524 130" marker-end="url(#m4-2-arrow)"></path>
+<text class="sv-t3" x="534" y="112">¿qué respuesta?</text>
+<text class="sv-t3" x="12" y="120">TRES RESPUESTAS ANTE LA GUERRA</text>
+<rect class="sv-box-gold" height="76" rx="2" width="210" x="30" y="134"></rect><text class="sv-tg" text-anchor="middle" x="135" y="156">Centrismo /</text><text class="sv-tg" text-anchor="middle" x="135" y="171">frente-populismo</text><text class="sv-t2" text-anchor="middle" x="135" y="187">unidad con la propia burguesía</text><text class="sv-t3" text-anchor="middle" x="135" y="202">OTAN · PSOE-Sumar · LFI</text>
+<rect class="sv-box-gold" height="76" rx="2" width="210" x="520" y="134"></rect><text class="sv-tg" text-anchor="middle" x="625" y="156">Frentismo</text><text class="sv-tg" text-anchor="middle" x="625" y="171">antiimperialista</text><text class="sv-t2" text-anchor="middle" x="625" y="187">unidad con las burguesías rivales</text><text class="sv-t3" text-anchor="middle" x="625" y="202">BRICS · multipolarismo</text>
+<rect class="sv-box-red" height="76" rx="2" width="250" x="255" y="262"></rect><text class="sv-tr" text-anchor="middle" x="380" y="284">Derrotismo revolucionario doble</text><text class="sv-t2" text-anchor="middle" x="380" y="300">el enemigo principal está en casa,</text><text class="sv-t2" text-anchor="middle" x="380" y="315">pero sin amistad con las rivales</text><text class="sv-t2" text-anchor="middle" x="380" y="330">independencia de clase + internacionalismo</text>
+<line class="sv-line-dash" x1="240" x2="520" y1="172" y2="172"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="166">fetiche de la unidad</text>
+<path class="sv-line-dash" d="M135 210 L300 262"></path>
+<path class="sv-line-dash" d="M625 210 L460 262"></path>
+<text class="sv-t3" text-anchor="middle" x="200" y="250">ni OTAN…</text>
+<text class="sv-t3" text-anchor="middle" x="560" y="250">…ni BRICS</text>
+<path class="sv-line-red" d="M380 338 L380 376" marker-end="url(#m4-2-arrow)"></path>
+<text class="sv-t3" x="390" y="362">mediaciones</text>
+<rect class="sv-box-blue" height="56" rx="2" width="172" x="12" y="380"></rect><text class="sv-tb" text-anchor="middle" x="98" y="402">Derechos políticos</text><text class="sv-t2" text-anchor="middle" x="98" y="418">condición de la actividad</text>
+<rect class="sv-box-blue" height="56" rx="2" width="172" x="196" y="380"></rect><text class="sv-tb" text-anchor="middle" x="282" y="402">Medidas transicionales</text><text class="sv-t2" text-anchor="middle" x="282" y="418">pan, paz y tierra · créditos</text>
+<rect class="sv-box-blue" height="56" rx="2" width="180" x="380" y="380"></rect><text class="sv-tb" text-anchor="middle" x="470" y="402">Política militar</text><text class="sv-t2" text-anchor="middle" x="470" y="418">republicano-democrática</text>
+<rect class="sv-box-blue" height="56" rx="2" width="168" x="572" y="380"></rect><text class="sv-tb" text-anchor="middle" x="656" y="402">Partido internacional</text><text class="sv-t2" text-anchor="middle" x="656" y="418">orientaciones vinculantes</text>
+</svg>

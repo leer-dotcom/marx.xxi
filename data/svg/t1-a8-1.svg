@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal en cuatro estaciones: Paleolítico igualitario, agricultura y ganadería con división sexual del trabajo, propiedad privada con familia patriarcal y capitalismo con familia monogámica moderna e igualdad formal, con lo que se hereda en cada paso. Debajo, el ciclo de la lógica reformista de la identidad en siete pasos, desde el ascenso de la lucha espontánea hasta la integración en el Estado." role="img" viewBox="0 0 760 400">
+<defs><marker id="m1-8-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">HISTORIA MATERIALISTA DE LA OPRESIÓN DE SEXO-GÉNERO</text>
+<rect class="sv-box" height="60" rx="2" width="160" x="20" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="56">Paleolítico</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="71">comunidades igualitarias,</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="85">sin división sexual</text>
+<rect class="sv-box" height="60" rx="2" width="160" x="200" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="56">Agricultura, ganadería</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="71">división sexual</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="85">del trabajo</text>
+<rect class="sv-box-gold" height="60" rx="2" width="160" x="380" y="34"></rect>
+<text class="sv-tg" text-anchor="middle" x="460" y="56">Propiedad privada</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="71">familia patriarcal;</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="85">subordinación jurídica</text>
+<rect class="sv-box-red" height="60" rx="2" width="180" x="560" y="34"></rect>
+<text class="sv-tr" text-anchor="middle" x="650" y="56">Capitalismo</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="71">familia monogámica moderna</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="85">+ igualdad formal</text>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="180" x2="200" y1="64" y2="64"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="360" x2="380" y1="64" y2="64"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="540" x2="560" y1="64" y2="64"></line>
+<text class="sv-t3" text-anchor="middle" x="280" y="116">lega: roles productivos</text>
+<text class="sv-t3" text-anchor="middle" x="460" y="116">lega: herencia vs. ganado</text>
+<text class="sv-t3" text-anchor="middle" x="650" y="116">lega: carga doméstica</text>
+<text class="sv-tr" text-anchor="middle" x="380" y="146">hoy: posición disimétrica sin patriarcado institucional; opresión «íntegramente capitalista»</text>
+<text class="sv-t3" x="20" y="186">LÓGICA REFORMISTA DE LA IDENTIDAD (CICLO)</text>
+<rect class="sv-box" height="50" rx="2" width="160" x="20" y="198"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="219">1. Ascenso de la</text>
+<text class="sv-t" text-anchor="middle" x="100" y="235">lucha espontánea</text>
+<rect class="sv-box" height="50" rx="2" width="160" x="200" y="198"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="219">2. Pugna por la</text>
+<text class="sv-t" text-anchor="middle" x="280" y="235">representación</text>
+<rect class="sv-box" height="50" rx="2" width="160" x="380" y="198"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="219">3. Cooptación</text>
+<text class="sv-t" text-anchor="middle" x="460" y="235">estatal y mediática</text>
+<rect class="sv-box-blue" height="50" rx="2" width="180" x="560" y="198"></rect>
+<text class="sv-tb" text-anchor="middle" x="650" y="219">4. Blindaje de la</text>
+<text class="sv-tb" text-anchor="middle" x="650" y="235">identidad oprimida</text>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="180" x2="200" y1="223" y2="223"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="360" x2="380" y1="223" y2="223"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="540" x2="560" y1="223" y2="223"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="650" x2="650" y1="248" y2="300"></line>
+<rect class="sv-box-blue" height="50" rx="2" width="180" x="560" y="300"></rect>
+<text class="sv-tb" text-anchor="middle" x="650" y="321">5. Esencialismo</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="337">identidad como causa presocial</text>
+<rect class="sv-box-red" height="50" rx="2" width="160" x="380" y="300"></rect>
+<text class="sv-tr" text-anchor="middle" x="460" y="321">6. Ocultamiento de</text>
+<text class="sv-tr" text-anchor="middle" x="460" y="337">las relaciones sociales</text>
+<rect class="sv-box-ink" height="50" rx="2" width="160" x="200" y="300"></rect>
+<text class="sv-tw" text-anchor="middle" x="280" y="321">7. Integración</text>
+<text class="sv-tw" text-anchor="middle" x="280" y="337">en el Estado</text>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="560" x2="540" y1="325" y2="325"></line>
+<line class="sv-line" marker-end="url(#m1-8-arrow)" x1="380" x2="360" y1="325" y2="325"></line>
+<path class="sv-line-dash" d="M200 325 H100 V250" marker-end="url(#m1-8-arrow)"></path>
+<text class="sv-t3" x="20" y="384">sin horizonte comunista, el ciclo se repite: ruptura política e ideológica como única salida</text>
+</svg>

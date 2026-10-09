@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa conceptual del volumen 2: doce nodos (crisis de acumulación, dominio impersonal del capital, crisis ecológica, fragmentación de la clase, socialdemocracia, Estado capitalista, interclasismo, lógica de la demanda, redistribución frente a producción de valor, parcialización de las luchas, independencia política de clase y comunismo como totalidad) unidos por aristas etiquetadas" role="img" viewBox="0 0 760 485">
+<defs><marker id="m2-sint-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-line-dash" d="M115 40 V24 H645 V40" marker-end="url(#m2-sint-arrow)" marker-start="url(#m2-sint-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="19">causas comunes: productividad, capital constante, recursos</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="30" y="40"></rect><text class="sv-t" text-anchor="middle" x="115" y="61">Crisis de</text><text class="sv-t" text-anchor="middle" x="115" y="78">acumulación</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="295" y="40"></rect><text class="sv-t" text-anchor="middle" x="380" y="61">Dominio impersonal</text><text class="sv-t" text-anchor="middle" x="380" y="78">del capital</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="560" y="40"></rect><text class="sv-t" text-anchor="middle" x="645" y="61">Crisis ecológica</text><text class="sv-t3" text-anchor="middle" x="645" y="78">crecer o morir</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="30" y="140"></rect><text class="sv-t" text-anchor="middle" x="115" y="161">Fragmentación</text><text class="sv-t" text-anchor="middle" x="115" y="178">de la clase</text>
+<rect class="sv-box-red" height="50" rx="2" width="170" x="295" y="140"></rect><text class="sv-tr" text-anchor="middle" x="380" y="161">SOCIALDEMOCRACIA</text><text class="sv-t2" text-anchor="middle" x="380" y="178">reformismo</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="560" y="140"></rect><text class="sv-t" text-anchor="middle" x="645" y="161">Estado capitalista</text><text class="sv-t3" text-anchor="middle" x="645" y="178">forma política</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="30" y="250"></rect><text class="sv-t" text-anchor="middle" x="115" y="271">Interclasismo</text><text class="sv-t3" text-anchor="middle" x="115" y="288">populismo, nación, rural</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="295" y="250"></rect><text class="sv-t" text-anchor="middle" x="380" y="271">Lógica de la demanda</text><text class="sv-t3" text-anchor="middle" x="380" y="288">y del reconocimiento</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="560" y="250"></rect><text class="sv-t" text-anchor="middle" x="645" y="271">Redistribución vs</text><text class="sv-t" text-anchor="middle" x="645" y="288">producción de valor</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="30" y="360"></rect><text class="sv-t" text-anchor="middle" x="115" y="381">Parcialización</text><text class="sv-t" text-anchor="middle" x="115" y="398">de las luchas</text>
+<rect class="sv-box-blue" height="50" rx="2" width="170" x="295" y="360"></rect><text class="sv-tb" text-anchor="middle" x="380" y="381">Independencia política</text><text class="sv-t2" text-anchor="middle" x="380" y="398">organización comunista</text>
+<rect class="sv-box-blue" height="50" rx="2" width="170" x="560" y="360"></rect><text class="sv-tb" text-anchor="middle" x="645" y="381">Comunismo como</text><text class="sv-tb" text-anchor="middle" x="645" y="398">totalidad</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="200" x2="295" y1="80" y2="150"></line>
+<text class="sv-t3" x="240" y="100">destruye su base material</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="115" x2="115" y1="90" y2="140"></line>
+<text class="sv-t3" x="122" y="120">desempleo, estratos</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="115" x2="115" y1="190" y2="250"></line>
+<text class="sv-t3" x="122" y="224">programa de clases medias</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="115" x2="115" y1="300" y2="360"></line>
+<text class="sv-t3" x="122" y="345">ejes, territorio</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="200" x2="295" y1="275" y2="275"></line>
+<text class="sv-t3" x="204" y="266">Pueblo</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="380" x2="380" y1="250" y2="190"></line>
+<text class="sv-t3" x="388" y="224">dependencia</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" marker-start="url(#m2-sint-arrow)" x1="465" x2="560" y1="165" y2="165"></line>
+<text class="sv-t3" text-anchor="middle" x="512" y="159">instrumento</text>
+<text class="sv-t3" text-anchor="middle" x="512" y="181">integra</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="465" x2="560" y1="185" y2="255"></line>
+<text class="sv-t3" text-anchor="end" x="530" y="238">solo distribución</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="380" x2="380" y1="90" y2="140"></line>
+<text class="sv-t3" text-anchor="end" x="370" y="118">personaliza</text>
+<text class="sv-t3" text-anchor="end" x="370" y="132">los males</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="440" x2="580" y1="90" y2="250"></line>
+<text class="sv-t3" x="556" y="200">ley del valor</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="580" x2="455" y1="90" y2="140"></line>
+<text class="sv-t3" text-anchor="end" x="478" y="125">la desborda</text>
+<line class="sv-line" marker-end="url(#m2-sint-arrow)" x1="200" x2="300" y1="365" y2="190"></line>
+<text class="sv-t3" x="232" y="320">ilusión del estado social</text>
+<line class="sv-line-red" marker-end="url(#m2-sint-arrow)" x1="465" x2="560" y1="385" y2="385"></line>
+<text class="sv-t3" text-anchor="middle" x="512" y="377">mediación</text>
+<path class="sv-line" d="M645 410 V440 H115 V410" marker-end="url(#m2-sint-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="456">supera la parcialización: lo particular existe en y a través de lo universal</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="476">crítica integral de la socialdemocracia e independencia política: «dos caras de la misma moneda»</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Matriz de dos por dos que cruza el método (reflejo especular o cesura kantiana frente a mediación) con la historicidad del capital (exterior o interior); el materialismo vulgar y el dualismo de Sanjuán comparten la negación de la praxis, y la dialéctica mínima de Barcina ocupa el cuadrante de mediación y límite interior. Debajo, el círculo de la acumulación originaria." role="img" viewBox="0 0 760 460">
+<defs><marker id="m1-3-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="140" y="20">MÉTODO →</text>
+<text class="sv-t" text-anchor="middle" x="290" y="36">Reflejo especular / cesura kantiana</text>
+<text class="sv-t" text-anchor="middle" x="600" y="36">Mediación forma-contenido, sistema-historia</text>
+<text class="sv-t3" x="15" y="100">HISTORICIDAD</text>
+<text class="sv-t2" x="15" y="116">exterior al capital</text>
+<text class="sv-t3" x="15" y="250">HISTORICIDAD</text>
+<text class="sv-t2" x="15" y="266">interior al capital</text>
+<rect class="sv-soft" height="140" rx="2" width="300" x="140" y="44"></rect>
+<rect class="sv-soft" height="140" rx="2" width="300" x="450" y="44"></rect>
+<rect class="sv-soft" height="140" rx="2" width="300" x="140" y="194"></rect>
+<rect class="sv-soft" height="140" rx="2" width="300" x="450" y="194"></rect>
+<rect class="sv-box" height="70" rx="2" width="135" x="150" y="54"></rect>
+<text class="sv-t" text-anchor="middle" x="217" y="72">Materialismo vulgar</text>
+<text class="sv-t2" text-anchor="middle" x="217" y="87">primacía de las</text>
+<text class="sv-t2" text-anchor="middle" x="217" y="101">fuerzas productivas,</text>
+<text class="sv-t2" text-anchor="middle" x="217" y="115">leyes técnicas</text>
+<rect class="sv-box" height="70" rx="2" width="135" x="295" y="54"></rect>
+<text class="sv-t" text-anchor="middle" x="362" y="72">Dualismo de Sanjuán</text>
+<text class="sv-t2" text-anchor="middle" x="362" y="87">cesura kantiana;</text>
+<text class="sv-t2" text-anchor="middle" x="362" y="101">superación como</text>
+<text class="sv-t2" text-anchor="middle" x="362" y="115">contingencia</text>
+<rect class="sv-box-red" height="40" rx="2" width="280" x="150" y="134"></rect>
+<text class="sv-tr" text-anchor="middle" x="290" y="152">comparten: negación</text>
+<text class="sv-tr" text-anchor="middle" x="290" y="167">de la praxis revolucionaria</text>
+<rect class="sv-line-dash" height="120" rx="2" width="280" x="460" y="54"></rect>
+<text class="sv-t2" text-anchor="middle" x="600" y="104">cuadrante inconsistente:</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="120">la mediación deriva el límite</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="136">de la lógica interna del capital</text>
+<rect class="sv-line-dash" height="120" rx="2" width="280" x="150" y="204"></rect>
+<text class="sv-t2" text-anchor="middle" x="290" y="254">cuadrante inconsistente:</text>
+<text class="sv-t2" text-anchor="middle" x="290" y="270">el reflejo introduce</text>
+<text class="sv-t2" text-anchor="middle" x="290" y="286">la transitoriedad ad hoc</text>
+<rect class="sv-box-green" height="120" rx="2" width="280" x="460" y="204"></rect>
+<text class="sv-tgr" text-anchor="middle" x="600" y="228">Dialéctica mínima (Barcina)</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="247">el capital produce y reproduce</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="262">los supuestos de su superación:</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="277">antagonismo de clase</text>
+<text class="sv-t" text-anchor="middle" x="600" y="300">→ teoría revolucionaria</text>
+<text class="sv-t3" x="20" y="362">LA ACUMULACIÓN ORIGINARIA COMO CÍRCULO (AUFHEBUNG)</text>
+<rect class="sv-box" height="44" rx="2" width="200" x="20" y="372"></rect>
+<text class="sv-t" text-anchor="middle" x="120" y="390">Presupuestos</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="405">trabajador / condiciones objetivas</text>
+<rect class="sv-box" height="44" rx="2" width="200" x="280" y="372"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="390">Resultados</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="405">reproducción de la relación</text>
+<rect class="sv-box-blue" height="44" rx="2" width="200" x="540" y="372"></rect>
+<text class="sv-tb" text-anchor="middle" x="640" y="390">Presupuestos ampliados</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="405">conservados y cancelados</text>
+<line class="sv-line" marker-end="url(#m1-3-arrow)" x1="220" x2="280" y1="394" y2="394"></line>
+<line class="sv-line" marker-end="url(#m1-3-arrow)" x1="480" x2="540" y1="394" y2="394"></line>
+<path class="sv-line-red" d="M640 416 V440 H120 V418" marker-end="url(#m1-3-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="453">reproducción ampliada</text>
+</svg>

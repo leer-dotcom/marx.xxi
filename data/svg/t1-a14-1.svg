@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Triángulo de Penrose cuyos tres lados son la inmediatez y expropiación del tiempo, el control-estimulación y el empoderamiento bajo la mirada masculina, y el singular como no-lugar; en el centro, el eros enajenado como mercancías relacionadas. Debajo, una línea causal: tiempo abstracto laboral, aceleración de toda la vida, apps de citas y frustración con autoculpa." role="img" viewBox="0 0 760 470">
+<defs><marker id="m1-14-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">TRIÁNGULO DE PENROSE: UNA FIGURA SIN SALIDA</text>
+<path class="sv-box-red" d="M380 44 L560 332 L520 332 L380 108 Z"></path>
+<path class="sv-box-blue" d="M560 332 L200 332 L224 300 L520 300 Z"></path>
+<path class="sv-box-gold" d="M200 332 L380 44 L400 76 L240 332 Z"></path>
+<text class="sv-tr" text-anchor="middle" x="380" y="238">EROS ENAJENADO</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="256">«mercancías relacionadas»</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="271">la mercancía como única</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="286">forma de experiencia</text>
+<rect class="sv-box-gold" height="76" rx="2" width="180" x="20" y="120"></rect>
+<text class="sv-tg" text-anchor="middle" x="110" y="142">Inmediatez</text>
+<text class="sv-t2" text-anchor="middle" x="110" y="159">expropiación del tiempo;</text>
+<text class="sv-t2" text-anchor="middle" x="110" y="174">el otro como información;</text>
+<text class="sv-t2" text-anchor="middle" x="110" y="189">culto a la velocidad</text>
+<line class="sv-line-dash" x1="200" x2="300" y1="158" y2="172"></line>
+<rect class="sv-box-red" height="76" rx="2" width="180" x="560" y="120"></rect>
+<text class="sv-tr" text-anchor="middle" x="650" y="142">Control-estimulación</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="159">liberalización sexual;</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="174">empoderamiento bajo</text>
+<text class="sv-t2" text-anchor="middle" x="650" y="189">la mirada masculina</text>
+<line class="sv-line-dash" x1="560" x2="460" y1="158" y2="172"></line>
+<text class="sv-tb" text-anchor="middle" x="380" y="360">Singular como no-lugar</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="376">soltería como negación de sí; enajenación relacional</text>
+<text class="sv-t3" x="20" y="406">LÍNEA CAUSAL</text>
+<rect class="sv-box" height="46" rx="2" width="160" x="20" y="414"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="433">Tiempo abstracto</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="449">en el trabajo (Kurz)</text>
+<rect class="sv-box" height="46" rx="2" width="160" x="200" y="414"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="433">Aceleración de</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="449">toda la vida</text>
+<rect class="sv-box" height="46" rx="2" width="180" x="380" y="414"></rect>
+<text class="sv-t" text-anchor="middle" x="470" y="433">Apps de citas</text>
+<text class="sv-t2" text-anchor="middle" x="470" y="449">match → cita → evaluación</text>
+<rect class="sv-box-red" height="46" rx="2" width="160" x="580" y="414"></rect>
+<text class="sv-tr" text-anchor="middle" x="660" y="433">Frustración</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="449">y autoculpa</text>
+<line class="sv-line" marker-end="url(#m1-14-arrow)" x1="180" x2="200" y1="437" y2="437"></line>
+<line class="sv-line" marker-end="url(#m1-14-arrow)" x1="360" x2="380" y1="437" y2="437"></line>
+<line class="sv-line" marker-end="url(#m1-14-arrow)" x1="560" x2="580" y1="437" y2="437"></line>
+</svg>

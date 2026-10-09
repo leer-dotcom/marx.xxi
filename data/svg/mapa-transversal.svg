@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa de los conceptos que atraviesan los cinco volúmenes y cómo se encadenan" role="img" viewBox="0 0 760 500">
+<defs><marker id="m0-fin" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" text-anchor="middle" x="380" y="22">EL ARGUMENTO COMPARTIDO: DE LA CRÍTICA DE LA ECONOMÍA POLÍTICA A LA INTERNACIONAL</text>
+<!-- fila 1: diagnóstico -->
+<rect class="sv-box-red" height="60" rx="2" width="160" x="20" y="44"></rect>
+<text class="sv-tr" text-anchor="middle" x="100" y="68">Capital como totalidad</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="86">valor, crisis, fetichismo</text>
+<rect class="sv-box-red" height="60" rx="2" width="160" x="300" y="44"></rect>
+<text class="sv-tr" text-anchor="middle" x="380" y="68">Crisis de acumulación</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="86">declive, guerra, ecología</text>
+<rect class="sv-box-red" height="60" rx="2" width="160" x="580" y="44"></rect>
+<text class="sv-tr" text-anchor="middle" x="660" y="68">Estado = forma política</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="86">del capital, no árbitro</text>
+<path class="sv-line" d="M180 74 H300" marker-end="url(#m0-fin)"></path>
+<text class="sv-t3" text-anchor="middle" x="240" y="66">produce</text>
+<path class="sv-line" d="M460 74 H580" marker-end="url(#m0-fin)"></path>
+<text class="sv-t3" text-anchor="middle" x="520" y="66">giro autoritario</text>
+<!-- fila 2: falsos amigos -->
+<rect class="sv-box-gold" height="56" rx="2" width="440" x="160" y="150"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="172">Falsos amigos: socialdemocracia, populismo, campismo, sectarismo</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="191">comparten la escisión producción/distribución y dependen del Estado</text>
+<path class="sv-line" d="M380 104 V150" marker-end="url(#m0-fin)"></path>
+<text class="sv-t3" x="392" y="132">respuestas insuficientes</text>
+<path class="sv-line-dash" d="M100 104 V178 H160"></path>
+<path class="sv-line-dash" d="M660 104 V178 H600"></path>
+<!-- fila 3: respuesta -->
+<rect class="sv-box-ink" height="60" rx="2" width="370" x="195" y="256"></rect>
+<text class="sv-tw" text-anchor="middle" x="380" y="280">INDEPENDENCIA POLÍTICA DEL PROLETARIADO</text>
+<text class="sv-tw" style="font-weight:400" text-anchor="middle" x="380" y="300">= Partido = socialismo + movimiento obrero</text>
+<path class="sv-line-red" d="M380 206 V256" marker-end="url(#m0-fin)"></path>
+<text class="sv-t3" x="392" y="236">deslinde de campos</text>
+<!-- fila 4: tres dimensiones -->
+<rect class="sv-box-blue" height="66" rx="2" width="200" x="20" y="366"></rect>
+<text class="sv-tb" text-anchor="middle" x="120" y="388">Conciencia socialista</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="405">racional y comunicable;</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="420">teoría, propaganda, agitación</text>
+<rect class="sv-box-blue" height="66" rx="2" width="200" x="280" y="366"></rect>
+<text class="sv-tb" text-anchor="middle" x="380" y="388">Estado-Comuna</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="405">derecho a la revolución;</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="420">derechos políticos como armas</text>
+<rect class="sv-box-blue" height="66" rx="2" width="200" x="540" y="366"></rect>
+<text class="sv-tb" text-anchor="middle" x="640" y="388">Internacional</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="405">derrotismo en el propio bloque;</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="420">partido de escala continental</text>
+<path class="sv-line" d="M270 316 L150 366" marker-end="url(#m0-fin)"></path>
+<path class="sv-line" d="M380 316 V366" marker-end="url(#m0-fin)"></path>
+<path class="sv-line" d="M490 316 L610 366" marker-end="url(#m0-fin)"></path>
+<text class="sv-t3" text-anchor="middle" x="200" y="332">sujeto</text>
+<text class="sv-t3" x="394" y="344">poder</text>
+<text class="sv-t3" text-anchor="middle" x="560" y="332">escala</text>
+<!-- horizonte -->
+<rect class="sv-box-green" height="44" rx="2" width="440" x="160" y="450"></rect>
+<text class="sv-tgr" text-anchor="middle" x="380" y="468">Horizonte: asociación de productores libres</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="485">que regulan conscientemente su metabolismo con la naturaleza</text>
+<path class="sv-line" d="M380 432 V450" marker-end="url(#m0-fin)"></path>
+</svg>

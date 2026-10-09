@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="A la izquierda, pirámide de dependencia: la producción de valor capitalista sostiene la riqueza disponible, que sostiene el Estado de bienestar y la renta básica, con un bucle de retroalimentación negativa; a la derecha, matriz que muestra que neoliberalismo y socialdemocracia solo tocan la distribución, mientras el socialismo democrático toca también la producción de valor" role="img" viewBox="0 0 760 400">
+<defs><marker id="m2-12-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t" x="20" y="30">Dependencia asimétrica</text>
+<text class="sv-t3" x="20" y="48">el bienestar depende del capitalismo,</text>
+<text class="sv-t3" x="20" y="62">no el capitalismo del bienestar</text>
+<rect class="sv-box-ink" height="62" rx="2" width="320" x="20" y="290"></rect>
+<text class="sv-tw" text-anchor="middle" x="180" y="314">Producción de valor capitalista</text>
+<text class="sv-tw" text-anchor="middle" x="180" y="333">trabajo asalariado para el beneficio</text>
+<rect class="sv-box" height="54" rx="2" width="230" x="65" y="200"></rect>
+<text class="sv-t" text-anchor="middle" x="180" y="222">Riqueza disponible</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="240">generada por la explotación</text>
+<rect class="sv-box-red" height="54" rx="2" width="150" x="105" y="110"></rect>
+<text class="sv-tr" text-anchor="middle" x="180" y="132">Estado de bienestar</text>
+<text class="sv-tr" text-anchor="middle" x="180" y="150">/ renta básica</text>
+<line class="sv-line" marker-end="url(#m2-12-arrow)" x1="180" x2="180" y1="290" y2="256"></line>
+<line class="sv-line" marker-end="url(#m2-12-arrow)" x1="180" x2="180" y1="200" y2="166"></line>
+<text class="sv-t3" x="190" y="277">financia</text>
+<text class="sv-t3" x="190" y="187">financia</text>
+<path class="sv-line-dash" d="M255 137 H352 V321 H342" marker-end="url(#m2-12-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="180" y="373">bucle: más bienestar o RBU → menos explotación</text>
+<text class="sv-t3" text-anchor="middle" x="180" y="388">→ menos riqueza → recortes (crisis de los 70)</text>
+<text class="sv-t" text-anchor="middle" x="565" y="30">¿Qué cuestiona cada posición?</text>
+<text class="sv-t3" text-anchor="middle" x="547" y="92">la distribución</text><text class="sv-t3" text-anchor="middle" x="547" y="106">de la riqueza</text>
+<text class="sv-t3" text-anchor="middle" x="677" y="92">la producción</text><text class="sv-t3" text-anchor="middle" x="677" y="106">de valor</text>
+<text class="sv-t2" text-anchor="end" x="478" y="152">Neoliberalismo</text>
+<text class="sv-t2" text-anchor="end" x="478" y="210">Social-</text><text class="sv-t2" text-anchor="end" x="478" y="224">democracia</text>
+<text class="sv-t2" text-anchor="end" x="478" y="275">Socialismo</text><text class="sv-t2" text-anchor="end" x="478" y="289">democrático</text>
+<rect class="sv-box-green" height="55" rx="2" width="125" x="485" y="120"></rect><text class="sv-tgr" text-anchor="middle" x="547" y="143">sí</text><text class="sv-t3" text-anchor="middle" x="547" y="160">mercado, recortes</text>
+<rect class="sv-box-red" height="55" rx="2" width="125" x="615" y="120"></rect><text class="sv-tr" text-anchor="middle" x="677" y="152">no</text>
+<rect class="sv-box-green" height="55" rx="2" width="125" x="485" y="185"></rect><text class="sv-tgr" text-anchor="middle" x="547" y="208">sí</text><text class="sv-t3" text-anchor="middle" x="547" y="225">redistribuye</text>
+<rect class="sv-box-red" height="55" rx="2" width="125" x="615" y="185"></rect><text class="sv-tr" text-anchor="middle" x="677" y="217">no</text>
+<rect class="sv-box-green" height="55" rx="2" width="125" x="485" y="250"></rect><text class="sv-tgr" text-anchor="middle" x="547" y="282">sí</text>
+<rect class="sv-box-green" height="55" rx="2" width="125" x="615" y="250"></rect><text class="sv-tgr" text-anchor="middle" x="677" y="273">sí: revaluación</text><text class="sv-t3" text-anchor="middle" x="677" y="290">del valor</text>
+<rect class="sv-line-dash" height="128" rx="2" width="133" x="611" y="116"></rect>
+<text class="sv-t3" text-anchor="middle" x="612" y="342">neoliberalismo y socialdemocracia comparten</text>
+<text class="sv-t3" text-anchor="middle" x="612" y="356">la misma contradicción del valor</text>
+</svg>

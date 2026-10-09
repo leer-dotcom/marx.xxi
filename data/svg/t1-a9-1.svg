@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea de los tres estadios de los Grundrisse: dependencia personal, independencia personal fundada en la dependencia de las cosas y libre individualidad. Dos flechas de retorno, del segundo al primer estadio, señalan las corrientes criticadas: Castoriadis y Marcuse, Illich, Polanyi, Schumacher y el decrecimiento. Una flecha hacia delante marca el ecosocialismo con planificación como veta rescatable." role="img" viewBox="0 0 760 420">
+<defs><marker id="m1-9-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">LA NEGACIÓN DEL CAPITAL VISTA POR EL RETROVISOR</text>
+<path class="sv-line-red" d="M420 236 V90 H100 V236" marker-end="url(#m1-9-arrow)"></path>
+<text class="sv-tr" text-anchor="middle" x="260" y="66">Illich, Polanyi, Schumacher, decrecimiento</text>
+<text class="sv-t2" text-anchor="middle" x="260" y="82">don, convivialidad, lo pequeño: dependencia personal restaurada</text>
+<path class="sv-line-red" d="M330 236 V150 H160 V236" marker-end="url(#m1-9-arrow)"></path>
+<text class="sv-tr" text-anchor="middle" x="245" y="128">Castoriadis, Marcuse</text>
+<text class="sv-t2" text-anchor="middle" x="245" y="144">la máquina como dominio</text>
+<text class="sv-t3" x="440" y="180">réplica de Mattick: la técnica sólo es</text>
+<text class="sv-t3" x="440" y="194">dominio bajo la forma capital</text>
+<text class="sv-t3" x="20" y="222">LOS TRES ESTADIOS (GRUNDRISSE)</text>
+<rect class="sv-box" height="70" rx="2" width="220" x="20" y="236"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="258">1. Dependencia personal</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="274">esclavitud, vasallaje,</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="289">parentesco</text>
+<rect class="sv-box-blue" height="70" rx="2" width="220" x="270" y="236"></rect>
+<text class="sv-tb" text-anchor="middle" x="380" y="258">2. Independencia personal</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="274">fundada en la dependencia de las</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="289">cosas: capital, mercancía, máquina</text>
+<rect class="sv-box-green" height="70" rx="2" width="220" x="520" y="236"></rect>
+<text class="sv-tgr" text-anchor="middle" x="630" y="258">3. Libre individualidad</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="274">control consciente de la</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="289">producción social</text>
+<line class="sv-line" marker-end="url(#m1-9-arrow)" x1="240" x2="270" y1="271" y2="271"></line>
+<line class="sv-line" marker-end="url(#m1-9-arrow)" x1="490" x2="520" y1="271" y2="271"></line>
+<text class="sv-t3" text-anchor="middle" x="380" y="328">el estadio 2 crea las condiciones del 3: maquinaria, obrero colectivo, centralización</text>
+<path class="sv-line-dash" d="M420 306 C 440 372, 580 372, 630 310" marker-end="url(#m1-9-arrow)"></path>
+<text class="sv-tgr" text-anchor="middle" x="525" y="382">ecosocialismo con planificación</text>
+<text class="sv-t2" text-anchor="middle" x="525" y="398">veta rescatable si impulsa el control obrero</text>
+<text class="sv-tr" text-anchor="middle" x="130" y="350">repudiar la maquinaria</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="366">es abrazar la enajenación</text>
+</svg>

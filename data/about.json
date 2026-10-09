@@ -1,0 +1,30 @@
+{
+  "ai_short": "Resúmenes, conceptos y esquemas elaborados con Claude (IA). Lectura interpretativa: el texto íntegro es la referencia.",
+  "magazine": {
+    "title": "Sobre Marx XXI",
+    "paragraphs": [
+      "Marx XXI es una revista anual de teoría socialista. Publica trabajos largos de análisis e investigación, y se presenta como una herramienta para el debate ideológico.",
+      "Apareció en 2021, impulsada desde Contracultura (que editó los tres primeros volúmenes), y desde el segundo número está ligada al Movimiento Socialista. Cada artículo expresa la posición de su autor, no la de las organizaciones de ese movimiento."
+    ],
+    "source_label": "Resumen propio a partir de la página «Sobre nosotros» de la revista, donde puede leerse su presentación completa:",
+    "source_url": "https://marxxxi.com/pages/sobre-nosotros",
+    "site_url": "https://marxxxi.com/"
+  },
+  "ai": {
+    "title": "Sobre esta guía de lectura",
+    "paragraphs": [
+      "Los resúmenes, la estructura de los argumentos, los conceptos, las citas seleccionadas, las conclusiones, las relaciones entre artículos, las tesis comunes y los esquemas de esta aplicación se han elaborado con Claude, un modelo de inteligencia artificial de Anthropic, a partir de la lectura de los cinco volúmenes.",
+      "Son una lectura interpretativa pensada como ayuda al estudio. Pueden contener errores u omisiones, no sustituyen a los textos y no expresan necesariamente la posición de sus autores ni de la revista. Las citas entre comillas son literales; ante cualquier duda, el texto íntegro es la referencia."
+    ]
+  },
+  "license": {
+    "title": "Textos y licencia",
+    "paragraphs": [
+      "Los artículos son obra de sus autores y se publicaron en Marx XXI; los volúmenes 1 a 3, con el sello de Contracultura. La propia revista indica que su obra se puede compartir, copiar y distribuir libremente en cualquiera de los formatos disponibles.",
+      "Los textos íntegros de esta aplicación se han extraído automáticamente de los PDF publicados y pueden contener pequeñas erratas de maquetación, como notas al pie desplazadas o párrafos cortados. Para la edición impresa y las suscripciones, visita la web de la revista."
+    ]
+  },
+  "credits_title": "Créditos",
+  "design": "Diseño inspirado en la web de la revista, marxxxi.com. Tipografía Alegreya y Alegreya SC, de Huerta Tipográfica (SIL Open Font License 1.1).",
+  "privacy": "Funciona sin conexión. La posición de lectura, los marcadores y los ajustes se guardan solo en este dispositivo; no se envía nada a ningún servidor."
+}

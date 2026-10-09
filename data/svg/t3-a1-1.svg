@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, cadena de mediaciones desde la cosmovisión capitalista hasta la conciencia socialista pasando por los bloques culturales y la crisis de acumulación; abajo, pirámide de los tres medios (teoría, propaganda, agitación) con flechas a los dos objetivos (unificación y hegemonización), las tres derivas por absolutización y el arte como modo de expresión de la agitación" role="img" viewBox="0 0 760 400">
+<defs><marker id="m3-1-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="20">CADENA DE MEDIACIONES</text>
+<rect class="sv-box-ink" height="64" rx="2" width="165" x="12" y="30"></rect>
+<text class="sv-tw" text-anchor="middle" x="94" y="56">Cosmovisión capitalista</text>
+<text class="sv-tw" text-anchor="middle" x="94" y="74">formas naturalizadas, raíz</text>
+<path class="sv-line" d="M177 62 H200" marker-end="url(#m3-1-arrow)"></path>
+<rect class="sv-box-blue" height="64" rx="2" width="165" x="202" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="284" y="52">Bloques culturales</text>
+<text class="sv-t2" text-anchor="middle" x="284" y="68">élites · clases medias ·</text>
+<text class="sv-t2" text-anchor="middle" x="284" y="83">proletariado</text>
+<path class="sv-line" d="M367 62 H390" marker-end="url(#m3-1-arrow)"></path>
+<rect class="sv-box-red" height="64" rx="2" width="165" x="392" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="474" y="52">Crisis de acumulación</text>
+<text class="sv-t2" text-anchor="middle" x="474" y="68">punto de sutura: lo natural</text>
+<text class="sv-t2" text-anchor="middle" x="474" y="83">se vuelve problemático</text>
+<path class="sv-line" d="M557 62 H580" marker-end="url(#m3-1-arrow)"></path>
+<rect class="sv-box-green" height="64" rx="2" width="166" x="582" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="665" y="52">Conciencia socialista</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="68">interviene en el bloque</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="83">proletario en crisis</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="128">La táctica cultural interviene en ese campo con tres medios jerarquizados y dos objetivos</text>
+<text class="sv-t3" x="12" y="176">TRES MEDIOS</text>
+<text class="sv-t3" x="330" y="176">DOS OBJETIVOS</text>
+<text class="sv-t3" x="540" y="176">DERIVAS POR ABSOLUTIZACIÓN</text>
+<rect class="sv-box-red" height="48" rx="2" width="120" x="80" y="192"></rect>
+<text class="sv-t" text-anchor="middle" x="140" y="212">Agitación</text>
+<text class="sv-t2" text-anchor="middle" x="140" y="228">afectos, hechos</text>
+<rect class="sv-box-blue" height="48" rx="2" width="180" x="50" y="248"></rect>
+<text class="sv-t" text-anchor="middle" x="140" y="268">Propaganda</text>
+<text class="sv-t2" text-anchor="middle" x="140" y="284">razón, nexo coyuntura-estrategia</text>
+<rect class="sv-box" height="48" rx="2" width="240" x="20" y="304"></rect>
+<text class="sv-t" text-anchor="middle" x="140" y="324">Teoría</text>
+<text class="sv-t2" text-anchor="middle" x="140" y="340">base científica (CEP + bolchevismo)</text>
+<text class="sv-t3" text-anchor="middle" x="140" y="372">jerarquía: teoría &gt; propaganda &gt; agitación</text>
+<path class="sv-line-red" d="M200 216 H328" marker-end="url(#m3-1-arrow)"></path>
+<path class="sv-line" d="M230 272 H328" marker-end="url(#m3-1-arrow)"></path>
+<rect class="sv-box-green" height="48" rx="2" width="170" x="330" y="192"></rect>
+<text class="sv-t" text-anchor="middle" x="415" y="212">Hegemonización</text>
+<text class="sv-t2" text-anchor="middle" x="415" y="228">nueva cultura política proletaria</text>
+<rect class="sv-box-green" height="48" rx="2" width="170" x="330" y="248"></rect>
+<text class="sv-t" text-anchor="middle" x="415" y="268">Unificación</text>
+<text class="sv-t2" text-anchor="middle" x="415" y="284">debate racional + juventud</text>
+<rect class="sv-soft" height="48" rx="2" width="208" x="540" y="192"></rect>
+<text class="sv-tr" text-anchor="middle" x="644" y="212">Solo agitación → oportunismo</text>
+<text class="sv-t2" text-anchor="middle" x="644" y="228">socialdemocracia</text>
+<rect class="sv-soft" height="48" rx="2" width="208" x="540" y="248"></rect>
+<text class="sv-tr" text-anchor="middle" x="644" y="268">Solo propaganda → sectarismo</text>
+<text class="sv-t2" text-anchor="middle" x="644" y="284">marxismo-leninismo actual</text>
+<rect class="sv-soft" height="48" rx="2" width="208" x="540" y="304"></rect>
+<text class="sv-tr" text-anchor="middle" x="644" y="324">Solo teoría → academicismo</text>
+<text class="sv-t2" text-anchor="middle" x="644" y="340">marxismo occidental</text>
+<rect class="sv-box-gold" height="56" rx="2" width="190" x="330" y="330"></rect>
+<text class="sv-tg" text-anchor="middle" x="425" y="352">Arte = modo de expresión</text>
+<text class="sv-t2" text-anchor="middle" x="425" y="368">de la agitación: artista colectivo</text>
+<text class="sv-t2" text-anchor="middle" x="425" y="382">+ arte socialista</text>
+</svg>

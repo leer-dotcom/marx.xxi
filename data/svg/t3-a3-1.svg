@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, cadena de medios y fines encadenados: recomposición de las fuerzas comunistas, partido independiente, toma del poder y socialismo; abajo a la izquierda, triángulo que opone la conciencia socialista al dogmatismo de la secta y al oportunismo ecléctico; abajo a la derecha, cajas concéntricas de la difusión desde el intelectual colectivo hasta el partido de masas" role="img" viewBox="0 0 760 470">
+<defs><marker id="m3-3-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="20">NECESIDAD PRÁCTICA: «PARA ALCANZAR X SON NECESARIOS LOS MEDIOS Y»</text>
+<rect class="sv-box" height="60" rx="2" width="165" x="12" y="32"></rect>
+<text class="sv-t" text-anchor="middle" x="94" y="54">Recomposición de las</text>
+<text class="sv-t" text-anchor="middle" x="94" y="70">fuerzas comunistas</text>
+<text class="sv-t3" text-anchor="middle" x="94" y="85">medio</text>
+<path class="sv-line" d="M177 62 H200" marker-end="url(#m3-3-arrow)"></path>
+<rect class="sv-box-blue" height="60" rx="2" width="165" x="202" y="32"></rect>
+<text class="sv-t" text-anchor="middle" x="284" y="54">Partido político</text>
+<text class="sv-t" text-anchor="middle" x="284" y="70">independiente</text>
+<text class="sv-t3" text-anchor="middle" x="284" y="85">fin → medio</text>
+<path class="sv-line" d="M367 62 H390" marker-end="url(#m3-3-arrow)"></path>
+<rect class="sv-box-blue" height="60" rx="2" width="165" x="392" y="32"></rect>
+<text class="sv-t" text-anchor="middle" x="474" y="54">Toma del poder</text>
+<text class="sv-t" text-anchor="middle" x="474" y="70">político</text>
+<text class="sv-t3" text-anchor="middle" x="474" y="85">fin → medio</text>
+<path class="sv-line" d="M557 62 H580" marker-end="url(#m3-3-arrow)"></path>
+<rect class="sv-box-green" height="60" rx="2" width="166" x="582" y="32"></rect>
+<text class="sv-t" text-anchor="middle" x="665" y="54">Socialismo</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="70">desarrollo pleno de los individuos</text>
+<text class="sv-t3" text-anchor="middle" x="665" y="85">fin</text>
+<text class="sv-t3" x="12" y="134">RAZONES FRENTE A RECETAS</text>
+<rect class="sv-box-green" height="66" rx="2" width="175" x="95" y="150"></rect>
+<text class="sv-t" text-anchor="middle" x="182" y="172">Conciencia socialista</text>
+<text class="sv-t2" text-anchor="middle" x="182" y="188">razones objetivas y comunicables</text>
+<text class="sv-t2" text-anchor="middle" x="182" y="203">«fórmula en construcción»</text>
+<path class="sv-line-dash" d="M150 216 L80 330"></path>
+<path class="sv-line-dash" d="M215 216 L285 330"></path>
+<text class="sv-t3" text-anchor="end" x="100" y="268">se opone a</text>
+<text class="sv-t3" x="265" y="268">se opone a</text>
+<rect class="sv-box-red" height="72" rx="2" width="160" x="12" y="332"></rect>
+<text class="sv-tr" text-anchor="middle" x="92" y="354">Dogmatismo / secta</text>
+<text class="sv-t2" text-anchor="middle" x="92" y="370">receta, autoridad externa,</text>
+<text class="sv-t2" text-anchor="middle" x="92" y="385">«porque lo dice el marxismo»</text>
+<rect class="sv-box-red" height="72" rx="2" width="168" x="192" y="332"></rect>
+<text class="sv-tr" text-anchor="middle" x="276" y="354">Oportunismo / eclecticismo</text>
+<text class="sv-t2" text-anchor="middle" x="276" y="370">sacrifica el fin, modas teóricas,</text>
+<text class="sv-t2" text-anchor="middle" x="276" y="385">conciencia económica</text>
+<text class="sv-t2" text-anchor="middle" x="186" y="440">El dogma se refuta a sí mismo: toda autoridad es concedida activamente</text>
+<text class="sv-t3" x="400" y="134">DIFUSIÓN: DE LA CABEZA AL PARTIDO DE MASAS</text>
+<rect class="sv-box" height="300" rx="2" width="348" x="400" y="146"></rect>
+<text class="sv-t" text-anchor="middle" x="574" y="166">Partido de masas políticamente independiente</text>
+<rect class="sv-box-blue" height="244" rx="2" width="308" x="420" y="182"></rect>
+<text class="sv-t" text-anchor="middle" x="574" y="202">Sentido común / Weltanschauung</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="217">traducción a «distintos idiomas»</text>
+<rect class="sv-box-gold" height="176" rx="2" width="268" x="440" y="230"></rect>
+<text class="sv-t" text-anchor="middle" x="574" y="250">Maquinaria de propaganda</text>
+<text class="sv-t" text-anchor="middle" x="574" y="265">y agitación</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="280">propagandista · agitador · tribuno popular</text>
+<rect class="sv-box-ink" height="92" rx="2" width="228" x="460" y="294"></rect>
+<text class="sv-tw" text-anchor="middle" x="574" y="320">Intelectual colectivo</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="338">«la cabeza, pero nada más</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="354">que la cabeza»</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="372">teoría y principios</text>
+</svg>

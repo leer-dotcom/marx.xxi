@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal con tres hitos, Mayo del 68 y la crisis de 1970, el giro neoliberal de 1976 a 1986 y la caída del Muro en 1989, que desemboca en el bloque del Realismo Capitalista. Debajo, dos flechas de retorno de Marx atraviesan ese bloque: el fetichismo de la mercancía y la lucha de clases, con los nombres de sus mediadores." role="img" viewBox="0 0 760 380">
+<defs><marker id="m1-15-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">LÍNEA TEMPORAL</text>
+<rect class="sv-box" height="64" rx="2" width="160" x="20" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="56">Mayo 68 / crisis 1970</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="72">anhelos de libertad;</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="87">límites del capital</text>
+<rect class="sv-box" height="64" rx="2" width="160" x="200" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="56">1976-1986</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="72">giro neoliberal, Thatcher;</text>
+<text class="sv-t2" text-anchor="middle" x="280" y="87">abandono de Marx</text>
+<rect class="sv-box" height="64" rx="2" width="160" x="380" y="34"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="56">1989</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="72">caída del Muro;</text>
+<text class="sv-t2" text-anchor="middle" x="460" y="87">«fin de la historia»</text>
+<line class="sv-line" marker-end="url(#m1-15-arrow)" x1="180" x2="200" y1="66" y2="66"></line>
+<line class="sv-line" marker-end="url(#m1-15-arrow)" x1="360" x2="380" y1="66" y2="66"></line>
+<line class="sv-line" marker-end="url(#m1-15-arrow)" x1="540" x2="580" y1="66" y2="66"></line>
+<rect class="sv-box-ink" height="330" rx="2" width="160" x="580" y="20"></rect>
+<text class="sv-tw" text-anchor="middle" x="660" y="46">REALISMO</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="62">CAPITALISTA</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="86">cancelación del futuro</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="104">homo oeconomicus</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="122">plebeyización</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="140">ilusión del fin</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="156">de las clases</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="296">bajo la superficie:</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="312">desigualdad y</text>
+<text class="sv-tw" text-anchor="middle" x="660" y="328">lucha de clases</text>
+<text class="sv-t3" x="20" y="150">EL RETORNO DE MARX</text>
+<rect class="sv-box-red" height="56" rx="2" width="200" x="20" y="162"></rect>
+<text class="sv-tr" text-anchor="middle" x="120" y="185">Fetichismo de la mercancía</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="202">consumo, publicidad, cosificación</text>
+<line class="sv-line-red" marker-end="url(#m1-15-arrow)" x1="220" x2="700" y1="190" y2="190"></line>
+<text class="sv-t3" x="230" y="232">mediadores: Benjamin y Frankfurt, Barthes,</text>
+<text class="sv-t3" x="230" y="246">Baudrillard, Bourdieu y Passeron, Žižek</text>
+<rect class="sv-box-red" height="56" rx="2" width="200" x="20" y="252"></rect>
+<text class="sv-tr" text-anchor="middle" x="120" y="275">Lucha de clases</text>
+<text class="sv-t2" text-anchor="middle" x="120" y="292">venta de la fuerza de trabajo</text>
+<line class="sv-line-red" marker-end="url(#m1-15-arrow)" x1="220" x2="700" y1="280" y2="280"></line>
+<text class="sv-t3" x="230" y="326">concentración del capital, fin del trabajo:</text>
+<text class="sv-t3" x="230" y="340">Žižek, Olin Wright, Frase, Bastani</text>
+<text class="sv-t2" x="20" y="370">las dos flechas atraviesan el bloque: lo que el realismo capitalista declara desaparecido sigue operando</text>
+</svg>

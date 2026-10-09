@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Organigrama del poder en la Unión Europea como triángulo invertido: de los ejecutivos nacionales al Consejo Europeo, la Comisión, el BCE y el Consejo de la UE, con el Parlamento subordinado, el TJUE constitucionalizando los tratados y, debajo de todo, el proletariado europeo sin referéndum ni fiscalización" role="img" viewBox="0 0 760 470">
+<defs><marker id="m4-6-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="44" rx="2" width="400" x="180" y="12"></rect><text class="sv-tw" text-anchor="middle" x="380" y="31">EJECUTIVOS NACIONALES</text><text class="sv-tw" text-anchor="middle" x="380" y="47">se emancipan de sus parlamentos fiscalizados por sufragio</text>
+<path class="sv-line" d="M380 56 L380 84" marker-end="url(#m4-6-arrow)"></path>
+<rect class="sv-box-red" height="50" rx="2" width="220" x="270" y="86"></rect><text class="sv-tr" text-anchor="middle" x="380" y="106">CONSEJO EUROPEO (no electo)</text><text class="sv-t2" text-anchor="middle" x="380" y="124">decide rescates, NextGen, rearme</text>
+<text class="sv-t3" x="20" y="100">Conferencias</text><text class="sv-t3" x="20" y="113">Intergubernamentales</text><text class="sv-t3" x="20" y="126">privadas: constitución</text><text class="sv-t3" x="20" y="139">sin proceso</text><text class="sv-t3" x="20" y="152">constituyente</text>
+<text class="sv-t3" text-anchor="end" x="740" y="100">rechazos ignorados:</text><text class="sv-t3" text-anchor="end" x="740" y="113">Dinamarca, Francia,</text><text class="sv-t3" text-anchor="end" x="740" y="126">Países Bajos, Irlanda</text>
+<path class="sv-line" d="M320 136 L140 164" marker-end="url(#m4-6-arrow)"></path>
+<path class="sv-line" d="M380 136 L380 164" marker-end="url(#m4-6-arrow)"></path>
+<path class="sv-line" d="M440 136 L620 164" marker-end="url(#m4-6-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="236" y="146">nombra</text>
+<rect class="sv-box" height="60" rx="2" width="200" x="40" y="166"></rect><text class="sv-t" text-anchor="middle" x="140" y="186">COMISIÓN</text><text class="sv-t2" text-anchor="middle" x="140" y="201">monopolio de la iniciativa</text><text class="sv-t3" text-anchor="middle" x="140" y="216">Spitzenkandidaten ignorados</text>
+<rect class="sv-box" height="60" rx="2" width="200" x="280" y="166"></rect><text class="sv-t" text-anchor="middle" x="380" y="186">CONSEJO DE LA UE</text><text class="sv-t2" text-anchor="middle" x="380" y="201">ejecutivos que legislan</text><text class="sv-t3" text-anchor="middle" x="380" y="216">proc. legislativo especial</text>
+<rect class="sv-box" height="60" rx="2" width="200" x="520" y="166"></rect><text class="sv-t" text-anchor="middle" x="620" y="186">BCE</text><text class="sv-t2" text-anchor="middle" x="620" y="201">política monetaria blindada</text><text class="sv-t3" text-anchor="middle" x="620" y="216">arts. 125 · 127 · 130 TFUE</text>
+<path class="sv-line-dash" d="M380 226 L380 256" marker-end="url(#m4-6-arrow)"></path>
+<text class="sv-t3" x="390" y="246">codecisión limitada</text>
+<rect class="sv-box-blue" height="60" rx="2" width="200" x="280" y="258"></rect><text class="sv-tb" text-anchor="middle" x="380" y="278">PARLAMENTO EUROPEO</text><text class="sv-t2" text-anchor="middle" x="380" y="293">único órgano electo</text><text class="sv-t2" text-anchor="middle" x="380" y="308">sin iniciativa legislativa</text>
+<text class="sv-t3" x="490" y="282">«ni tiene poder</text><text class="sv-t3" x="490" y="295">ni es legislativo»</text>
+<path class="sv-line" d="M140 226 L140 338 L178 338" marker-end="url(#m4-6-arrow)"></path>
+<path class="sv-line" d="M620 226 L620 338 L582 338" marker-end="url(#m4-6-arrow)"></path>
+<path class="sv-line" d="M380 318 L380 338" marker-end="url(#m4-6-arrow)"></path>
+<rect class="sv-box-gold" height="60" rx="2" width="400" x="180" y="340"></rect><text class="sv-tg" text-anchor="middle" x="380" y="360">TJUE: constitucionaliza los tratados</text><text class="sv-t2" text-anchor="middle" x="380" y="375">efecto directo · primacía · reconocimiento mutuo</text><text class="sv-t3" text-anchor="middle" x="380" y="391">Viking · Laval · AGET Iraklis: contra la huelga</text>
+<text class="sv-t3" x="30" y="372">ordoliberalismo:</text><text class="sv-t3" x="30" y="385">reglas fuera del</text><text class="sv-t3" x="30" y="398">debate político</text>
+<text class="sv-t3" text-anchor="end" x="740" y="372">PEC: 3 % · 60 %</text><text class="sv-t3" text-anchor="end" x="740" y="385">no bail-out</text><text class="sv-t3" text-anchor="end" x="740" y="398">austeridad al sur</text>
+<path class="sv-line-dash" d="M380 400 L380 420" marker-end="url(#m4-6-arrow)"></path>
+<rect class="sv-soft" height="38" rx="2" width="720" x="20" y="422"></rect><text class="sv-t" text-anchor="middle" x="380" y="438">PROLETARIADO EUROPEO</text><text class="sv-t2" text-anchor="middle" x="380" y="453">sin referéndum, sin fiscalización, sin participación en las decisiones</text>
+</svg>

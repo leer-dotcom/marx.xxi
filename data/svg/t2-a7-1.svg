@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Cadena causal desde la acumulación de capital, por dos vías agraria y urbana, hasta el desarrollo geográfico desigual y la brecha territorial; debajo, tabla que compara las respuestas neoliberal europea, socialdemócrata rural y territorialista con la posición socialista" role="img" viewBox="0 0 760 510">
+<defs><marker id="m2-7-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="40" rx="2" width="180" x="290" y="14"></rect><text class="sv-tw" text-anchor="middle" x="380" y="39">Acumulación de capital</text>
+<line class="sv-line" marker-end="url(#m2-7-arrow)" x1="340" x2="110" y1="54" y2="78"></line><line class="sv-line" marker-end="url(#m2-7-arrow)" x1="420" x2="470" y1="54" y2="78"></line>
+<text class="sv-t3" x="20" y="74">(a) vía agraria</text><text class="sv-t3" x="390" y="74">(b) vía urbana</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="20" y="80"></rect><text class="sv-t" text-anchor="middle" x="105" y="100">Caída de rentabilidad</text><text class="sv-t2" text-anchor="middle" x="105" y="116">del sector primario</text>
+<line class="sv-line" marker-end="url(#m2-7-arrow)" x1="190" x2="205" y1="105" y2="105"></line>
+<rect class="sv-box" height="50" rx="2" width="170" x="205" y="80"></rect><text class="sv-t2" text-anchor="middle" x="290" y="96">Concentración de tierras</text><text class="sv-t2" text-anchor="middle" x="290" y="110">+ mecanización →</text><text class="sv-t2" text-anchor="middle" x="290" y="124">expulsión de trabajadores</text>
+<rect class="sv-box" height="50" rx="2" width="170" x="390" y="80"></rect><text class="sv-t" text-anchor="middle" x="475" y="100">Concentración en</text><text class="sv-t2" text-anchor="middle" x="475" y="116">terciario y finanzas</text>
+<line class="sv-line" marker-end="url(#m2-7-arrow)" x1="560" x2="575" y1="105" y2="105"></line>
+<rect class="sv-box" height="50" rx="2" width="170" x="575" y="80"></rect><text class="sv-t" text-anchor="middle" x="660" y="100">Aglomeraciones</text><text class="sv-t2" text-anchor="middle" x="660" y="116">urbanas de consumidores</text>
+<line class="sv-line" marker-end="url(#m2-7-arrow)" x1="290" x2="340" y1="130" y2="158"></line><line class="sv-line" marker-end="url(#m2-7-arrow)" x1="660" x2="440" y1="130" y2="158"></line>
+<rect class="sv-box-blue" height="40" rx="2" width="280" x="240" y="160"></rect><text class="sv-tb" text-anchor="middle" x="380" y="185">Desarrollo geográfico desigual</text>
+<line class="sv-line" marker-end="url(#m2-7-arrow)" x1="380" x2="380" y1="200" y2="226"></line>
+<rect class="sv-box-red" height="44" rx="2" width="360" x="200" y="228"></rect><text class="sv-tr" text-anchor="middle" x="380" y="246">Brecha territorial</text><text class="sv-t2" text-anchor="middle" x="380" y="262">proletariado rural desprotegido · ruralismo interclasista</text>
+<text class="sv-t3" x="20" y="292">TRES RESPUESTAS Y UNA POSICIÓN</text>
+<rect class="sv-soft" height="34" rx="2" width="150" x="120" y="298"></rect><text class="sv-t" text-anchor="middle" x="195" y="319">Neoliberal europea</text>
+<rect class="sv-soft" height="34" rx="2" width="150" x="275" y="298"></rect><text class="sv-t" text-anchor="middle" x="350" y="313">Socialdemocracia</text><text class="sv-t" text-anchor="middle" x="350" y="327">rural (nueva)</text>
+<rect class="sv-soft" height="34" rx="2" width="150" x="430" y="298"></rect><text class="sv-t" text-anchor="middle" x="505" y="313">Territorialismo</text><text class="sv-t" text-anchor="middle" x="505" y="327">anticapitalista</text>
+<rect class="sv-box-green" height="34" rx="2" width="150" x="585" y="298"></rect><text class="sv-tgr" text-anchor="middle" x="660" y="319">Posición socialista</text>
+<rect class="sv-soft" height="50" rx="2" width="95" x="20" y="338"></rect><text class="sv-t" text-anchor="middle" x="67" y="367">Diagnóstico</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="120" y="338"></rect><text class="sv-t2" text-anchor="middle" x="195" y="358">«círculos viciosos»,</text><text class="sv-t2" text-anchor="middle" x="195" y="372">economía como caja negra</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="275" y="338"></rect><text class="sv-t2" text-anchor="middle" x="350" y="358">«España vaciada»:</text><text class="sv-t2" text-anchor="middle" x="350" y="372">el Estado debe cambiar</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="430" y="338"></rect><text class="sv-t2" text-anchor="middle" x="505" y="358">territorio como sujeto,</text><text class="sv-t2" text-anchor="middle" x="505" y="372">idealización de lo rural</text>
+<rect class="sv-box-green" height="50" rx="2" width="150" x="585" y="338"></rect><text class="sv-t2" text-anchor="middle" x="660" y="358">fase del desarrollo</text><text class="sv-t2" text-anchor="middle" x="660" y="372">geográfico desigual</text>
+<rect class="sv-soft" height="50" rx="2" width="95" x="20" y="394"></rect><text class="sv-t" text-anchor="middle" x="67" y="423">Interlocutor</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="120" y="394"></rect><text class="sv-t2" text-anchor="middle" x="195" y="423">UE y PAC</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="275" y="394"></rect><text class="sv-t2" text-anchor="middle" x="350" y="423">Estado, administración</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="430" y="394"></rect><text class="sv-t2" text-anchor="middle" x="505" y="423">vecindad, territorio</text>
+<rect class="sv-box-green" height="50" rx="2" width="150" x="585" y="394"></rect><text class="sv-t2" text-anchor="middle" x="660" y="416">proletariado rural</text><text class="sv-t2" text-anchor="middle" x="660" y="430">y urbano, como clase</text>
+<rect class="sv-soft" height="50" rx="2" width="95" x="20" y="450"></rect><text class="sv-t" text-anchor="middle" x="67" y="479">Límite</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="120" y="450"></rect><text class="sv-t2" text-anchor="middle" x="195" y="470">subordinada a la PAC:</text><text class="sv-t2" text-anchor="middle" x="195" y="484">«nacida muerta»</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="275" y="450"></rect><text class="sv-t2" text-anchor="middle" x="350" y="470">programa de clases</text><text class="sv-t2" text-anchor="middle" x="350" y="484">medias, utópico</text>
+<rect class="sv-box" height="50" rx="2" width="150" x="430" y="450"></rect><text class="sv-t2" text-anchor="middle" x="505" y="470">oculta intereses</text><text class="sv-t2" text-anchor="middle" x="505" y="484">de clase opuestos</text>
+<rect class="sv-box-green" height="50" rx="2" width="150" x="585" y="450"></rect><text class="sv-tgr" text-anchor="middle" x="660" y="470">control socialista</text><text class="sv-tgr" text-anchor="middle" x="660" y="484">del espacio</text>
+</svg>

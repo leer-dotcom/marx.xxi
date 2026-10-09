@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, cadena causal de la revolución desde la contradicción del capitalismo hasta el Estado-comuna; abajo, ciclo pendular entre auge (hablar francés) y reflujo (hablar alemán) con las dos desviaciones oportunistas a los lados" role="img" viewBox="0 0 760 350">
+<defs><marker id="m4-1-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="16">LÓGICA DE LA REVOLUCIÓN (cadena causal)</text>
+<rect class="sv-box" height="48" rx="2" width="150" x="20" y="26"></rect><text class="sv-t" text-anchor="middle" x="95" y="46">Contradicción</text><text class="sv-t2" text-anchor="middle" x="95" y="62">del capitalismo</text>
+<path class="sv-line" d="M170 50 L198 50" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="150" x="200" y="26"></rect><text class="sv-t" text-anchor="middle" x="275" y="42">Crisis política general</text><text class="sv-t3" text-anchor="middle" x="275" y="56">arriba no pueden</text><text class="sv-t3" text-anchor="middle" x="275" y="69">abajo no quieren</text>
+<path class="sv-line" d="M350 50 L378 50" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="150" x="380" y="26"></rect><text class="sv-t" text-anchor="middle" x="455" y="46">Masas + partido</text><text class="sv-t3" text-anchor="middle" x="455" y="62">factor subjetivo</text>
+<path class="sv-line" d="M530 50 L558 50" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="150" x="560" y="26"></rect><text class="sv-t" text-anchor="middle" x="635" y="46">Mayoría decisiva</text><text class="sv-t2" text-anchor="middle" x="635" y="62">se verifica en la lucha</text>
+<path class="sv-line" d="M635 74 L635 104" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="150" x="560" y="106"></rect><text class="sv-t" text-anchor="middle" x="635" y="126">Golpe definitivo</text><text class="sv-t2" text-anchor="middle" x="635" y="142">insurrección u otra forma</text>
+<path class="sv-line" d="M560 130 L532 130" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box" height="48" rx="2" width="150" x="380" y="106"></rect><text class="sv-t" text-anchor="middle" x="455" y="122">Destrucción de la</text><text class="sv-t" text-anchor="middle" x="455" y="137">máquina</text><text class="sv-t3" text-anchor="middle" x="455" y="150">burocrático-militar</text>
+<path class="sv-line-red" d="M380 130 L352 130" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-box-red" height="48" rx="2" width="150" x="200" y="106"></rect><text class="sv-tr" text-anchor="middle" x="275" y="126">Estado-comuna</text><text class="sv-t2" text-anchor="middle" x="275" y="142">democracia íntegra</text>
+<path class="sv-line-dash" d="M200 130 L172 130" marker-end="url(#m4-1-arrow)"></path>
+<rect class="sv-soft" height="48" rx="2" width="150" x="20" y="106"></rect><text class="sv-t2" text-anchor="middle" x="95" y="126">Construcción</text><text class="sv-t2" text-anchor="middle" x="95" y="142">del socialismo</text>
+<line class="sv-line-dash" x1="20" x2="740" y1="178" y2="178"></line>
+<text class="sv-t3" x="20" y="200">CICLO AUGE ↔ REFLUJO: dos lenguajes del mismo partido</text>
+<rect class="sv-box-gold" height="56" rx="2" width="150" x="20" y="216"></rect><text class="sv-tg" text-anchor="middle" x="95" y="238">Oportunismo</text><text class="sv-tg" text-anchor="middle" x="95" y="253">de derecha</text><text class="sv-t2" text-anchor="middle" x="95" y="266">integrarse en el Estado</text>
+<rect class="sv-box-blue" height="56" rx="2" width="160" x="205" y="216"></rect><text class="sv-tb" text-anchor="middle" x="285" y="238">«Hablar alemán»</text><text class="sv-t2" text-anchor="middle" x="285" y="253">reflujo · acumulación</text><text class="sv-t3" text-anchor="middle" x="285" y="266">paciente de fuerzas</text>
+<rect class="sv-box-red" height="56" rx="2" width="160" x="395" y="216"></rect><text class="sv-tr" text-anchor="middle" x="475" y="238">«Hablar francés»</text><text class="sv-t2" text-anchor="middle" x="475" y="253">auge · ofensiva</text><text class="sv-t3" text-anchor="middle" x="475" y="266">insurreccional</text>
+<rect class="sv-box-gold" height="56" rx="2" width="150" x="590" y="216"></rect><text class="sv-tg" text-anchor="middle" x="665" y="238">Oportunismo</text><text class="sv-tg" text-anchor="middle" x="665" y="253">de izquierda</text><text class="sv-t3" text-anchor="middle" x="665" y="266">voluntarismo</text>
+<path class="sv-line" d="M365 230 C 375 212, 385 212, 393 230" marker-end="url(#m4-1-arrow)"></path>
+<path class="sv-line" d="M395 258 C 385 276, 375 276, 367 258" marker-end="url(#m4-1-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="208">auge</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="292">reflujo</text>
+<path class="sv-line-dash" d="M205 244 L172 244" marker-end="url(#m4-1-arrow)"></path>
+<path class="sv-line-dash" d="M555 244 L588 244" marker-end="url(#m4-1-arrow)"></path>
+<path class="sv-line-red" d="M285 272 C 285 320, 475 320, 475 274" marker-end="url(#m4-1-arrow)"></path>
+<text class="sv-tr" text-anchor="middle" x="380" y="330">«Para poder hablar francés hay que aprender primero a hablar alemán»</text>
+<text class="sv-t3" x="20" y="300">desviación</text>
+<text class="sv-t3" text-anchor="end" x="740" y="300">desviación</text>
+</svg>

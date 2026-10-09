@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa de capas superpuestas (tejido global, Unión Europea, Estado español, naciones oprimidas y el resto, megaciudad, provincia, ruralidad y barrio) articuladas por el trabajo político; a la derecha, los dos límites de la táctica y la propuesta de marcos de referencia racionales; debajo, las tres respuestas descartadas: federalismo, nacionalismo revolucionario y nacionalismo español" role="img" viewBox="0 0 760 460">
+<defs><marker id="m3-5-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="12" y="20">CAPAS SUPERPUESTAS</text>
+<rect class="sv-box" height="272" rx="2" width="360" x="12" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="192" y="50">Tejido global · organización internacional</text>
+<rect class="sv-box-blue" height="226" rx="2" width="320" x="32" y="64"></rect>
+<text class="sv-t" text-anchor="middle" x="192" y="84">Unión Europea · escala mínima</text>
+<rect class="sv-box-gold" height="180" rx="2" width="280" x="52" y="98"></rect>
+<text class="sv-t" text-anchor="middle" x="192" y="118">Estado español · marco ineludible</text>
+<rect class="sv-box-red" height="60" rx="2" width="120" x="68" y="134"></rect>
+<text class="sv-t" text-anchor="middle" x="128" y="155">Naciones oprimidas</text>
+<text class="sv-t2" text-anchor="middle" x="128" y="171">Cataluña, Euskal Herria</text>
+<text class="sv-t2" text-anchor="middle" x="128" y="186">marcos propios de lucha</text>
+<rect class="sv-box" height="60" rx="2" width="120" x="196" y="134"></rect>
+<text class="sv-t" text-anchor="middle" x="256" y="155">«El resto»</text>
+<text class="sv-t2" text-anchor="middle" x="256" y="171">heterogéneo, no nación</text>
+<text class="sv-t2" text-anchor="middle" x="256" y="186">problema asimétrico</text>
+<rect class="sv-box-green" height="54" rx="2" width="248" x="68" y="208"></rect>
+<text class="sv-t" text-anchor="middle" x="192" y="228">Megaciudad · provincia · ruralidad</text>
+<text class="sv-t2" text-anchor="middle" x="192" y="244">islas turistificadas · barrio</text>
+<text class="sv-tr" text-anchor="middle" x="192" y="326">El trabajo político articula las capas</text>
+<text class="sv-t3" x="400" y="20">DOS LÍMITES DE LA TÁCTICA</text>
+<rect class="sv-box" height="74" rx="2" width="348" x="400" y="30"></rect>
+<text class="sv-t" text-anchor="middle" x="574" y="52">Articularse a escala estatal y europea</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="69">sin legitimar el marco: funcionalidad</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="84">estratégica, ni nacionalismo ni europeísmo</text>
+<rect class="sv-box" height="74" rx="2" width="348" x="400" y="116"></rect>
+<text class="sv-t" text-anchor="middle" x="574" y="138">Trabajar las particularidades nacionales</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="155">oprimidas desde el internacionalismo,</text>
+<text class="sv-t2" text-anchor="middle" x="574" y="170">sin negarlas ni mistificarlas</text>
+<path class="sv-line" d="M574 190 V206" marker-end="url(#m3-5-arrow)"></path>
+<rect class="sv-box-ink" height="94" rx="2" width="348" x="400" y="208"></rect>
+<text class="sv-tw" text-anchor="middle" x="574" y="232">Propuesta: marcos de referencia</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="250">racionales y estratégicos</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="270">espacio social en disputa con dimensión política,</text>
+<text class="sv-tw" text-anchor="middle" x="574" y="287">no mera adscripción voluntaria</text>
+<text class="sv-t3" x="12" y="358">TRES RESPUESTAS EN VÍA MUERTA</text>
+<rect class="sv-box-red" height="80" rx="2" width="235" x="12" y="368"></rect>
+<text class="sv-tr" text-anchor="middle" x="129" y="390">Federalismo</text>
+<text class="sv-t2" text-anchor="middle" x="129" y="407">negación abstracta de la opresión</text>
+<text class="sv-t2" text-anchor="middle" x="129" y="422">nacional → reproduce el marco estatal</text>
+<text class="sv-t2" text-anchor="middle" x="129" y="437">y acaba en nacionalismo español</text>
+<rect class="sv-box-red" height="80" rx="2" width="235" x="262" y="368"></rect>
+<text class="sv-tr" text-anchor="middle" x="379" y="390">Nacionalismo revolucionario</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="407">equipara opresiones no equiparables</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="422">→ territorialismo de la «España vaciada»</text>
+<text class="sv-t2" text-anchor="middle" x="379" y="437">o muleta de la socialdemocracia</text>
+<rect class="sv-box-red" height="80" rx="2" width="235" x="513" y="368"></rect>
+<text class="sv-tr" text-anchor="middle" x="630" y="390">Nacionalismo español</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="407">patriotismo del PCE en la guerra</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="422">→ nuevo españolismo de masas</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="437">tras el 1-O</text>
+</svg>

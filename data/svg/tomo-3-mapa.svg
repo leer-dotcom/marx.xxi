@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa conceptual del volumen 3: las crisis de acumulación y ecológica producen proletarización y agrietan la cosmovisión capitalista; la táctica cultural expande la conciencia socialista, que funda la independencia política, cuya forma acabada es el Partido Comunista, mediador del Estado-Comuna; las formas organizativas transitorias y las escalas territoriales construyen el Partido, mientras reformismo, espontaneísmo y sectarismo lo obstaculizan." role="img" viewBox="0 0 760 460">
+<defs><marker id="m3-s-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<!-- Fila 1: condiciones -->
+<rect class="sv-box-red" height="44" rx="2" width="160" x="20" y="20"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="47">Crisis ecológica</text>
+<rect class="sv-box-red" height="44" rx="2" width="150" x="310" y="20"></rect>
+<text class="sv-t" text-anchor="middle" x="385" y="39">Crisis de</text>
+<text class="sv-t" text-anchor="middle" x="385" y="54">acumulación</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="580" y="20"></rect>
+<text class="sv-t" text-anchor="middle" x="660" y="39">Cosmovisión</text>
+<text class="sv-t" text-anchor="middle" x="660" y="54">capitalista</text>
+<!-- Fila 2 -->
+<rect class="sv-box-red" height="44" rx="2" width="160" x="20" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="129">Proletarización</text>
+<text class="sv-t2" text-anchor="middle" x="100" y="144">juventud, clases medias</text>
+<rect class="sv-box-blue" height="44" rx="2" width="150" x="310" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="385" y="129">Conciencia</text>
+<text class="sv-t" text-anchor="middle" x="385" y="144">socialista</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="580" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="660" y="129">Táctica cultural</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="144">unificar · hegemonizar</text>
+<!-- Fila 3 -->
+<rect class="sv-box-green" height="44" rx="2" width="160" x="20" y="200"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="219">Formas organizativas</text>
+<text class="sv-t" text-anchor="middle" x="100" y="234">transitorias</text>
+<rect class="sv-box-gold" height="44" rx="2" width="150" x="310" y="200"></rect>
+<text class="sv-t" text-anchor="middle" x="385" y="219">Independencia</text>
+<text class="sv-t" text-anchor="middle" x="385" y="234">política</text>
+<rect class="sv-soft" height="44" rx="2" width="160" x="580" y="200"></rect>
+<text class="sv-t" text-anchor="middle" x="660" y="219">Reformismo /</text>
+<text class="sv-t" text-anchor="middle" x="660" y="234">oportunismo</text>
+<!-- Fila 4 -->
+<rect class="sv-box-green" height="44" rx="2" width="160" x="20" y="290"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="309">Escalas: Estado,</text>
+<text class="sv-t" text-anchor="middle" x="100" y="324">Europa, internacional</text>
+<rect class="sv-box-ink" height="44" rx="2" width="170" x="300" y="290"></rect>
+<text class="sv-tw" text-anchor="middle" x="385" y="309">Partido Comunista</text>
+<text class="sv-tw" text-anchor="middle" x="385" y="324">de masas, internacional</text>
+<rect class="sv-soft" height="44" rx="2" width="160" x="580" y="290"></rect>
+<text class="sv-t" text-anchor="middle" x="660" y="309">Espontaneísmo /</text>
+<text class="sv-t" text-anchor="middle" x="660" y="324">movimentismo</text>
+<!-- Fila 5 -->
+<rect class="sv-box-gold" height="44" rx="2" width="150" x="310" y="400"></rect>
+<text class="sv-t" text-anchor="middle" x="385" y="419">Estado socialista</text>
+<text class="sv-t" text-anchor="middle" x="385" y="434">(Estado-Comuna)</text>
+<rect class="sv-soft" height="44" rx="2" width="160" x="580" y="400"></rect>
+<text class="sv-t" text-anchor="middle" x="660" y="419">Sectarismo /</text>
+<text class="sv-t" text-anchor="middle" x="660" y="434">dogmatismo</text>
+<!-- Aristas -->
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="180" x2="310" y1="42" y2="42"></line>
+<text class="sv-t3" text-anchor="middle" x="245" y="36">contradicción</text>
+<text class="sv-t3" text-anchor="middle" x="245" y="57">interna</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="460" x2="580" y1="42" y2="42"></line>
+<text class="sv-t3" text-anchor="middle" x="520" y="36">punto de sutura</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="100" x2="100" y1="64" y2="110"></line>
+<text class="sv-t3" x="108" y="84">destruye modos</text>
+<text class="sv-t3" x="108" y="97">de vida</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="315" x2="185" y1="64" y2="110"></line>
+<text class="sv-t3" x="252" y="102">expulsa jóvenes y clases medias</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="580" x2="460" y1="132" y2="132"></line>
+<text class="sv-t3" text-anchor="middle" x="520" y="125">teoría</text>
+<text class="sv-t3" text-anchor="middle" x="520" y="148">propaganda</text>
+<text class="sv-t3" text-anchor="middle" x="520" y="161">agitación</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="455" x2="585" y1="110" y2="64"></line>
+<text class="sv-t3" x="535" y="101">ataca</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="385" x2="385" y1="154" y2="200"></line>
+<text class="sv-t3" x="393" y="174">sin conciencia</text>
+<text class="sv-t3" x="393" y="187">no hay independencia</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="100" x2="100" y1="154" y2="200"></line>
+<text class="sv-t3" x="108" y="174">juventud:</text>
+<text class="sv-t3" x="108" y="187">primera forma</text>
+<path class="sv-line" d="M100 244 V268 H340 V290" marker-end="url(#m3-s-arrow)"></path>
+<text class="sv-t3" x="112" y="263">eficacia para construirlo</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="400" x2="400" y1="244" y2="290"></line>
+<text class="sv-t3" x="408" y="264">forma acabada:</text>
+<text class="sv-t3" x="408" y="277">fusión</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="180" x2="300" y1="312" y2="312"></line>
+<text class="sv-t3" text-anchor="middle" x="240" y="305">Europa: mínimo</text>
+<text class="sv-t3" text-anchor="middle" x="240" y="328">internacional</text>
+<line class="sv-line" marker-end="url(#m3-s-arrow)" x1="360" x2="360" y1="334" y2="400"></line>
+<text class="sv-t3" text-anchor="end" x="352" y="372">toma del poder</text>
+<line class="sv-line-dash" marker-end="url(#m3-s-arrow)" x1="580" x2="460" y1="222" y2="222"></line>
+<text class="sv-t3" text-anchor="middle" x="520" y="215">liquida;</text>
+<text class="sv-t3" text-anchor="middle" x="520" y="238">romper con él</text>
+<line class="sv-line-dash" marker-end="url(#m3-s-arrow)" x1="660" x2="660" y1="290" y2="244"></line>
+<text class="sv-t3" x="668" y="264">sanciona</text>
+<text class="sv-t3" x="668" y="277">lo existente</text>
+<path class="sv-line-dash" d="M580 422 H500 V312 H470" marker-end="url(#m3-s-arrow)"></path>
+<text class="sv-t3" x="506" y="403">impide</text>
+<text class="sv-t3" x="506" y="416">la fusión</text>
+</svg>

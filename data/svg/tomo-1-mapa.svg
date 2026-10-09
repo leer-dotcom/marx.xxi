@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa conceptual del volumen 1 con doce nodos: crítica de la economía política y totalidad, dialéctica hegeliana, crisis, ideología burguesa, fetichismo, comunismo, clase obrera organizada, salidas falsas, opresiones específicas y vida cotidiana, Estado y democracia, teoría y praxis, y derrota histórica y posmodernidad, unidos por aristas etiquetadas que indican en qué artículos se desarrolla cada relación." role="img" viewBox="0 0 760 450">
+<defs><marker id="m1-mapa-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-line" d="M100 56 V22 H460 V56" marker-end="url(#m1-mapa-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="280" y="17">la crisis como escasez de plusvalía (art. 1)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="200" x2="180" y1="78" y2="78"></line>
+<text class="sv-t3" text-anchor="middle" x="200" y="48">contra el kantismo (3)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="100" x2="100" y1="100" y2="216"></line>
+<text class="sv-t3" x="106" y="150">el capital es</text>
+<text class="sv-t3" x="106" y="164">relación social (1, 2)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="280" x2="280" y1="100" y2="216"></line>
+<text class="sv-t3" x="286" y="120">de la esencia al concepto (4, 5)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="460" x2="460" y1="100" y2="216"></line>
+<text class="sv-t3" x="466" y="150">facilita, no garantiza,</text>
+<text class="sv-t3" x="466" y="164">la subjetividad (1)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="640" x2="640" y1="100" y2="216"></line>
+<text class="sv-t3" text-anchor="end" x="634" y="190">reformismo (1, 2, 11)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="380" x2="360" y1="238" y2="238"></line>
+<text class="sv-t3" text-anchor="middle" x="370" y="196">abole la forma-valor</text>
+<text class="sv-t3" text-anchor="middle" x="370" y="210">(1, 7, 11)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="100" x2="100" y1="260" y2="376"></line>
+<text class="sv-t3" text-anchor="end" x="94" y="292">vida</text>
+<text class="sv-t3" text-anchor="end" x="94" y="306">cotidiana</text>
+<text class="sv-t3" text-anchor="end" x="94" y="320">(8, 13,</text>
+<text class="sv-t3" text-anchor="end" x="94" y="334">14, 15)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="170" x2="215" y1="260" y2="376"></line>
+<text class="sv-t3" x="108" y="356">formas</text>
+<text class="sv-t3" x="108" y="370">alienadas</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="280" x2="280" y1="260" y2="376"></line>
+<text class="sv-t3" x="286" y="280">extinción del Estado,</text>
+<text class="sv-t3" x="286" y="294">un solo mundo (4, 12, 13)</text>
+<path class="sv-line-dash" d="M600 260 V330 H300 V376" marker-end="url(#m1-mapa-arrow)"></path>
+<text class="sv-t3" x="308" y="347">integración estatal</text>
+<text class="sv-t3" x="308" y="361">(7, 8, 11)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="460" x2="460" y1="376" y2="260"></line>
+<text class="sv-t3" x="466" y="347">condición del</text>
+<text class="sv-t3" x="466" y="361">movimiento (6, 7)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="640" x2="640" y1="376" y2="260"></line>
+<text class="sv-t3" x="646" y="300">dos vías</text>
+<text class="sv-t3" x="646" y="314">falsas (9, 10)</text>
+<line class="sv-line" marker-end="url(#m1-mapa-arrow)" x1="560" x2="540" y1="398" y2="398"></line>
+<text class="sv-t3" text-anchor="middle" x="550" y="436">respiro del pensamiento (6, 10)</text>
+<rect class="sv-box-ink" height="44" rx="2" width="160" x="20" y="56"></rect>
+<text class="sv-tw" text-anchor="middle" x="100" y="74">Crítica de la economía</text>
+<text class="sv-tw" text-anchor="middle" x="100" y="91">política · totalidad</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="200" y="56"></rect>
+<text class="sv-t" text-anchor="middle" x="280" y="74">Dialéctica</text>
+<text class="sv-t" text-anchor="middle" x="280" y="91">hegeliana</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="380" y="56"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="74">Crisis y caída de la</text>
+<text class="sv-t" text-anchor="middle" x="460" y="91">tasa de ganancia</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="560" y="56"></rect>
+<text class="sv-t" text-anchor="middle" x="640" y="74">Ideología burguesa:</text>
+<text class="sv-t" text-anchor="middle" x="640" y="91">escisión de esferas</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="20" y="216"></rect>
+<text class="sv-tr" text-anchor="middle" x="100" y="234">Fetichismo: dinero,</text>
+<text class="sv-tr" text-anchor="middle" x="100" y="251">Estado, Ley</text>
+<rect class="sv-box-green" height="44" rx="2" width="160" x="200" y="216"></rect>
+<text class="sv-tgr" text-anchor="middle" x="280" y="234">Comunismo: asociación</text>
+<text class="sv-tgr" text-anchor="middle" x="280" y="251">de productores libres</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="380" y="216"></rect>
+<text class="sv-tb" text-anchor="middle" x="460" y="234">Clase obrera organizada</text>
+<text class="sv-tb" text-anchor="middle" x="460" y="251">movimiento de clase</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="560" y="216"></rect>
+<text class="sv-tr" text-anchor="middle" x="640" y="234">Salidas falsas</text>
+<text class="sv-t2" text-anchor="middle" x="640" y="251">reformismo · nostalgia</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="20" y="376"></rect>
+<text class="sv-t" text-anchor="middle" x="100" y="394">Opresiones específicas</text>
+<text class="sv-t" text-anchor="middle" x="100" y="411">y vida cotidiana</text>
+<rect class="sv-box-gold" height="44" rx="2" width="160" x="200" y="376"></rect>
+<text class="sv-tg" text-anchor="middle" x="280" y="394">Estado, democracia</text>
+<text class="sv-tg" text-anchor="middle" x="280" y="411">y ciudadanía</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="380" y="376"></rect>
+<text class="sv-t" text-anchor="middle" x="460" y="394">Teoría y praxis</text>
+<text class="sv-t" text-anchor="middle" x="460" y="411">vanguardia</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="560" y="376"></rect>
+<text class="sv-t" text-anchor="middle" x="640" y="394">Derrota histórica</text>
+<text class="sv-t" text-anchor="middle" x="640" y="411">y posmodernidad</text>
+</svg>

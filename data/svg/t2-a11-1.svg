@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Péndulo cuyo eje es el ideal de un capitalismo sin contradicciones, del que cuelgan dos polos que se refuerzan, el servilismo reformista y el voluntarismo anarquista, y que desembocan ambos en la melancolía de izquierda; fuera del péndulo, la salida: reforma subordinada al fin socialista y partido independiente" role="img" viewBox="0 0 760 445">
+<defs><marker id="m2-11-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-gold" height="58" rx="2" width="380" x="190" y="12"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="35">Ideal de un capitalismo sin contradicciones</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="55">«caballo de Troya» del pensamiento de izquierda</text>
+<circle class="sv-dot" cx="380" cy="70" r="5"></circle>
+<line class="sv-line" x1="380" x2="150" y1="70" y2="170"></line>
+<line class="sv-line" x1="380" x2="610" y1="70" y2="170"></line>
+<rect class="sv-box-red" height="130" rx="2" width="240" x="30" y="170"></rect>
+<text class="sv-tr" text-anchor="middle" x="150" y="193">Servilismo reformista</text>
+<text class="sv-t2" text-anchor="middle" x="150" y="213">parlamento y Estado de bienestar</text>
+<text class="sv-t2" text-anchor="middle" x="150" y="230">DSA / Jacobin, redistribución</text>
+<text class="sv-t2" text-anchor="middle" x="150" y="247">sindicatos y crédito «socializadores»</text>
+<text class="sv-t2" text-anchor="middle" x="150" y="264">oportunismo cortoplacista</text>
+<text class="sv-t3" text-anchor="middle" x="150" y="287">Bernstein: el movimiento lo es todo</text>
+<rect class="sv-box-red" height="130" rx="2" width="240" x="490" y="170"></rect>
+<text class="sv-tr" text-anchor="middle" x="610" y="193">Voluntarismo / anarquismo</text>
+<text class="sv-t2" text-anchor="middle" x="610" y="213">«acciones mágicas»: ladrillo, ocupación</text>
+<text class="sv-t2" text-anchor="middle" x="610" y="230">BLM, Occupy, zonas autónomas</text>
+<text class="sv-t2" text-anchor="middle" x="610" y="247">doblegar la realidad a la voluntad</text>
+<text class="sv-t2" text-anchor="middle" x="610" y="264">complemento callejero del reformismo</text>
+<text class="sv-t3" text-anchor="middle" x="610" y="287">utopismo abstracto</text>
+<line class="sv-line-red" marker-end="url(#m2-11-arrow)" marker-start="url(#m2-11-arrow)" x1="272" x2="488" y1="235" y2="235"></line>
+<text class="sv-tr" text-anchor="middle" x="380" y="226">se refuerzan</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="255">mala infinitud</text>
+<line class="sv-line" marker-end="url(#m2-11-arrow)" x1="150" x2="250" y1="300" y2="340"></line>
+<line class="sv-line" marker-end="url(#m2-11-arrow)" x1="610" x2="510" y1="300" y2="340"></line>
+<rect class="sv-box" height="56" rx="2" width="360" x="200" y="340"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="363">Melancolía de izquierda (Benjamin)</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="382">cinismo, derrotismo; en su extremo: afropesimismo</text>
+<text class="sv-t3" text-anchor="middle" x="660" y="323">fuera del péndulo</text>
+<rect class="sv-box-blue" height="104" rx="2" width="160" x="580" y="330"></rect>
+<text class="sv-tb" text-anchor="middle" x="660" y="351">Salida (Luxemburgo)</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="369">reforma subordinada</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="385">al fin socialista</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="401">partido independiente</text>
+<text class="sv-t2" text-anchor="middle" x="660" y="417">abolir el salariado</text>
+</svg>

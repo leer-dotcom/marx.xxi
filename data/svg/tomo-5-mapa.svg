@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa conceptual del volumen 5: de la ley del valor y el sistema interestatal al imperialismo y la hegemonía estadounidense, las desviaciones campista y anticampista, la cuestión colonial, la independencia política de clase, el estalinismo y la Internacional comunista" role="img" viewBox="0 0 760 370">
+<defs><marker id="m5-s-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box" height="44" rx="2" width="160" x="10" y="28"></rect>
+<text class="sv-t" text-anchor="middle" x="90" y="46">Ley del valor</text><text class="sv-t2" text-anchor="middle" x="90" y="62">mercado mundial</text>
+<rect class="sv-box" height="44" rx="2" width="160" x="203" y="28"></rect>
+<text class="sv-t" text-anchor="middle" x="283" y="46">Estado capitalista</text><text class="sv-t2" text-anchor="middle" x="283" y="62">sistema interestatal jerárquico</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="397" y="28"></rect>
+<text class="sv-tr" text-anchor="middle" x="477" y="46">Imperialismo</text><text class="sv-t2" text-anchor="middle" x="477" y="62">forma política del mercado mundial</text>
+<rect class="sv-box-gold" height="44" rx="2" width="160" x="590" y="28"></rect>
+<text class="sv-t" text-anchor="middle" x="670" y="46">Hegemonía de EE. UU.</text><text class="sv-t2" text-anchor="middle" x="670" y="62">dólar, OTAN, FMI, bases</text>
+<rect class="sv-box-ink" height="44" rx="2" width="160" x="10" y="122"></rect>
+<text class="sv-tw" text-anchor="middle" x="90" y="140">Internacional comunista</text><text class="sv-tw" text-anchor="middle" x="90" y="157">partido de masas internacional</text>
+<rect class="sv-box-gold" height="44" rx="2" width="160" x="397" y="122"></rect>
+<text class="sv-t" text-anchor="middle" x="477" y="140">Multipolaridad / BRICS+</text><text class="sv-t2" text-anchor="middle" x="477" y="156">China, Rusia</text>
+<rect class="sv-box-green" height="44" rx="2" width="160" x="590" y="122"></rect>
+<text class="sv-tgr" text-anchor="middle" x="670" y="140">Derrotismo / defensismo</text><text class="sv-t2" text-anchor="middle" x="670" y="156">doble delimitación táctica</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="203" y="216"></rect>
+<text class="sv-tb" text-anchor="middle" x="283" y="234">Campismo</text><text class="sv-t2" text-anchor="middle" x="283" y="250">frentes con el bloque rival</text>
+<rect class="sv-box-green" height="44" rx="2" width="160" x="397" y="216"></rect>
+<text class="sv-tgr" text-anchor="middle" x="477" y="234">Independencia política</text><text class="sv-t2" text-anchor="middle" x="477" y="250">de clase</text>
+<rect class="sv-box-red" height="44" rx="2" width="160" x="590" y="216"></rect>
+<text class="sv-tr" text-anchor="middle" x="670" y="234">Cuestión colonial</text><text class="sv-t2" text-anchor="middle" x="670" y="250">Palestina: lucha anticolonial</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="10" y="310"></rect>
+<text class="sv-tb" text-anchor="middle" x="90" y="328">Estalinismo</text><text class="sv-t2" text-anchor="middle" x="90" y="344">socialismo en un solo país</text>
+<rect class="sv-box-blue" height="44" rx="2" width="160" x="590" y="310"></rect>
+<text class="sv-tb" text-anchor="middle" x="670" y="328">Anticampismo abstracto</text><text class="sv-t2" text-anchor="middle" x="670" y="344">«eterno 1914»</text>
+<path class="sv-line" d="M170 50 L201 50" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="186" y="20">jerarquiza</text>
+<path class="sv-line" d="M363 50 L395 50" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="20">articulación desigual</text>
+<path class="sv-line" d="M557 50 L588 50" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="573" y="20">exige un centro</text>
+<path class="sv-line" d="M640 72 L522 120" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="start" x="560" y="88">declive 2008</text>
+<path class="sv-line-red" d="M700 72 L700 120" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="end" x="694" y="92">enemigo</text><text class="sv-t3" text-anchor="end" x="694" y="106">en casa</text>
+<path class="sv-line" d="M420 166 L342 214" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="end" x="408" y="200">«soberanía de los pueblos»</text>
+<path class="sv-line-red" d="M363 238 L395 238" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="380" y="256">niega</text>
+<path class="sv-line-red" d="M592 312 L542 262" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="start" x="600" y="300">la vacía</text>
+<path class="sv-line" d="M670 260 L670 308" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="start" x="676" y="288">refuta</text>
+<path class="sv-line" d="M640 216 L640 168" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="end" x="634" y="194">exige</text>
+<path class="sv-line" d="M540 216 L598 168" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="end" x="558" y="200">criterio</text>
+<path class="sv-line" d="M160 310 L213 262" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="end" x="152" y="292">Stalin 1924</text>
+<path class="sv-line" d="M50 310 L50 168" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="start" x="56" y="232">destruyó</text><text class="sv-t3" text-anchor="start" x="56" y="246">la Comintern</text>
+<path class="sv-line" d="M477 260 L477 280 L150 280 L150 168" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="middle" x="300" y="294">test de Litmus</text>
+<path class="sv-line-red" d="M90 122 L90 74" marker-end="url(#m5-s-arrow)"></path>
+<text class="sv-t3" text-anchor="start" x="96" y="92">horizonte:</text><text class="sv-t3" text-anchor="start" x="96" y="106">abolir el valor</text>
+</svg>

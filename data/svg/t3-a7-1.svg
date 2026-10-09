@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Arriba, árbol genealógico de las familias del comunismo según el momento de la caída; en medio, las cuatro condiciones históricas del frente único con la marca de que hoy solo se cumple la cuarta; abajo, matriz de contraste en tres filas entre el canon trotskista (Programa de Transición, frente único, consejos como doble poder) y la propuesta del Movimiento Socialista (reformas como acumulación de fuerzas, independencia política primero, consejos socialistas)" role="img" viewBox="0 0 760 490">
+<defs><marker id="m3-7-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-ink" height="44" rx="2" width="150" x="12" y="14"></rect>
+<text class="sv-tw" text-anchor="middle" x="87" y="32">Comunismo del siglo XX</text>
+<text class="sv-tw" text-anchor="middle" x="87" y="48">«¿cuándo se jodió?»</text>
+<path class="sv-line" d="M162 36 H188" marker-end="url(#m3-7-arrow)"></path>
+<rect class="sv-soft" height="44" rx="2" width="128" x="190" y="14"></rect>
+<text class="sv-t" text-anchor="middle" x="254" y="32">Kronstadt</text>
+<text class="sv-t2" text-anchor="middle" x="254" y="48">1921</text>
+<path class="sv-line" d="M318 36 H328" marker-end="url(#m3-7-arrow)"></path>
+<rect class="sv-soft" height="44" rx="2" width="128" x="330" y="14"></rect>
+<text class="sv-t" text-anchor="middle" x="394" y="32">Socialismo en</text>
+<text class="sv-t2" text-anchor="middle" x="394" y="48">un solo país</text>
+<path class="sv-line" d="M458 36 H468" marker-end="url(#m3-7-arrow)"></path>
+<rect class="sv-soft" height="44" rx="2" width="128" x="470" y="14"></rect>
+<text class="sv-t" text-anchor="middle" x="534" y="32">XX Congreso</text>
+<text class="sv-t2" text-anchor="middle" x="534" y="48">del PCUS</text>
+<path class="sv-line" d="M598 36 H608" marker-end="url(#m3-7-arrow)"></path>
+<rect class="sv-soft" height="44" rx="2" width="138" x="610" y="14"></rect>
+<text class="sv-t" text-anchor="middle" x="679" y="32">Ruptura</text>
+<text class="sv-t2" text-anchor="middle" x="679" y="48">sino-soviética</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="76">cada «momento de la caída» funda una familia: sectas homogéneas dedicadas a la exégesis</text>
+<text class="sv-t3" x="12" y="102">CONDICIONES DEL FRENTE ÚNICO (AÑOS 20): HOY SOLO SE CUMPLE LA CUARTA</text>
+<rect class="sv-box" height="50" rx="2" width="172" x="12" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="98" y="130">Sociedad obrera paralela</text>
+<text class="sv-tr" text-anchor="middle" x="98" y="148">hoy: no</text>
+<rect class="sv-box" height="50" rx="2" width="172" x="200" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="286" y="130">Komintern activa</text>
+<text class="sv-tr" text-anchor="middle" x="286" y="148">hoy: no</text>
+<rect class="sv-box" height="50" rx="2" width="172" x="388" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="474" y="130">Guerra y saber militar</text>
+<text class="sv-tr" text-anchor="middle" x="474" y="148">hoy: no</text>
+<rect class="sv-box-green" height="50" rx="2" width="172" x="576" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="662" y="130">Crisis económica</text>
+<text class="sv-tgr" text-anchor="middle" x="662" y="148">hoy: sí</text>
+<text class="sv-t3" text-anchor="middle" x="187" y="192">CANON TROTSKISTA</text>
+<text class="sv-t3" text-anchor="middle" x="573" y="192">PROPUESTA DEL MOVIMIENTO SOCIALISTA</text>
+<rect class="sv-box-red" height="84" rx="2" width="350" x="12" y="200"></rect>
+<text class="sv-tr" text-anchor="middle" x="187" y="221">Programa de Transición (1938)</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="238">fuerzas productivas que «han cesado de crecer»</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="253">condiciones objetivas dadas; solo falta dirección</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="268">demandas transitorias</text>
+<path class="sv-line" d="M364 242 H396" marker-end="url(#m3-7-arrow)" marker-start="url(#m3-7-arrow)"></path>
+<rect class="sv-box-green" height="84" rx="2" width="350" x="398" y="200"></rect>
+<text class="sv-tgr" text-anchor="middle" x="573" y="221">Reformas como acumulación de fuerzas</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="238">tecnología organizativa, propaganda, combatividad</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="253">ej.: Propuesta Política del Sindicato de Vivienda</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="268">Socialista de Euskal Herria</text>
+<rect class="sv-box-red" height="84" rx="2" width="350" x="12" y="296"></rect>
+<text class="sv-tr" text-anchor="middle" x="187" y="317">Frente único</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="334">sindical: organizaciones de masas no comunistas</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="349">político: frentes electorales → «gobierno obrero»</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="364">= gobiernos burgueses «con mono azul»</text>
+<path class="sv-line" d="M364 338 H396" marker-end="url(#m3-7-arrow)" marker-start="url(#m3-7-arrow)"></path>
+<rect class="sv-box-green" height="84" rx="2" width="350" x="398" y="296"></rect>
+<text class="sv-tgr" text-anchor="middle" x="573" y="317">Independencia política primero</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="334">fase prepartidaria: consejos, frentes contra</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="349">opresiones, unificación, hegemonización</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="364">(el frente único sindical sigue válido en lo salarial)</text>
+<rect class="sv-box-red" height="84" rx="2" width="350" x="12" y="392"></rect>
+<text class="sv-tr" text-anchor="middle" x="187" y="413">Consejos como doble poder</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="430">órganos territoriales bajo dirección del Partido</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="445">(marxismo-leninismo, trotskismo, bordiguismo)</text>
+<text class="sv-t2" text-anchor="middle" x="187" y="460">o consejos de fábrica procesuales (Gramsci)</text>
+<path class="sv-line" d="M364 434 H396" marker-end="url(#m3-7-arrow)" marker-start="url(#m3-7-arrow)"></path>
+<rect class="sv-box-green" height="84" rx="2" width="350" x="398" y="392"></rect>
+<text class="sv-tgr" text-anchor="middle" x="573" y="413">Consejos socialistas</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="430">medio para reconstituir el Partido y preparar</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="445">la destrucción del Estado burgués</text>
+<text class="sv-t2" text-anchor="middle" x="573" y="460">«socialistas» por orientación, no por contenido</text>
+</svg>

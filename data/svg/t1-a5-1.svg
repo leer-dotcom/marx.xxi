@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Contraste entre el modelo procesual de la alienación, una secuencia lineal de esencia, externalización, enajenación y recuperación, y el modelo de la seipseigualdad auto-escindida, un bucle en que la práctica externalizante, la enajenación en dinero y valor, la retroyección y la determinabilidad reconocida ex post se encadenan sin punto libre de enajenación. Debajo, el dilema inmanencia-trascendencia que el bucle disuelve." role="img" viewBox="0 0 760 440">
+<defs><marker id="m1-5-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="20" y="22">MODELO PROCESUAL (POR ESTADIOS)</text>
+<rect class="sv-box" height="44" rx="2" width="240" x="60" y="40"></rect>
+<text class="sv-t" text-anchor="middle" x="180" y="59">Esencia originaria</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="74">ser genérico como sustancia</text>
+<rect class="sv-box" height="44" rx="2" width="240" x="60" y="110"></rect>
+<text class="sv-t" text-anchor="middle" x="180" y="129">Externalización</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="144">Entäusserung</text>
+<rect class="sv-box-red" height="44" rx="2" width="240" x="60" y="180"></rect>
+<text class="sv-tr" text-anchor="middle" x="180" y="199">Enajenación</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="214">Entfremdung, segunda naturaleza</text>
+<rect class="sv-box" height="44" rx="2" width="240" x="60" y="250"></rect>
+<text class="sv-t" text-anchor="middle" x="180" y="269">Liberación</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="284">recuperación de la esencia perdida</text>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="180" x2="180" y1="84" y2="110"></line>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="180" x2="180" y1="154" y2="180"></line>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="180" x2="180" y1="224" y2="250"></line>
+<text class="sv-tr" text-anchor="middle" x="180" y="318">crítica: reifica los momentos</text>
+<text class="sv-t2" text-anchor="middle" x="180" y="334">(esencia previa y recuperación final)</text>
+<text class="sv-t3" x="410" y="22">SEIPSEIGUALDAD AUTO-ESCINDIDA (BUCLE)</text>
+<rect class="sv-box-blue" height="56" rx="2" width="150" x="420" y="40"></rect>
+<text class="sv-tb" text-anchor="middle" x="495" y="63">Práctica</text>
+<text class="sv-tb" text-anchor="middle" x="495" y="79">externalizante</text>
+<rect class="sv-box-red" height="56" rx="2" width="150" x="590" y="40"></rect>
+<text class="sv-tr" text-anchor="middle" x="665" y="63">Enajenación</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="79">dinero, valor</text>
+<rect class="sv-box" height="56" rx="2" width="150" x="590" y="180"></rect>
+<text class="sv-t" text-anchor="middle" x="665" y="203">Retroyección</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="219">de precondiciones</text>
+<rect class="sv-box" height="56" rx="2" width="150" x="420" y="180"></rect>
+<text class="sv-t" text-anchor="middle" x="495" y="203">Determinabilidad</text>
+<text class="sv-t2" text-anchor="middle" x="495" y="219">reconocida ex post</text>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="570" x2="590" y1="68" y2="68"></line>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="665" x2="665" y1="96" y2="180"></line>
+<line class="sv-line" marker-end="url(#m1-5-arrow)" x1="590" x2="570" y1="208" y2="208"></line>
+<line class="sv-line-red" marker-end="url(#m1-5-arrow)" x1="495" x2="495" y1="180" y2="96"></line>
+<text class="sv-t3" x="503" y="142">nueva externalización</text>
+<text class="sv-tr" text-anchor="middle" x="580" y="274">no hay punto libre de enajenación</text>
+<text class="sv-t2" text-anchor="middle" x="580" y="292">la potencialidad se determina ex post, no ex ante</text>
+<rect class="sv-box-gold" height="78" rx="2" width="720" x="20" y="350"></rect>
+<text class="sv-tg" text-anchor="middle" x="380" y="372">DILEMA QUE EL BUCLE DISUELVE (inmanencia / trascendencia)</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="392">o el ser genérico se funde con las relaciones vigentes (y entonces no son deficientes)</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="410">o las trasciende como esencia ahistórica (resubstancialización idealista)</text>
+</svg>

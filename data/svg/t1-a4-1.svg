@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Tres filas paralelas de tránsito: lógica del ser, de la esencia y del concepto; familia, sociedad civil y Estado; premodernidad, reino de la necesidad y reino de la libertad. Una barrera marca el bloqueo bajo el capitalismo entre la segunda y la tercera columna, y una flecha alternativa salta hacia la asociación libre de productores." role="img" viewBox="0 0 760 370">
+<defs><marker id="m1-4-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" x="15" y="74">LÓGICA</text>
+<text class="sv-t3" x="15" y="144">ETICIDAD</text>
+<text class="sv-t3" x="15" y="214">HISTORIA</text>
+<rect class="sv-box" height="48" rx="2" width="180" x="120" y="46"></rect>
+<text class="sv-t" text-anchor="middle" x="210" y="74">Lógica del ser</text>
+<rect class="sv-box-blue" height="48" rx="2" width="180" x="330" y="46"></rect>
+<text class="sv-tb" text-anchor="middle" x="420" y="66">Lógica de la esencia</text>
+<text class="sv-t2" text-anchor="middle" x="420" y="82">oposición, apariencia</text>
+<rect class="sv-box-green" height="48" rx="2" width="180" x="540" y="46"></rect>
+<text class="sv-tgr" text-anchor="middle" x="630" y="66">Lógica del concepto</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="82">unidad libre de U-P-S</text>
+<rect class="sv-box" height="48" rx="2" width="180" x="120" y="116"></rect>
+<text class="sv-t" text-anchor="middle" x="210" y="144">Familia</text>
+<rect class="sv-box-blue" height="48" rx="2" width="180" x="330" y="116"></rect>
+<text class="sv-tb" text-anchor="middle" x="420" y="136">Sociedad civil</text>
+<text class="sv-t2" text-anchor="middle" x="420" y="152">sistema de necesidades, mercado</text>
+<rect class="sv-box-green" height="48" rx="2" width="180" x="540" y="116"></rect>
+<text class="sv-tgr" text-anchor="middle" x="630" y="136">Estado</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="152">libertad concreta</text>
+<rect class="sv-box" height="48" rx="2" width="180" x="120" y="186"></rect>
+<text class="sv-t" text-anchor="middle" x="210" y="214">(premoderno)</text>
+<rect class="sv-box-blue" height="48" rx="2" width="180" x="330" y="186"></rect>
+<text class="sv-tb" text-anchor="middle" x="420" y="206">Reino de la necesidad</text>
+<text class="sv-t2" text-anchor="middle" x="420" y="222">capitalismo</text>
+<rect class="sv-box-green" height="48" rx="2" width="180" x="540" y="186"></rect>
+<text class="sv-tgr" text-anchor="middle" x="630" y="206">Reino de la libertad</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="222">comunismo</text>
+<line class="sv-line" marker-end="url(#m1-4-arrow)" x1="300" x2="330" y1="70" y2="70"></line>
+<line class="sv-line" marker-end="url(#m1-4-arrow)" x1="300" x2="330" y1="140" y2="140"></line>
+<line class="sv-line" marker-end="url(#m1-4-arrow)" x1="300" x2="330" y1="210" y2="210"></line>
+<line class="sv-line-dash" marker-end="url(#m1-4-arrow)" x1="510" x2="540" y1="70" y2="70"></line>
+<line class="sv-line-dash" marker-end="url(#m1-4-arrow)" x1="510" x2="540" y1="140" y2="140"></line>
+<line class="sv-line-dash" marker-end="url(#m1-4-arrow)" x1="510" x2="540" y1="210" y2="210"></line>
+<line class="sv-line-red" x1="525" x2="525" y1="34" y2="250"></line>
+<text class="sv-tr" text-anchor="middle" x="525" y="270">bloqueo bajo el capitalismo:</text>
+<text class="sv-t2" text-anchor="middle" x="525" y="286">el Estado, sometido al mercado, no realiza la libertad</text>
+<path class="sv-line-red" d="M420 234 V332 H540" marker-end="url(#m1-4-arrow)"></path>
+<rect class="sv-box-green" height="48" rx="2" width="180" x="540" y="308"></rect>
+<text class="sv-tgr" text-anchor="middle" x="630" y="328">Asociación libre</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="344">de productores (comuna)</text>
+<text class="sv-tr" x="20" y="326">salto: abolición de la propiedad privada,</text>
+<text class="sv-t2" x="20" y="342">el trabajo asalariado y la familia burguesa</text>
+</svg>

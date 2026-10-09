@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Inversión de la jerarquía entre medios y fines con el socialismo en un solo país, y los tres pilares del estalinismo con sus antecedentes de preguerra" role="img" viewBox="0 0 760 370">
+<defs><marker id="m5-4-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" text-anchor="middle" x="195" y="26">ANTES · 1917-1923 · retiradas reconocidas</text>
+<rect class="sv-box" height="44" rx="2" width="220" x="85" y="44"></rect>
+<text class="sv-t" text-anchor="middle" x="195" y="71">Estado soviético</text>
+<path class="sv-line" d="M195 88 L195 134" marker-end="url(#m5-4-arrow)"></path>
+<text class="sv-t3" x="205" y="115">instrumento subordinado a</text>
+<rect class="sv-box-red" height="44" rx="2" width="220" x="85" y="136"></rect>
+<text class="sv-tr" text-anchor="middle" x="195" y="163">Revolución mundial</text>
+<text class="sv-t2" text-anchor="middle" x="195" y="202">Brest-Litovsk (1918) y NEP (1921):</text>
+<text class="sv-t2" text-anchor="middle" x="195" y="217">zigzags reversibles, nunca «avances»</text>
+<path class="sv-line-dash" d="M380 16 L380 226"></path>
+<text class="sv-t3" text-anchor="middle" x="565" y="26">DESPUÉS · 1924- · la retirada como avance</text>
+<rect class="sv-box" height="44" rx="2" width="220" x="455" y="44"></rect>
+<text class="sv-t" text-anchor="middle" x="565" y="64">Revolución mundial</text>
+<text class="sv-t2" text-anchor="middle" x="565" y="80">proletariado mundial y Comintern</text>
+<path class="sv-line-red" d="M565 88 L565 134" marker-end="url(#m5-4-arrow)"></path>
+<text class="sv-t3" x="575" y="115">instrumento de la defensa de</text>
+<rect class="sv-box-ink" height="44" rx="2" width="220" x="455" y="136"></rect>
+<text class="sv-tw" text-anchor="middle" x="565" y="163">Estado soviético (URSS)</text>
+<text class="sv-t2" text-anchor="middle" x="565" y="202">socialismo en un solo país (Stalin, 1924-26):</text>
+<text class="sv-t2" text-anchor="middle" x="565" y="217">la capitulación convertida en principio</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="250">LOS TRES PILARES DEL ESTALINISMO Y SUS ANTECEDENTES DE PREGUERRA</text>
+<rect class="sv-box-gold" height="96" rx="2" width="220" x="20" y="262"></rect>
+<text class="sv-t" text-anchor="middle" x="130" y="286">Socialismo en un solo país</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="312">← socialismo nacional</text>
+<text class="sv-t2" text-anchor="middle" x="130" y="327">de Lassalle y Vollmar</text>
+<rect class="sv-box-gold" height="96" rx="2" width="220" x="270" y="262"></rect>
+<text class="sv-t" text-anchor="middle" x="380" y="286">Estado permanente</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="312">← «Estado popular libre» /</text>
+<text class="sv-t2" text-anchor="middle" x="380" y="327">«Estado de todo el pueblo»</text>
+<rect class="sv-box-gold" height="96" rx="2" width="220" x="520" y="262"></rect>
+<text class="sv-t" text-anchor="middle" x="630" y="286">Estatalización = socialismo</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="312">← socialismo de Estado</text>
+<text class="sv-t2" text-anchor="middle" x="630" y="327">bismarckiano</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Línea temporal 1917-1949 con las tres grandes retiradas y los hitos de la degeneración, y debajo los virajes sucesivos de la Comintern" role="img" viewBox="0 0 760 312">
+<defs><marker id="m5-4-tl" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<path class="sv-line" d="M14 160 L746 160" marker-end="url(#m5-4-tl)"></path>
+<path class="sv-line-dash" d="M30 160 L30 140"></path><circle class="sv-dot-b" cx="30" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="30" y="132">1917</text>
+<text class="sv-t2" text-anchor="middle" x="30" y="101">Octubre: toma</text><text class="sv-t2" text-anchor="middle" x="30" y="116">del poder</text>
+<path class="sv-line-dash" d="M84 160 L84 180"></path><circle class="sv-dot" cx="84" cy="160" r="5"></circle>
+<text class="sv-t3" text-anchor="middle" x="84" y="194">1918</text>
+<text class="sv-t2" text-anchor="middle" x="84" y="212">Brest-Litovsk</text><text class="sv-tr" text-anchor="middle" x="84" y="227">Retirada 1</text>
+<path class="sv-line-dash" d="M138 160 L138 140"></path><circle class="sv-dot-b" cx="138" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="138" y="132">1919</text>
+<text class="sv-t2" text-anchor="middle" x="138" y="101">fundación de</text><text class="sv-t2" text-anchor="middle" x="138" y="116">la Comintern</text>
+<path class="sv-line-dash" d="M192 160 L192 180"></path><circle class="sv-dot" cx="192" cy="160" r="5"></circle>
+<text class="sv-t3" text-anchor="middle" x="192" y="194">1921</text>
+<text class="sv-t2" text-anchor="middle" x="192" y="212">NEP, Kronstadt</text><text class="sv-tr" text-anchor="middle" x="192" y="227">Retirada 2</text>
+<path class="sv-line-dash" d="M246 160 L246 140"></path><circle class="sv-dot-b" cx="246" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="246" y="132">1923</text>
+<text class="sv-t2" text-anchor="middle" x="246" y="101">derrota</text><text class="sv-t2" text-anchor="middle" x="246" y="116">alemana</text>
+<path class="sv-line-dash" d="M300 160 L300 180"></path><circle class="sv-dot-b" cx="300" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="300" y="194">1924-26</text>
+<text class="sv-t2" text-anchor="middle" x="300" y="212">socialismo en</text><text class="sv-t2" text-anchor="middle" x="300" y="227">un solo país</text>
+<path class="sv-line-dash" d="M354 160 L354 140"></path><circle class="sv-dot" cx="354" cy="160" r="5"></circle>
+<text class="sv-t3" text-anchor="middle" x="354" y="132">1929</text>
+<text class="sv-t2" text-anchor="middle" x="354" y="101">Gran Viraje</text><text class="sv-tr" text-anchor="middle" x="354" y="116">Retirada 3</text>
+<path class="sv-line-dash" d="M408 160 L408 180"></path><circle class="sv-dot-b" cx="408" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="408" y="194">1933</text>
+<text class="sv-t2" text-anchor="middle" x="408" y="212">Hitler: fracaso</text><text class="sv-t2" text-anchor="middle" x="408" y="227">del social-</text><text class="sv-t2" text-anchor="middle" x="408" y="242">fascismo</text>
+<path class="sv-line-dash" d="M462 160 L462 140"></path><circle class="sv-dot-b" cx="462" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="462" y="132">1935</text>
+<text class="sv-t2" text-anchor="middle" x="462" y="101">VII Congreso:</text><text class="sv-t2" text-anchor="middle" x="462" y="116">frente popular</text>
+<path class="sv-line-dash" d="M516 160 L516 180"></path><circle class="sv-dot-b" cx="516" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="516" y="194">1936-38</text>
+<text class="sv-t2" text-anchor="middle" x="516" y="212">Gran Terror</text>
+<path class="sv-line-dash" d="M570 160 L570 140"></path><circle class="sv-dot-b" cx="570" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="570" y="132">1939</text>
+<text class="sv-t2" text-anchor="middle" x="570" y="101">pacto Mólotov-</text><text class="sv-t2" text-anchor="middle" x="570" y="116">Ribbentrop</text>
+<path class="sv-line-dash" d="M624 160 L624 180"></path><circle class="sv-dot-b" cx="624" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="624" y="194">1943</text>
+<text class="sv-t2" text-anchor="middle" x="624" y="212">disolución de</text><text class="sv-t2" text-anchor="middle" x="624" y="227">la Comintern</text>
+<path class="sv-line-dash" d="M678 160 L678 140"></path><circle class="sv-dot-b" cx="678" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="678" y="132">1947</text>
+<text class="sv-t2" text-anchor="middle" x="678" y="101">Plan Marshall;</text><text class="sv-t2" text-anchor="middle" x="678" y="116">Cominform</text>
+<path class="sv-line-dash" d="M732 160 L732 180"></path><circle class="sv-dot-b" cx="732" cy="160" r="4"></circle>
+<text class="sv-t3" text-anchor="middle" x="732" y="194">1949</text>
+<text class="sv-t2" text-anchor="middle" x="732" y="212">victoria de Mao;</text><text class="sv-t2" text-anchor="middle" x="732" y="227">Kostov y Rajk</text>
+<rect class="sv-box-red" height="40" rx="2" width="70" x="20" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="55" y="278">1919-23</text><text class="sv-t2" text-anchor="middle" x="55" y="294">ofensiva</text>
+<rect class="sv-box" height="40" rx="2" width="98" x="94" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="143" y="278">1924-27</text><text class="sv-t2" text-anchor="middle" x="143" y="294">bolchevización</text>
+<rect class="sv-box" height="40" rx="2" width="98" x="196" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="245" y="278">1928-34</text><text class="sv-t2" text-anchor="middle" x="245" y="294">socialfascismo</text>
+<rect class="sv-box" height="40" rx="2" width="92" x="298" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="344" y="278">1935-39</text><text class="sv-t2" text-anchor="middle" x="344" y="294">frente popular</text>
+<rect class="sv-box" height="40" rx="2" width="88" x="394" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="438" y="278">1939-41</text><text class="sv-t2" text-anchor="middle" x="438" y="294">pacto con Hitler</text>
+<rect class="sv-box" height="40" rx="2" width="98" x="486" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="535" y="278">1941-43</text><text class="sv-t2" text-anchor="middle" x="535" y="294">guerra patriótica</text>
+<rect class="sv-box" height="40" rx="2" width="90" x="588" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="633" y="278">1944-47</text><text class="sv-t2" text-anchor="middle" x="633" y="294">unidad nacional</text>
+<rect class="sv-box" height="40" rx="2" width="64" x="682" y="262"></rect>
+<text class="sv-t3" text-anchor="middle" x="714" y="278">1947-</text><text class="sv-t2" text-anchor="middle" x="714" y="294">dos campos</text>
+</svg>

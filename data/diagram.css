@@ -1,0 +1,59 @@
+/*
+ * Estilos de los esquemas de Marx XXI (fuente única: la copian la web y la app Android).
+ * Ver DIAGRAMAS.md para el vocabulario de clases que deben usar los esquemas nuevos.
+ *
+ * Los colores salen de variables --d-*. Por defecto, tema claro de marxxxi.com; la web las enlaza
+ * con sus propios tokens (modo oscuro, color del volumen) y Android las fija al generar el HTML.
+ */
+.dg{
+  --d-bg:#f6f4f4;      /* fondo del esquema */
+  --d-paper:#ffffff;   /* relleno de cajas */
+  --d-ink:#252525;     /* texto principal y bordes */
+  --d-ink2:#5b5a5a;    /* texto secundario y flechas */
+  --d-ink3:#8a8686;    /* etiquetas y líneas discontinuas */
+  --d-soft:rgba(37,37,37,.055);
+  --d-c1:#2c332f;      /* acento: color del volumen (antes «rojo») */
+  --d-c2:#3c5a72;      /* pizarra (antes «azul») */
+  --d-c3:#716a56;      /* oliva (antes «oro») */
+  --d-c4:#3f5147;      /* verde (antes «verde») */
+  --d-font:"Alegreya",Georgia,serif;
+  --d-font-sc:"Alegreya SC","Alegreya",Georgia,serif;
+  background:var(--d-bg);
+  color:var(--d-ink);
+}
+.dg.dark{
+  --d-bg:#2c332f; --d-paper:#232925; --d-ink:#efecec; --d-ink2:#c3c1bf; --d-ink3:#8f948f;
+  --d-soft:rgba(239,236,236,.06);
+  --d-c1:#efecec; --d-c2:#8fb0c8; --d-c3:#c9bf9f; --d-c4:#a9bcb0;
+}
+.dg svg{display:block;width:100%;height:auto;overflow:visible}
+.dg text{font-family:var(--d-font);letter-spacing:.01em}
+
+/* cajas */
+.dg .sv-box{fill:var(--d-paper);stroke:var(--d-ink);stroke-width:1.1}
+.dg .sv-box-red{fill:color-mix(in srgb,var(--d-c1) 13%,var(--d-paper));stroke:var(--d-c1);stroke-width:1.3}
+.dg .sv-box-blue{fill:color-mix(in srgb,var(--d-c2) 13%,var(--d-paper));stroke:var(--d-c2);stroke-width:1.2}
+.dg .sv-box-gold{fill:color-mix(in srgb,var(--d-c3) 15%,var(--d-paper));stroke:var(--d-c3);stroke-width:1.2}
+.dg .sv-box-green{fill:color-mix(in srgb,var(--d-c4) 13%,var(--d-paper));stroke:var(--d-c4);stroke-width:1.2}
+.dg .sv-box-ink{fill:var(--d-ink);stroke:var(--d-ink)}
+.dg .sv-soft{fill:var(--d-soft);stroke:none}
+
+/* líneas y flechas */
+.dg .sv-line{stroke:var(--d-ink2);stroke-width:1.4;fill:none}
+.dg .sv-line-red{stroke:var(--d-c1);stroke-width:1.7;fill:none}
+.dg .sv-line-dash{stroke:var(--d-ink3);stroke-width:1.2;fill:none;stroke-dasharray:4 4}
+.dg .sv-arrow{fill:var(--d-ink2)}
+
+/* textos */
+.dg .sv-t{fill:var(--d-ink);font-size:14px;font-weight:700}
+.dg .sv-t2{fill:var(--d-ink2);font-size:13px}
+.dg .sv-t3{fill:var(--d-ink3);font-family:var(--d-font-sc);font-size:11.5px;letter-spacing:.06em}
+.dg .sv-tr{fill:var(--d-c1);font-size:13.5px;font-weight:700}
+.dg .sv-tb{fill:var(--d-c2);font-size:13.5px;font-weight:700}
+.dg .sv-tg{fill:var(--d-c3);font-size:13.5px;font-weight:700}
+.dg .sv-tgr{fill:var(--d-c4);font-size:13.5px;font-weight:700}
+.dg .sv-tw{fill:var(--d-paper);font-size:14px;font-weight:700}
+
+/* puntos */
+.dg .sv-dot{fill:var(--d-c1)}
+.dg .sv-dot-b{fill:var(--d-c2)}

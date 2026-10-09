@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Árbol genealógico de Podemos: tres raíces (eurocomunista, populista y trotskista) convergen en el tronco Podemos 2014 y se ramifican en purgas, techo electoral y gobierno de coalición; debajo, el eje temporal del 15M" role="img" viewBox="0 0 760 430">
+<defs><marker id="m4-5-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<text class="sv-t3" text-anchor="middle" x="130" y="18">RAÍZ 1 · (ex)eurocomunista</text>
+<text class="sv-t3" text-anchor="middle" x="380" y="18">RAÍZ 2 · populista</text>
+<text class="sv-t3" text-anchor="middle" x="630" y="18">RAÍZ 3 · trotskista (SU)</text>
+<rect class="sv-box" height="30" rx="2" width="220" x="20" y="28"></rect><text class="sv-t2" text-anchor="middle" x="130" y="48">Frentes populares</text>
+<path class="sv-line" d="M130 58 L130 66" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="20" y="68"></rect><text class="sv-t2" text-anchor="middle" x="130" y="88">Vías nacionales al socialismo</text>
+<path class="sv-line" d="M130 98 L130 106" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="20" y="108"></rect><text class="sv-t" text-anchor="middle" x="130" y="128">Eurocomunismo</text>
+<path class="sv-line" d="M130 138 L130 146" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box-gold" height="30" rx="2" width="220" x="20" y="148"></rect><text class="sv-tg" text-anchor="middle" x="130" y="168">PCE · IU (Anguita)</text>
+<rect class="sv-box" height="30" rx="2" width="220" x="270" y="28"></rect><text class="sv-t2" text-anchor="middle" x="380" y="48">Experiencias nacional-populares</text>
+<path class="sv-line" d="M380 58 L380 66" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="270" y="68"></rect><text class="sv-t2" text-anchor="middle" x="380" y="88">Laclau y Mouffe (academia)</text>
+<path class="sv-line" d="M380 98 L380 106" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="270" y="108"></rect><text class="sv-t" text-anchor="middle" x="380" y="128">Hipótesis populista</text>
+<path class="sv-line" d="M380 138 L380 146" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box-gold" height="30" rx="2" width="220" x="270" y="148"></rect><text class="sv-tg" text-anchor="middle" x="380" y="168">Errejonismo</text>
+<rect class="sv-box" height="30" rx="2" width="220" x="520" y="28"></rect><text class="sv-t2" text-anchor="middle" x="630" y="48">IV Internacional · SU / Mandel</text>
+<path class="sv-line" d="M630 58 L630 66" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="520" y="68"></rect><text class="sv-t2" text-anchor="middle" x="630" y="88">Entrismo sui generis</text>
+<path class="sv-line" d="M630 98 L630 106" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="30" rx="2" width="220" x="520" y="108"></rect><text class="sv-t" text-anchor="middle" x="630" y="128">Partido amplio anticapitalista</text>
+<path class="sv-line" d="M630 138 L630 146" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box-gold" height="30" rx="2" width="220" x="520" y="148"></rect><text class="sv-tg" text-anchor="middle" x="630" y="168">Anticapitalistas</text>
+<path class="sv-line" d="M130 178 L130 192 L300 192 L300 208" marker-end="url(#m4-5-arrow)"></path>
+<path class="sv-line" d="M380 178 L380 208" marker-end="url(#m4-5-arrow)"></path>
+<path class="sv-line" d="M630 178 L630 192 L460 192 L460 208" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box-red" height="50" rx="2" width="200" x="280" y="210"></rect><text class="sv-tr" text-anchor="middle" x="380" y="231">PODEMOS (2014)</text><text class="sv-t2" text-anchor="middle" x="380" y="248">máquina de guerra electoral</text>
+<text class="sv-t3" text-anchor="end" x="200" y="245">«en política no</text><text class="sv-t3" text-anchor="end" x="200" y="258">hay espacios vacíos»</text>
+<path class="sv-line-dash" d="M300 260 L300 274 L130 274 L130 290" marker-end="url(#m4-5-arrow)"></path>
+<path class="sv-line-dash" d="M380 260 L380 290" marker-end="url(#m4-5-arrow)"></path>
+<path class="sv-line-dash" d="M460 260 L460 274 L630 274 L630 290" marker-end="url(#m4-5-arrow)"></path>
+<rect class="sv-box" height="50" rx="2" width="220" x="20" y="292"></rect><text class="sv-t" text-anchor="middle" x="130" y="312">Purgas y escisiones</text><text class="sv-t2" text-anchor="middle" x="130" y="328">Más País · salida de Anticapitalistas</text>
+<rect class="sv-box" height="50" rx="2" width="220" x="270" y="292"></rect><text class="sv-t" text-anchor="middle" x="380" y="312">Techo electoral 2015-16</text><text class="sv-t2" text-anchor="middle" x="380" y="328">sin sorpasso · guerra mediática</text>
+<rect class="sv-box" height="50" rx="2" width="220" x="520" y="292"></rect><text class="sv-t" text-anchor="middle" x="630" y="312">Gobierno de coalición</text><text class="sv-t2" text-anchor="middle" x="630" y="328">administración del Estado en crisis</text>
+<line class="sv-line" marker-end="url(#m4-5-arrow)" x1="20" x2="740" y1="385" y2="385"></line>
+<circle class="sv-dot-b" cx="90" cy="385" r="5"></circle><circle class="sv-dot-b" cx="290" cy="385" r="5"></circle><circle class="sv-dot-b" cx="480" cy="385" r="5"></circle><circle class="sv-dot-b" cx="660" cy="385" r="5"></circle>
+<text class="sv-tb" text-anchor="middle" x="90" y="372">2011</text><text class="sv-t2" text-anchor="middle" x="90" y="404">15M: movimiento</text>
+<text class="sv-tb" text-anchor="middle" x="290" y="372">2014</text><text class="sv-t2" text-anchor="middle" x="290" y="404">institucionalización</text>
+<text class="sv-tb" text-anchor="middle" x="480" y="372">2015-2016</text><text class="sv-t2" text-anchor="middle" x="480" y="404">techo electoral</text>
+<text class="sv-tb" text-anchor="middle" x="660" y="372">2020</text><text class="sv-t2" text-anchor="middle" x="660" y="404">gobierno</text>
+</svg>

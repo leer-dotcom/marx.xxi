@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Diagrama en capas tipo máscara sobre lo real: arriba el emblema democrático, en medio el semblante de la democracia parlamentaria y abajo el real capitalista. Una flecha vertical, el acontecimiento que divide el semblante, atraviesa las capas y conduce a un recuadro de salida: la hipótesis comunista." role="img" viewBox="0 0 760 400">
+<defs><marker id="m1-12-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
+<rect class="sv-box-gold" height="90" rx="2" width="500" x="20" y="20"></rect>
+<text class="sv-tg" x="30" y="42">CAPA 1 · EMBLEMA DEMOCRÁTICO</text>
+<text class="sv-t2" x="30" y="62">lo intocable del sistema simbólico; legitima todo en su nombre;</text>
+<text class="sv-t2" x="30" y="78">demócrata egoísta, juventud eterna, «diviértanse», presente hipostasiado;</text>
+<text class="sv-t2" x="30" y="94">«opinión autoritaria» frente a la que la filosofía debe ser crítica</text>
+<rect class="sv-box-blue" height="110" rx="2" width="500" x="20" y="130"></rect>
+<text class="sv-tb" x="30" y="152">CAPA 2 · SEMBLANTE: DEMOCRACIA PARLAMENTARIA</text>
+<text class="sv-t2" x="30" y="172">alternancia dentro del capital; cuatro orientaciones y «gran centro blando»;</text>
+<text class="sv-t2" x="30" y="188">neutralización de la alteridad fuerte; voto del miedo (esencial y derivado):</text>
+<text class="sv-t2" x="30" y="204">el voto como operación del Estado, el miedo valida al Estado;</text>
+<text class="sv-t2" x="30" y="220">frontera entre mundo democrático y «antidemocrático»: el canalla es el otro</text>
+<rect class="sv-box-ink" height="90" rx="2" width="500" x="20" y="260"></rect>
+<text class="sv-tw" x="30" y="282">CAPA 3 · REAL CAPITALISTA</text>
+<text class="sv-tw" x="30" y="302">negocios e intereses, no buenas intenciones; saqueo imperial;</text>
+<text class="sv-tw" x="30" y="318">crisis y corrupción inherentes desde el origen;</text>
+<text class="sv-tw" x="30" y="334">mundialización que une objetos y signos y divide a los cuerpos</text>
+<line class="sv-line-red" marker-end="url(#m1-12-arrow)" x1="560" x2="560" y1="345" y2="30"></line>
+<text class="sv-tr" text-anchor="middle" x="600" y="372">acontecimiento político:</text>
+<text class="sv-t2" text-anchor="middle" x="600" y="388">dividir el semblante, arrancar la máscara</text>
+<line class="sv-line-red" marker-end="url(#m1-12-arrow)" x1="560" x2="590" y1="150" y2="150"></line>
+<rect class="sv-box-green" height="220" rx="2" width="150" x="590" y="40"></rect>
+<text class="sv-tgr" text-anchor="middle" x="665" y="64">Hipótesis comunista</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="88">fin del capitalismo</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="104">desprivatizar la producción</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="120">extinción del Estado</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="136">fin de la división</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="150">manual / intelectual</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="172">sujeto no prefijado,</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="186">internacionalista</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="208">aristocratismo para todos</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="230">«existe un solo mundo»</text>
+<text class="sv-t2" text-anchor="middle" x="665" y="248">democracia = igualdad</text>
+</svg>
