@@ -622,9 +622,10 @@ function articleView(id, tab = 0) {
     </div>`;
   } else body = guideTab(a, tab);
   return `<div class="wrap has-fab" data-vol="${v.key}">
-    <header class="page-head with-aside vol-head"><div class="ph-main">
+    <header class="page-head with-aside vol-head art-band"><div class="ph-main">
       <a class="eyebrow ph-pub" href="${v.pub.home}">${esc(v.pub.name)}</a>
-      <a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v).replace(v.pub.name + ' ', ''))}${isInterview(a) ? ' · Entrevista' : ''}</a>
+      <a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v).replace(v.pub.name + ' ', ''))}</a>
+      <div class="eyebrow vol ph-art">${isInterview(a) ? 'Entrevista' : `Artículo ${a.number}`}</div>
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
       ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
       ${(() => {
@@ -1185,6 +1186,8 @@ async function route() {
   const [path, qs] = location.hash.replace(/^#/, '').split('?');
   const params = new URLSearchParams(qs || '');
   const parts = (path || '/').split('/').filter(Boolean);
+  // guía de un artículo: cabecera en color pastel del volumen y fondo gris muy claro (ver .art-page)
+  document.body.classList.toggle('art-page', parts[0] === 'articulo');
   let out;
   switch (parts[0]) {
     case undefined: out = libraryView(); break;

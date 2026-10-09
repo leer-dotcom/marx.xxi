@@ -649,3 +649,17 @@ div.dg-title{color:var(--ink)}
 .card.thesis > summary:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 .card.thesis .thesis-body{padding:0 18px 16px}
 .card.thesis{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 64px)}
+
+/* cabeceras: revista, volumen y número de artículo como un bloque compacto encima del título */
+.ph-main > .eyebrow{display:block;line-height:1.3;margin:0}
+.ph-main > .eyebrow + .eyebrow{margin-top:3px}
+.ph-main > .eyebrow + h1{margin-top:8px}
+.ph-art{font-weight:700;letter-spacing:.07em}
+
+/* guía de un artículo: para distinguirla de la página del volumen, la cabecera lleva una franja en color
+   pastel del volumen (a todo el ancho) y el resto de la página un gris muy claro */
+body.art-page{background:var(--paper)}
+body.art-page .tabs{background:var(--paper)}
+.art-band{--band:color-mix(in srgb,var(--vol) 13%,var(--paper));background:var(--band);
+  box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);margin-top:-16px;padding-top:36px;padding-bottom:18px;margin-bottom:6px}
+.art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 70%,transparent)}
