@@ -1,7 +1,6 @@
 @echo off
 rem Construye la web en local y la abre en el navegador (para depurar sin publicar).
-rem   lanzar.bat            regenera datos + comprueba + servidor en el puerto 8765
-rem   lanzar.bat rapido     no regenera los datos (arranque inmediato)
+rem   lanzar.bat            comprueba los datos + servidor en el puerto 8765
 rem   lanzar.bat 8080       otro puerto
 rem Antes de arrancar cierra los servidores de Marx XXI anteriores.
 rem Nunca cierra otros programas: si el puerto esta ocupado por otra cosa, usa el siguiente libre.

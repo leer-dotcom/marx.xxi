@@ -14,15 +14,20 @@ js/reader.js            modo lectura
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
 manifest.webmanifest    instalación como app («Añadir a pantalla de inicio»)
-data/                   content.json, svg/ y texto/ (textos íntegros estructurados, ver texto/FORMATO.md); txt/ queda obsoleto
+data/                   contenidos (fuente única): content.json, svg/ y texto/ (textos íntegros estructurados, ver texto/FORMATO.md)
 lanzar.bat              construir + servidor local sin caché (depuración)
 publicar.bat            construir + commit + push (publica en GitHub Pages)
-tools/build.py          regenera datos y comprueba; --release renueva la versión de la caché
+tools/build.py          comprueba y actualiza data/files.json; --release renueva la versión de la caché y de los datos
 tools/dev_server.py     servidor local sin caché
-tools/sync_data.py      copia data/ desde ../MarxXXI-android/app/src/main/assets
 tools/make_icons.py     genera los PNG del icono
 .github/workflows/      publicación automática en GitHub Pages
 ```
+
+## Contenidos
+
+`data/` es la única fuente de los contenidos: ya no hay app Android ni paso de conversión. Para corregir un texto,
+un esquema o la guía, edita directamente el archivo en `data/` (`texto/<id>.json`, `svg/…`, `content.json`) y publica
+con `publicar.bat`, que comprueba que no falte nada y renueva la caché para que los móviles reciban los cambios.
 
 ## Rutas
 
@@ -33,7 +38,7 @@ Los enlaces se pueden compartir: `…/#/leer/t3-a2?b=40` abre ese texto en ese p
 
 ## Probar en local
 
-Doble clic en **`lanzar.bat`**. Regenera los datos desde `app-handoff/` y `txt/`, comprueba que no falte nada
+Doble clic en **`lanzar.bat`**. Comprueba que no falte nada
 (textos, esquemas, archivos del service worker) y abre la web en http://127.0.0.1:8765. El servidor no usa caché:
 basta con recargar el navegador para ver cualquier cambio.
 
@@ -41,7 +46,7 @@ basta con recargar el navegador para ver cualquier cambio.
 lanzar.bat
 ```
 
-Variantes: `lanzar.bat rapido` (no regenera los datos), `lanzar.bat 8080` (otro puerto). Antes de arrancar cierra los servidores de Marx XXI anteriores; si el puerto lo usa otro programa no lo toca y usa el siguiente libre. La consola también
+Variante: `lanzar.bat 8080` (otro puerto). Antes de arrancar cierra los servidores de Marx XXI anteriores; si el puerto lo usa otro programa no lo toca y usa el siguiente libre. La consola también
 muestra la dirección para abrirla desde el móvil en la misma wifi.
 
 Sin el `.bat`: `python tools/build.py` y después `python tools/dev_server.py`.

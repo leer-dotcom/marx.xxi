@@ -1,9 +1,10 @@
-"""Construye la web en local: regenera los datos y comprueba que no falte nada.
+"""Comprueba la web en local antes de publicar. data/ es la fuente de los contenidos.
 
 Uso (desde MarxXXI-web):
-    python tools/build.py              # regenerar datos + comprobar
-    python tools/build.py --no-data    # solo comprobar
-    python tools/build.py --release    # además, nueva VERSION en sw.js (para publicar)
+    python tools/build.py              # comprobar y actualizar data/files.json
+    python tools/build.py --release    # además, nueva versión de la caché (sw.js) y de los datos (content.json)
+
+(--no-data se acepta por compatibilidad y no hace nada: ya no se regeneran datos.)
 """
 import datetime
 import json
@@ -13,33 +14,23 @@ import subprocess
 import sys
 
 WEB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.dirname(WEB)
-PREPARE = os.path.join(ROOT, "MarxXXI-android", "tools", "prepare_assets.py")
-HANDOFF = os.path.join(ROOT, "app-handoff")
+DATA = os.path.join(WEB, "data")
 
 
 def step(msg):
     print(f"\n== {msg}")
 
 
-def run(script):
-    r = subprocess.run([sys.executable, "-I", script], cwd=WEB, capture_output=True, text=True, encoding="utf-8", errors="replace")
-    if r.returncode != 0:
-        print(r.stdout[-2000:], r.stderr[-2000:])
-        sys.exit(f"ERROR al ejecutar {os.path.basename(script)}")
-    return r.stdout
-
-
-def regenerate():
-    if os.path.isfile(PREPARE) and os.path.isdir(HANDOFF):
-        step("Regenerando textos, esquemas y content.json (prepare_assets.py)")
-        out = run(PREPARE)
-        print(out.strip().splitlines()[-1])
-    else:
-        print("Aviso: no encuentro MarxXXI-android/tools/prepare_assets.py o app-handoff/; uso los datos existentes.")
-        return
-    step("Copiando datos a data/ (sync_data.py)")
-    print(run(os.path.join(WEB, "tools", "sync_data.py")).strip())
+def file_list():
+    """data/files.json: lista de archivos que el service worker precarga para el modo sin conexión."""
+    files = sorted(os.path.relpath(os.path.join(dp, f), WEB).replace(os.sep, "/")
+                   for dp, _, fs in os.walk(DATA) for f in fs)
+    p = os.path.join(DATA, "files.json")
+    new = json.dumps(files)
+    old = open(p, encoding="utf-8").read() if os.path.isfile(p) else ""
+    if new != old:
+        open(p, "w", encoding="utf-8", newline="\n").write(new)
+        print(f"data/files.json actualizado ({len(files)} archivos)")
 
 
 def check():
@@ -118,11 +109,17 @@ def check():
 
 
 def release():
-    step("Nueva versión de la caché offline (sw.js)")
+    step("Nueva versión de la caché offline (sw.js) y de los datos (content.json)")
+    now = datetime.datetime.now()
     p = os.path.join(WEB, "sw.js")
     s = open(p, encoding="utf-8").read()
-    ver = "mx-" + datetime.datetime.now().strftime("%Y%m%d-%H%M")
+    ver = "mx-" + now.strftime("%Y%m%d-%H%M")
     s = re.sub(r"const VERSION = '[^']*';", f"const VERSION = '{ver}';", s, count=1)
+    open(p, "w", encoding="utf-8", newline="\n").write(s)
+    # Sello de los datos: la web lo añade a las rutas de data/ (?v=…) para no reutilizar copias viejas
+    p = os.path.join(DATA, "content.json")
+    s = open(p, encoding="utf-8").read()
+    s = re.sub(r'"build":"\d+"', '"build":"%s"' % now.strftime("%Y%m%d%H%M%S"), s, count=1)
     open(p, "w", encoding="utf-8", newline="\n").write(s)
     print(ver)
 
@@ -130,8 +127,7 @@ def release():
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     args = sys.argv[1:]
-    if "--no-data" not in args:
-        regenerate()
+    file_list()
     check()
     if "--release" in args:
         release()
