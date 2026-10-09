@@ -118,6 +118,10 @@ a.card:hover h3{text-decoration:underline;text-underline-offset:4px;text-decorat
 .cover{position:relative}
 .progress{height:4px;background:var(--line-2);border-radius:2px;overflow:hidden;margin-top:10px}
 .progress > i{display:block;height:100%;background:var(--vol);border-radius:2px}
+/* barra de lectura con el porcentaje a la derecha */
+.progress-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.progress-row .progress{flex:1;margin:0}
+.progress-row .pct{flex:none;font-size:14px;line-height:1;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tool{display:flex;gap:12px;align-items:flex-start}
 .tool svg{width:24px;height:24px;flex:none;fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
 .tool strong{font-family:var(--f-body);font-weight:400;font-size:19px;display:block;line-height:1.25}

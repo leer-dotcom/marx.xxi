@@ -344,7 +344,9 @@ function mount({ key, a, v, blocks, params }) {
   // --- restaurar posición
   const startB = params.get('b');
   const saved = store.position(key);
+  let restored = false; // hasta volver a la posición guardada no se guarda nada (no pisar el % con un 0)
   requestAnimationFrame(() => {
+    restored = true;
     if (startB != null) goTo(+startB, { flash: true });
     else if (saved) goTo(saved.block);
     else window.scrollTo(0, 0);
@@ -372,7 +374,7 @@ function mount({ key, a, v, blocks, params }) {
       }
       updateUi();
       clearTimeout(saveT);
-      saveT = setTimeout(() => store.savePosition(key, currentBlock(), progress()), 500);
+      saveT = setTimeout(() => restored && store.savePosition(key, currentBlock(), progress()), 500);
     });
   }
   addEventListener('scroll', onScroll, { passive: true });
@@ -537,7 +539,7 @@ function mount({ key, a, v, blocks, params }) {
   requestWake(s.wakeLock);
 
   return () => {
-    store.savePosition(key, currentBlock(), progress());
+    if (restored) store.savePosition(key, currentBlock(), progress());
     removeEventListener('scroll', onScroll);
     removeEventListener('keydown', onKey);
     document.removeEventListener('selectionchange', onSel);

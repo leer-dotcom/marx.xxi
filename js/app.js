@@ -352,6 +352,9 @@ document.addEventListener('error', e => {
   img.outerHTML = box.dataset.motif;
 }, true);
 
+/** Barra de progreso de lectura con el porcentaje a su lado. */
+const progressBar = (p, cls = '') => `<div class="progress-row"><div class="progress${cls ? ' ' + cls : ''}"><i style="width:${pct(p)}%"></i></div><span class="pct">${pct(p)} %</span></div>`;
+
 /** Tarjeta de volumen o número, con progreso de lectura. */
 function volCard(v, read, pos) {
   const done = v.articles.filter(a => read.has(a.id)).length;
@@ -364,7 +367,7 @@ function volCard(v, read, pos) {
       <div class="eyebrow">${v.label ? `${esc(v.label)} · ${esc(monthName(v.month))}` : `Volumen ${v.number}${v.year ? ' · ' + v.year : ''}`}</div>
       <h3>${esc(v.label ? v.subtitle || v.title : v.title)}</h3>
       <div class="meta"><span>${n} ${what}</span>${done ? `<span class="check">✓ ${done} leídos</span>` : ''}</div>
-      ${avg > 0 ? `<div class="progress"><i style="width:${pct(avg)}%"></i></div>` : ''}
+      ${avg > 0 ? progressBar(avg) : ''}
     </div>
   </a>`;
 }
@@ -525,7 +528,7 @@ function volumeView(p, n, tab = 1) {
             <div class="muted small">${esc(byline(a))}</div>
             <div class="art-sum">
               ${a.summary[0] ? `<p class="small">${esc(a.summary[0])}</p>` : ''}
-              ${p > 0 ? `<div class="progress" title="${pct(p)} % leído"><i style="width:${pct(p)}%"></i></div>` : ''}
+              ${p > 0 ? progressBar(p) : ''}
             </div>
           </div>
           <div class="art-actions" role="group" aria-label="Abrir ${esc(a.title)}">
@@ -1264,19 +1267,16 @@ async function route() {
   }
   const [html, mount] = Array.isArray(out) ? out : [out, null];
   view.innerHTML = html;
-  const key = location.hash;
-  const saved = scrollMemory.get(key);
-  if (parts[0] !== 'leer') window.scrollTo(0, saved || 0);
+  // Cada página o pestaña se abre desde el principio, también al volver atrás. Solo el modo lectura
+  // recuerda dónde se dejó cada texto (store.position: bloque y porcentaje leído).
+  if (parts[0] !== 'leer') window.scrollTo(0, 0);
   cleanup = mount?.() || null;
   if (parts[0] === 'acerca') bindOffline();
 }
 
-// Recordar el scroll de cada vista al volver atrás
-const scrollMemory = new Map();
-let currentKey = location.hash;
+// que el navegador tampoco restaure el scroll al volver atrás o recargar
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.addEventListener('hashchange', () => {
-  scrollMemory.set(currentKey, window.scrollY);
-  currentKey = location.hash;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });
 
