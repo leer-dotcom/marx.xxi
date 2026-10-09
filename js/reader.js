@@ -1,5 +1,5 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
-import { article, volume, neighbours, text, esc, highlight, fold, store } from './data.js';
+import { article, volume, neighbours, text, esc, highlight, fold, store, MK } from './data.js';
 import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, toast } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
@@ -16,14 +16,38 @@ const SVG = {
   menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
 };
 
+/** Convierte las marcas internas (cursiva, negrita, llamadas a nota, página impresa) en HTML. */
+function rich(html) {
+  let it = false, bd = false;
+  return html.replace(/[\uE000\uE001]|[\u{F0000}-\u{F7FFF}]/gu, m => {
+    if (m === MK.it) { it = !it; return it ? '<em>' : '</em>'; }
+    if (m === MK.bd) { bd = !bd; return bd ? '<strong>' : '</strong>'; }
+    const c = m.codePointAt(0);
+    if (c >= MK.page) return `<span class="pgm" data-pg="${c - MK.page}" aria-label="Comienza la página ${c - MK.page}"></span>`;
+    const n = c - MK.note;
+    return `<sup class="fn"><button type="button" class="fn-b" data-note="${n}" aria-label="Nota ${n}">${n}</button></sup>`;
+  }) + (it ? '</em>' : '') + (bd ? '</strong>' : '');
+}
+
+function inner(b, q) {
+  const cite = b.cite ? ` <span class="cite">${rich(highlight(b.cite, q))}</span>` : '';
+  const mk = b.k === 'li' && b.mk ? `<span class="mk">${esc(b.mk)}</span> ` : '';
+  return mk + rich(highlight(b.t, q)) + cite;
+}
+
 function blockHtml(b, i, q, marked, firstPara) {
-  const t = highlight(b.t, q);
+  const t = inner(b, q);
   const bm = marked ? ' bm' : '';
   switch (b.k) {
-    case 'h': return `<h2 class="sect${bm}" data-b="${i}">${t}</h2>`;
+    case 'h': {
+      const l = b.lvl >= 4 ? 4 : b.lvl === 3 ? 3 : 2;
+      return `<h${l} class="sect l${l}${bm}" data-b="${i}">${t}</h${l}>`;
+    }
     case 'n': return `<p class="note${bm}" data-b="${i}">${t}</p>`;
     case 'e': return `<p class="epi${bm}" data-b="${i}">${t}</p>`;
-    default: return `<p class="${firstPara ? 'first' : ''}${bm}" data-b="${i}">${t}</p>`;
+    case 'q': return `<p class="bq${bm}" data-b="${i}">${t}</p>`;
+    case 'li': return `<p class="li${bm}" data-b="${i}">${t}</p>`;
+    default: return `<p class="${firstPara && !b.cont ? 'first' : ''}${b.cont ? ' cont' : ''}${bm}" data-b="${i}">${t}</p>`;
   }
 }
 
@@ -48,7 +72,7 @@ export async function readerView(key, params) {
   let prevKind = null;
   const body = blocks.map((b, i) => {
     const first = b.k === 'p' && prevKind !== 'p';
-    prevKind = b.k === 'n' ? prevKind : b.k;
+    prevKind = b.k;
     return blockHtml(b, i, '', marks.has(i), first);
   }).join('');
 
@@ -64,10 +88,13 @@ export async function readerView(key, params) {
   <article class="reader" id="reader" lang="es" data-vol="${v.number}">
     <header class="r-head">
       <div class="eyebrow">Marx XXI · Volumen ${v.number}${a ? ' · Art. ' + a.number : ''}</div>
-      <h1>${esc(title)}</h1>
+      <h1>${esc(title)}${(blocks.titleNotes || []).map(n => rich(String.fromCodePoint(MK.note + n))).join('')}</h1>
       ${author ? `<div class="by">${esc(author)}</div>` : ''}
     </header>
     ${body}
+    ${blocks.orphans.length ? `<section class="orphans"><h3>Notas sin llamada en el texto</h3>
+      <p class="muted small">Estas notas figuran en el libro, pero la llamada no se imprimió en el texto.</p>
+      ${blocks.orphans.map(n => `<p class="note" data-orphan="${n}"><b>${n}.</b> ${rich(esc(blocks.notes[n].text))}</p>`).join('')}</section>` : ''}
     <footer class="reader-end">
       <div class="fleuron" aria-hidden="true">❧</div>
       ${a ? `<a class="btn ghost" href="#/articulo/${a.id}/4">Ver la cita y la conclusión de la guía</a>` : ''}
@@ -169,10 +196,20 @@ function mount({ key, a, blocks, marks, params }) {
     document.body.classList.toggle('chrome-hidden');
   });
 
+  // --- notas: al pulsar el número se abre la referencia completa
+  reader.addEventListener('click', e => {
+    const bt = e.target.closest('[data-note]'); if (!bt) return;
+    e.preventDefault(); e.stopPropagation();
+    const n = bt.dataset.note, nt = blocks.notes[n];
+    openSheet('Nota ' + n, nt
+      ? `<div class="note-sheet"><p>${rich(esc(nt.text)).replace(/\n/g, '</p><p>')}</p>${nt.pg ? `<p class="muted small">Página ${nt.pg} del libro</p>` : ''}</div>`
+      : `<p class="empty">No se encontró la nota ${esc(n)}.</p>`);
+  });
+
   // --- marcadores
   markBtn.addEventListener('click', () => {
     const cb = currentBlock();
-    const on = store.toggleBookmark(key, cb, blocks[cb]?.t || '');
+    const on = store.toggleBookmark(key, cb, blocks[cb]?.p || '');
     on ? marks.add(cb) : marks.delete(cb);
     elOf(cb)?.classList.toggle('bm', on);
     toast(on ? 'Marcador guardado' : 'Marcador eliminado');
@@ -184,15 +221,15 @@ function mount({ key, a, blocks, marks, params }) {
   const topInner = $('#r-top'), topNormal = topInner.innerHTML;
   function renderMatches(q) {
     const f = fold(q).trim();
-    for (const i of lit) { const el = els.find(e => +e.dataset.b === i); if (el) el.innerHTML = esc(blocks[i].t); }
+    for (const i of lit) { const el = els.find(e => +e.dataset.b === i); if (el) el.innerHTML = inner(blocks[i], ''); }
     lit = new Set();
     hits = [];
     if (f.length < 2) return;
     blocks.forEach((b, i) => {
-      if (fold(b.t).includes(f)) {
+      if (fold(b.p).includes(f)) {
         const el = els.find(e => +e.dataset.b === i);
         if (!el || el.offsetParent === null) return; // nota oculta
-        el.innerHTML = highlight(b.t, q);
+        el.innerHTML = inner(b, q);
         lit.add(i); hits.push(i);
       }
     });
@@ -246,9 +283,10 @@ function mount({ key, a, blocks, marks, params }) {
   // --- índice (secciones + marcadores)
   $('#r-index').onclick = () => {
     const items = blocks.map((b, i) => ({ b, i })).filter(({ b, i }) => b.k === 'h' || marks.has(i));
+    const lvlOf = b => (b.k === 'h' && b.lvl >= 3 ? ' sub' + (b.lvl >= 4 ? 2 : 1) : '');
     openSheet('Índice del texto', `<div class="toc-list">
       <a href="#" data-jump="0">Inicio del texto</a>
-      ${items.map(({ b, i }) => `<a href="#" data-jump="${i}" class="${b.k === 'h' ? '' : 'mark'}">${esc(b.t.length > 140 ? b.t.slice(0, 140) + '…' : b.t)}</a>`).join('')}
+      ${items.map(({ b, i }) => `<a href="#" data-jump="${i}" class="${b.k === 'h' ? '' : 'mark'}${lvlOf(b)}">${esc(b.p.length > 140 ? b.p.slice(0, 140) + '…' : b.p)}</a>`).join('')}
       ${items.length ? '' : '<p class="muted small" style="margin-top:12px">No se han detectado secciones en este texto y aún no hay marcadores.</p>'}
     </div>`, body => body.addEventListener('click', e => {
       const j = e.target.closest('[data-jump]'); if (!j) return;

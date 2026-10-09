@@ -15,7 +15,7 @@ DST = os.path.join(WEB, "data")
 # Copiar encima y borrar solo lo sobrante (sin eliminar carpetas: en Windows/OneDrive
 # pueden estar bloqueadas por la sincronización o por el servidor local).
 wanted = set()
-SKIP = {"fonts"}  # las fuentes del WebView de Android; la web las carga de Google Fonts
+SKIP = {"fonts", "txt"}  # "txt": textos antiguos; los íntegros ahora viven en data/texto/ (JSON estructurado)  # las fuentes del WebView de Android; la web las carga de Google Fonts
 for root, dirs, names in os.walk(SRC):
     dirs[:] = [d for d in dirs if d not in SKIP]
     rel = os.path.relpath(root, SRC)
@@ -27,7 +27,7 @@ for root, dirs, names in os.walk(SRC):
 for root, _, names in os.walk(DST):
     for n in names:
         r = os.path.normpath(os.path.relpath(os.path.join(root, n), DST))
-        if r not in wanted and r != "files.json":
+        if r not in wanted and r != "files.json" and not r.startswith("texto" + os.sep):
             try:
                 os.remove(os.path.join(DST, r))
             except OSError:
@@ -39,6 +39,12 @@ import datetime
 cj = os.path.join(DST, "content.json")
 with open(cj, encoding="utf-8") as f:
     lib = json.load(f)
+# Textos íntegros estructurados (data/texto/<id>.json): sustituyen a txt/*.txt del paquete Android.
+for v in lib["volumes"]:
+    if v.get("presentation_text"):
+        v["presentation_text"] = "texto/tomo-%s-presentacion.json" % v["number"]
+    for a in v["articles"]:
+        a["text_file"] = "texto/%s.json" % a["id"]
 lib["build"] = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 with open(cj, "w", encoding="utf-8", newline="\n") as f:
     json.dump(lib, f, ensure_ascii=False, separators=(",", ":"))

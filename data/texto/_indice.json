@@ -1,0 +1,571 @@
+[
+ {
+  "id": "t1-a1",
+  "vol": 1,
+  "title": "La crisis del capital",
+  "blocks": 16,
+  "notes": 23,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 24915,
+  "chars_out": 24915
+ },
+ {
+  "id": "t1-a10",
+  "vol": 1,
+  "title": "Un breve análisis del movimiento comunista en el paradigma de la posmodernidad",
+  "blocks": 31,
+  "notes": 13,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 38925,
+  "chars_out": 38925
+ },
+ {
+  "id": "t1-a11",
+  "vol": 1,
+  "title": "El Dinero, el Estado y la Comunidad Ilusoria",
+  "blocks": 13,
+  "notes": 2,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 12126,
+  "chars_out": 12126
+ },
+ {
+  "id": "t1-a12",
+  "vol": 1,
+  "title": "La crítica a la democracia en Alain Badiou",
+  "blocks": 42,
+  "notes": 38,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 28163,
+  "chars_out": 28163
+ },
+ {
+  "id": "t1-a13",
+  "vol": 1,
+  "title": "Ciudadanía bajo el capitalismo dependiente; para una crítica de la ciudadanía en el liberalismo",
+  "blocks": 39,
+  "notes": 28,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 23030,
+  "chars_out": 23030
+ },
+ {
+  "id": "t1-a14",
+  "vol": 1,
+  "title": "Sobre el eros enajenado: relaciones interpersonales y tardocapitalismo",
+  "blocks": 39,
+  "notes": 21,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 15441,
+  "chars_out": 15450
+ },
+ {
+  "id": "t1-a15",
+  "vol": 1,
+  "title": "El fantasma de Marx recorre el siglo XXI: lucha de clases y fetichismo de la mercancía",
+  "blocks": 28,
+  "notes": 16,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 24410,
+  "chars_out": 24401
+ },
+ {
+  "id": "t1-a2",
+  "vol": 1,
+  "title": "Marx sin atributos. Sobre la ideología burguesa",
+  "blocks": 47,
+  "notes": 36,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 31821,
+  "chars_out": 31821
+ },
+ {
+  "id": "t1-a3",
+  "vol": 1,
+  "title": "Historia y sistema en Marx. ¿Hacia una teoría crítica del capitalismo?",
+  "blocks": 30,
+  "notes": 32,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 27332,
+  "chars_out": 27332
+ },
+ {
+  "id": "t1-a4",
+  "vol": 1,
+  "title": "Hegel y Marx sobre la libertad: de la doctrina de la esencia a la del concepto, o de la sociedad civil al comunismo",
+  "blocks": 17,
+  "notes": 32,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 18441,
+  "chars_out": 18441
+ },
+ {
+  "id": "t1-a5",
+  "vol": 1,
+  "title": "Extraña igualdad. Marx, Hegel y la lógica de la alienación",
+  "blocks": 25,
+  "notes": 10,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 22713,
+  "chars_out": 22713
+ },
+ {
+  "id": "t1-a6",
+  "vol": 1,
+  "title": "Hacia el rechazo de un activismo irreflexivo. Apuntes marginales sobre la relación entre teoría y praxis en Theodor W. Adorno",
+  "blocks": 15,
+  "notes": 20,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 13010,
+  "chars_out": 13010
+ },
+ {
+  "id": "t1-a7",
+  "vol": 1,
+  "title": "Una defensa crítica del legado del leninismo",
+  "blocks": 30,
+  "notes": 6,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 25687,
+  "chars_out": 25682
+ },
+ {
+  "id": "t1-a8",
+  "vol": 1,
+  "title": "Frente al feminismo y otros movimientos de época",
+  "blocks": 29,
+  "notes": 2,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 26227,
+  "chars_out": 26227
+ },
+ {
+  "id": "t1-a9",
+  "vol": 1,
+  "title": "Sobre (y contra) el romanticismo económico",
+  "blocks": 27,
+  "notes": 29,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 23081,
+  "chars_out": 23081
+ },
+ {
+  "id": "t2-a1",
+  "vol": 2,
+  "title": "De continuidades y rupturas: un recorrido por el pensamiento socialista del siglo XX",
+  "blocks": 44,
+  "notes": 60,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 54467,
+  "chars_out": 54458
+ },
+ {
+  "id": "t2-a10",
+  "vol": 2,
+  "title": "En caso de incendio, ¿green new deal?",
+  "blocks": 49,
+  "notes": 9,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 26400,
+  "chars_out": 26400
+ },
+ {
+  "id": "t2-a11",
+  "vol": 2,
+  "title": "El reformismo",
+  "blocks": 8,
+  "notes": 0,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 6211,
+  "chars_out": 6211
+ },
+ {
+  "id": "t2-a12",
+  "vol": 2,
+  "title": "Por qué el reformismo fracasará siempre",
+  "blocks": 9,
+  "notes": 0,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 7289,
+  "chars_out": 7289
+ },
+ {
+  "id": "t2-a13",
+  "vol": 2,
+  "title": "La sopa",
+  "blocks": 10,
+  "notes": 1,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 7175,
+  "chars_out": 7175
+ },
+ {
+  "id": "t2-a2",
+  "vol": 2,
+  "title": "La forma populista de la socialdemocracia",
+  "blocks": 38,
+  "notes": 45,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 40384,
+  "chars_out": 40384
+ },
+ {
+  "id": "t2-a3",
+  "vol": 2,
+  "title": "Karl Marx y la lectura republicana de «El Capital»",
+  "blocks": 46,
+  "notes": 31,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 50453,
+  "chars_out": 50453
+ },
+ {
+  "id": "t2-a4",
+  "vol": 2,
+  "title": "Precios, competencia y lucha de clases",
+  "blocks": 35,
+  "notes": 14,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 39330,
+  "chars_out": 39330
+ },
+ {
+  "id": "t2-a5",
+  "vol": 2,
+  "title": "Relaciones de género y estrategia socialista",
+  "blocks": 39,
+  "notes": 27,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 36298,
+  "chars_out": 36289
+ },
+ {
+  "id": "t2-a6",
+  "vol": 2,
+  "title": "Subjetividad dañada y normalidad psicológica",
+  "blocks": 38,
+  "notes": 9,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 27770,
+  "chars_out": 27769
+ },
+ {
+  "id": "t2-a7",
+  "vol": 2,
+  "title": "Brecha territorial y el espectro de la despoblación",
+  "blocks": 39,
+  "notes": 19,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 36504,
+  "chars_out": 36504
+ },
+ {
+  "id": "t2-a8",
+  "vol": 2,
+  "title": "El nacionalismo con el que rompimos, el socialismo que defendemos",
+  "blocks": 93,
+  "notes": 10,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 54234,
+  "chars_out": 54234
+ },
+ {
+  "id": "t2-a9",
+  "vol": 2,
+  "title": "Más allá de la socialdemocracia: lo que el capital es, y en lo que el capitalismo se ha convertido",
+  "blocks": 35,
+  "notes": 15,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 26718,
+  "chars_out": 26718
+ },
+ {
+  "id": "t3-a1",
+  "vol": 3,
+  "title": "Notas para la actualización del modelo táctico de lucha cultural socialista",
+  "blocks": 99,
+  "notes": 63,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 76402,
+  "chars_out": 76402
+ },
+ {
+  "id": "t3-a2",
+  "vol": 3,
+  "title": "Economía política del declive: acumulación y lucha de clases ante una era de catástrofes",
+  "blocks": 124,
+  "notes": 23,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 62195,
+  "chars_out": 62197
+ },
+ {
+  "id": "t3-a3",
+  "vol": 3,
+  "title": "¿Qué es la conciencia socialista?",
+  "blocks": 40,
+  "notes": 29,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 48336,
+  "chars_out": 48335
+ },
+ {
+  "id": "t3-a4",
+  "vol": 3,
+  "title": "¿Por qué reconstruir el frente socialista de mujeres?",
+  "blocks": 32,
+  "notes": 12,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 18971,
+  "chars_out": 18971
+ },
+ {
+  "id": "t3-a5",
+  "vol": 3,
+  "title": "Organizar el socialismo en todos los territorios",
+  "blocks": 39,
+  "notes": 8,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 24999,
+  "chars_out": 24999
+ },
+ {
+  "id": "t3-a6",
+  "vol": 3,
+  "title": "Crisis ecológica como crisis orgánica: notas para la construcción de hegemonía socialista",
+  "blocks": 52,
+  "notes": 46,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 53874,
+  "chars_out": 53873
+ },
+ {
+  "id": "t3-a7",
+  "vol": 3,
+  "title": "Acerca del esquematismo: un aporte al debate con nuestros críticos",
+  "blocks": 60,
+  "notes": 23,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 42829,
+  "chars_out": 42828
+ },
+ {
+  "id": "t3-a8",
+  "vol": 3,
+  "title": "¿Qué (des)hacer? Sobre la necesidad del Partido",
+  "blocks": 321,
+  "notes": 210,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 233180,
+  "chars_out": 232958
+ },
+ {
+  "id": "t4-a1",
+  "vol": 4,
+  "title": "Sobre el derecho a la revolución",
+  "blocks": 80,
+  "notes": 87,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 77748,
+  "chars_out": 77748
+ },
+ {
+  "id": "t4-a2",
+  "vol": 4,
+  "title": "Apuntes sobre el socialismo y la guerra. De la guerra imperialista a la guerra de clases: la actualidad del derrotismo revolucionario",
+  "blocks": 94,
+  "notes": 29,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 51273,
+  "chars_out": 51273
+ },
+ {
+  "id": "t4-a3",
+  "vol": 4,
+  "title": "La batalla por la democracia: la toma del poder y los derechos políticos",
+  "blocks": 87,
+  "notes": 83,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 69535,
+  "chars_out": 69535
+ },
+ {
+  "id": "t4-a4",
+  "vol": 4,
+  "title": "Sobre el giro autoritario del Estado. Un repaso histórico de las modificaciones penales en el Estado español",
+  "blocks": 81,
+  "notes": 21,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 37392,
+  "chars_out": 37392
+ },
+ {
+  "id": "t4-a5",
+  "vol": 4,
+  "title": "Sobre el 15M, Podemos y sus raíces. Algunas lecciones estratégicas",
+  "blocks": 45,
+  "notes": 14,
+  "unanchored": [
+   11
+  ],
+  "missing": [],
+  "chars_in": 28855,
+  "chars_out": 28855
+ },
+ {
+  "id": "t4-a6",
+  "vol": 4,
+  "title": "Giro autoritario y poder oligárquico en Europa. Un análisis marxista de la Unión Europea",
+  "blocks": 107,
+  "notes": 53,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 99494,
+  "chars_out": 99494
+ },
+ {
+  "id": "t4-a7",
+  "vol": 4,
+  "title": "¡Viva la Comuna! Sobre Marxismo y Estado",
+  "blocks": 207,
+  "notes": 252,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 220598,
+  "chars_out": 220597
+ },
+ {
+  "id": "t5-a1",
+  "vol": 5,
+  "title": "Imperialismo: teoría, coyuntura e internacionalismo",
+  "blocks": 204,
+  "notes": 89,
+  "unanchored": [
+   15
+  ],
+  "missing": [],
+  "chars_in": 123291,
+  "chars_out": 123291
+ },
+ {
+  "id": "t5-a2",
+  "vol": 5,
+  "title": "Estados Unidos como potencia imperial: acumulación, hegemonía y control del sistema mundial",
+  "blocks": 116,
+  "notes": 41,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 75685,
+  "chars_out": 75685
+ },
+ {
+  "id": "t5-a3",
+  "vol": 5,
+  "title": "El tablero mundial, Palestina y la lucha antimperialista",
+  "blocks": 97,
+  "notes": 49,
+  "unanchored": [
+   28
+  ],
+  "missing": [],
+  "chars_in": 69141,
+  "chars_out": 69141
+ },
+ {
+  "id": "t5-a4",
+  "vol": 5,
+  "title": "Romper el hielo: las trayectorias de la revolución mundial (1914-1949)",
+  "blocks": 133,
+  "notes": 121,
+  "unanchored": [
+   88
+  ],
+  "missing": [],
+  "chars_in": 123014,
+  "chars_out": 123014
+ },
+ {
+  "id": "t5-a5",
+  "vol": 5,
+  "title": "Proletarios del mundo, uníos. Un recorrido por la historia de las tres Internacionales",
+  "blocks": 333,
+  "notes": 171,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 260786,
+  "chars_out": 260776
+ },
+ {
+  "id": "tomo-1-presentacion",
+  "vol": 1,
+  "title": "Presentación",
+  "blocks": 5,
+  "notes": 4,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 6582,
+  "chars_out": 6582
+ },
+ {
+  "id": "tomo-2-presentacion",
+  "vol": 2,
+  "title": "Presentación",
+  "blocks": 7,
+  "notes": 1,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 6926,
+  "chars_out": 6926
+ },
+ {
+  "id": "tomo-5-presentacion",
+  "vol": 5,
+  "title": "Nota introductoria",
+  "blocks": 1,
+  "notes": 0,
+  "unanchored": [],
+  "missing": [],
+  "chars_in": 695,
+  "chars_out": 695
+ }
+]

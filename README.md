@@ -14,7 +14,7 @@ js/reader.js            modo lectura
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
 manifest.webmanifest    instalación como app («Añadir a pantalla de inicio»)
-data/                   content.json, svg/ y txt/ (copiados de la app Android)
+data/                   content.json, svg/ y texto/ (textos íntegros estructurados, ver texto/FORMATO.md); txt/ queda obsoleto
 lanzar.bat              construir + servidor local sin caché (depuración)
 publicar.bat            construir + commit + push (publica en GitHub Pages)
 tools/build.py          regenera datos y comprueba; --release renueva la versión de la caché

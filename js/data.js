@@ -31,18 +31,44 @@ export function neighbours(id) {
   return { prev: library.allArticles[i - 1]?.a || null, next: library.allArticles[i + 1]?.a || null };
 }
 
-/** Bloques del texto limpio: "# " sección, "§ " nota, "> " epígrafe, resto párrafo. */
+// Marcas internas dentro del texto de cada bloque (un solo carácter de uso privado, para que
+// los desplazamientos del resaltado y la búsqueda no se descuadren):
+//   U+E000 cursiva (alterna) · U+E001 negrita (alterna)
+//   U+F0000 + n  llamada a la nota n · U+F4000 + p  comienzo de la página impresa p
+export const MK = { it: '\uE000', bd: '\uE001', note: 0xF0000, page: 0xF4000 };
+const MARK_RE = /[\uE000\uE001]|[\u{F0000}-\u{F7FFF}]/gu;
+/** Texto sin marcas (para buscar, medir y mostrar fragmentos). */
+export const plain = t => t.replace(MARK_RE, '');
+
+function encode(src) {
+  return src
+    .replace(/\[\^(\d+)\]/g, (_, n) => String.fromCodePoint(MK.note + +n))
+    .replace(/\[\[p(\d+)\]\]/g, (_, n) => String.fromCodePoint(MK.page + +n))
+    .replace(/\*\*/g, MK.bd)
+    .replace(/(?<!\\)\*/g, MK.it)
+    .replace(/\\\*/g, '*');
+}
+
+/**
+ * Texto íntegro de un artículo (data/texto/<id>.json). Devuelve la lista de bloques
+ * { k: 'h'|'p'|'q'|'li'|'e', t (con marcas), p (sin marcas), pg, lvl, mk, cite, cont }
+ * con las propiedades `notes` (n → {text, pg}) y `orphans` (notas sin llamada en el texto).
+ */
 export async function text(path) {
   if (textCache.has(path)) return textCache.get(path);
   const res = await fetch(dataUrl(path));
   if (!res.ok) throw new Error('No se pudo cargar ' + path);
-  const raw = await res.text();
-  const blocks = raw.split('\n\n').map(s => s.trim()).filter(Boolean).map(s => {
-    if (s.startsWith('# ')) return { k: 'h', t: s.slice(2) };
-    if (s.startsWith('§ ')) return { k: 'n', t: s.slice(2) };
-    if (s.startsWith('> ')) return { k: 'e', t: s.slice(2) };
-    return { k: 'p', t: s };
+  const d = await res.json();
+  const blocks = d.blocks.map(b => {
+    const t = encode(b.text);
+    return {
+      k: b.t === 'ep' ? 'e' : b.t, t, p: plain(t), pg: b.pg, lvl: b.level, mk: b.marker,
+      cite: b.cite ? encode(b.cite) : '', cont: !!b.cont,
+    };
   });
+  blocks.notes = Object.fromEntries(Object.entries(d.notes).map(([n, v]) => [n, { ...v, text: encode(v.text) }]));
+  blocks.titleNotes = d.title_notes || [];
+  blocks.orphans = d.unanchored_notes || [];
   textCache.set(path, blocks);
   return blocks;
 }
@@ -124,8 +150,8 @@ export async function searchFullText(q, { onHit, onProgress, signal, perArticle 
     const blocks = await text(a.text_file);
     let n = 0;
     for (let b = 0; b < blocks.length && n < perArticle; b++) {
-      if (fold(blocks[b].t).includes(f)) {
-        onHit({ kind: 'fulltext', v, a, label: a.title, text: snippet(blocks[b].t, q), block: b });
+      if (fold(blocks[b].p).includes(f)) {
+        onHit({ kind: 'fulltext', v, a, label: a.title, text: snippet(blocks[b].p, q), block: b });
         n++;
       }
     }
