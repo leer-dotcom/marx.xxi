@@ -43,6 +43,33 @@ export function toast(msg) {
   clearTimeout(toast._t); toast._t = setTimeout(() => (t.hidden = true), 2200);
 }
 
+/** Ventana de confirmación propia de la app (en lugar del confirm() del navegador, que no se puede adaptar).
+ *  Devuelve una promesa con true (botón principal) o false (cancelar, Esc o tocar fuera). */
+export function confirmDialog({ title, text, ok = 'Aceptar', cancel = 'Cancelar', danger = false }) {
+  return new Promise(resolve => {
+    const d = document.createElement('dialog');
+    d.className = 'confirm';
+    d.setAttribute('aria-labelledby', 'confirm-title');
+    d.innerHTML = `<h2 id="confirm-title">${esc(title)}</h2>
+      ${text ? `<p>${text.split('\n').map(esc).join('<br>')}</p>` : ''}
+      <div class="confirm-actions">
+        <button type="button" class="btn ghost" data-answer="0">${esc(cancel)}</button>
+        <button type="button" class="btn${danger ? ' danger' : ''}" data-answer="1" autofocus>${esc(ok)}</button>
+      </div>`;
+    let done = false;
+    const finish = yes => { if (done) return; done = true; if (d.open) d.close(); d.remove(); resolve(yes); };
+    d.addEventListener('click', e => {
+      const b = e.target.closest('[data-answer]');
+      if (b) finish(b.dataset.answer === '1');
+      else if (e.target === d) finish(false); // fuera de la ventana
+    });
+    d.addEventListener('cancel', e => { e.preventDefault(); finish(false); }); // Esc
+    d.addEventListener('close', () => finish(false));
+    document.body.append(d);
+    d.showModal();
+  });
+}
+
 export function openSheet(title, html, onMount) {
   const d = $('#sheet');
   $('#sheet-title').textContent = title;
@@ -533,7 +560,7 @@ function volumeView(p, n, tab = 1) {
   const pos = store.positions(), read = store.read();
   let body = '';
   if (tab === 0) {
-    body = `<div class="eyebrow">Resumen de la presentación</div><div class="prose" style="margin-top:10px">${paras(v.presentation)}</div>
+    body = `<div class="eyebrow">Resumen de la presentación</div><div class="prose indent" style="margin-top:10px">${paras(v.presentation)}</div>
       ${v.presentation_text ? `<a class="btn ghost block" href="#/leer/tomo-${v.number}">${ICON.book}${v.number === 5 ? 'Leer la nota introductoria completa' : 'Leer la presentación completa'}</a>` : ''}`;
   } else if (tab === 1) {
     body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada artículo o ve directamente al texto íntegro.</p>` +
@@ -557,7 +584,8 @@ function volumeView(p, n, tab = 1) {
       }).join('');
   } else if (tab === 2) {
     // conclusiones plegables, como las tesis de la síntesis: a la vista el número y el enunciado
-    body = `<h2 class="sec-title tab-title">Conclusiones del ${esc(p.unit)}</h2>` + v.conclusions.map((c, i) => `<details class="card thesis" id="conclusion-${i + 1}">
+    // mismo rótulo que «Resumen de la presentación» en la pestaña Presentación
+    body = `<div class="eyebrow" style="margin-bottom:10px">Conclusiones del ${esc(p.unit.toLowerCase())}</div>` + v.conclusions.map((c, i) => `<details class="card thesis" id="conclusion-${i + 1}">
       <summary><div class="eyebrow vol">Conclusión ${i + 1}</div><h3>${esc(c.title)}</h3></summary>
       <div class="thesis-body"><p style="margin:0">${esc(c.text)}</p></div></details>`).join('');
   } else if (tab === 3) {
@@ -582,9 +610,9 @@ function volumeView(p, n, tab = 1) {
       ${headNav(
         // antes del primero, la portada de la revista («Intro»); después del último, sus conclusiones comunes
         prev ? { href: `${prev.href}/${tab}`, label: volShort(prev), tip: volHead(prev), vol: prev.key }
-          : { href: p.home, label: 'Intro', tip: `Portada de ${p.name}`, vol: v.key },
+          : { href: p.home, label: 'Intro', tip: `Portada de ${p.name}`, vol: v.key, neutral: true },
         next ? { href: `${next.href}/${tab}`, label: volShort(next), tip: volHead(next), vol: next.key }
-          : { href: thesesHref(p), label: 'Concl.', tip: `${p.name}: Síntesis`, vol: v.key },
+          : { href: thesesHref(p), label: 'Concl.', tip: `${p.name}: Síntesis`, vol: v.key, neutral: true },
         v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
     ${tabs(v.href, hasPres ? VOL_TABS : [null, ...VOL_TABS.slice(1)], tab, 1)}
     ${body}
@@ -599,7 +627,7 @@ function volumeView(p, n, tab = 1) {
  *  prev y next: { href, label, title?, tip?, vol } o null. Sin `title`, solo la etiqueta («Vol. 1»). */
 function headNav(prev, next, aria) {
   const one = (x, dir) => x
-    ? `<a class="hn-${dir}${x.title ? '' : ' hn-short'}" href="${x.href}" data-vol="${x.vol}" title="${esc(x.tip || x.title)}">
+    ? `<a class="hn-${dir}${x.title ? '' : ' hn-short'}${x.neutral ? ' hn-neutral' : ''}" href="${x.href}" data-vol="${x.vol}" title="${esc(x.tip || x.title)}">
         <span class="hn-arrow" aria-hidden="true">${dir === 'prev' ? '‹' : '›'}</span>
         <span class="hn-text">${x.title ? `<small>${esc(x.label)}</small><span>${esc(x.title)}</span>` : `<b>${esc(x.label)}</b>`}</span></a>`
     : `<span class="hn-${dir} hn-off" aria-hidden="true"><span class="hn-arrow">${dir === 'prev' ? '‹' : '›'}</span></span>`;
@@ -635,7 +663,7 @@ export function guideTab(a, tab) {
 
 function guideTabBody(a, tab) {
   switch (tab) {
-    case TAB.resumen: return `<div class="prose">${paras(a.summary)}</div>
+    case TAB.resumen: return `<div class="prose indent">${paras(a.summary)}</div>
       ${a.references ? `<div class="card" style="margin-top:16px"><div class="eyebrow">Interlocutores y referencias</div><p style="margin:6px 0 0">${esc(a.references)}</p></div>` : ''}`;
     case TAB.pildoras: return `<ol class="steps">${a.argument.map(s => `<li><h3>${esc(s.title)}</h3><div>${esc(s.text)}</div></li>`).join('')}</ol>`;
     case TAB.esquema: return a.diagrams.length ? a.diagrams.map(figure).join('') + '<p class="muted small">Toca el esquema para ampliarlo.</p>' : '<p class="empty">Este artículo no tiene esquema.</p>';
@@ -681,7 +709,7 @@ function articleView(id, tab = 0) {
   if (tab === TAB.texto) {
     body = `<div class="card">
       <div class="eyebrow">Texto íntegro del artículo</div>
-      <p style="margin:8px 0 2px">≈ ${a.word_count.toLocaleString('es')} palabras · ${minutes(a.word_count)} min de lectura</p>
+      <p style="margin:8px 0 2px">${a.word_count.toLocaleString('es')} palabras · ${minutes(a.word_count)} min de lectura</p>
       <div class="muted small">${esc(volName(v))}${v.label ? '' : ' · ' + esc(v.title)}${a.pdf_pages ? ` — Páginas ${a.pdf_pages.from}–${a.pdf_pages.to}` : ''}</div>
       ${v.url ? `<div class="muted small"><a href="${esc(v.url)}" target="_blank" rel="noopener">PDF disponible en marxxxi.com</a></div>` : ''}
       ${a.printed_pages && v.label ? `<div class="muted small">En la revista impresa: páginas ${a.printed_pages.from}–${a.printed_pages.to}</div>` : ''}
@@ -770,7 +798,7 @@ function thesesView(p, tab = 0, params) {
         // final del recorrido por volúmenes o números: antes, el último; después, «Inicio» (portada de la revista)
         const last = p.volumes[p.volumes.length - 1];
         return headNav(last ? { href: `${last.href}/1`, label: volShort(last), tip: volHead(last), vol: last.key } : null,
-          { href: p.home, label: 'Inicio', tip: `Portada de ${p.name}`, vol: last?.key || '' }, 'Recorrido de la revista');
+          { href: p.home, label: 'Inicio', tip: `Portada de ${p.name}`, vol: last?.key || '', neutral: true }, 'Recorrido de la revista');
       })()}</header>
     ${tabs(thesesHref(p), THESES_TABS, tab)}
     ${body}
@@ -1093,7 +1121,7 @@ function bookmarksView(params) {
   const titleOf = key => {
     const hit = article(key);
     if (hit) return { v: hit.v, title: hit.a.title, author: byline(hit.a), order: lib().allArticles.indexOf(hit) };
-    const n = +key.replace('tomo-', '');
+    const n = +String(key).replace('tomo-', ''); // subrayado sin texto conocido: se descarta abajo (sin v)
     // presentaciones de Marx XXI: delante de los artículos de su volumen
     const first = lib().allArticles.findIndex(x => x.v === volume(n));
     return { v: volume(n), title: n === 5 ? 'Nota introductoria' : 'Presentación', author: '', order: first - 0.5 };
@@ -1130,9 +1158,10 @@ function bookmarksView(params) {
     view.addEventListener('click', e => {
       const b = e.target.closest('[data-del]'); if (!b) return;
       const h = all.find(x => x.uid === b.dataset.del);
-      if (h?.note.trim() && !confirm('¿Eliminar el subrayado y su nota?')) return;
-      store.removeHighlight(b.dataset.del);
-      route();
+      const del = () => { store.removeHighlight(b.dataset.del); route(); };
+      if (!h?.note.trim()) return del();
+      confirmDialog({ title: 'Eliminar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Eliminar', danger: true })
+        .then(yes => yes && del());
     });
   }];
 }
@@ -1288,9 +1317,15 @@ function notFound() {
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-restart]'); if (!b) return;
   const id = b.dataset.restart;
-  if (!confirm(`Se reiniciará el progreso de lectura (${pct(store.reached(id))} % leído). Los subrayados y marcadores se conservan. ¿Empezar desde el principio?`)) return;
-  store.resetProgress(id);
-  location.hash = `#/leer/${id}`;
+  confirmDialog({
+    title: 'Empezar desde el principio',
+    text: `Se reiniciará el progreso de lectura (${pct(store.reached(id))} % leído).\nLos subrayados y marcadores se conservan.`,
+    ok: 'Empezar de nuevo', cancel: 'Cancelar',
+  }).then(yes => {
+    if (!yes) return;
+    store.resetProgress(id);
+    location.hash = `#/leer/${id}`;
+  });
 });
 
 // ---------------------------------------------------------------- router

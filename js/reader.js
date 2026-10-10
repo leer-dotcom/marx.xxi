@@ -1,6 +1,6 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
 import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS, volHead, volShort, artLabel, byline } from './data.js';
-import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom } from './app.js';
+import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -302,13 +302,17 @@ function mount({ key, a, v, blocks, params }) {
           repaint(h);
         } else if (e.target.closest('[data-done]')) { save(); closeSheet(); }
         else if (e.target.closest('[data-remove]')) {
-          if (h.note.trim() && !confirm('¿Quitar el subrayado y su nota?')) return;
-          clearTimeout(t);
-          store.removeHighlight(h.uid);
-          hls = store.highlights(key);
-          repaint(h);
-          closeSheet();
-          toast('Subrayado eliminado');
+          const remove = () => {
+            clearTimeout(t);
+            store.removeHighlight(h.uid);
+            hls = store.highlights(key);
+            repaint(h);
+            closeSheet();
+            toast('Subrayado eliminado');
+          };
+          if (!h.note.trim()) remove();
+          else confirmDialog({ title: 'Quitar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Quitar', danger: true })
+            .then(yes => yes && remove());
         }
       };
       $('#sheet').addEventListener('close', () => { save(); body.oninput = body.onclick = null; }, { once: true });
@@ -374,9 +378,14 @@ function mount({ key, a, v, blocks, params }) {
   // --- scroll: progreso, guardado, ocultar barras
   let lastY = scrollY, saveT = 0, ticking = false;
   const seek = $('#r-seek'), pctEl = $('#r-pct');
+  // máximo alcanzado: barra translúcida detrás de la del punto actual (el porcentaje es el del punto actual)
+  let reached = store.reached(key);
   function updateUi() {
     const p = progress();
+    if (restored && !settling) reached = Math.max(reached, p);
     if (!seek.matches(':active')) seek.value = Math.round(p * 1000);
+    seek.style.setProperty('--p', seek.value / 1000);
+    seek.style.setProperty('--m', Math.max(reached, seek.value / 1000));
     pctEl.textContent = Math.round(p * 100) + ' %';
   }
   function onScroll() {

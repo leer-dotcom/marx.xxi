@@ -100,9 +100,11 @@ main{outline:none}
 .hero .lede.sm p{margin:0 0 10px}
 .hero .lede.sm p:first-child{font-size:18.5px}
 .hero .lede.sm p:last-child{margin-bottom:0}
+.hero .lede.sm p + p{font-style:italic}
 .sec-title{margin:38px 0 14px;font-size:28px}
 .sec-title.tab-title{margin:4px 0 14px}
 .prose p{font-size:18.5px}
+.prose.indent p + p{text-indent:1.5em}
 .card{display:block;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:16px 18px;color:inherit;text-decoration:none;position:relative}
 a.card:hover{border-color:var(--ink-3)}
 a.card:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
@@ -235,6 +237,15 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 .reader-bottom .inner{flex-direction:column;align-items:stretch;padding:6px 14px}
 .reader-bottom .seek{display:flex;align-items:center;gap:12px}
 .reader-bottom input[type=range]{flex:1;accent-color:var(--vol)}
+/* barra de posición: relleno sólido hasta el punto actual (--p) y translúcido hasta el máximo alcanzado (--m) */
+#r-seek{--p:0;--m:0;--th:16px;-webkit-appearance:none;appearance:none;height:22px;background:none;margin:0;cursor:pointer;
+  --pos:calc(var(--th) / 2 + (100% - var(--th)) * var(--p));--max:calc(var(--th) / 2 + (100% - var(--th)) * var(--m));
+  --track:linear-gradient(to right,var(--vol) 0 var(--pos),color-mix(in srgb,var(--vol) 35%,transparent) var(--pos) var(--max),color-mix(in srgb,var(--ink-3) 30%,transparent) var(--max) 100%)}
+#r-seek::-webkit-slider-runnable-track{height:5px;border-radius:3px;background:var(--track)}
+#r-seek::-moz-range-track{height:5px;border-radius:3px;background:var(--track)}
+#r-seek::-webkit-slider-thumb{-webkit-appearance:none;width:var(--th);height:var(--th);margin-top:-5.5px;border-radius:50%;background:var(--vol);border:0}
+#r-seek::-moz-range-thumb{width:var(--th);height:var(--th);border-radius:50%;background:var(--vol);border:0}
+#r-seek:focus-visible{outline:2px solid var(--vol);outline-offset:3px;border-radius:4px}
 .reader-bottom .pct{font-size:14px;color:var(--ink-3);min-width:42px;text-align:right}
 .reader-bottom .buttons{display:flex;justify-content:space-around}
 .bar-btn{display:flex;flex-direction:column;align-items:center;gap:1px;background:none;border:0;padding:4px 14px;cursor:pointer;color:var(--ink);font-family:var(--f-sc);text-transform:lowercase;font-size:14px}
@@ -651,6 +662,9 @@ div.dg-title{color:var(--ink)}
 /* flecha dibujada (no un carácter «‹ ›», que queda más alto que el texto): centrada con él en el recuadro */
 .hn-arrow{font-size:0;width:6px;height:6px;flex:none;border-left:1.6px solid var(--vol);border-bottom:1.6px solid var(--vol);transform:rotate(45deg);margin:0 1px 0 3px}
 .hn-next .hn-arrow{transform:rotate(-135deg);margin:0 3px 0 1px}
+/* fuera del recorrido de volúmenes o números (portada, síntesis): gris oscuro, sin el color del volumen */
+.ph-nav a.hn-neutral b{color:var(--ink-2)}
+.ph-nav a.hn-neutral .hn-arrow{border-color:var(--ink-2)}
 .hn-text{min-width:0;line-height:1.2}
 .hn-text small{display:block;font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-size:13px;color:var(--vol)}
 .hn-text span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
@@ -747,3 +761,11 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 .tabs.more-left .tabs-less{display:block}
 /* esquema ampliado desde «Mapas conceptuales»: volumen o número, artículo y título antes de la descripción */
 .zoom-label{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
+/* ventana de confirmación propia (sustituye al confirm() del navegador) */
+dialog.confirm{width:min(420px,calc(100% - 32px));margin:auto;padding:22px 22px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);overflow:visible;animation:up .18s ease}
+dialog.confirm h2{margin:0;font-size:23px;font-weight:400;line-height:1.2}
+dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink-2)}
+.confirm-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.confirm-actions .btn{padding:10px 18px;font-size:16px}
+.btn.danger{background:#a3261d;color:#fff}
+@media (max-width:420px){.confirm-actions .btn{flex:1}}
