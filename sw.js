@@ -1,6 +1,6 @@
 // Service worker: la app funciona sin conexión una vez visitada.
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
-const VERSION = 'mx-20261010-1516';
+const VERSION = 'mx-20261010-1524';
 const SHELL = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
@@ -13,7 +13,8 @@ const SHELL = [
 self.addEventListener('install', e => {
   e.waitUntil((async () => {
     const cache = await caches.open(VERSION);
-    await cache.addAll(SHELL);
+    // 'reload': saltarse la caché HTTP del navegador, para no guardar como nueva una versión anterior
+    await cache.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })));
     // Precarga de diagramas (pequeños); los textos íntegros se cachean al abrirlos.
     try {
       const files = await (await fetch('data/files.json')).json();
@@ -44,7 +45,8 @@ self.addEventListener('fetch', e => {
     const cache = await caches.open(VERSION);
     if (isCode) {
       try {
-        const res = await fetch(req);
+        // sin la caché HTTP del navegador (GitHub Pages da 10 min): siempre la última versión publicada
+        const res = await (req.mode === 'navigate' ? fetch(req) : fetch(req, { cache: 'no-cache' }));
         if (res.ok) cache.put(req, res.clone());
         return res;
       } catch {
