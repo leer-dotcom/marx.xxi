@@ -775,3 +775,6 @@ dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink
 .confirm-actions .btn{padding:10px 18px;font-size:16px}
 .btn.danger{background:#a3261d;color:#fff}
 @media (max-width:420px){.confirm-actions .btn{flex:1}}
+/* Acerca de › Instalar y usar sin conexión */
+.about-sub{font-size:19px;font-weight:400;margin:18px 0 6px}
+#instalar{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 12px)}

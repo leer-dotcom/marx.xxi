@@ -1,6 +1,6 @@
 // Service worker: la app funciona sin conexión una vez visitada.
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
-const VERSION = 'mx-20261010-1611';
+const VERSION = 'mx-20261010-1836';
 const SHELL = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
@@ -15,10 +15,12 @@ self.addEventListener('install', e => {
     const cache = await caches.open(VERSION);
     // 'reload': saltarse la caché HTTP del navegador, para no guardar como nueva una versión anterior
     await cache.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })));
-    // Precarga de diagramas (pequeños); los textos íntegros se cachean al abrirlos.
+    // Precarga del resto de datos (esquemas, guías, síntesis, «Acerca de»); los textos íntegros se guardan al
+    // abrirlos o con «Descargar todo» (Acerca de › Instalar y usar sin conexión).
     try {
-      const files = await (await fetch('data/files.json')).json();
-      await cache.addAll(files.filter(f => f.endsWith('.svg')));
+      const files = await (await fetch('data/files.json', { cache: 'reload' })).json();
+      const shell = new Set(SHELL.map(u => u.replace(/^\.\//, '')));
+      await cache.addAll(files.filter(f => !f.includes('/texto/') && !shell.has(f)));
     } catch { /* sin lista: se cachean bajo demanda */ }
     self.skipWaiting();
   })());
@@ -53,8 +55,9 @@ self.addEventListener('fetch', e => {
         return (await cache.match(req, { ignoreSearch: true })) || cache.match('index.html');
       }
     }
-    // Datos y fuentes: caché primero.
-    const hit = await cache.match(req);
+    // Datos y fuentes: caché primero. La app pide data/… con el sello de versión (?v=…) y la precarga los
+    // guarda sin él: la caché es de esta misma versión, así que vale cualquiera de las dos.
+    const hit = (await cache.match(req)) || (sameOrigin && url.pathname.includes('/data/') ? await cache.match(req, { ignoreSearch: true }) : null);
     if (hit) return hit;
     const res = await fetch(req);
     if (res.ok || res.type === 'opaque') cache.put(req, res.clone());

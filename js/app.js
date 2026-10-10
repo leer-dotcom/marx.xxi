@@ -9,6 +9,7 @@ import { readerView } from './reader.js';
 const $ = (s, el = document) => el.querySelector(s);
 const view = $('#view');
 const ICON = {
+  download: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 19h14"/></svg>',
   code: '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg>',
   book: '<svg viewBox="0 0 24 24"><path d="M3 5.5C5.5 4.5 8.5 4.5 11.5 6v13c-3-1.5-6-1.5-8.5-.5zM20.5 5.5C18 4.5 15 4.5 12.5 6v13c3-1.5 6-1.5 8-.5z"/></svg>',
   hub: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.5 6.5l3.7 3.7M17.5 6.5l-3.7 3.7M6.5 17.5l3.7-3.7M17.5 17.5l-3.7-3.7"/></svg>',
@@ -345,10 +346,10 @@ function menuHtml() {
     ${link('#/buscar', 'Búsqueda', ICON.search)}
     ${link('#/marcadores', 'Marcadores', ICON.mark)}
     </details>
-    <details class="m-pub m-sep"${openIf(inSection(['#/ajustes', '#/acerca', '#/creditos']))}><summary class="m-group">Aplicación</summary>
-    ${link('#/ajustes', 'Modo lectura', ICON.aa)}
+    <details class="m-pub m-sep"${openIf(inSection(['#/acerca', '#/creditos']))}><summary class="m-group">Aplicación</summary>
     ${link('#/acerca', 'Acerca de', ICON.info)}
     ${link('#/creditos', 'Créditos', ICON.people)}
+    ${link('#/acerca/instalar', 'Instalar y usar sin conexión', ICON.download)}
     <a class="m-link" href="${REPO_URL}" target="_blank" rel="noopener">${ICON.code}<span>GitHub<small>Código fuente de la app, abierto</small></span></a>
     </details>`;
 }
@@ -469,7 +470,6 @@ function studyTools(p) {
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
       ${toolCard(p ? `#/buscar?p=${p.id}` : '#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
-      ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
     </div>`;
 }
 
@@ -1339,11 +1339,14 @@ function aboutView() {
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
-    <section class="card about">
-      <h2>Uso sin conexión</h2>
+    <section class="card about" id="instalar">
+      <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
-      <p class="muted small">Puedes instalar la aplicación desde el menú del navegador («Añadir a pantalla de inicio»).</p>
-      <button class="btn ghost" id="offline-all">Descargar todos los textos para leer sin conexión</button>
+      <h3 class="about-sub">Instalar la aplicación</h3>
+      <div id="install-area">${installHtml()}</div>
+      <h3 class="about-sub">Descargar todo</h3>
+      <p class="muted small">Con abrir la aplicación una vez ya quedan guardadas las páginas, las guías de estudio y los esquemas. Este botón descarga además los textos completos de los ${L.allArticles.length} artículos y las tipografías de lectura, para usarla entera sin conexión.</p>
+      <button class="btn ghost" id="offline-all">${ICON.download}Descargar todo para usar sin conexión</button>
       <p class="muted small" id="offline-msg" style="margin:8px 0 0"></p>
     </section>
 
@@ -1454,7 +1457,10 @@ async function route() {
   }
   cleanup = mount?.() || null;
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
-  if (parts[0] === 'acerca') bindOffline();
+  if (parts[0] === 'acerca') {
+    bindOffline();
+    if (parts[1] === 'instalar') document.getElementById('instalar')?.scrollIntoView();
+  }
 }
 
 // que el navegador tampoco restaure el scroll al volver atrás o recargar
@@ -1491,17 +1497,56 @@ window.addEventListener('hashchange', e => {
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });
 
+// ---------------------------------------------------------------- instalar y usar sin conexión
+// Android y Chrome/Edge de escritorio avisan de que la app se puede instalar (beforeinstallprompt): se guarda
+// el aviso para lanzarlo desde el botón. En iPhone y iPad no existe: se explica cómo hacerlo en Safari.
+let installEvt = null;
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function installHtml() {
+  if (isStandalone()) return '<p>La aplicación ya está instalada en este dispositivo.</p>';
+  if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
+    <p class="muted small" style="margin:8px 0 0">Se añadirá su icono a la pantalla de inicio o al escritorio y se abrirá como una aplicación, sin la barra del navegador.</p>`;
+  if (isIOS()) return '<p>En iPhone y iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>.</p>';
+  return '<p>Desde el menú del navegador, elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>. Si no aparece la opción, tu navegador no permite instalarla; se puede usar igual desde aquí.</p>';
+}
+const renderInstall = () => { const el = $('#install-area'); if (el) el.innerHTML = installHtml(); };
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; renderInstall(); });
+addEventListener('appinstalled', () => { installEvt = null; renderInstall(); toast('Aplicación instalada'); });
+document.addEventListener('click', async e => {
+  if (!e.target.closest('#install-app') || !installEvt) return;
+  installEvt.prompt();
+  await installEvt.userChoice.catch(() => null);
+  installEvt = null;
+  renderInstall();
+});
+
+/** «Descargar todo»: todos los archivos de data/ (textos íntegros incluidos), iconos y tipografías de lectura.
+ *  Se piden con las mismas rutas que usa la app, así que el service worker los guarda tal cual los pedirá. */
 function bindOffline() {
   const b = $('#offline-all'); if (!b) return;
   b.onclick = async () => {
     b.disabled = true;
     const msg = $('#offline-msg');
-    const all = lib().allArticles;
-    for (let i = 0; i < all.length; i++) {
-      await text(all[i].a.text_file).catch(() => null);
-      msg.textContent = `Descargando… ${i + 1}/${all.length}`;
+    let failed = 0;
+    const get = url => fetch(url).then(r => { if (!r.ok) failed++; }, () => { failed++; });
+    const files = (await fetch(dataUrl('files.json')).then(r => r.json()).catch(() => []))
+      .map(f => f.replace(/^data\//, '')).filter(f => f !== 'files.json');
+    for (let i = 0; i < files.length; i += 6) {
+      await Promise.all(files.slice(i, i + 6).map(f => get(dataUrl(f))));
+      msg.textContent = `Descargando… ${Math.min(i + 6, files.length)}/${files.length} archivos`;
     }
-    msg.textContent = navigator.serviceWorker?.controller ? 'Listo: todos los textos están disponibles sin conexión.' : 'Textos cargados. El modo sin conexión requiere abrir la app desde https (GitHub Pages).';
+    await Promise.all(['img/icon-192.png', 'img/icon-512.png', 'img/apple-touch-icon.png', 'img/favicon-32.png'].map(get));
+    msg.textContent = 'Descargando las tipografías de lectura…';
+    const fams = [...new Set(['"Alegreya SC"', ...Object.values(FONTS).map(([, css]) => css.split(',')[0])])].filter(f => !/system/.test(f));
+    await Promise.all(fams.flatMap(f => ['400', 'italic 400', '700', 'italic 700'].map(w => document.fonts.load(`${w} 1em ${f}`).catch(() => null))));
+    try { await navigator.storage?.persist?.(); } catch { /* lo decide el navegador */ }
+    let size = '';
+    try { const est = await navigator.storage?.estimate?.(); if (est?.usage) size = ` Ocupa unos ${Math.max(1, Math.round(est.usage / 1048576))} MB en este dispositivo.`; } catch { /* sin estimación */ }
+    msg.textContent = !navigator.serviceWorker?.controller
+      ? 'Archivos cargados, pero el modo sin conexión solo funciona al abrir la aplicación desde su dirección web (https).'
+      : failed ? `Descargado, salvo ${failed} archivo${failed > 1 ? 's' : ''} que no se pudo obtener: vuelve a intentarlo con conexión.${size}`
+        : `Listo: la aplicación completa está disponible sin conexión.${size}`;
     b.disabled = false;
   };
 }
