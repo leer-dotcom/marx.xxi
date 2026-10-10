@@ -149,7 +149,9 @@ function openZoom(host, keepList = false) {
   const vol = host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
   st.innerHTML = `<div class="dg">${host.querySelector('.dg')?.innerHTML || ''}</div>`;
-  $('#zoom-caption').textContent = host.dataset.caption || '';
+  // en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción
+  const zl = host.closest('[data-zlabel]')?.dataset.zlabel, cap = host.dataset.caption || '';
+  $('#zoom-caption').innerHTML = zl ? `<b class="zoom-label">${esc(zl)}</b>${cap ? ' ' + esc(cap) : ''}` : esc(cap);
   const box = st.firstChild;
   const fit = () => Math.min(st.clientWidth - 24, 1400);
   // En pantallas estrechas «ajustar» deja el texto del esquema en ~5 px: se abre a un tamaño legible
@@ -364,7 +366,7 @@ const progressBar = (p, cls = '') => `<div class="progress-row"><div class="prog
 /** Tarjeta de volumen o número, con progreso de lectura. */
 function volCard(v, read, pos) {
   const done = v.articles.filter(a => read.has(a.id)).length;
-  const avg = v.articles.reduce((s, a) => s + (pos[a.id]?.progress || 0), 0) / v.articles.length;
+  const avg = v.articles.reduce((s, a) => s + store.reached(a.id), 0) / v.articles.length;
   const n = v.articles.length;
   const what = n === 1 ? 'artículo' : 'artículos';
   return `<a class="card vol-card" href="${v.href}" data-vol="${v.key}">
@@ -382,7 +384,7 @@ function volCard(v, read, pos) {
 function continueCard() {
   const lastId = store.last(), last = lastId && (lastId.startsWith('tomo-') ? null : article(lastId));
   if (!last) return '';
-  const p = store.positions()[last.a.id]?.progress;
+  const p = store.reached(last.a.id);
   return `<a class="card" href="#/leer/${last.a.id}" style="margin-top:18px" data-vol="${last.v.key}">
       <div class="eyebrow vol">Seguir leyendo · ${esc(volName(last.v))}</div>
       <h3>${esc(last.a.title)}</h3><div class="muted small">${esc(byline(last.a))}</div>
@@ -526,7 +528,7 @@ function volumeView(p, n, tab = 1) {
   } else if (tab === 1) {
     body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada artículo o ve directamente al texto íntegro.</p>` +
       v.articles.map(a => {
-        const p = pos[a.id]?.progress || 0;
+        const p = store.reached(a.id);
         return `<div class="card art-card">
           <div class="art-main">
             <div class="row-actions"><span class="eyebrow vol">${artLabel(a)}</span><span class="muted" style="font-size:15px">≈ ${minutes(a.word_count)} min</span><span class="grow"></span>${read.has(a.id) ? '<span class="check">✓ leído</span>' : ''}</div>
@@ -661,7 +663,7 @@ function articleView(id, tab = 0) {
   if (!hit) return notFound();
   const { v, a } = hit;
   setBar(`${volShort(v).replace(/^Vol\./, 'Volumen')} · ${artLabel(a)}`, { up: v.href });
-  const p = store.position(a.id)?.progress || 0;
+  const p = store.reached(a.id), started = !!store.position(a.id);
   const { prev, next } = neighbours(a.id);
   let body;
   if (tab === TAB.texto) {
@@ -672,9 +674,10 @@ function articleView(id, tab = 0) {
       ${v.url ? `<div class="muted small"><a href="${esc(v.url)}" target="_blank" rel="noopener">PDF disponible en marxxxi.com</a></div>` : ''}
       ${a.printed_pages && v.label ? `<div class="muted small">En la revista impresa: páginas ${a.printed_pages.from}–${a.printed_pages.to}</div>` : ''}
       <div style="display:grid;gap:8px;margin-top:16px">
-        <a class="btn block" href="#/leer/${a.id}">${ICON.book}${p > 0 ? `Seguir leyendo (${pct(p)} %)` : 'Abrir en modo lectura'}</a>
-        ${p > 0 ? `<a class="btn ghost block" href="#/leer/${a.id}?b=0">Empezar desde el principio</a>` : ''}
+        <a class="btn block" href="#/leer/${a.id}">${ICON.book}${started ? `Seguir leyendo (${pct(p)} % leído)` : 'Abrir en modo lectura'}</a>
+        ${started ? `<a class="btn ghost block" href="#/leer/${a.id}?b=0">Empezar desde el principio</a>` : ''}
       </div>
+      ${started || store.read().has(a.id) ? `<button type="button" class="link-btn reset-progress" data-reset-progress="${a.id}">Reiniciar progreso de lectura</button>` : ''}
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;
   } else body = guideTab(a, tab);
@@ -701,7 +704,7 @@ function articleView(id, tab = 0) {
       ${next && article(next.id)?.v === v ? neighbourLink(next, 'next', tab) : conclusionsLink(v)}
     </nav>
   </div>
-  <a class="btn fab" href="#/leer/${a.id}" data-vol="${v.key}">${ICON.book}${p > 0 ? 'Seguir leyendo' : 'Leer texto completo'}</a>`;
+  <a class="btn fab" href="#/leer/${a.id}" data-vol="${v.key}">${ICON.book}${started ? 'Seguir leyendo' : 'Leer texto completo'}</a>`;
 }
 
 /** Tras el último artículo no se pasa al volumen o número siguiente: se va a sus conclusiones. */
@@ -913,7 +916,8 @@ function synthesisView(tab = 0, params) {
 function mapsView(params) {
   setBar('Mapas conceptuales');
   const L = lib(), S = L.synthesis;
-  const titled = (title, f, href) => f ? `<div class="dg-item">
+  // zl: qué esquema es (revista, volumen o número, artículo y título), antepuesto a su descripción al ampliarlo
+  const titled = (title, f, href, zl = '') => f ? `<div class="dg-item"${zl ? ` data-zlabel="${esc(zl)}"` : ''}>
     ${href ? `<a class="dg-title" href="${href}">${title}</a>` : `<div class="dg-title">${title}</div>`}${figure(f)}</div>` : '';
   const pubSection = p => {
     const cv = p.cross_volume, mx = p.id === 'marx-xxi';
@@ -923,10 +927,11 @@ function mapsView(params) {
       <details class="maps-sub">
         <summary>Mapas comunes de la revista</summary>
         <div class="dg-gallery">
-          ${titled('Mapa conceptual común', cv.map, tesis)}
-          ${titled('Trayectoria de la publicación', cv.arc, p.home)}
+          ${titled('Mapa conceptual común', cv.map, tesis, `${p.name} · Mapa conceptual común`)}
+          ${titled('Trayectoria de la publicación', cv.arc, p.home, `${p.name} · Trayectoria de la publicación`)}
           ${p.volumes.map(v => `<div data-vol="${v.key}">${titled(
-            `<b>${esc(volShort(v))}</b> · ${esc(v.label ? monthName(v.month) : v.title)}`, v.concept_map, `${v.href}/3`)}</div>`).join('')}
+            `<b>${esc(volShort(v))}</b> · ${esc(v.label ? monthName(v.month) : v.title)}`, v.concept_map, `${v.href}/3`,
+            `${volShort(v)} · ${v.label ? 'Mapa del número' : 'Mapa del volumen · ' + v.title}`)}</div>`).join('')}
         </div>
       </details>
       ${p.volumes.map(v => {
@@ -934,10 +939,14 @@ function mapsView(params) {
         return `<details class="maps-sub" data-vol="${v.key}">
         <summary><i class="m-dot"></i><span>${esc(volHead(v))}</span><span class="m-count">${n}</span></summary>
         <div class="dg-gallery">
-          ${titled(`<b>Mapa ${v.label ? 'del número' : 'del volumen'}</b> · ${esc(v.label ? v.title : volName(v))}`, v.concept_map, `${v.href}/3`)}
-          ${v.articles.filter(a => a.diagrams.length).map(a => titled(
-            `<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
-            a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`) + a.diagrams.slice(1).map(d => `<div class="dg-item">${figure(d)}</div>`).join('')).join('')}
+          ${titled(`<b>Mapa ${v.label ? 'del número' : 'del volumen'}</b> · ${esc(v.label ? v.title : volName(v))}`, v.concept_map, `${v.href}/3`,
+            `${volShort(v)} · ${v.label ? 'Mapa del número' : 'Mapa del volumen · ' + v.title}`)}
+          ${v.articles.filter(a => a.diagrams.length).map(a => {
+            const zl = `${volShort(v)} · ${artLabel(a)} · ${a.title}`;
+            return titled(`<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
+              a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`, zl)
+              + a.diagrams.slice(1).map(d => `<div class="dg-item" data-zlabel="${esc(zl)}">${figure(d)}</div>`).join('');
+          }).join('')}
         </div>
       </details>`;
       }).join('')}
@@ -1260,6 +1269,15 @@ function notFound() {
   return `<div class="wrap"><p class="empty">No existe esta página. <a href="#/">Volver al inicio</a></p></div>`;
 }
 
+// Reiniciar el progreso de lectura de un texto (pestaña «Texto completo» de la guía)
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-reset-progress]'); if (!b) return;
+  if (!confirm('¿Reiniciar el progreso de lectura de este texto? Se borran el punto donde lo dejaste, el porcentaje leído y la marca de leído (los subrayados y marcadores se conservan).')) return;
+  store.resetProgress(b.dataset.resetProgress);
+  toast('Progreso de lectura reiniciado');
+  route();
+});
+
 // ---------------------------------------------------------------- router
 
 let cleanup = null;
@@ -1308,7 +1326,13 @@ async function route() {
 
 // que el navegador tampoco restaure el scroll al volver atrás o recargar
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.addEventListener('hashchange', () => {
+// Pantalla desde la que se llegó (sin contar los cambios dentro del propio lector): el «Volver» del lector
+// regresa al volumen o número si se entró desde ahí
+let fromHash = '';
+export const cameFrom = () => fromHash;
+window.addEventListener('hashchange', e => {
+  const old = new URL(e.oldURL).hash;
+  if (!old.startsWith('#/leer/')) fromHash = old;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });
 

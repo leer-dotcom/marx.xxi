@@ -1,6 +1,6 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
 import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS, volHead, volShort, artLabel, byline } from './data.js';
-import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast } from './app.js';
+import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -134,10 +134,14 @@ export async function readerView(key, params) {
     return blockHtml(b, i, '', first);
   }).join('');
 
+  // «Volver»: al volumen o número si se entró desde su página; si no, a la guía del artículo
+  const from = cameFrom().split('?')[0];
+  const fromVol = a && /^#\/(volumen|tomo|numero)\/\d+(\/\d+)?$/.test(from) && from.startsWith(v.href);
+  const backHref = !a ? v.href + '/0' : fromVol ? from : '#/articulo/' + a.id;
   const html = `
   <div class="reader-top"><div class="inner" id="r-top">
     <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
-    <a class="icon-btn" href="${a ? '#/articulo/' + a.id : v.href + '/0'}" aria-label="Volver" id="r-back">${SVG.back}</a>
+    <a class="icon-btn" href="${backHref}" aria-label="Volver" id="r-back">${SVG.back}</a>
     <div class="titles"><b>${esc(title)}</b><span>${esc(volShort(v))}${author ? ' · ' + esc(author) : ''}</span></div>
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
   </div></div>

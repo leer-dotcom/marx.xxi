@@ -323,12 +323,25 @@ export const store = {
 
   positions() { return LS.get('mx.pos', {}); },
   position(id) { return this.positions()[id] || null; },
+  // block y progress: dónde se dejó (el texto se abre ahí); max: el punto más avanzado al que se ha llegado,
+  // que es el porcentaje de lectura que se muestra fuera del lector
   savePosition(id, block, progress) {
-    const all = this.positions();
-    all[id] = { block, progress, t: Date.now() };
+    const all = this.positions(), old = all[id];
+    const max = Math.max(progress, old?.max ?? old?.progress ?? 0);
+    all[id] = { block, progress, max, t: Date.now() };
     LS.set('mx.pos', all);
     LS.set('mx.last', id);
-    if (progress >= 0.98) this.setRead(id, true);
+    if (max >= 0.98) this.setRead(id, true);
+  },
+  /** Porcentaje leído (0–1): el punto más avanzado, no donde se dejó. */
+  reached(id) { const p = this.positions()[id]; return p ? p.max ?? p.progress ?? 0 : 0; },
+  /** Reiniciar el progreso de un texto: sin posición, sin porcentaje y sin marca de leído. */
+  resetProgress(id) {
+    const all = this.positions();
+    delete all[id];
+    LS.set('mx.pos', all);
+    this.setRead(id, false);
+    if (this.last() === id) LS.set('mx.last', null);
   },
   last() { return LS.get('mx.last', null); },
 
