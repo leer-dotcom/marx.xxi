@@ -9,6 +9,7 @@ import { readerView } from './reader.js';
 const $ = (s, el = document) => el.querySelector(s);
 const view = $('#view');
 const ICON = {
+  code: '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg>',
   book: '<svg viewBox="0 0 24 24"><path d="M3 5.5C5.5 4.5 8.5 4.5 11.5 6v13c-3-1.5-6-1.5-8.5-.5zM20.5 5.5C18 4.5 15 4.5 12.5 6v13c3-1.5 6-1.5 8-.5z"/></svg>',
   hub: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.5 6.5l3.7 3.7M17.5 6.5l-3.7 3.7M6.5 17.5l3.7-3.7M17.5 17.5l-3.7-3.7"/></svg>',
   az: '<svg viewBox="0 0 24 24"><path d="M3 18L7 6l4 12M4.3 14h5.4M14 6h7l-7 12h7"/></svg>',
@@ -347,6 +348,7 @@ function menuHtml() {
     <details class="m-pub m-sep"${openIf(inSection(['#/ajustes', '#/acerca']))}><summary class="m-group">Aplicación</summary>
     ${link('#/ajustes', 'Modo lectura', ICON.aa)}
     ${link('#/acerca', 'Acerca de y créditos', ICON.info)}
+    <a class="m-link" href="https://github.com/leer-dotcom/marx.xxi" target="_blank" rel="noopener">${ICON.code}<span>GitHub<small>Código fuente de la app, abierto</small></span></a>
     </details>`;
 }
 
@@ -1300,8 +1302,10 @@ function settingsView() {
 function aboutView() {
   setBar('Acerca de');
   const L = lib(), ab = L.about || {};
+  // **…** en los textos de data/about.json: negrita
+  const rich = list => list.map(t => `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('');
   const sec = (title, paragraphs, cls = '') => paragraphs?.length
-    ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${paras(paragraphs)}</section>` : '';
+    ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${rich(paragraphs)}</section>` : '';
   const mag = ab.magazine || {};
   // Textos propios de las demás publicaciones (p. ej. data/nuevo-ciclo/about.json)
   const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
