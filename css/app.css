@@ -351,9 +351,11 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .ai-note svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--olive);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .card.about{margin-top:16px}
 .card.about h2{font-size:24px;margin-bottom:10px}
+.card.about h3{font-size:19px;margin:18px 0 6px}
+.card.about h2 + h3{margin-top:4px}
 /* aviso sobre la guía: mismo amarillo suave que el recuadro «Acerca de» de inicio */
 .card.about.ai{background:color-mix(in srgb,var(--mark) 16%,var(--bg));border:1px solid color-mix(in srgb,var(--mark) 40%,var(--line))}
-.card.about .btn{margin-top:6px}
+.card.about .btn{display:flex;width:fit-content;max-width:100%;margin:10px auto 0} /* botones de «Acerca de» centrados */
 .credit-vol{padding:14px 0;border-top:1px solid var(--line)}
 .credit-vol h3{font-size:20px;margin:2px 0 4px}
 .credit-vol ul{margin:6px 0 0;padding-left:18px}

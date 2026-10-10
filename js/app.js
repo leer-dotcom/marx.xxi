@@ -1257,11 +1257,14 @@ export function bindSettings(root, onChange) {
   });
 }
 
-/** El tema elegido en los ajustes de lectura solo se aplica mientras se lee (body.reading); el resto de la
- *  app sigue el tema del sistema. */
+/** La app tiene siempre sus propios colores (los claros de marxxxi.com), sin seguir el modo oscuro del sistema.
+ *  El tema de los ajustes de lectura solo se aplica mientras se lee (body.reading); ahí «Sistema» sí sigue al
+ *  dispositivo. */
 export function applyTheme(s = store.settings()) {
-  if (s.theme === 'system' || !document.body.classList.contains('reading')) delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = s.theme === 'light' ? 'light' : s.theme;
+  const root = document.documentElement;
+  if (!document.body.classList.contains('reading')) root.dataset.theme = 'light';
+  else if (s.theme === 'system') delete root.dataset.theme;
+  else root.dataset.theme = s.theme;
   const head = getComputedStyle(document.documentElement).getPropertyValue('--head').trim();
   document.querySelector('meta[name=theme-color]').content = head || '#2c332f';
 }
@@ -1304,8 +1307,9 @@ const REPO_URL = 'https://github.com/leer-dotcom/marx.xxi';
 
 /** Secciones de «Acerca de» y «Créditos»: **…** en los textos de data/about.json se pinta en negrita. */
 function aboutSec(title, paragraphs, cls = '') {
-  return paragraphs?.length ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${paragraphs.map(t =>
-    `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}</section>` : '';
+  // «## …» es un título intermedio; **…**, negrita
+  return paragraphs?.length ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${paragraphs.map(t => t.startsWith('## ')
+    ? `<h3>${esc(t.slice(3))}</h3>` : `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}</section>` : '';
 }
 
 /** «Sobre Marx XXI», «Sobre Nuevo Ciclo»: su texto y un enlace a la publicación en marxxxi.com (site_url). */
@@ -1333,7 +1337,7 @@ function aboutView() {
     ${others.map(p => magSec(p.id, p.name, p.about.magazine || {})).join('')}
 
     <section class="card about" id="aplicacion">
-      <h2>Sobre la aplicación</h2>
+      <h2>Código abierto</h2>
       <p>Como ejercicio de transparencia, todo el contenido de esta aplicación es abierto: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, con el historial completo de cambios.</p>
       <p>Cualquiera puede consultarlo, descargarlo o hacer su propia copia. Los cambios en la aplicación, en cambio, solo los publica quien la mantiene.</p>
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
@@ -1345,7 +1349,7 @@ function aboutView() {
       <div id="install-area" class="install-area">${installHtml()}</div>
     </section>
 
-    <p class="muted small" style="margin-top:20px"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
+    <p class="muted small" style="margin-top:20px;text-align:center"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
   </div>`;
 }
 

@@ -298,7 +298,7 @@ const LS = {
 };
 
 export const DEFAULT_SETTINGS = {
-  theme: 'system', font: 'alegreya', size: 20, lineHeight: 1.6, paraGap: 0.8, margin: 24, width: 680,
+  theme: 'light', font: 'alegreya', size: 20, lineHeight: 1.6, paraGap: 0.8, margin: 24, width: 680,
   justify: true, hyphens: true, indent: false, notes: true, wakeLock: false,
 };
 
