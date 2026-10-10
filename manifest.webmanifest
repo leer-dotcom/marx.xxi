@@ -1,7 +1,7 @@
 {
   "name": "Lector de Marx XXI",
   "short_name": "Lector M·XXI",
-  "description": "Textos íntegros de Marx XXI (cinco volúmenes) y Nuevo Ciclo (revista trimestral) con resúmenes, esquemas, conceptos y glosario.",
+  "description": "Textos íntegros de Marx XXI (cinco volúmenes) y Nuevo Ciclo (revista trimestral), con guía de estudio de cada artículo, tesis comunes, síntesis de la colección, glosario, subrayados y notas. Funciona sin conexión.",
   "lang": "es",
   "start_url": "./",
   "scope": "./",

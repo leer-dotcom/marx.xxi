@@ -144,6 +144,7 @@ export async function readerView(key, params) {
     <a class="icon-btn" href="${backHref}" aria-label="Volver" id="r-back">${SVG.back}</a>
     <div class="titles"><b>${esc(title)}</b><span>${esc(volShort(v))}${author ? ' · ' + esc(author) : ''}</span></div>
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
+    <button class="icon-btn" data-share aria-label="Compartir enlace" title="Compartir enlace"><svg viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg></button>
   </div></div>
   <div class="hl-bar" id="hl-bar" role="toolbar" aria-label="Subrayar el pasaje seleccionado" hidden>
     ${Object.entries(HL_COLORS).map(([k, [n, c]]) => `<button type="button" class="hl-sw" data-color="${k}" style="--hl:${c}" aria-label="Subrayar en ${n.toLowerCase()}" title="${n}"></button>`).join('')}

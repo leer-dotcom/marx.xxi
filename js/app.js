@@ -39,6 +39,24 @@ export function setBar(title, { back = true, up = '#/' } = {}) {
 }
 $('#btn-back').addEventListener('click', e => { location.hash = e.currentTarget.dataset.up || '#/'; });
 
+// Compartir: el enlace de la pantalla actual (útil sobre todo con la app instalada, que no muestra la barra de
+// direcciones). Hoja de compartir del sistema si la hay; si no, se copia al portapapeles.
+document.addEventListener('click', async e => {
+  if (!e.target.closest('[data-share]')) return;
+  // en el texto íntegro, sin el bloque por el que se entró (b) ni la palabra buscada (q): ya no es donde se lee
+  const [path, query = ''] = (location.hash || '#/').split('?');
+  const qs = new URLSearchParams(query);
+  if (path.startsWith('#/leer/')) { qs.delete('b'); qs.delete('q'); }
+  const url = location.href.split('#')[0] + path + (qs.toString() ? '?' + qs : '');
+  const title = document.title;
+  if (navigator.share) {
+    try { await navigator.share({ title, url }); } catch { /* cancelado */ }
+    return;
+  }
+  try { await navigator.clipboard.writeText(url); toast('Enlace copiado'); }
+  catch { prompt('Copia el enlace:', url); }
+});
+
 export function toast(msg) {
   const t = $('#toast');
   t.textContent = msg; t.hidden = false;
@@ -349,8 +367,8 @@ function menuHtml() {
     <details class="m-pub m-sep"${openIf(inSection(['#/acerca', '#/creditos']))}><summary class="m-group">Aplicación</summary>
     ${link('#/acerca', 'Acerca de', ICON.info)}
     ${link('#/creditos', 'Créditos', ICON.people)}
+    <a class="m-link" href="${REPO_URL}" target="_blank" rel="noopener">${ICON.code}<span>GitHub</span></a>
     ${link('#/acerca/instalar', 'Instalar y usar sin conexión', ICON.download)}
-    <a class="m-link" href="${REPO_URL}" target="_blank" rel="noopener">${ICON.code}<span>GitHub<small>Código fuente de la app, abierto</small></span></a>
     </details>`;
 }
 
@@ -465,11 +483,12 @@ function studyTools(p) {
         <button type="button" class="ab-toggle ab-less" data-ab-toggle>…menos</button></p>
         <button type="button" class="ab-toggle ab-more" data-ab-toggle>Mostrar más…</button>
       </div>
-      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Conceptualización de artículos y publicaciones')}
+      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Esquemas de artículos y publicaciones')}
       ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
       ${toolCard(p ? `#/buscar?p=${p.id}` : '#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
+      ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Configura cómo ves los textos')}
     </div>`;
 }
 
@@ -1039,7 +1058,7 @@ function authorsView(params) {
   setBar('Autores');
   const L = lib();
   const html = `<div class="wrap">
-    <header class="page-head"><h1>Autores</h1><div class="sub">${L.authors.length} firmas${L.pubs.length > 1 ? ' en Marx XXI y Nuevo Ciclo; las que publican en las dos revistas aparecen marcadas' : ''}. Entre los entrevistados figura el nombre de la persona entrevistada.</div></header>
+    <header class="page-head"><h1>Autores</h1><div class="sub">${L.authors.length} firmas${L.pubs.length > 1 ? ' en Marx XXI y Nuevo Ciclo; las que publican en las dos revistas aparecen marcadas' : ''}. Las entrevistas figuran también a nombre de la persona entrevistada.</div></header>
     <div class="sticky-tools"><label class="field">${ICON.search}<input id="au-q" type="search" placeholder="Buscar autor" value="${esc(params.get('q') || '')}" autocomplete="off"></label></div>
     <div id="au-list"></div>
   </div>`;
@@ -1281,10 +1300,10 @@ export function styleReader(el, s) {
 }
 
 function settingsView() {
-  setBar('Modo lectura');
+  setBar('Ajustes de lectura');
   const s = store.settings();
   const html = `<div class="wrap">
-    <header class="page-head"><h1>Modo lectura</h1><div class="sub">Los ajustes se guardan en este navegador y se aplican a todos los textos.</div></header>
+    <header class="page-head"><h1>Ajustes de lectura</h1><div class="sub">Los ajustes se guardan en este navegador y se aplican a todos los textos.</div></header>
     <div class="preview"><div class="reader" id="pv">
       <div class="eyebrow">vista previa</div>
       <p class="first" style="margin-top:8px">Así se verá el texto íntegro de cada artículo. Ajusta el tamaño, la fuente y el interlineado hasta que la lectura resulte cómoda durante sesiones largas.</p>
@@ -1324,8 +1343,8 @@ function aboutView() {
   // Textos propios de las demás publicaciones (p. ej. data/nuevo-ciclo/about.json)
   const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
   return `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Lector Marx XXI</div><h1>Acerca de</h1>
-      <div class="sub">Guía de lectura de ${L.pubs.length > 1 ? 'los cinco volúmenes de Marx XXI y los números de la revista trimestral Nuevo Ciclo' : 'los cinco volúmenes de la revista'}: textos íntegros y materiales de estudio.</div></header>
+    <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Acerca de</h1>
+      <div class="sub">Qué es este lector, cómo se han elaborado con IA sus guías de estudio, qué son Marx XXI y Nuevo Ciclo, y cómo instalarlo y usarlo sin conexión.</div></header>
 
     ${aboutSec(ab.ai?.title || 'Objetivo y uso de la IA', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
 
@@ -1334,8 +1353,8 @@ function aboutView() {
 
     <section class="card about" id="aplicacion">
       <h2>Código abierto</h2>
-      <p>Como ejercicio de transparencia, todo el contenido de esta aplicación es abierto: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, con el historial completo de cambios.</p>
-      <p>Cualquiera puede consultarlo, descargarlo o hacer su propia copia. Los cambios en la aplicación, en cambio, solo los publica quien la mantiene.</p>
+      <p>Como ejercicio de transparencia, esta aplicación es abierta: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, con el historial completo de cambios.</p>
+      <p>Cualquiera puede consultarlo, descargarlo o hacer su propia copia; los cambios en esta aplicación, no obstante, solo los publica quien la mantiene.</p>
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
@@ -1360,8 +1379,8 @@ function creditsView() {
       <ul>${v.articles.map(a => `<li><a href="#/articulo/${a.id}">${esc(byline(a))}</a>${isInterview(a) ? ' (entrevista)' : ''} — <span class="muted">${esc(a.title)}</span></li>`).join('')}</ul>
     </div>`).join('');
   return `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Lector Marx XXI</div><h1>Créditos</h1>
-      <div class="sub">Textos y licencia, y autores y artículos de cada ${L.pubs.length > 1 ? 'volumen y número' : 'volumen'}.</div></header>
+    <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Créditos</h1>
+      <div class="sub">Licencia de los textos, autores y artículos de cada ${L.pubs.length > 1 ? 'volumen y número' : 'volumen'}, y diseño del lector.</div></header>
 
     ${aboutSec(ab.license?.title || 'Textos y licencia', [...(ab.license?.paragraphs || []), ...others.flatMap(p => p.about.license?.paragraphs || [])])}
 
