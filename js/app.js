@@ -480,14 +480,10 @@ document.addEventListener('click', e => {
   try { sessionStorage.setItem(b.dataset.abKey, folded ? '0' : '1'); } catch { /* sin almacenamiento */ }
 });
 
-function siteFoot(colophon) {
-  const L = lib();
-  return `<footer class="site-foot">
-      ${colophon ? `<span>${esc(colophon)}</span>` : ''}
-      <span>Revista: <a href="https://marxxxi.com/" rel="noopener" target="_blank">marxxxi.com</a> · <a href="#/acerca">Acerca de este lector</a> · <a href="#/creditos">Créditos</a></span>
-      <span>${esc(L.about?.ai_short || 'Guía elaborada con Claude (IA).')}</span>
+/** Pie de las portadas (colección y cada revista): solo los enlaces de referencia. */
+const siteFoot = () => `<footer class="site-foot">
+      <span>Basado en: <a href="https://marxxxi.com/" rel="noopener" target="_blank">marxxxi.com</a> · <a href="#/acerca">Acerca de este lector</a> · <a href="#/creditos">Créditos</a></span>
     </footer>`;
-}
 
 // ---------------------------------------------------------------- vistas
 
@@ -568,7 +564,7 @@ function collectionView(p) {
       desde su propio problema. Cada tesis se despliega para leerla entera, y el mapa conceptual común las ordena de un vistazo.</p></div>
     <a class="card tool synth-link" href="${tesis}">${ICON.hub}<strong>Leer la síntesis de ${esc(p.name)}</strong></a>
     ${cv.map ? figure(cv.map) : ''}
-    ${siteFoot(cv.colophon)}
+    ${siteFoot()}
   </div>`;
 }
 
