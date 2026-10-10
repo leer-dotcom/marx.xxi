@@ -598,10 +598,16 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .about-banner .card{background:color-mix(in srgb,var(--bg) 70%,transparent);align-self:stretch}
 .about-banner p{grid-column:2/-1;margin:0;padding:6px 0;font-size:14px;line-height:1.42;letter-spacing:.01em;color:var(--ink-2);text-wrap:pretty;hyphens:auto}
 .about-banner .p-gap{display:block;height:7px}
+.about-banner .ab-toggle{display:none} /* «Menos.» / «Mostrar más…»: solo en móvil */
 @media (max-width:540px){
   .about-banner{gap:10px;padding:10px}
   .about-banner .card{padding:10px 14px}
   .about-banner p{grid-column:1/-1;font-size:13.5px;padding:0 4px 2px}
+  .about-banner .ab-toggle{display:inline;background:none;border:0;padding:0;font:inherit;color:var(--ink);text-decoration:underline;
+    text-underline-offset:2px;cursor:pointer}
+  .about-banner .ab-more{display:none;grid-column:1/-1;justify-self:start;margin:0 4px 2px;font-size:13.5px}
+  .about-banner.folded p{display:none}
+  .about-banner.folded .ab-more{display:inline}
 }
 
 /* mapas conceptuales (#/mapas): galerías de mapas y esquemas por revista, volumen o número */

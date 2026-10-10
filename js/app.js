@@ -430,14 +430,20 @@ function studyTools(p) {
   const L = lib();
   const gl = p ? L.glossary.filter(e => e.pub === p) : L.glossary;
   const au = p ? L.authors.filter(x => x.items.some(i => i.v.pub.id === p.id)) : L.authors;
+  // en móvil el aviso se puede plegar; se recuerda por página solo durante la sesión (sessionStorage)
+  const abKey = 'mx.about.' + (p ? p.id : 'coleccion');
+  let folded = false;
+  try { folded = sessionStorage.getItem(abKey) === '0'; } catch { /* sin almacenamiento: desplegado */ }
   return `<h2 class="sec-title">Herramientas de estudio</h2>
     <div class="grid two">
-      <div class="about-banner">
+      <div class="about-banner${folded ? ' folded' : ''}" data-ab-key="${abKey}">
         ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, créditos y licencia')}
         <p>El objetivo de esta aplicación es divulgativo, facilitando la lectura y el subrayado del contenido en dispositivos digitales.<span class="p-gap"></span>
         Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
         de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
-        y han de analizarse críticamente a luz de estos, pues podrían contener inexactitudes y errores.</p>
+        y han de analizarse críticamente a luz de estos, pues podrían contener inexactitudes y errores.
+        <button type="button" class="ab-toggle ab-less" data-ab-toggle>Menos.</button></p>
+        <button type="button" class="ab-toggle ab-more" data-ab-toggle>Mostrar más…</button>
       </div>
       ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Conceptualización de artículos y publicaciones')}
       ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
@@ -447,6 +453,13 @@ function studyTools(p) {
       ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
     </div>`;
 }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-ab-toggle]');
+  if (!t) return;
+  const b = t.closest('.about-banner'), folded = b.classList.toggle('folded');
+  try { sessionStorage.setItem(b.dataset.abKey, folded ? '0' : '1'); } catch { /* sin almacenamiento */ }
+});
 
 function siteFoot(colophon) {
   const L = lib();
