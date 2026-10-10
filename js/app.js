@@ -461,7 +461,7 @@ function studyTools(p) {
         <p>El objetivo de esta aplicación es divulgativo, facilitando la lectura y el subrayado del contenido en dispositivos digitales.<span class="p-gap"></span>
         Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
         de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
-        y han de analizarse críticamente a luz de estos, pues podrían contener inexactitudes y errores.
+        y han de analizarse críticamente a la luz de estos, pues podrían contener inexactitudes y errores.
         <button type="button" class="ab-toggle ab-less" data-ab-toggle>…menos</button></p>
         <button type="button" class="ab-toggle ab-more" data-ab-toggle>Mostrar más…</button>
       </div>

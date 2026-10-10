@@ -1,6 +1,6 @@
 // Service worker: la app funciona sin conexión una vez visitada.
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
-const VERSION = 'mx-20261010-2241';
+const VERSION = 'mx-20261011-0008';
 const SHELL = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
