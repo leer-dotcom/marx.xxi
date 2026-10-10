@@ -345,10 +345,11 @@ function menuHtml() {
     ${link('#/buscar', 'Búsqueda', ICON.search)}
     ${link('#/marcadores', 'Marcadores', ICON.mark)}
     </details>
-    <details class="m-pub m-sep"${openIf(inSection(['#/ajustes', '#/acerca']))}><summary class="m-group">Aplicación</summary>
+    <details class="m-pub m-sep"${openIf(inSection(['#/ajustes', '#/acerca', '#/creditos']))}><summary class="m-group">Aplicación</summary>
     ${link('#/ajustes', 'Modo lectura', ICON.aa)}
-    ${link('#/acerca', 'Acerca de y créditos', ICON.info)}
-    <a class="m-link" href="https://github.com/leer-dotcom/marx.xxi" target="_blank" rel="noopener">${ICON.code}<span>GitHub<small>Código fuente de la app, abierto</small></span></a>
+    ${link('#/acerca', 'Acerca de', ICON.info)}
+    ${link('#/creditos', 'Créditos', ICON.people)}
+    <a class="m-link" href="${REPO_URL}" target="_blank" rel="noopener">${ICON.code}<span>GitHub<small>Código fuente de la app, abierto</small></span></a>
     </details>`;
 }
 
@@ -455,7 +456,7 @@ function studyTools(p) {
   return `<h2 class="sec-title">Herramientas de estudio</h2>
     <div class="grid two">
       <div class="about-banner${folded ? ' folded' : ''}" data-ab-key="${abKey}">
-        ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, créditos y licencia')}
+        ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, la IA y la aplicación')}
         <p>El objetivo de esta aplicación es divulgativo, facilitando la lectura y el subrayado del contenido en dispositivos digitales.<span class="p-gap"></span>
         Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
         de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
@@ -483,7 +484,7 @@ function siteFoot(colophon) {
   const L = lib();
   return `<footer class="site-foot">
       ${colophon ? `<span>${esc(colophon)}</span>` : ''}
-      <span>Revista: <a href="https://marxxxi.com/" rel="noopener" target="_blank">marxxxi.com</a> · <a href="#/acerca">Acerca de este lector y créditos</a></span>
+      <span>Revista: <a href="https://marxxxi.com/" rel="noopener" target="_blank">marxxxi.com</a> · <a href="#/acerca">Acerca de este lector</a> · <a href="#/creditos">Créditos</a></span>
       <span>${esc(L.about?.ai_short || 'Guía elaborada con Claude (IA).')}</span>
     </footer>`;
 }
@@ -1299,42 +1300,43 @@ function settingsView() {
   }];
 }
 
+const REPO_URL = 'https://github.com/leer-dotcom/marx.xxi';
+
+/** Secciones de «Acerca de» y «Créditos»: **…** en los textos de data/about.json se pinta en negrita. */
+function aboutSec(title, paragraphs, cls = '') {
+  return paragraphs?.length ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${paragraphs.map(t =>
+    `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}</section>` : '';
+}
+
+/** «Sobre Marx XXI», «Sobre Nuevo Ciclo»: su texto y un enlace a la publicación en marxxxi.com (site_url). */
+function magSec(id, name, mag) {
+  return `<section class="card about" id="sobre-${id}">
+      <h2>${esc(mag.title || 'Sobre ' + name)}</h2>
+      ${paras(mag.paragraphs || [])}
+      ${mag.site_url ? `<a class="btn ghost" href="${esc(mag.site_url)}" rel="noopener" target="_blank">Ver ${esc(name)} en marxxxi.com</a>` : ''}
+    </section>`;
+}
+
 function aboutView() {
   setBar('Acerca de');
   const L = lib(), ab = L.about || {};
-  // **…** en los textos de data/about.json: negrita
-  const rich = list => list.map(t => `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('');
-  const sec = (title, paragraphs, cls = '') => paragraphs?.length
-    ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${rich(paragraphs)}</section>` : '';
   const mag = ab.magazine || {};
   // Textos propios de las demás publicaciones (p. ej. data/nuevo-ciclo/about.json)
   const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
-  const credits = p => p.volumes.map(v => `<div class="credit-vol" data-vol="${v.key}">
-      <div class="eyebrow vol">${v.label ? `${esc(volName(v))} · ${esc(monthName(v.month))}` : `Volumen ${v.number}${v.year ? ' · ' + v.year : ''}`}</div>
-      <h3>${esc(v.label ? v.subtitle : v.title)}</h3>
-      ${v.editor ? `<p class="muted small">Edición: ${esc(v.editor)}${!v.label && v.number <= 3 ? ' · publicado con Contracultura' : ''}</p>` : ''}
-      <ul>${v.articles.map(a => `<li><a href="#/articulo/${a.id}">${esc(byline(a))}</a>${isInterview(a) ? ' (entrevista)' : ''} — <span class="muted">${esc(a.title)}</span></li>`).join('')}</ul>
-    </div>`).join('');
   return `<div class="wrap">
     <header class="page-head"><div class="eyebrow">Lector Marx XXI</div><h1>Acerca de</h1>
       <div class="sub">Guía de lectura de ${L.pubs.length > 1 ? 'los cinco volúmenes de Marx XXI y los números de la revista trimestral Nuevo Ciclo' : 'los cinco volúmenes de la revista'}: textos íntegros y materiales de estudio.</div></header>
 
-    <section class="card about" id="revista">
-      <h2>${esc(mag.title || 'Sobre Marx XXI')}</h2>
-      ${paras(mag.paragraphs || [])}
-      ${mag.source_url ? `<p class="muted small">${esc(mag.source_label || 'Fuente:')} <a href="${esc(mag.source_url)}" rel="noopener" target="_blank">${esc(mag.source_url.replace(/^https?:\/\//, ''))}</a></p>` : ''}
-      ${mag.site_url ? `<a class="btn ghost" href="${esc(mag.site_url)}" rel="noopener" target="_blank">Visitar marxxxi.com</a>` : ''}
-    </section>
-    ${others.map(p => sec(p.about.magazine?.title || 'Sobre ' + p.name, p.about.magazine?.paragraphs)).join('')}
+    ${aboutSec(ab.ai?.title || 'Objetivo y uso de la IA', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
 
-    ${sec(ab.ai?.title || 'Sobre esta guía de lectura', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
-    ${sec(ab.license?.title || 'Textos y licencia', [...(ab.license?.paragraphs || []), ...others.flatMap(p => p.about.license?.paragraphs || [])])}
+    ${magSec('marx-xxi', 'Marx XXI', mag)}
+    ${others.map(p => magSec(p.id, p.name, p.about.magazine || {})).join('')}
 
-    <section class="card about" id="creditos">
-      <h2>${esc(ab.credits_title || 'Créditos')}</h2>
-      ${L.pubs.map(p => `${L.pubs.length > 1 ? `<h3 class="credit-pub">${esc(p.name)}</h3>` : ''}
-        <p class="muted small">Autores y ${p.volumes[0]?.label ? 'artículos de cada número' : 'artículos de cada volumen'}, en el orden de la revista.</p>
-        ${credits(p)}`).join('')}
+    <section class="card about" id="aplicacion">
+      <h2>Sobre la aplicación</h2>
+      <p>Como ejercicio de transparencia, todo el contenido de esta aplicación es abierto: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, con el historial completo de cambios.</p>
+      <p>Cualquiera puede consultarlo, descargarlo o hacer su propia copia. Los cambios en la aplicación, en cambio, solo los publica quien la mantiene.</p>
+      <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
     <section class="card about">
@@ -1343,6 +1345,33 @@ function aboutView() {
       <p class="muted small">Puedes instalar la aplicación desde el menú del navegador («Añadir a pantalla de inicio»).</p>
       <button class="btn ghost" id="offline-all">Descargar todos los textos para leer sin conexión</button>
       <p class="muted small" id="offline-msg" style="margin:8px 0 0"></p>
+    </section>
+
+    <p class="muted small" style="margin-top:20px"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
+  </div>`;
+}
+
+function creditsView() {
+  setBar('Créditos');
+  const L = lib(), ab = L.about || {};
+  const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
+  const credits = p => p.volumes.map(v => `<div class="credit-vol" data-vol="${v.key}">
+      <div class="eyebrow vol">${v.label ? `${esc(volName(v))} · ${esc(monthName(v.month))}` : `Volumen ${v.number}${v.year ? ' · ' + v.year : ''}`}</div>
+      <h3>${esc(v.label ? v.subtitle : v.title)}</h3>
+      ${v.editor ? `<p class="muted small">Edición: ${esc(v.editor)}${!v.label && v.number <= 3 ? ' · publicado con Contracultura' : ''}</p>` : ''}
+      <ul>${v.articles.map(a => `<li><a href="#/articulo/${a.id}">${esc(byline(a))}</a>${isInterview(a) ? ' (entrevista)' : ''} — <span class="muted">${esc(a.title)}</span></li>`).join('')}</ul>
+    </div>`).join('');
+  return `<div class="wrap">
+    <header class="page-head"><div class="eyebrow">Lector Marx XXI</div><h1>Créditos</h1>
+      <div class="sub">Textos y licencia, y autores y artículos de cada ${L.pubs.length > 1 ? 'volumen y número' : 'volumen'}.</div></header>
+
+    ${aboutSec(ab.license?.title || 'Textos y licencia', [...(ab.license?.paragraphs || []), ...others.flatMap(p => p.about.license?.paragraphs || [])])}
+
+    <section class="card about" id="autores-articulos">
+      <h2>Autores y artículos</h2>
+      ${L.pubs.map(p => `${L.pubs.length > 1 ? `<h3 class="credit-pub">${esc(p.name)}</h3>` : ''}
+        <p class="muted small">Autores y ${p.volumes[0]?.label ? 'artículos de cada número' : 'artículos de cada volumen'}, en el orden de la revista.</p>
+        ${credits(p)}`).join('')}
     </section>
 
     ${ab.design ? `<p class="muted small" style="margin-top:20px">${esc(ab.design)}</p>` : ''}
@@ -1404,6 +1433,7 @@ async function route() {
     case 'marcadores': out = bookmarksView(params); break;
     case 'ajustes': out = settingsView(); break;
     case 'acerca': out = aboutView(); break;
+    case 'creditos': out = creditsView(); break;
     default: out = notFound();
   }
   const [html, mount] = Array.isArray(out) ? out : [out, null];

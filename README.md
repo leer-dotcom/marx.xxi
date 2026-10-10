@@ -90,7 +90,7 @@ síntesis ya existentes, decidiendo tesis por tesis si el número las confirma, 
 `#/` biblioteca · `#/marx-xxi` y `#/nuevo-ciclo` portada de cada revista · `#/volumen/1[/pestaña]` ·
 `#/numero/1[/pestaña]` · `#/articulo/t1-a1[/pestaña]` · `#/articulo/n1-a6` · `#/leer/t1-a1[?b=bloque]` · `#/leer/tomo-1`
 (presentación) · `#/tesis[?t=3]` · `#/tesis/nuevo-ciclo` · `#/sintesis` · `#/glosario[?p=nuevo-ciclo|puentes]` ·
-`#/autores` · `#/buscar?q=…` · `#/marcadores` · `#/ajustes` · `#/acerca`
+`#/autores` · `#/buscar?q=…` · `#/marcadores` · `#/ajustes` · `#/acerca` · `#/creditos`
 
 Los enlaces se pueden compartir: `…/#/leer/t3-a2?b=40` abre ese texto en ese párrafo.
 

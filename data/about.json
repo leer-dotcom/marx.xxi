@@ -6,12 +6,10 @@
       "Marx XXI es una revista anual de teoría socialista. Publica trabajos largos de análisis e investigación, y se presenta como una herramienta para el debate ideológico.",
       "Apareció en 2021, impulsada desde Contracultura (que editó los tres primeros volúmenes), y desde el segundo número está ligada al Movimiento Socialista. Cada artículo expresa la posición de su autor, no la de las organizaciones de ese movimiento."
     ],
-    "source_label": "Resumen propio a partir de la página «Sobre nosotros» de la revista, donde puede leerse su presentación completa:",
-    "source_url": "https://marxxxi.com/pages/sobre-nosotros",
-    "site_url": "https://marxxxi.com/"
+    "site_url": "https://marxxxi.com/collections/marx-xxi"
   },
   "ai": {
-    "title": "Sobre esta guía de lectura",
+    "title": "Objetivo y uso de la IA",
     "paragraphs": [
       "El objetivo de esta aplicación es divulgativo: facilitar la lectura, el subrayado y el estudio de las revistas en dispositivos digitales, ya sea el móvil, la tableta o el ordenador. Reúne los textos íntegros en un modo de lectura ajustable (tema, fuente, tamaño, interlineado y márgenes), con subrayados en varios colores, notas propias, marcadores y búsqueda en todos los textos. La posición de lectura, los subrayados y las notas se guardan únicamente en el dispositivo del lector.",
       "Cada texto va acompañado de una guía de estudio: resumen, estructura del argumento, esquema, conceptos clave, una cita seleccionada y su conclusión. A ello se suman, en cada volumen o número, las conclusiones, el mapa conceptual y las relaciones entre artículos; y, en conjunto, las tesis comunes de cada revista, el glosario y la síntesis de la colección. Todo este material se ha elaborado a partir de la lectura íntegra de las revistas con Claude Fable 5.1, de Anthropic —uno de los modelos de inteligencia artificial más avanzados—, como apoyo al estudio.",
