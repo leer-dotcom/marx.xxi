@@ -10,6 +10,7 @@ const $ = (s, el = document) => el.querySelector(s);
 const view = $('#view');
 const ICON = {
   download: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 19h14"/></svg>',
+  refresh: '<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>',
   code: '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg>',
   book: '<svg viewBox="0 0 24 24"><path d="M3 5.5C5.5 4.5 8.5 4.5 11.5 6v13c-3-1.5-6-1.5-8.5-.5zM20.5 5.5C18 4.5 15 4.5 12.5 6v13c3-1.5 6-1.5 8-.5z"/></svg>',
   hub: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M6.5 6.5l3.7 3.7M17.5 6.5l-3.7 3.7M6.5 17.5l3.7-3.7M17.5 17.5l-3.7-3.7"/></svg>',
@@ -197,8 +198,11 @@ function openZoom(host, keepList = false) {
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
   st.innerHTML = `<div class="dg">${host.querySelector('.dg')?.innerHTML || ''}</div>`;
   // en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción
-  const zl = host.closest('[data-zlabel]')?.dataset.zlabel, cap = host.dataset.caption || '';
-  $('#zoom-caption').innerHTML = zl ? `<b class="zoom-label">${esc(zl)}</b>${cap ? ' ' + esc(cap) : ''}` : esc(cap);
+  const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel, cap = host.dataset.caption || '';
+  // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
+  const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);
+  const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ');
+  $('#zoom-caption').innerHTML = zl ? `<b class="zoom-label">${zlHtml}</b>${cap ? ' ' + esc(cap) : ''}` : esc(cap);
   const box = st.firstChild;
   const fit = () => Math.min(st.clientWidth - 24, 1400);
   // En pantallas estrechas «ajustar» deja el texto del esquema en ~5 px: se abre a un tamaño legible
@@ -261,17 +265,30 @@ document.addEventListener('click', e => {
   if (b && b.querySelector('.dg[data-state="ok"]')) openZoom(b);
 });
 
+/** Etiqueta del pie con su código («Esquema MX1.4», «Mapa conceptual NC2», «Trayectoria MX») y el resto del pie.
+ *  Si el pie ya empieza diciendo lo que es («Esquema.», «Línea temporal.», «Mapa conceptual del volumen.»…), el
+ *  código va tras esa palabra; si no, delante, con el tipo. */
+function figTag(f) {
+  const c = f.caption || '';
+  if (!f.code) return ['', c];
+  const m = c.match(/^(Esquema|Línea temporal|Mapa conceptual(?: del volumen| del número)?|Mapa transversal)\.\s*/);
+  if (m) return [`${/^Mapa conceptual/.test(m[1]) ? 'Mapa conceptual' : m[1]} ${f.code}`, c.slice(m[0].length)];
+  return [`${f.type || 'Esquema'} ${f.code}`, c];
+}
+
 export function figure(f) {
   if (!f) return '';
   // La proporción del viewBox reserva el hueco mientras llega el SVG (sin saltos de maquetación)
   const vb = (f.viewBox || '').split(/\s+/).map(Number);
   const ratio = vb.length === 4 && vb[2] > 0 && vb[3] > 0 ? `aspect-ratio:${vb[2]}/${vb[3]}` : 'min-height:200px';
   const label = f.aria_label || f.caption || 'Esquema';
+  const [tag, rest] = figTag(f);
+  const cap = tag ? `${tag}.${rest ? ' ' + rest : ''}` : f.caption || '';
   return `<figure class="diagram">
-    <button type="button" data-zoom data-caption="${esc(f.caption)}" aria-label="Ampliar esquema: ${esc(label)}">
+    <button type="button" data-zoom data-caption="${esc(cap)}" aria-label="Ampliar esquema: ${esc(label)}">
       <div class="dg" data-svg="${esc(f.file)}" style="${ratio}" role="img" aria-label="${esc(label)}"></div>
     </button>
-    ${f.caption ? `<figcaption>${esc(f.caption)}</figcaption>` : ''}
+    ${cap ? `<figcaption>${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(cap)}</figcaption>` : ''}
   </figure>`;
 }
 
@@ -648,9 +665,9 @@ function volumeView(p, n, tab = 1) {
 </div>
       ${v.cover ? `<div class="ph-cover">${coverHtml(v)}</div>` : ''}
       ${headNav(
-        // antes del primero, la portada de la revista («Intro»); después del último, sus conclusiones comunes
+        // antes del primero, la portada de la revista («Inicio»); después del último, sus conclusiones comunes
         prev ? { href: `${prev.href}/${tab}`, label: volShort(prev), tip: volHead(prev), vol: prev.key }
-          : { href: p.home, label: 'Intro', tip: `Portada de ${p.name}`, vol: v.key, neutral: true },
+          : { href: p.home, label: 'Inicio', tip: `Portada de ${p.name}`, vol: v.key, neutral: true },
         next ? { href: `${next.href}/${tab}`, label: volShort(next), tip: volHead(next), vol: next.key }
           : { href: thesesHref(p), label: 'Concl.', tip: `${p.name}: Síntesis`, vol: v.key, neutral: true },
         v.label ? 'Números contiguos' : 'Volúmenes contiguos')}</header>
@@ -999,7 +1016,7 @@ function mapsView(params) {
   setBar('Mapas conceptuales');
   const L = lib(), S = L.synthesis;
   // zl: qué esquema es (revista, volumen o número, artículo y título), antepuesto a su descripción al ampliarlo
-  const titled = (title, f, href, zl = '') => f ? `<div class="dg-item"${zl ? ` data-zlabel="${esc(zl)}"` : ''}>
+  const titled = (title, f, href, zl = '', zhi = 0) => f ? `<div class="dg-item"${zl ? ` data-zlabel="${esc(zl)}" data-zhi="${zhi}"` : ''}>
     ${href ? `<a class="dg-title" href="${href}">${title}</a>` : `<div class="dg-title">${title}</div>`}${figure(f)}</div>` : '';
   const pubSection = p => {
     const cv = p.cross_volume, mx = p.id === 'marx-xxi';
@@ -1009,11 +1026,12 @@ function mapsView(params) {
       <details class="maps-sub">
         <summary>Mapas comunes de la revista</summary>
         <div class="dg-gallery">
-          ${titled('Mapa conceptual común', cv.map, tesis, `${p.name} · Mapa conceptual común`)}
+          ${titled(`Mapa conceptual · Los ${numWord(p.volumes.length)} ${esc(p.unit_plural)}`, cv.map, tesis,
+            `${p.name} · Mapa conceptual · Los ${numWord(p.volumes.length)} ${p.unit_plural}`)}
           ${titled('Trayectoria de la publicación', cv.arc, p.home, `${p.name} · Trayectoria de la publicación`)}
           ${p.volumes.map(v => `<div data-vol="${v.key}">${titled(
             `<b>${esc(volShort(v))}</b> · ${esc(v.label ? monthName(v.month) : v.title)}`, v.concept_map, `${v.href}/3`,
-            `${volShort(v)} · ${v.label ? 'Mapa del número' : 'Mapa del volumen · ' + v.title}`)}</div>`).join('')}
+            `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`, 1)}</div>`).join('')}
         </div>
       </details>
       ${p.volumes.map(v => {
@@ -1021,13 +1039,13 @@ function mapsView(params) {
         return `<details class="maps-sub" data-vol="${v.key}">
         <summary><i class="m-dot"></i><span>${esc(volHead(v))}</span><span class="m-count">${n}</span></summary>
         <div class="dg-gallery">
-          ${titled(`<b>Mapa ${v.label ? 'del número' : 'del volumen'}</b> · ${esc(v.label ? v.title : volName(v))}`, v.concept_map, `${v.href}/3`,
-            `${volShort(v)} · ${v.label ? 'Mapa del número' : 'Mapa del volumen · ' + v.title}`)}
+          ${titled(`<b>${v.label ? 'Número ' + esc(v.label) : 'Volumen ' + v.number}</b> · ${v.articles.length} artículos`, v.concept_map, `${v.href}/3`,
+            `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`, 1)}
           ${v.articles.filter(a => a.diagrams.length).map(a => {
             const zl = `${volShort(v)} · ${artLabel(a)} · ${a.title}`;
             return titled(`<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
-              a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`, zl)
-              + a.diagrams.slice(1).map(d => `<div class="dg-item" data-zlabel="${esc(zl)}">${figure(d)}</div>`).join('');
+              a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`, zl, 2)
+              + a.diagrams.slice(1).map(d => `<div class="dg-item" data-zlabel="${esc(zl)}" data-zhi="2">${figure(d)}</div>`).join('');
           }).join('')}
         </div>
       </details>`;
@@ -1344,7 +1362,7 @@ function aboutView() {
   const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
   return `<div class="wrap">
     <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Acerca de</h1>
-      <div class="sub">Qué es este lector, cómo se han elaborado con IA sus guías de estudio, qué son Marx XXI y Nuevo Ciclo, y cómo instalarlo y usarlo sin conexión.</div></header>
+      <div class="sub">Qué objetivos tiene este lector, cómo se han elaborado sus guías de estudio, qué son Marx XXI y Nuevo Ciclo, y cómo instalarlo y usarlo sin conexión.</div></header>
 
     ${aboutSec(ab.ai?.title || 'Objetivo y uso de la IA', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
 
@@ -1429,6 +1447,7 @@ async function route() {
   const parts = (path || '/').split('/').filter(Boolean);
   // guía de un artículo: cabecera en color pastel del volumen y fondo gris muy claro (ver .art-page)
   document.body.classList.toggle('art-page', parts[0] === 'articulo');
+  document.body.classList.toggle('about-page', parts[0] === 'acerca'); // «Actualizar» ya está en Instalar: sin barra flotante
   let out;
   switch (parts[0]) {
     case undefined: out = libraryView(); break;
@@ -1473,6 +1492,7 @@ async function route() {
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') {
     if (parts[1] === 'instalar') document.getElementById('instalar')?.scrollIntoView();
+    checkUpdate();
   }
 }
 
@@ -1518,8 +1538,18 @@ window.addEventListener('hashchange', e => {
 let installEvt = null;
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+/** Fecha del sello de los datos cargados («11/10/2026 00:57»), que renueva cada publicación. */
+function dataDate() {
+  const m = (lib()?.v || '').match(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/);
+  return m ? `${m[3]}/${m[2]}/${m[1]} ${m[4]}:${m[5]}` : '';
+}
 function installHtml() {
-  if (isStandalone()) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo.</p>`;
+  // versión nueva ya instalada y a la espera: «Actualizar» antes que nada (también en la barra flotante)
+  const upd = waitingSw ? `<p class="install-new"><span class="tick" aria-hidden="true">↑</span>Hay una versión nueva del lector.</p>
+    <button type="button" class="btn" data-update>${ICON.refresh}Actualizar</button>` : '';
+  const d = dataDate();
+  if (isStandalone()) return upd + `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo${!waitingSw && d ? ` y está al día (versión del ${d})` : ''}. Las versiones nuevas se detectan al abrirla y se ofrecen aquí y en un aviso flotante.</p>`;
+  if (upd) return upd;
   if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
     <p class="muted small">Se añadirá su icono a la pantalla de inicio o al escritorio, se abrirá como una aplicación y quedará descargada entera para usarla sin conexión.</p>`;
   if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>. Al abrirla desde su icono se descargará entera para usarla sin conexión.</p>';
@@ -1572,12 +1602,47 @@ function autoDownload() {
 
 applyTheme();
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => applyTheme());
-loadLibrary().then(() => { route(); autoDownload(); }).catch(err => {
+loadLibrary().then(() => {
+  route(); autoDownload();
+  try { if (sessionStorage.getItem('mx.updated')) { sessionStorage.removeItem('mx.updated'); toast('Aplicación actualizada'); } } catch { /* sin almacenamiento */ }
+}).catch(err => {
   view.innerHTML = `<div class="wrap"><p class="empty">No se pudieron cargar los contenidos (${esc(err.message)}). Si has abierto el archivo directamente desde el disco, sírvelo con un servidor local: <code>python -m http.server</code>.</p></div>`;
 });
 
+// ---------------------------------------------------------------- actualización de la app
+// El navegador comprueba sw.js al abrir la app (y aquí, además, cada vez que vuelve a primer plano y al entrar en
+// «Acerca de»). Si ha cambiado, instala la versión nueva, que se queda a la espera sin tomar el control: así no se
+// mezclan en la sesión abierta código nuevo y datos viejos. Mientras espera se ofrece «Actualizar» (barra flotante y
+// «Acerca de › Instalar»); al pulsarlo la nueva toma el control y la app se recarga entera. Si no se pulsa, se activa
+// sola al cerrar la app del todo. Tras la recarga, autoDownload() baja los textos de la versión nueva.
+let swReg = null, waitingSw = null, askedUpdate = false;
+const renderUpdate = () => { const el = $('#update'); if (el) el.hidden = !waitingSw; renderInstall(); };
+const checkUpdate = () => swReg?.update().catch(() => {});
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  // primera visita: el service worker recién instalado toma el control sin que haya que recargar nada
+  const hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    swReg = reg;
+    const ready = w => { if (w && navigator.serviceWorker.controller) { waitingSw = w; renderUpdate(); } };
+    ready(reg.waiting);
+    reg.addEventListener('updatefound', () => {
+      const nw = reg.installing;
+      nw?.addEventListener('statechange', () => { if (nw.state === 'installed') ready(reg.waiting); });
+    });
+  }).catch(() => {});
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!(hadController || askedUpdate) || reloading) return;
+    reloading = true;
+    try { sessionStorage.setItem('mx.updated', '1'); } catch { /* sin almacenamiento */ }
+    location.reload();
+  });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') checkUpdate(); });
 }
+document.addEventListener('click', e => {
+  if (!e.target.closest('[data-update]')) return;
+  askedUpdate = true;
+  if (waitingSw) waitingSw.postMessage('skipWaiting'); else location.reload();
+});
 
 export { route };

@@ -144,3 +144,8 @@ este README se quedan en el repositorio.
   ningún servidor.
 - La pantalla «Acerca de» indica que la guía es una lectura generada con IA y recoge la licencia de libre distribución
   de la revista.
+- **Versiones nuevas.** Al abrir la app (y al volver a primer plano o entrar en «Acerca de») el navegador comprueba
+  `sw.js`; si `publicar.bat` subió la versión, el service worker nuevo se instala y se queda a la espera sin tomar el
+  control. La app muestra entonces «Hay una versión nueva · Actualizar» (barra flotante y «Acerca de › Instalar»);
+  al pulsar, el nuevo toma el control, la app se recarga entera y, si está instalada, vuelve a descargar los textos
+  en segundo plano. Si no se pulsa, se activa sola al cerrar la app del todo.

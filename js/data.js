@@ -40,12 +40,33 @@ export async function loadLibrary() {
   // Textos de «Acerca de» (créditos y aviso de IA); opcional
   library.about = await getJson('about.json' + v).catch(() => null);
   library.synthesis = manifest.synthesis ? await getJson(manifest.synthesis + v).catch(() => null) : null;
+  codeFigures();
   library.allArticles = library.pubs.flatMap(p => p.volumes.flatMap(vol => vol.articles.map(a => ({ v: vol, a }))));
   library.byArticle = new Map(library.allArticles.map(x => [x.a.id, x]));
   library.refs = crossRefs();
   library.glossary = glossary();
   library.authors = authors();
   return library;
+}
+
+/** Códigos visibles de esquemas y mapas (van en su pie): MX1.4 / NC4.4 esquema del artículo (a, b si hay dos),
+ *  MX1 / NC4 mapa del volumen o número, MX / NC mapa y trayectoria de la revista, CC mapa de la colección.
+ *  `type` es lo que es, para los pies que no empiezan diciéndolo. */
+function codeFigures() {
+  for (const p of library.pubs) {
+    const pc = p.id === 'marx-xxi' ? 'MX' : p.id === 'nuevo-ciclo' ? 'NC' : p.id.slice(0, 2).toUpperCase();
+    p.code = pc;
+    for (const vol of p.volumes) {
+      if (vol.concept_map) Object.assign(vol.concept_map, { code: pc + vol.number, type: 'Mapa conceptual' });
+      for (const a of vol.articles) a.diagrams.forEach((d, i) => {
+        d.code = `${pc}${vol.number}.${a.number}${a.diagrams.length > 1 ? 'abcdefgh'[i] : ''}`;
+      });
+    }
+    const cv = p.cross_volume || {};
+    if (cv.map) cv.map.code = pc;
+    if (cv.arc) Object.assign(cv.arc, { code: pc, type: 'Trayectoria' });
+  }
+  if (library.synthesis?.map) Object.assign(library.synthesis.map, { code: 'CC', type: 'Mapa conceptual' });
 }
 
 export const lib = () => library;

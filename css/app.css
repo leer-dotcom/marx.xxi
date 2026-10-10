@@ -340,6 +340,13 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 
 .toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-b));transform:translateX(-50%);z-index:60;background:var(--head);color:var(--head-ink);padding:10px 18px;border-radius:var(--radius);font-size:16px;box-shadow:0 6px 18px rgb(0 0 0 / .25)}
 
+/* aviso de versión nueva: barra flotante con «Actualizar» (sw.js en espera; ver «actualización» en app.js) */
+.update{position:fixed;left:50%;bottom:calc(80px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:14px;width:max-content;max-width:calc(100% - 32px);background:var(--head);color:var(--head-ink);padding:8px 8px 8px 18px;border-radius:var(--radius);font-size:16px;box-shadow:0 6px 18px rgb(0 0 0 / .25);animation:up .18s ease}
+.update .btn{padding:8px 16px;background:var(--head-ink);color:var(--head);flex:none}
+body.reading .update,body.about-page .update{display:none} /* leyendo no se molesta; en «Acerca de» el botón ya está en Instalar */
+.install-new{display:flex;align-items:baseline;gap:8px;margin:0 0 6px}
+.install-new .tick{color:#2e8b4f;font-weight:700}
+
 /* ---------- pie ---------- */
 .site-foot{margin-top:48px;padding:22px 0 8px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2);text-align:center}
 
@@ -352,7 +359,9 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .card.about{margin-top:16px}
 .card.about h2{font-size:24px;margin-bottom:10px}
 .card.about h3{font-size:19px;margin:18px 0 6px}
-.card.about h2 + h3{margin-top:4px}
+.card.about h2 + h3{margin-top:14px} /* aire entre el título de la sección y su primer subtítulo */
+.card.about p{margin-bottom:.6em} /* párrafos de un mismo apartado, más juntos */
+.card.about p:last-child{margin-bottom:0}
 /* aviso sobre la guía: mismo amarillo suave que el recuadro «Acerca de» de inicio */
 .card.about.ai{background:color-mix(in srgb,var(--mark) 16%,var(--bg));border:1px solid color-mix(in srgb,var(--mark) 40%,var(--line))}
 .card.about .btn{display:flex;width:fit-content;max-width:100%;margin:10px auto 0} /* botones de «Acerca de» centrados */
@@ -770,6 +779,7 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 .tabs.more-left .tabs-less{display:block}
 /* esquema ampliado desde «Mapas conceptuales»: volumen o número, artículo y título antes de la descripción */
 .zoom-label{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
+.zoom-label .zl-hi{color:var(--vol)}
 /* ventana de confirmación propia (sustituye al confirm() del navegador) */
 dialog.confirm{width:min(420px,calc(100% - 32px));margin:auto;padding:22px 22px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);overflow:visible;animation:up .18s ease}
 dialog.confirm h2{margin:0;font-size:23px;font-weight:400;line-height:1.2}

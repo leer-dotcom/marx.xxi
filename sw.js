@@ -1,6 +1,8 @@
 // Service worker: la app funciona sin conexión una vez visitada.
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
-const VERSION = 'mx-20261011-0057';
+// La versión nueva se instala en cuanto el navegador la ve, pero no toma el control de la app abierta por sí
+// sola: espera a que el lector pulse «Actualizar» (app.js le manda 'skipWaiting') o a que cierre la app del todo.
+const VERSION = 'mx-20261011-0134';
 const SHELL = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
@@ -22,9 +24,11 @@ self.addEventListener('install', e => {
       const shell = new Set(SHELL.map(u => u.replace(/^\.\//, '')));
       await cache.addAll(files.filter(f => !f.includes('/texto/') && !shell.has(f)));
     } catch { /* sin lista: se cachean bajo demanda */ }
-    self.skipWaiting();
   })());
 });
+
+// «Actualizar» en la app: la versión nueva toma el control (y la app se recarga, ver controllerchange en app.js)
+self.addEventListener('message', e => { if (e.data === 'skipWaiting') self.skipWaiting(); });
 
 self.addEventListener('activate', e => {
   e.waitUntil((async () => {
