@@ -321,7 +321,7 @@ export const store = {
   settings() { return { ...DEFAULT_SETTINGS, ...LS.get('mx.settings', {}) }; },
   saveSettings(s) { LS.set('mx.settings', s); },
 
-  positions() { return LS.get('mx.pos', {}); },
+  positions() { return LS.get('mx.pos', {}) || {}; }, // también si quedó guardado «null»
   position(id) { return this.positions()[id] || null; },
   // block y progress: dónde se dejó (el texto se abre ahí); max: el punto más avanzado al que se ha llegado,
   // que es el porcentaje de lectura que se muestra fuera del lector

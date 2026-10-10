@@ -290,10 +290,13 @@ function menuHtml() {
     ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
     </details>
     ${pubs}
-    <details class="m-pub m-sep"${openIf(inSection(['#/sintesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
-    ${L.synthesis ? link('#/sintesis', 'Síntesis de la colección', ICON.hub) : ''}
-    ${link('#/glosario', 'Glosario', ICON.az)}
+    <details class="m-pub m-sep"${openIf(inSection(['#/sintesis', '#/tesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
+    <details class="m-subgroup"${openIf(inSection(['#/sintesis', '#/tesis']))}><summary class="m-link">${ICON.hub}<span>Síntesis</span></summary>
+    ${L.pubs.map(p => link(thesesHref(p), `${esc(p.name)}: Síntesis`)).join('')}
+    ${L.synthesis ? link('#/sintesis', 'Síntesis de la colección') : ''}
+    </details>
     ${link('#/mapas', 'Mapas conceptuales', ICON.map)}
+    ${link('#/glosario', 'Glosario', ICON.az)}
     ${link('#/autores', 'Autores', ICON.people)}
     ${link('#/buscar', 'Búsqueda', ICON.search)}
     ${link('#/marcadores', 'Marcadores', ICON.mark)}
@@ -405,12 +408,12 @@ function studyTools(p) {
     <div class="grid two">
       <div class="about-banner">
         ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, créditos y licencia')}
-        <p>Esta aplicación sirve para leer y subrayar las revistas cómodamente desde dispositivos digitales. Los resúmenes y esquemas
-        que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic, uno de los modelos de IA más avanzados,
-        como apoyo al estudio. Aun así, son resúmenes hechos con IA: no sustituyen a los textos íntegros, y podrían no
-        reflejarlos con exactitud.</p>
+        <p>El objetivo de esta aplicación es divulgativo, facilitando la lectura y subrayado del contenido en dispositivos digitales.<br>
+        Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
+        de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
+        y han de analizarse críticamente a luz de estos, pues podrían contener inexactitudes y errores.</p>
       </div>
-      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'De la biblioteca, cada revista, volumen, número y artículo')}
+      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Conceptualización de artículos y publicaciones')}
       ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
       ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
@@ -459,7 +462,7 @@ function libraryView() {
       <div class="eyebrow">Biblioteca</div>
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       <p class="lede">${L.pubs.length > 1
-        ? 'Dos revistas de un mismo proyecto socialista. Marx XXI es la de fondo: cada volumen fija a conciencia una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre pone ese marco a prueba frente a lo que está ocurriendo. Textos íntegros, guías de estudio y los enlaces entre ambas.'
+        ? 'Dos revistas del mismo proyecto socialista. Marx XXI es la de fondo: cada volumen fija a conciencia una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre pone ese marco a prueba frente a lo que está ocurriendo. Textos íntegros, guías de estudio y los enlaces entre ambas. Esta aplicación facilita su lectura, subrayado y estudio en dispositivos digitales.'
         : esc(L.pubs[0].cross_volume.lede || '')}</p>
     </section>
     ${continueCard()}
@@ -489,6 +492,7 @@ function collectionView(p) {
   const tesis = thesesHref(p);
   return `<div class="wrap" data-pub="${p.id}">
     <section class="hero">
+      <a class="eyebrow ph-pub" href="#/">Colección</a>
       <div class="eyebrow">${mx ? 'Publicación temática anual de teoría socialista' : `${esc(p.kind)} · ${esc(p.publisher || '')}`}</div>
       <h1>${esc(p.name)}</h1>
       ${cv.intro?.length
@@ -547,7 +551,7 @@ function volumeView(p, n, tab = 1) {
       }).join('');
   } else if (tab === 2) {
     // conclusiones plegables, como las tesis de la síntesis: a la vista el número y el enunciado
-    body = v.conclusions.map((c, i) => `<details class="card thesis" id="conclusion-${i + 1}">
+    body = `<h2 class="sec-title tab-title">Conclusiones del ${esc(p.unit)}</h2>` + v.conclusions.map((c, i) => `<details class="card thesis" id="conclusion-${i + 1}">
       <summary><div class="eyebrow vol">Conclusión ${i + 1}</div><h3>${esc(c.title)}</h3></summary>
       <div class="thesis-body"><p style="margin:0">${esc(c.text)}</p></div></details>`).join('');
   } else if (tab === 3) {
@@ -614,7 +618,9 @@ export const TAB = { pildoras: 0, texto: 1, resumen: 2, esquema: 3, conceptos: 4
 /** Aviso breve de que la guía está elaborada con IA (Claude), con enlace a los créditos. */
 export function aiNote() {
   const t = lib().about?.ai_short || 'Guía elaborada con Claude (IA).';
-  return `<p class="ai-note">${ICON.info}<span>${esc(t)} <a href="#/acerca">Más información</a></span></p>`;
+  // primera frase (qué se ha hecho con IA) y, en negrita, la advertencia; cada una en su línea
+  const i = t.indexOf('. ') + 1, head = i ? t.slice(0, i) : t, warn = i ? t.slice(i + 1) : '';
+  return `<p class="ai-note">${ICON.info}<span>${esc(head)}${warn ? `<br><strong>${esc(warn)}</strong>` : ''}<br><a href="#/acerca">Más información</a></span></p>`;
 }
 
 export function guideTab(a, tab) {
@@ -675,16 +681,15 @@ function articleView(id, tab = 0) {
       ${a.printed_pages && v.label ? `<div class="muted small">En la revista impresa: páginas ${a.printed_pages.from}–${a.printed_pages.to}</div>` : ''}
       <div style="display:grid;gap:8px;margin-top:16px">
         <a class="btn block" href="#/leer/${a.id}">${ICON.book}${started ? `Seguir leyendo (${pct(p)} % leído)` : 'Abrir en modo lectura'}</a>
-        ${started ? `<a class="btn ghost block" href="#/leer/${a.id}?b=0">Empezar desde el principio</a>` : ''}
+        ${started || store.read().has(a.id) ? `<button type="button" class="btn ghost block" data-restart="${a.id}">Empezar desde el principio</button>` : ''}
       </div>
-      ${started || store.read().has(a.id) ? `<button type="button" class="link-btn reset-progress" data-reset-progress="${a.id}">Reiniciar progreso de lectura</button>` : ''}
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;
   } else body = guideTab(a, tab);
   return `<div class="wrap has-fab" data-vol="${v.key}">
     <header class="page-head with-aside vol-head art-band"><div class="ph-main">
       <a class="eyebrow ph-pub" href="${v.pub.home}">${esc(v.pub.name)}</a>
-      <a class="eyebrow vol" href="${v.href}" style="text-decoration:none">${esc(volHead(v).replace(v.pub.name + ' ', ''))}</a>
+      <a class="eyebrow vol ph-vol" href="${v.href}">${esc(volHead(v).replace(v.pub.name + ' ', ''))}</a>
       <div class="eyebrow vol ph-art">${isInterview(a) ? 'Entrevista' : `Artículo ${a.number}`}</div>
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
       ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
@@ -745,8 +750,10 @@ function thesesView(p, tab = 0, params) {
       ${cv.theses.map((t, i) => `<details class="card thesis" id="tesis-${i + 1}"${String(i + 1) === openT ? ' open' : ''}>
         <summary><div class="eyebrow">Tesis ${i + 1}</div><h3>${esc(t.title)}</h3></summary>
         <div class="thesis-body"><p style="margin:0">${esc(t.text)}</p>
-        ${t.where ? `<p class="muted small" style="margin:10px 0 0;font-style:italic">${esc(t.where)}</p>
-          <div class="chips">${whereLinks(t.where, p).map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : ''}</div>
+        ${t.where ? (wl => wl.length
+          // los botones ya dicen dónde aparece; la referencia en texto solo si no se ha podido enlazar
+          ? `<div class="chips">${wl.map(([label, href]) => `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>`
+          : `<p class="muted small" style="margin:10px 0 0;font-style:italic">${esc(t.where)}</p>`)(whereLinks(t.where, p)) : ''}</div>
       </details>`).join('')}
       ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la colección →</a></p>` : ''}`
     : `${cv.map ? figure(cv.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : '<p class="empty">Esta revista no tiene mapa común.</p>'}`;
@@ -899,7 +906,8 @@ function synthesisView(tab = 0, params) {
       </div>` : ''}`;
   }
   const html = `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Biblioteca · Marx XXI y Nuevo Ciclo</div><h1>Síntesis de la colección</h1>
+    <header class="page-head"><div class="eyebrow">Colección</div><h1>Síntesis de la colección</h1>
+      <div class="ph-subtitle">Marx XXI <span class="amp">·</span> Nuevo Ciclo</div>
       <div class="sub">${S.theses.length} tesis comunes · ${S.bridge_concepts?.length || 0} conceptos puente</div></header>
     ${tabs('#/sintesis', SYNTH_TABS, tab)}
     ${body}
@@ -1269,13 +1277,14 @@ function notFound() {
   return `<div class="wrap"><p class="empty">No existe esta página. <a href="#/">Volver al inicio</a></p></div>`;
 }
 
-// Reiniciar el progreso de lectura de un texto (pestaña «Texto completo» de la guía)
+// «Empezar desde el principio» (pestaña «Texto completo» de la guía): reinicia el progreso de lectura (punto,
+// porcentaje y marca de leído; no los subrayados ni los marcadores) y abre el texto arriba del todo
 document.addEventListener('click', e => {
-  const b = e.target.closest('[data-reset-progress]'); if (!b) return;
-  if (!confirm('¿Reiniciar el progreso de lectura de este texto? Se borran el punto donde lo dejaste, el porcentaje leído y la marca de leído (los subrayados y marcadores se conservan).')) return;
-  store.resetProgress(b.dataset.resetProgress);
-  toast('Progreso de lectura reiniciado');
-  route();
+  const b = e.target.closest('[data-restart]'); if (!b) return;
+  const id = b.dataset.restart;
+  if (!confirm(`Se reiniciará el progreso de lectura (${pct(store.reached(id))} % leído). Los subrayados y marcadores se conservan. ¿Empezar desde el principio?`)) return;
+  store.resetProgress(id);
+  location.hash = `#/leer/${id}`;
 });
 
 // ---------------------------------------------------------------- router
@@ -1316,9 +1325,20 @@ async function route() {
   }
   const [html, mount] = Array.isArray(out) ? out : [out, null];
   view.innerHTML = html;
-  // Cada página o pestaña se abre desde el principio, también al volver atrás. Solo el modo lectura
-  // recuerda dónde se dejó cada texto (store.position: bloque y porcentaje leído).
-  if (parts[0] !== 'leer') window.scrollTo(0, 0);
+  // Desplazamiento al entrar (el modo lectura lleva el suyo: el punto donde se dejó cada texto):
+  // - volver a la pantalla inmediatamente anterior: donde estaba (solo esa; las de antes, desde el principio);
+  // - otra pestaña de la misma guía de artículo con la barra de pestañas fija arriba: la barra sigue arriba;
+  // - en cualquier otro caso, desde el principio.
+  //   Con la barra fija arriba ni siquiera la memoria sube más allá de ella: como mucho la deja arriba. Si la
+  //   pestaña nueva es demasiado corta para tanto desplazamiento (p. ej. «Texto completo»), se ve la cabecera.
+  const nav = navInfo; navInfo = null;
+  if (parts[0] !== 'leer') {
+    const target = () => nav?.keepTabs ? Math.max(nav.restoreY ?? 0, artTabsY() ?? 0) : nav?.restoreY ?? 0;
+    const y = target();
+    window.scrollTo(0, y);
+    // esquemas que aún cargaban: si la página no daba para tanto desplazamiento, otro intento al crecer
+    if (y > 0) setTimeout(() => { if (scrollY < target() - 2 && !userScrolled) window.scrollTo(0, target()); }, 300);
+  }
   cleanup = mount?.() || null;
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') bindOffline();
@@ -1330,9 +1350,31 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 // regresa al volumen o número si se entró desde ahí
 let fromHash = '';
 export const cameFrom = () => fromHash;
+// Memoria de desplazamiento de una sola pantalla: la inmediatamente anterior y dónde se dejó
+// pinned: guía de artículo en la que la barra de pestañas estaba (o se quiso dejar) arriba; si una pestaña corta
+// obligó a mostrar la cabecera y no se ha desplazado desde entonces, la siguiente pestaña vuelve a dejarla arriba
+let prevScreen = null, navInfo = null, userScrolled = false, pinned = null;
+for (const ev of ['wheel', 'touchstart', 'keydown']) addEventListener(ev, () => { userScrolled = true; }, { passive: true });
+const artId = h => (h.match(/^#\/articulo\/([^/?]+)/) || [])[1];
+/** En la guía de un artículo, desplazamiento a partir del cual la barra de pestañas queda fija arriba. */
+function artTabsY() {
+  const head = view.querySelector('.page-head'), tabs = view.querySelector('.tabs');
+  if (!head || !tabs) return null;
+  const cs = getComputedStyle(tabs);
+  return Math.max(0, head.getBoundingClientRect().bottom + scrollY + parseFloat(cs.marginTop) - parseFloat(cs.top));
+}
 window.addEventListener('hashchange', e => {
-  const old = new URL(e.oldURL).hash;
+  const old = new URL(e.oldURL).hash, now = location.hash;
   if (!old.startsWith('#/leer/')) fromHash = old;
+  const id = artId(old), ty = id ? artTabsY() : null;
+  const stuck = ty != null && scrollY >= ty - 1, wanted = pinned === id && !userScrolled;
+  navInfo = {
+    restoreY: prevScreen && prevScreen.hash === now ? prevScreen.y : null,
+    keepTabs: !!id && id === artId(now) && (stuck || wanted),
+  };
+  pinned = navInfo.keepTabs ? id : null;
+  prevScreen = { hash: old, y: scrollY };
+  userScrolled = false;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });
 

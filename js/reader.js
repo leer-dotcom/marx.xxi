@@ -348,15 +348,28 @@ function mount({ key, a, v, blocks, params }) {
   // --- restaurar posición
   const startB = params.get('b');
   const saved = store.position(key);
-  let restored = false; // hasta volver a la posición guardada no se guarda nada (no pisar el % con un 0)
-  requestAnimationFrame(() => {
-    restored = true;
-    if (startB != null) goTo(+startB, { flash: true });
+  // Hasta haber vuelto a la posición guardada no se guarda nada (no pisar el punto con el principio). Mientras
+  // la maquetación se asienta (fuentes web, esquemas) se vuelve a colocar el bloque guardado; en cuanto el
+  // lector toca, desliza o pulsa una tecla, lo que manda es su desplazamiento.
+  let restored = false, settling = true;
+  const place = () => {
+    if (startB != null) goTo(+startB);
     else if (saved) goTo(saved.block);
     else window.scrollTo(0, 0);
+  };
+  requestAnimationFrame(() => {
+    restored = true;
+    place();
+    if (startB != null) goTo(+startB, { flash: true });
     if (params.get('q')) openFind(params.get('q'));
     updateUi();
   });
+  document.fonts?.ready.then(() => { if (settling) { place(); updateUi(); } });
+  const settleT = setTimeout(() => { if (settling) place(); settling = false; }, 1500);
+  const userMoved = () => { settling = false; };
+  for (const ev of ['wheel', 'touchstart', 'pointerdown', 'keydown']) addEventListener(ev, userMoved, { passive: true });
+  /** Guarda el punto actual (bloque y porcentaje); mientras se asienta la posición inicial, conserva la guardada. */
+  const savePos = () => { if (restored && !settling) store.savePosition(key, currentBlock(), progress()); };
 
   // --- scroll: progreso, guardado, ocultar barras
   let lastY = scrollY, saveT = 0, ticking = false;
@@ -378,7 +391,7 @@ function mount({ key, a, v, blocks, params }) {
       }
       updateUi();
       clearTimeout(saveT);
-      saveT = setTimeout(() => restored && store.savePosition(key, currentBlock(), progress()), 500);
+      saveT = setTimeout(savePos, 400);
     });
   }
   addEventListener('scroll', onScroll, { passive: true });
@@ -542,8 +555,20 @@ function mount({ key, a, v, blocks, params }) {
   document.addEventListener('visibilitychange', onVis);
   requestWake(s.wakeLock);
 
+  // salir del texto por cualquier vía: otra pantalla (menú, «Volver», atrás del navegador) en la limpieza de
+  // abajo; cerrar o recargar la pestaña, pasar a otra app o bloquear el móvil, aquí
+  const onHide = () => { if (document.visibilityState === 'hidden') { clearTimeout(saveT); savePos(); } };
+  const onPageHide = () => { clearTimeout(saveT); savePos(); };
+  document.addEventListener('visibilitychange', onHide);
+  addEventListener('pagehide', onPageHide);
+
   return () => {
-    if (restored) store.savePosition(key, currentBlock(), progress());
+    clearTimeout(saveT);
+    savePos();
+    clearTimeout(settleT);
+    for (const ev of ['wheel', 'touchstart', 'pointerdown', 'keydown']) removeEventListener(ev, userMoved);
+    document.removeEventListener('visibilitychange', onHide);
+    removeEventListener('pagehide', onPageHide);
     removeEventListener('scroll', onScroll);
     removeEventListener('keydown', onKey);
     document.removeEventListener('selectionchange', onSel);
