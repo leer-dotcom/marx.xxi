@@ -1,20 +1,37 @@
-"""Genera img/icon-192.png e img/icon-512.png (mismo dibujo que img/icon.svg) sin dependencias."""
-import os, struct, zlib
+"""Genera los PNG del icono a partir de img/icon.svg e img/icon-maskable.svg, sin dependencias.
+
+  img/icon-192.png, img/icon-512.png   icono con esquinas redondeadas (img/icon.svg)
+  img/icon-maskable-512.png            a sangre, con el dibujo reducido a la zona segura (img/icon-maskable.svg)
+  img/apple-touch-icon.png (180)       a sangre (iOS redondea las esquinas)
+  img/favicon-32.png                   reserva para navegadores sin favicon SVG
+
+Los SVG solo usan <rect> y <path> con M/L/Z (polígonos), que es lo que este script sabe pintar.
+"""
+import os, re, struct, zlib
 
 WEB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RED, WHITE, LIGHT = (44, 51, 47), (239, 236, 236), (113, 106, 86)
 
 
-def bez(p0, p1, p2, p3, n=24):
-    return [tuple((1-t)**3*a + 3*(1-t)**2*t*b + 3*(1-t)*t**2*c + t**3*d for a, b, c, d in zip(p0, p1, p2, p3))
-            for t in (i / n for i in range(n + 1))]
+def hexrgb(h):
+    h = h.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-# Páginas del libro (coordenadas en 512×512, como el SVG)
-LEFT = bez((120, 170), (160, 154), (200, 154), (244, 176)) + [(244, 346)] + bez((244, 346), (200, 326), (160, 326), (120, 340))[1:]
-RIGHT = bez((392, 170), (352, 154), (312, 154), (268, 176)) + [(268, 346)] + bez((268, 346), (312, 326), (352, 326), (392, 340))[1:]
-LINES = [((146, 210), (218, 206)), ((146, 240), (218, 236)), ((146, 270), (218, 266)),
-         ((294, 206), (366, 210)), ((294, 236), (366, 240)), ((294, 266), (366, 270))]
+def load(name):
+    s = open(os.path.join(WEB, "img", name), encoding="utf-8").read()
+    vb = [float(v) for v in re.search(r'viewBox="([^"]+)"', s).group(1).split()]
+    rect = re.search(r"<rect\b[^>]*>", s)
+    rxm = re.search(r'rx="([\d.]+)"', rect.group(0)) if rect else None
+    rx = float(rxm.group(1)) if rxm else 0
+    bg = hexrgb(re.search(r'fill="(#[0-9A-Fa-f]{6})"', rect.group(0)).group(1)) if rect else None
+    shapes = []
+    for d, fill in re.findall(r'<path d="([^"]+)" fill="(#[0-9A-Fa-f]{6})"', s):
+        polys = []
+        for sub in re.findall(r"M([^MZ]+)Z", d):
+            nums = [float(v) for v in re.findall(r"-?[\d.]+", sub)]
+            polys.append(list(zip(nums[0::2], nums[1::2])))
+        shapes.append((polys, hexrgb(fill)))
+    return vb, rx, bg, shapes
 
 
 def inside(x, y, poly):
@@ -25,57 +42,55 @@ def inside(x, y, poly):
     return c
 
 
-def seg_dist(x, y, a, b):
-    (x1, y1), (x2, y2) = a, b
-    dx, dy = x2 - x1, y2 - y1
-    t = max(0, min(1, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy)))
-    return ((x - x1 - t * dx) ** 2 + (y - y1 - t * dy) ** 2) ** .5
+def render(name, size, ss=3, rounded=True):
+    (vx, vy, vw, vh), rx, bg, shapes = load(name)
+    if not rounded:
+        rx = 0
+    k = vw / size
 
+    def color(x, y):
+        if rx:
+            cx, cy = min(max(x, vx + rx), vx + vw - rx), min(max(y, vy + rx), vy + vh - rx)
+            if (x - cx) ** 2 + (y - cy) ** 2 > rx * rx:
+                return None
+        col = bg
+        for polys, fill in shapes:  # el último que contiene el punto gana (orden del SVG)
+            n = sum(inside(x, y, p) for p in polys)
+            if n % 2:
+                col = fill
+        return col
 
-def color(x, y):
-    # esquinas redondeadas (r=96)
-    r = 96
-    cx, cy = min(max(x, r), 512 - r), min(max(y, r), 512 - r)
-    if (x - cx) ** 2 + (y - cy) ** 2 > r * r:
-        return None
-    if 120 <= x <= 392 and 372 <= y <= 388:
-        return LIGHT
-    if inside(x, y, LEFT) or inside(x, y, RIGHT):
-        if any(seg_dist(x, y, a, b) <= 3.5 for a, b in LINES):
-            return RED
-        return WHITE
-    return RED
-
-
-def render(size, ss=3):
     rows = []
-    k = 512 / size
     for py in range(size):
         row = bytearray([0])
         for px in range(size):
             acc = [0, 0, 0, 0]
             for sy in range(ss):
                 for sx in range(ss):
-                    c = color((px + (sx + .5) / ss) * k, (py + (sy + .5) / ss) * k)
+                    c = color(vx + (px + (sx + .5) / ss) * k, vy + (py + (sy + .5) / ss) * k)
                     if c:
                         acc[0] += c[0]; acc[1] += c[1]; acc[2] += c[2]; acc[3] += 255
-            n = ss * ss
-            a = acc[3] // n
+            a = acc[3] // (ss * ss)
             if a:
                 cov = acc[3] / 255
                 row += bytes([round(acc[0] / cov), round(acc[1] / cov), round(acc[2] / cov), a])
             else:
                 row += b"\0\0\0\0"
         rows.append(bytes(row))
-    raw = b"".join(rows)
 
     def chunk(t, d):
         return struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
     return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", size, size, 8, 6, 0, 0, 0))
-            + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b""))
+            + chunk(b"IDAT", zlib.compress(b"".join(rows), 9)) + chunk(b"IEND", b""))
 
 
-for s in (192, 512):
-    with open(os.path.join(WEB, "img", f"icon-{s}.png"), "wb") as f:
-        f.write(render(s, ss=3 if s == 192 else 2))
-    print("img/icon-%d.png" % s)
+JOBS = [("icon.svg", 192, "icon-192.png", True, 3), ("icon.svg", 512, "icon-512.png", True, 2),
+        ("icon.svg", 32, "favicon-32.png", True, 4),
+        ("icon-maskable.svg", 512, "icon-maskable-512.png", False, 2),
+        ("icon-maskable.svg", 180, "apple-touch-icon.png", False, 3)]
+
+if __name__ == "__main__":
+    for src, size, out, rounded, ss in JOBS:
+        with open(os.path.join(WEB, "img", out), "wb") as f:
+            f.write(render(src, size, ss, rounded))
+        print("img/" + out)
