@@ -1342,12 +1342,7 @@ function aboutView() {
     <section class="card about" id="instalar">
       <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
-      <h3 class="about-sub">Instalar la aplicación</h3>
-      <div id="install-area">${installHtml()}</div>
-      <h3 class="about-sub">Descargar todo</h3>
-      <p class="muted small">Con abrir la aplicación una vez ya quedan guardadas las páginas, las guías de estudio y los esquemas. Este botón descarga además los textos completos de los ${L.allArticles.length} artículos y las tipografías de lectura, para usarla entera sin conexión.</p>
-      <button class="btn ghost" id="offline-all">${ICON.download}Descargar todo para usar sin conexión</button>
-      <p class="muted small" id="offline-msg" style="margin:8px 0 0"></p>
+      <div id="install-area" class="install-area">${installHtml()}</div>
     </section>
 
     <p class="muted small" style="margin-top:20px"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
@@ -1458,7 +1453,6 @@ async function route() {
   cleanup = mount?.() || null;
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') {
-    bindOffline();
     if (parts[1] === 'instalar') document.getElementById('instalar')?.scrollIntoView();
   }
 }
@@ -1500,15 +1494,17 @@ window.addEventListener('hashchange', e => {
 // ---------------------------------------------------------------- instalar y usar sin conexión
 // Android y Chrome/Edge de escritorio avisan de que la app se puede instalar (beforeinstallprompt): se guarda
 // el aviso para lanzarlo desde el botón. En iPhone y iPad no existe: se explica cómo hacerlo en Safari.
+// Instalar es también descargarla entera: al pulsar el botón y, en la app instalada, al abrirla tras cada
+// versión nueva, se bajan en segundo plano los textos íntegros y las tipografías (lo demás ya lo precarga sw.js).
 let installEvt = null;
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function installHtml() {
-  if (isStandalone()) return '<p>La aplicación ya está instalada en este dispositivo.</p>';
+  if (isStandalone()) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo.</p>`;
   if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
-    <p class="muted small" style="margin:8px 0 0">Se añadirá su icono a la pantalla de inicio o al escritorio y se abrirá como una aplicación, sin la barra del navegador.</p>`;
-  if (isIOS()) return '<p>En iPhone y iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>.</p>';
-  return '<p>Desde el menú del navegador, elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>. Si no aparece la opción, tu navegador no permite instalarla; se puede usar igual desde aquí.</p>';
+    <p class="muted small">Se añadirá su icono a la pantalla de inicio o al escritorio, se abrirá como una aplicación y quedará descargada entera para usarla sin conexión.</p>`;
+  if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>. Al abrirla desde su icono se descargará entera para usarla sin conexión.</p>';
+  return '<p>Para instalarla, desde el menú del navegador elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>. Si no aparece la opción, tu navegador no permite instalarla; se puede usar igual desde aquí.</p>';
 }
 const renderInstall = () => { const el = $('#install-area'); if (el) el.innerHTML = installHtml(); };
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; renderInstall(); });
@@ -1519,43 +1515,45 @@ document.addEventListener('click', async e => {
   await installEvt.userChoice.catch(() => null);
   installEvt = null;
   renderInstall();
+  downloadAll(true); // la instale o no, queda descargada entera
 });
 
-/** «Descargar todo»: todos los archivos de data/ (textos íntegros incluidos), iconos y tipografías de lectura.
- *  Se piden con las mismas rutas que usa la app, así que el service worker los guarda tal cual los pedirá. */
-function bindOffline() {
-  const b = $('#offline-all'); if (!b) return;
-  b.onclick = async () => {
-    b.disabled = true;
-    const msg = $('#offline-msg');
+/** Descarga entera para usarla sin conexión: todos los archivos de data/ (textos íntegros incluidos), iconos y
+ *  tipografías de lectura, con las mismas rutas que usa la app (el service worker los guarda tal cual).
+ *  Se recuerda por versión de los datos: tras publicar cambios, la app instalada vuelve a descargar. */
+let downloading = false;
+async function downloadAll(announce = false) {
+  if (downloading || !navigator.serviceWorker?.controller) return;
+  downloading = true;
+  try {
     let failed = 0;
     const get = url => fetch(url).then(r => { if (!r.ok) failed++; }, () => { failed++; });
     const files = (await fetch(dataUrl('files.json')).then(r => r.json()).catch(() => []))
       .map(f => f.replace(/^data\//, '')).filter(f => f !== 'files.json');
-    for (let i = 0; i < files.length; i += 6) {
-      await Promise.all(files.slice(i, i + 6).map(f => get(dataUrl(f))));
-      msg.textContent = `Descargando… ${Math.min(i + 6, files.length)}/${files.length} archivos`;
-    }
+    if (!files.length) return;
+    for (let i = 0; i < files.length; i += 6) await Promise.all(files.slice(i, i + 6).map(f => get(dataUrl(f))));
     await Promise.all(['img/icon-192.png', 'img/icon-512.png', 'img/apple-touch-icon.png', 'img/favicon-32.png'].map(get));
-    msg.textContent = 'Descargando las tipografías de lectura…';
     const fams = [...new Set(['"Alegreya SC"', ...Object.values(FONTS).map(([, css]) => css.split(',')[0])])].filter(f => !/system/.test(f));
     await Promise.all(fams.flatMap(f => ['400', 'italic 400', '700', 'italic 700'].map(w => document.fonts.load(`${w} 1em ${f}`).catch(() => null))));
     try { await navigator.storage?.persist?.(); } catch { /* lo decide el navegador */ }
-    let size = '';
-    try { const est = await navigator.storage?.estimate?.(); if (est?.usage) size = ` Ocupa unos ${Math.max(1, Math.round(est.usage / 1048576))} MB en este dispositivo.`; } catch { /* sin estimación */ }
-    msg.textContent = !navigator.serviceWorker?.controller
-      ? 'Archivos cargados, pero el modo sin conexión solo funciona al abrir la aplicación desde su dirección web (https).'
-      : failed ? `Descargado, salvo ${failed} archivo${failed > 1 ? 's' : ''} que no se pudo obtener: vuelve a intentarlo con conexión.${size}`
-        : `Listo: la aplicación completa está disponible sin conexión.${size}`;
-    b.disabled = false;
-  };
+    if (!failed) try { localStorage.setItem('mx.offline', lib().v || '1'); } catch { /* sin almacenamiento */ }
+    if (announce) toast(failed ? 'Descarga incompleta: se reintentará al abrir la aplicación' : 'Lista para usar sin conexión');
+  } finally { downloading = false; }
+}
+/** App instalada: al abrirla tras una versión nueva (o la primera vez), descarga en segundo plano. */
+function autoDownload() {
+  if (!isStandalone()) return;
+  let done = null;
+  try { done = localStorage.getItem('mx.offline'); } catch { /* sin almacenamiento */ }
+  if (done === (lib().v || '1')) return;
+  navigator.serviceWorker?.ready.then(() => setTimeout(() => downloadAll(), 3000));
 }
 
 // ---------------------------------------------------------------- arranque
 
 applyTheme();
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => applyTheme());
-loadLibrary().then(route).catch(err => {
+loadLibrary().then(() => { route(); autoDownload(); }).catch(err => {
   view.innerHTML = `<div class="wrap"><p class="empty">No se pudieron cargar los contenidos (${esc(err.message)}). Si has abierto el archivo directamente desde el disco, sírvelo con un servidor local: <code>python -m http.server</code>.</p></div>`;
 });
 
