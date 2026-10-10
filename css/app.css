@@ -603,8 +603,8 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
   .about-banner{gap:10px;padding:10px}
   .about-banner .card{padding:10px 14px}
   .about-banner p{grid-column:1/-1;font-size:13.5px;padding:0 4px 2px}
-  .about-banner .ab-toggle{display:inline;background:none;border:0;padding:0;font:inherit;font-size:12px;font-style:italic;color:var(--ink-3);text-decoration:underline;
-    text-underline-offset:2px;cursor:pointer}
+  .about-banner .ab-toggle{display:inline;background:none;border:0;padding:0;font:inherit;font-size:12px;font-style:italic;color:var(--ink-3);text-decoration:none;
+    cursor:pointer}
   .about-banner .ab-more{display:none;grid-column:1/-1;justify-self:end;margin:-2px 4px 0}
   .about-banner.folded p{display:none}
   .about-banner.folded .ab-more{display:inline}
