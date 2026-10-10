@@ -1516,7 +1516,9 @@ function artTabsY() {
   return Math.max(0, head.getBoundingClientRect().bottom + scrollY + parseFloat(cs.marginTop) - parseFloat(cs.top));
 }
 window.addEventListener('hashchange', e => {
-  const old = new URL(e.oldURL).hash, now = location.hash;
+  // la portada es «#/» o, al abrir la app por primera vez, sin hash: las dos cuentan como la misma pantalla
+  const norm = h => h && h !== '#' ? h : '#/';
+  const old = norm(new URL(e.oldURL).hash), now = norm(location.hash);
   if (!old.startsWith('#/leer/')) fromHash = old;
   const id = artId(old), ty = id ? artTabsY() : null;
   const stuck = ty != null && scrollY >= ty - 1, wanted = pinned === id && !userScrolled;
