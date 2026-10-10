@@ -58,19 +58,19 @@
   </dialog>
 
   <dialog id="zoom" class="zoom" aria-label="Esquema ampliado">
+    <div class="zoom-stage" id="zoom-stage"></div>
+    <p class="zoom-caption" id="zoom-caption"></p>
     <div class="zoom-bar">
-      <button class="icon-btn" data-z="-" aria-label="Reducir"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
-      <span id="zoom-level">100 %</span>
-      <button class="icon-btn" data-z="+" aria-label="Ampliar"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
-      <button class="icon-btn" data-z="0" aria-label="Ajustar"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
-      <span class="grow"></span>
       <button class="icon-btn" data-zstep="-1" aria-label="Esquema anterior" title="Anterior (←)"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
       <span id="zoom-pos" class="zoom-pos"></span>
       <button class="icon-btn" data-zstep="1" aria-label="Esquema siguiente" title="Siguiente (→)"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-      <button class="icon-btn" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <span class="zoom-sep"></span>
+      <button class="icon-btn" data-z="-" aria-label="Reducir" title="Reducir (−)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+      <button type="button" id="zoom-level" data-z="0" aria-label="Ajustar a la pantalla" title="Ajustar a la pantalla (0)">100 %</button>
+      <button class="icon-btn" data-z="+" aria-label="Ampliar" title="Ampliar (+)"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+      <span class="zoom-sep"></span>
+      <button class="icon-btn" data-close aria-label="Cerrar" title="Cerrar (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
-    <div class="zoom-stage" id="zoom-stage"></div>
-    <p class="zoom-caption" id="zoom-caption"></p>
   </dialog>
 
   <div class="toast" id="toast" role="status" hidden></div>

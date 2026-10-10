@@ -199,6 +199,7 @@ figure.diagram .dg[data-state="loading"]{background:linear-gradient(90deg,var(--
 .dg-error{margin:0;padding:24px;color:var(--ink-3);text-align:center}
 figure.diagram button::after{content:"ampliar";position:absolute;top:8px;right:10px;font-family:var(--f-body);font-size:13px;color:var(--btn-ink);background:var(--btn);padding:1px 8px;border-radius:6px}
 figure.diagram figcaption{font-size:16px;color:var(--ink-2);margin-top:8px}
+.fig-tag{font-weight:700;font-style:italic;color:var(--ink)} /* nombre de la figura: «Esquema MX1.14», «Mapa conceptual NC2» */
 .neighbours{display:flex;justify-content:space-between;gap:12px;margin-top:36px;border-top:1px solid var(--line);padding-top:16px}
 .neighbours a{flex:1;text-decoration:none;color:var(--ink);font-size:17px;line-height:1.3}
 .neighbours a small{display:block;font-family:var(--f-sc);font-size:14px;color:var(--olive);text-transform:lowercase;letter-spacing:.05em}
@@ -328,15 +329,29 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .toc-list a.mark{font-weight:400;font-size:16.5px;color:var(--ink-2)}
 .toc-list a.mark::before{content:"▍";color:var(--vol);margin-right:4px}
 
-/* ---------- zoom de esquemas ---------- */
-.zoom{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:var(--paper);color:var(--ink)}
-.zoom[open]{display:flex;flex-direction:column}
-.zoom-bar{display:flex;align-items:center;gap:4px;padding:calc(6px + var(--safe-t)) 8px 6px;background:#2c332f;color:#efecec;font-size:15px}
-.zoom-bar .icon-btn{color:#efecec}
-.zoom-bar .grow{flex:1}
-.zoom-stage{flex:1;overflow:auto;touch-action:pan-x pan-y;overscroll-behavior:contain;padding:12px}
-.zoom-stage .dg{margin:0 auto;max-width:none;background:none}
-.zoom-caption{margin:0;padding:10px 16px calc(12px + var(--safe-b));font-size:16px;color:var(--ink-2);border-top:1px solid var(--line);max-height:22vh;overflow:auto;background:var(--bg)}
+/* ---------- visor de esquemas y mapas ---------- */
+/* Siempre sobre blanco y con la paleta clara, también leyendo en oscuro, sepia o negro */
+.zoom{width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#fff;color:#252525;
+  --bg:#fff;--paper:#fff;--ink:#252525;--ink-2:#5b5a5a;--ink-3:#8a8686;--line:rgba(37,37,37,.13);--line-2:rgba(37,37,37,.06);
+  --slate:#3c5a72;--olive:#716a56;--green:#3f5147;--vol:#2c332f;color-scheme:light}
+#zoom[data-vol="1"]{--vol:#4646dc} #zoom[data-vol="2"]{--vol:#b10a0a} #zoom[data-vol="3"]{--vol:#2a9f99}
+#zoom[data-vol="4"]{--vol:#d39504} #zoom[data-vol="5"]{--vol:#7ea52a}
+#zoom[data-vol^="n"]{--vol:#be2544} #zoom[data-vol="n2"]{--vol:#cf4868} #zoom[data-vol="n3"]{--vol:#e0658c} #zoom[data-vol="n4"]{--vol:#e8473f}
+.zoom[open]{display:block}
+.zoom-stage{position:absolute;inset:0;overflow:hidden;touch-action:none;overscroll-behavior:contain;cursor:grab;user-select:none;-webkit-user-select:none}
+.zoom-stage.dragging{cursor:grabbing}
+.zoom-stage .dg{position:absolute;left:0;top:0;transform-origin:0 0;margin:0;max-width:none;background:none;will-change:transform}
+/* pie arriba, entero (el dibujo se ajusta al espacio que queda); si es muy largo, con desplazamiento */
+.zoom-caption{position:absolute;left:0;right:0;top:0;margin:0;padding:calc(8px + var(--safe-t)) 16px 8px;font-size:15px;line-height:1.35;color:var(--ink-2);background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);max-height:38vh;overflow:auto}
+.zoom-caption:empty{display:none}
+/* barra flotante inferior: anterior y siguiente, zoom y cerrar */
+.zoom-bar{position:absolute;left:50%;bottom:calc(12px + var(--safe-b));transform:translateX(-50%);display:flex;align-items:center;gap:0;padding:4px 6px;border-radius:999px;background:rgba(44,51,47,.94);color:#efecec;font-size:15px;box-shadow:0 6px 18px rgb(0 0 0 / .28);max-width:calc(100% - 20px)}
+.zoom-bar .icon-btn{color:#efecec;width:42px;height:42px}
+.zoom-bar .icon-btn:hover{background:rgba(255,255,255,.14)}
+.zoom-sep{width:1px;height:24px;background:rgba(255,255,255,.28);margin:0 4px;flex:none}
+#zoom-level{min-width:58px;height:42px;padding:0 6px;border:0;border-radius:21px;background:none;color:inherit;font:inherit;font-size:14px;cursor:pointer}
+#zoom-level:hover{background:rgba(255,255,255,.14)}
+.zoom-pos{min-width:48px;text-align:center;font-size:14px;opacity:.85}
 
 .toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-b));transform:translateX(-50%);z-index:60;background:var(--head);color:var(--head-ink);padding:10px 18px;border-radius:var(--radius);font-size:16px;box-shadow:0 6px 18px rgb(0 0 0 / .25)}
 
@@ -449,7 +464,6 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 /* ---------- móvil: esquemas y objetivos táctiles ---------- */
 @media (max-width:600px){
   figure.diagram button::after{content:"toca para leer";font-size:14px;padding:3px 10px}
-  #zoom-level{min-width:52px;text-align:center}
 }
 @media (pointer:coarse){
   .chip{min-height:44px;padding:8px 14px}
@@ -660,7 +674,6 @@ div.dg-title{color:var(--ink)}
 .maps-sub[open] > summary{color:var(--vol)}
 .maps-sub > .dg-gallery{margin:4px 0 18px}
 /* visor: anterior / siguiente */
-.zoom-pos{min-width:56px;text-align:center;font-size:14px;opacity:.85}
 
 /* síntesis: al saltar a una tesis (?t=N) queda por debajo de la cabecera y las pestañas fijas */
 .card.synth{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 64px)}

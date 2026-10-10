@@ -176,17 +176,19 @@ function initTabs(root = document) {
 addEventListener('resize', () => document.querySelectorAll('nav.tabs').forEach(updateTabs));
 document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(updateTabs));
 
-let zoomScale = 1;
-// Esquemas que se recorren con ‹ › y las flechas del teclado: los visibles de la pantalla (o de la hoja) de partida
-let zoomList = [], zoomIdx = -1;
+// Visor de esquemas y mapas: fondo blanco y el dibujo ajustado a la pantalla (lo más grande posible sin que nada
+// quede fuera). Zoom con la rueda, pellizcando con dos dedos, con doble clic o doble toque, o con los botones; se
+// arrastra para desplazarlo. Barra flotante inferior: anterior y siguiente (también flechas del teclado), zoom y
+// cerrar. El pie va arriba, entero; el dibujo se ajusta al espacio que queda.
+// Esquemas que se recorren: los visibles de la pantalla (o de la hoja) de partida.
+let zoomList = [], zoomIdx = -1, zoomFit = null;
 function zoomStep(d) {
   if (zoomList.length < 2) return;
   zoomIdx = (zoomIdx + d + zoomList.length) % zoomList.length;
   openZoom(zoomList[zoomIdx], true);
 }
 function openZoom(host, keepList = false) {
-  const st = $('#zoom-stage');
-  const dlg = $('#zoom');
+  const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level');
   if (!keepList) {
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
@@ -197,68 +199,106 @@ function openZoom(host, keepList = false) {
   const vol = host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
   st.innerHTML = `<div class="dg">${host.querySelector('.dg')?.innerHTML || ''}</div>`;
-  // en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción
-  const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel, cap = host.dataset.caption || '';
+  // pie: en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción;
   // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
+  const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel;
+  // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
+  const tag = host.dataset.tag || '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
+  const capHtml = tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(rest);
   const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);
   const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ');
-  $('#zoom-caption').innerHTML = zl ? `<b class="zoom-label">${zlHtml}</b>${cap ? ' ' + esc(cap) : ''}` : esc(cap);
-  const box = st.firstChild;
-  const fit = () => Math.min(st.clientWidth - 24, 1400);
-  // En pantallas estrechas «ajustar» deja el texto del esquema en ~5 px: se abre a un tamaño legible
-  // (el ancho propio del viewBox, donde el texto mide 12-15 px) y se recorre desplazando.
-  const readable = () => {
-    const vbW = box.querySelector('svg')?.viewBox?.baseVal?.width || 760;
-    return Math.max(1, (vbW * 1.1) / fit());
+  cap.innerHTML = zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml;
+  if (!dlg.open) dlg.showModal();
+
+  // El dibujo a su tamaño natural (el ancho de su viewBox) y encima translate(x, y) scale(s)
+  const box = st.firstChild, svg = box.querySelector('svg');
+  const W = svg?.viewBox?.baseVal?.width || 760;
+  box.style.width = W + 'px';
+  const H = box.offsetHeight || W * 0.6;
+  let s = 1, x = 0, y = 0;
+  // zona libre del visor: sin el pie (arriba) ni la barra flotante (abajo)
+  const area = () => ({ w: st.clientWidth, h: st.clientHeight, top: cap.textContent ? cap.offsetHeight : 0, bottom: $('.zoom-bar').offsetHeight + 24 });
+  const fitScale = () => { const a = area(), m = 10; return Math.max(0.05, Math.min((a.w - 2 * m) / W, (a.h - a.top - a.bottom - 2 * m) / H)); };
+  const apply = () => {
+    box.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+    level.textContent = Math.round(s / fitScale() * 100) + ' %'; // 100 % = ajustado a la pantalla
   };
-  // Cambia la escala manteniendo fijo el punto (cx, cy) del visor (centro por defecto)
-  const apply = (next = zoomScale, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
-    next = Math.min(6, Math.max(0.5, next));
-    const k = next / zoomScale;
-    const sx = (st.scrollLeft + cx) * k - cx, sy = (st.scrollTop + cy) * k - cy;
-    zoomScale = next;
-    box.style.width = Math.round(fit() * zoomScale) + 'px';
-    st.scrollLeft = sx; st.scrollTop = sy;
-    $('#zoom-level').textContent = Math.round(zoomScale * 100) + ' %';
+  // si cabe, centrado en la zona libre; si no, nunca más allá del borde (no se puede perder de vista)
+  const clamp = () => {
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom;
+    x = w <= a.w ? (a.w - w) / 2 : Math.min(0, Math.max(a.w - w, x));
+    y = h <= free ? a.top + (free - h) / 2 : Math.min(a.top, Math.max(a.h - a.bottom - h, y));
   };
+  const fit = () => { s = fitScale(); clamp(); apply(); };
+  /** Cambia la escala manteniendo fijo el punto (cx, cy) del visor; nunca más pequeño que ajustado. */
+  const zoomTo = (ns, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
+    const f = fitScale();
+    ns = Math.min(f * 10, Math.max(f, ns));
+    const k = ns / s;
+    x = cx - (cx - x) * k; y = cy - (cy - y) * k; s = ns;
+    clamp(); apply();
+  };
+  zoomFit = fit;
   dlg.onclick = e => {
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
     const b = e.target.closest('[data-z]');
-    if (!b) return;
-    const z = b.dataset.z;
-    if (z === '0') apply(zoomScale > 1.01 ? 1 : readable());
-    else apply(zoomScale * (z === '+' ? 1.4 : 1 / 1.4));
+    if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); }
   };
-  box.ondblclick = e => {
-    const r = st.getBoundingClientRect();
-    apply(zoomScale > readable() + 0.01 || zoomScale < 0.99 ? readable() : zoomScale * 1.8, e.clientX - r.left, e.clientY - r.top);
-  };
-  // Pellizcar con dos dedos para ampliar o reducir dentro del visor
+  const rel = e => { const r = st.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  // rueda del ratón o trackpad: zoom en el punto del cursor
+  st.onwheel = e => { e.preventDefault(); zoomTo(s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), ...rel(e)); };
+  // doble clic o doble toque: ampliar ahí ×2,5; si ya está ampliado, volver a ajustar
+  const dbl = (cx, cy) => zoomTo(s > fitScale() * 1.05 ? fitScale() : fitScale() * 2.5, cx, cy);
+  let lastType = 'mouse';
+  st.ondblclick = e => { if (lastType !== 'touch') dbl(...rel(e)); };
+  // un dedo (o el ratón): arrastrar; dos dedos: pellizcar para ampliar o reducir, y desplazar a la vez
   const pts = new Map();
-  let pinch = null;
-  st.onpointerdown = e => { if (e.pointerType === 'touch') pts.set(e.pointerId, e); };
+  let pinch = null, drag = null, lastTap = 0;
+  st.onpointerdown = e => {
+    if (e.button !== 0) return;
+    lastType = e.pointerType;
+    try { st.setPointerCapture(e.pointerId); } catch { /* puntero ya levantado */ }
+    pts.set(e.pointerId, e);
+    if (pts.size === 1) { drag = { x: e.clientX, y: e.clientY, bx: x, by: y, moved: false }; pinch = null; }
+    else { drag = null; pinch = null; }
+    st.classList.add('dragging');
+  };
   st.onpointermove = e => {
     if (!pts.has(e.pointerId)) return;
     pts.set(e.pointerId, e);
-    if (pts.size !== 2) return;
-    const [a, b] = [...pts.values()];
-    const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
-    const r = st.getBoundingClientRect();
-    const cx = (a.clientX + b.clientX) / 2 - r.left, cy = (a.clientY + b.clientY) / 2 - r.top;
-    if (!pinch) pinch = { d, s: zoomScale };
-    else apply(pinch.s * d / pinch.d, cx, cy);
+    if (pts.size === 2) {
+      const [a, b] = [...pts.values()];
+      const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      const [cx, cy] = rel({ clientX: (a.clientX + b.clientX) / 2, clientY: (a.clientY + b.clientY) / 2 });
+      if (!pinch) pinch = { d, s, cx, cy };
+      else { x += cx - pinch.cx; y += cy - pinch.cy; pinch.cx = cx; pinch.cy = cy; zoomTo(pinch.s * d / pinch.d, cx, cy); }
+    } else if (drag) {
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (Math.hypot(dx, dy) > 4) drag.moved = true;
+      x = drag.bx + dx; y = drag.by + dy; clamp(); apply();
+    }
   };
-  st.onpointerup = st.onpointercancel = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; };
-  if (!dlg.open) dlg.showModal();
-  zoomScale = 1;
-  st.scrollLeft = st.scrollTop = 0;
-  apply(readable(), 0, 0);
+  st.onpointerup = st.onpointercancel = e => {
+    pts.delete(e.pointerId);
+    if (pts.size < 2) pinch = null;
+    if (pts.size) return;
+    st.classList.remove('dragging');
+    if (e.type === 'pointerup' && e.pointerType === 'touch' && drag && !drag.moved) { // doble toque
+      const now = Date.now();
+      if (now - lastTap < 320) { dbl(...rel(e)); lastTap = 0; } else lastTap = now;
+    }
+    drag = null;
+  };
+  fit();
 }
+// al girar el móvil o cambiar el tamaño de la ventana, volver a ajustar a la pantalla
+new ResizeObserver(() => { if ($('#zoom').open) zoomFit?.(); }).observe($('#zoom-stage'));
 document.addEventListener('keydown', e => {
-  if (!$('#zoom').open || !['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
-  e.preventDefault();
-  zoomStep(e.key === 'ArrowRight' ? 1 : -1);
+  const dlg = $('#zoom');
+  if (!dlg.open) return;
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); zoomStep(e.key === 'ArrowRight' ? 1 : -1); }
+  else if (e.key === '+' || e.key === '-' || e.key === '0') { e.preventDefault(); dlg.querySelector(`[data-z="${e.key}"]`)?.click(); }
 });
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-zoom]');
@@ -285,7 +325,7 @@ export function figure(f) {
   const [tag, rest] = figTag(f);
   const cap = tag ? `${tag}.${rest ? ' ' + rest : ''}` : f.caption || '';
   return `<figure class="diagram">
-    <button type="button" data-zoom data-caption="${esc(cap)}" aria-label="Ampliar esquema: ${esc(label)}">
+    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" aria-label="Ampliar esquema: ${esc(label)}">
       <div class="dg" data-svg="${esc(f.file)}" style="${ratio}" role="img" aria-label="${esc(label)}"></div>
     </button>
     ${cap ? `<figcaption>${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(cap)}</figcaption>` : ''}
