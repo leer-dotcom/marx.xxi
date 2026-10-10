@@ -442,7 +442,7 @@ function studyTools(p) {
         Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
         de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
         y han de analizarse críticamente a luz de estos, pues podrían contener inexactitudes y errores.
-        <button type="button" class="ab-toggle ab-less" data-ab-toggle>Menos.</button></p>
+        <button type="button" class="ab-toggle ab-less" data-ab-toggle>…menos</button></p>
         <button type="button" class="ab-toggle ab-more" data-ab-toggle>Mostrar más…</button>
       </div>
       ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Conceptualización de artículos y publicaciones')}
