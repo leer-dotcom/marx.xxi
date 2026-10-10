@@ -54,6 +54,16 @@ Los ids de artículo no se repiten entre publicaciones (`t…` en Marx XXI, `n�
 Como en Marx XXI, cada número de Nuevo Ciclo usa el color de su portada (`data-vol="n1"…` en el CSS). Su terminología
 sigue la de la app («volumen», no «tomo»).
 
+**Ficha del número** (`data_notes` de cada número de Nuevo Ciclo): notas de edición (primera edición, contacto,
+licencia, paginación, autores, epígrafes, ausencia de ISSN o depósito legal…). Se conserva en `content.json` y la
+mantiene el importador, pero **ya no se muestra en la app**: antes era un desplegable «Ficha del número» bajo la
+cabecera de cada número (`volumeView` en `js/app.js`, clase `.vol-notes` en el CSS). Para recuperarlo, basta con
+volver a pintar `v.data_notes` en esa cabecera.
+
+Cada volumen y número lleva `url`, su ficha en la tienda oficial (marxxxi.com), que la pestaña «Texto completo» de
+cada artículo enlaza como «PDF disponible en marxxxi.com». En Nuevo Ciclo la pone el importador
+(`nuevo-ciclo`, `nuevo-ciclo-002`…) si los datos de origen no la traen.
+
 **Añadir el #005:** guardar su portada como `img/nc5.webp`, dejar su guía en `../app-handoff-nuevo-ciclo/` (mismo formato: `content.json`, `svg/`,
 `library-synthesis.json`) y su texto en `../texto-estructurado-nuevo-ciclo/nc5-a1.json…`, y ejecutar:
 

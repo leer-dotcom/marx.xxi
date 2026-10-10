@@ -24,24 +24,29 @@
   --accent:#efecec; --olive:#c9bf9f; --green:#a9bcb0; --green-soft:#33403a; --olive-soft:#3a3830;
   --link:#c3c9c6; --head:#1a1f1c; --head-ink:#efecec; --btn:#efecec; --btn-ink:#2c332f;
   --mark:#6b5c1c; --vol:#efecec; --slate:#8fb0c8; color-scheme:dark}}
-:root[data-theme="dark"]{
+:root[data-theme="dark"],.reader[data-theme="dark"]{
   --bg:#232925; --paper:#2c332f; --ink:#efecec; --ink-2:#c3c1bf; --ink-3:#8f948f;
   --line:rgba(239,236,236,.14); --line-2:rgba(239,236,236,.07); --img:#38413c;
   --accent:#efecec; --olive:#c9bf9f; --green:#a9bcb0; --green-soft:#33403a; --olive-soft:#3a3830;
   --link:#c3c9c6; --head:#1a1f1c; --head-ink:#efecec; --btn:#efecec; --btn-ink:#2c332f;
   --mark:#6b5c1c; --vol:#efecec; --slate:#8fb0c8; color-scheme:dark}
-:root[data-theme="black"]{
+:root[data-theme="black"],.reader[data-theme="black"]{
   --bg:#000; --paper:#0b0d0c; --ink:#d6d3d3; --ink-2:#a8a5a5; --ink-3:#757a76;
   --line:rgba(239,236,236,.12); --line-2:rgba(239,236,236,.06); --img:#1a1f1c;
   --accent:#d6d3d3; --olive:#b8ae90; --green:#a9bcb0; --green-soft:#1d231f; --olive-soft:#24221c;
   --link:#b5bbb8; --head:#0b0d0c; --head-ink:#d6d3d3; --btn:#d6d3d3; --btn-ink:#000;
   --mark:#5a4d17; --vol:#d6d3d3; --slate:#8fb0c8; color-scheme:dark}
-:root[data-theme="sepia"]{
+:root[data-theme="sepia"],.reader[data-theme="sepia"]{
   --bg:#f1e8d4; --paper:#f8f1e3; --ink:#3b2f22; --ink-2:#5e4d3a; --ink-3:#8a7760;
   --line:rgba(59,47,34,.15); --line-2:rgba(59,47,34,.07); --img:#e6dcc4;
   --accent:#4a3b2a; --olive:#716a56; --green:#4c5a46; --green-soft:#e1e0cc; --olive-soft:#e8dcbc;
   --link:#5e4d3a; --head:#4a3b2a; --head-ink:#f8f1e3; --btn:#4a3b2a; --btn-ink:#f8f1e3;
   --mark:#ecc76a; --vol:#4a3b2a; --slate:#4f6070; color-scheme:light}
+/* el tema de lectura solo se aplica al modo lectura (en <html> mientras se lee) y a la vista previa de
+   Ajustes (.reader con data-theme); «claro» explícito ahí aunque el sistema esté en oscuro */
+.reader[data-theme="light"]{
+  --bg:#efecec; --paper:#f6f4f4; --ink:#252525; --ink-2:#5b5a5a; --ink-3:#8a8686;
+  --line:rgba(37,37,37,.13); --line-2:rgba(37,37,37,.06); --mark:#f1dd8a; color-scheme:light}
 /* en los temas oscuros, aclarar un poco los colores de volumen para que contrasten */
 :root[data-theme="dark"] [data-vol],:root[data-theme="black"] [data-vol]{--vol-l:1}
 @media (prefers-color-scheme: dark){:root:not([data-theme]) [data-vol="1"]{--vol:#7b7bf0}}
@@ -85,6 +90,11 @@ main{outline:none}
 .sc{font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em}
 .hero{padding:30px 0 22px;border-bottom:1px solid var(--line);margin-bottom:8px}
 .hero h1{font-size:clamp(40px,8vw,58px);letter-spacing:.01em;margin-top:4px}
+/* Párrafos de la app (resúmenes, píldoras, conceptos, tesis, conclusiones…) justificados; la última línea de cada
+   párrafo (o la única) queda alineada a la izquierda, que es lo que hace text-align:justify. Especificidad 0 para que
+   cualquier alineación explícita (centrados, a la derecha) siga mandando; el texto íntegro (.reader) lo decide el
+   ajuste «Texto justificado» del modo lectura. */
+:where(.wrap, .sheet-body) :where(p, dd, .steps li > div):where(:not(.reader, .reader *)){text-align:justify;text-align-last:auto;hyphens:auto;-webkit-hyphens:auto}
 .hero .lede{font-size:19px;color:var(--ink-2);margin:14px 0 0;text-align:justify;hyphens:auto}
 .hero .lede.sm{font-size:16.5px;line-height:1.55}
 .hero .lede.sm p{margin:0 0 10px}
@@ -101,6 +111,15 @@ a.card:hover h3{text-decoration:underline;text-underline-offset:4px;text-decorat
 .grid.two{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
 .grid.vols{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
 .grid.vols .card + .card{margin-top:0}
+/* portada de cada revista en el móvil: volúmenes y números de dos en dos, con la tarjeta más compacta */
+@media (max-width:600px){
+  /* de dos en dos mientras quepan dos de 150 px; en pantallas muy estrechas, una debajo de otra */
+  .grid.vols{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .grid.vols .vol-card .vc-body{padding:10px 12px 12px}
+  .grid.vols .vol-card h3{font-size:17px;line-height:1.2}
+  .grid.vols .vol-card .eyebrow{font-size:12px}
+  .grid.vols .vol-card .meta{flex-wrap:wrap;gap:2px 10px;margin-top:6px;font-size:14px}
+}
 
 /* tarjeta de volumen con motivo de portada (fondo negro, triángulo de color y triángulo blanco) */
 .vol-card{padding:0;overflow:hidden}
@@ -265,13 +284,15 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 /* ---------- hojas (dialog) ---------- */
 dialog{color:var(--ink)}
 dialog::backdrop{background:rgb(20 24 22 / .5)}
-.sheet{width:min(720px,100%);max-height:88vh;margin:auto auto 0;padding:0;border:0;border-radius:10px 10px 0 0;background:var(--bg);display:none;flex-direction:column}
+/* hoja flotante: un poco separada del borde inferior para que se vea entera (dvh: sin la barra del navegador
+   ni la de gestos del móvil) y con el texto visible detrás */
+.sheet{width:min(720px,calc(100% - 16px));max-height:84vh;max-height:calc(100dvh - 96px);margin:auto auto calc(12px + var(--safe-b));padding:0;border:1px solid var(--line);border-radius:10px;background:var(--bg);display:none;flex-direction:column}
 .sheet[open]{display:flex;animation:up .22s ease}
 @keyframes up{from{transform:translateY(40px);opacity:.4}}
-@media (min-width:900px){.sheet{margin:auto;border-radius:8px;max-height:84vh}}
+@media (min-width:900px){.sheet{margin:auto;border-radius:8px;max-height:84vh;max-height:84dvh}}
 .sheet-head{display:flex;align-items:center;gap:8px;padding:12px 8px 6px 20px;border-bottom:1px solid var(--line)}
 .sheet-head h2{flex:1;font-size:24px}
-.sheet-body{overflow:auto;padding:12px 20px calc(28px + var(--safe-b))}
+.sheet-body{overflow:auto;padding:12px 20px 24px}
 .sheet-body .tabs{top:-12px;margin:-12px -20px 14px}
 .set-group{margin:18px 0 6px;font-family:var(--f-sc);font-size:15px;letter-spacing:.06em;text-transform:lowercase;color:var(--olive)}
 .swatches{display:flex;gap:14px;flex-wrap:wrap}
@@ -288,7 +309,7 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .switch-row input:checked{background:var(--btn)}
 .switch-row input:checked::after{transform:translateX(18px);background:var(--btn-ink)}
 .preview{border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}
-.preview .reader{padding:18px var(--r-margin);max-width:none}
+.preview .reader{padding:18px var(--r-margin);max-width:none;background:var(--paper);color:var(--ink)}
 .link-btn{background:none;border:0;color:var(--link);cursor:pointer;padding:10px 0;font-family:var(--f-body);font-size:17px;text-decoration:underline;text-underline-offset:3px}
 .toc-list a{display:block;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:700;font-size:17.5px;line-height:1.3}
 .toc-list a.mark{font-weight:400;font-size:16.5px;color:var(--ink-2)}
@@ -516,6 +537,13 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .synth-col{border-left:3px solid var(--vol);padding:2px 0 2px 14px;margin-top:12px}
 .synth-col p{margin:4px 0 0;font-size:17px}
 .synth-col .chips{margin-top:8px}
+/* tesis comunes: fuentes de cada revista plegadas bajo su explicación */
+.synth-src{margin-top:8px}
+.synth-src > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14.5px;color:var(--ink-2)}
+.synth-src > summary::-webkit-details-marker{display:none}
+.synth-src > summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .15s}
+.synth-src[open] > summary::after{transform:translateY(1px) rotate(-135deg)}
+.synth-src > summary:hover{color:var(--ink)}
 .synth-align{margin:12px 0 0}
 .synth-only .card{margin:0}
 .only-item{padding:10px 0;border-bottom:1px solid var(--line-2)}
@@ -539,8 +567,9 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 
 /* menú: título de cada revista plegable (abierto al abrir el menú); fecha de los números debajo del título */
 .drawer details.m-pub > summary.m-group{display:flex;margin:0;padding:18px 44px 6px 18px}
-.drawer details.m-pub > summary.m-group::after{top:auto;bottom:10px;transform:rotate(45deg)}
-.drawer details.m-pub[open] > summary.m-group::after{transform:translateY(4px) rotate(-135deg)}
+.drawer details.m-pub.m-sep{border-top:1px solid var(--line);margin-top:8px}
+.drawer details.m-pub > summary.m-group::after{top:auto;bottom:16px;transform:rotate(45deg)} /* a la altura del texto del grupo */
+.drawer details.m-pub[open] > summary.m-group::after{transform:translateY(3px) rotate(-135deg)}
 .drawer summary[data-href][aria-current="page"]{background:var(--line-2)}
 .m-vol summary small{white-space:nowrap}
 .m-vol[data-vol^="n"] > summary small{margin-top:1px}
@@ -613,15 +642,18 @@ div.dg-title{color:var(--ink)}
 .ph-nav a:hover{border-color:var(--ink-3)}
 .ph-nav .hn-next{flex-direction:row-reverse;text-align:right}
 .ph-nav .hn-off{opacity:.35;justify-content:center}
-.hn-arrow{font-size:24px;line-height:1;color:var(--vol);flex:none}
+/* flecha dibujada (no un carácter «‹ ›», que queda más alto que el texto): centrada con él en el recuadro */
+.hn-arrow{font-size:0;width:6px;height:6px;flex:none;border-left:1.6px solid var(--vol);border-bottom:1.6px solid var(--vol);transform:rotate(45deg);margin:0 1px 0 3px}
+.hn-next .hn-arrow{transform:rotate(-135deg);margin:0 3px 0 1px}
 .hn-text{min-width:0;line-height:1.2}
 .hn-text small{display:block;font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-size:13px;color:var(--vol)}
 .hn-text span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
 .ph-nav .hn-off{padding:2px 8px}
 @media (max-width:600px){
-  /* portada algo mayor y centrada en vertical junto al texto (no pegada a la esquina superior) */
-  .page-head.with-aside{grid-template-columns:minmax(0,1fr) 112px;grid-template-areas:"main cover" "nav nav";column-gap:16px}
-  .page-head.with-aside .ph-cover{align-self:center}
+  /* portada mayor y fija a la altura del título (debajo de las dos líneas de revista y volumen), para que no
+     se mueva al pasar de un volumen o número a otro aunque cambie el largo del texto */
+  .page-head.with-aside{grid-template-columns:minmax(0,1fr) 128px;grid-template-areas:"main cover" "nav nav";column-gap:16px}
+  .page-head.with-aside .ph-cover{align-self:start;margin-top:50px}
   .page-head.with-aside:not(:has(.ph-cover)){grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "nav"}
   .page-head.with-aside:not(:has(.ph-cover)) .ph-nav{grid-row:auto;grid-column:1 / -1}
   .ph-nav{margin-top:12px;grid-template-columns:1fr 1fr}
@@ -640,8 +672,17 @@ div.dg-title{color:var(--ink)}
 .page-head.vol-head{grid-template-areas:"main nav" "main cover";grid-template-rows:auto 1fr}
 .vol-head .ph-nav{grid-template-columns:1fr 1fr;margin:0 0 8px}
 .vol-head .ph-cover{margin-top:0}
-.ph-nav a.hn-short{justify-content:center;gap:6px;padding:5px 8px}
-.ph-nav .hn-short b{font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-weight:500;font-size:15px;color:var(--vol)}
+/* volumen o número con portada (escritorio): la portada, algo menor, arriba a la derecha, y el paso al anterior y
+   siguiente, en pequeño, en la columna del texto, bajo la línea «Edición»; así la cabecera no queda más alta que el texto */
+@media (min-width:601px){
+  .page-head.vol-head:has(.ph-cover){grid-template-columns:minmax(0,1fr) 168px;grid-template-areas:"main cover" "nav cover";grid-template-rows:auto 1fr}
+  .vol-head:has(.ph-cover) .ph-nav{grid-template-columns:repeat(2,96px);justify-content:start;gap:6px;margin:14px 0 0}
+  .vol-head:has(.ph-cover) .ph-cover{margin-top:24px} /* a la altura de la segunda línea («Volumen 1 · c. 2021») */
+  .vol-head:has(.ph-cover) .ph-nav a.hn-short{padding:3px 4px;gap:4px;min-height:28px}
+  .vol-head:has(.ph-cover) .ph-nav .hn-short b{font-size:13px}
+}
+.ph-nav a.hn-short{justify-content:center;gap:6px;padding:5px 8px;min-height:34px}
+.ph-nav .hn-short b{font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.04em;font-weight:500;font-size:15px;line-height:1;color:var(--vol);display:block;padding-bottom:1px}
 @media (max-width:600px){
   .page-head.vol-head{grid-template-areas:"main cover" "nav nav";grid-template-rows:auto auto}
   .vol-head .ph-nav{margin:12px 0 0}
@@ -674,8 +715,13 @@ body.art-page{--art-bg:color-mix(in srgb,var(--bg) 97.5%,#000);background:var(--
 body.art-page .wrap[data-vol]{--band:color-mix(in srgb,var(--vol) 13%,var(--art-bg))}
 .art-band{background:var(--band);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);
   margin-top:-16px;padding-top:36px;padding-bottom:6px;margin-bottom:0}
-body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;border-bottom-color:transparent}
-.art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 70%,transparent)}
+body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:var(--tabs-bg);box-shadow:0 0 0 100vmax var(--tabs-bg);clip-path:inset(0 -100vmax);margin-top:0;margin-bottom:30px;border-bottom-color:transparent}
+/* paso entre artículos: botones pequeños y más traslúcidos, que dejen ver el color de la franja */
+.art-band .ph-nav a,.art-band .ph-nav .hn-off{background:color-mix(in srgb,var(--paper) 35%,transparent);border-color:color-mix(in srgb,var(--ink) 10%,transparent)}
+.art-band .ph-nav{grid-template-columns:repeat(2,96px);justify-content:end;gap:6px}
+.art-band .ph-nav a.hn-short{padding:3px 4px;gap:4px;min-height:28px}
+.art-band .ph-nav .hn-short b{font-size:13px}
+@media (max-width:600px){.art-band .ph-nav{justify-content:start}}
 
 /* barras de pestañas desplazables: flecha fija en el borde derecho mientras quedan pestañas por ver */
 .tabs{--tabs-bg:var(--bg)}

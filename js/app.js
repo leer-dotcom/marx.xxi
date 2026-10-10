@@ -84,6 +84,9 @@ function hydrateDiagrams(root = document) {
     loadSvg(host.dataset.svg).then(svg => {
       host.innerHTML = svg;
       host.dataset.state = 'ok';
+      // sin proporción en los datos se reservó una altura mínima: ya cargado, la caja se ajusta al dibujo
+      const vb = (host.querySelector('svg')?.getAttribute('viewBox') || '').split(/[\s,]+/).map(Number);
+      if (vb.length === 4 && vb[2] > 0 && vb[3] > 0) { host.style.minHeight = ''; host.style.aspectRatio = `${vb[2]}/${vb[3]}`; }
     }).catch(() => {
       host.dataset.state = 'error';
       host.innerHTML = `<p class="dg-error">No se pudo cargar el esquema.</p>`;
@@ -272,17 +275,20 @@ function menuHtml() {
       || (/^#\/tesis(\/|$)/.test(path) ? (/^[a-z]/.test(path.split('/')[2] || '') ? path.split('/')[2] : 'marx-xxi') : '');
   const openIf = cond => cond ? ' open' : '';
   const inSection = routes => routes.some(r => path === r || path.startsWith(r + '/'));
-  const pubs = L.pubs.map(p => `<details class="m-pub"${openIf(p.id === curPub)}>
+  // separadores entre bloques del menú; entre las dos revistas no hay
+  const pubs = L.pubs.map((p, i) => `<details class="m-pub${i === 0 ? ' m-sep' : ''}"${openIf(p.id === curPub)}>
     <summary class="m-group">${esc(p.name)}</summary>
     ${link(p.home, `${esc(p.name)}: La publicación`, ICON.shelf)}
     ${vols(p)}
-    ${link(thesesHref(p), 'Síntesis', ICON.hub)}
+    ${link(thesesHref(p), 'Síntesis de la publicación', ICON.hub)}
   </details>`).join('');
   return `
-    ${link('#/', 'Biblioteca', ICON.home)}
+    <details class="m-pub"${openIf(path === '#/' || path === '')}><summary class="m-group">Biblioteca</summary>
+    ${link('#/', 'Colección', ICON.home)}
     ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
+    </details>
     ${pubs}
-    <details class="m-pub"${openIf(inSection(['#/sintesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
+    <details class="m-pub m-sep"${openIf(inSection(['#/sintesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
     ${L.synthesis ? link('#/sintesis', 'Síntesis de la colección', ICON.hub) : ''}
     ${link('#/glosario', 'Glosario', ICON.az)}
     ${link('#/mapas', 'Mapas conceptuales', ICON.map)}
@@ -290,7 +296,7 @@ function menuHtml() {
     ${link('#/buscar', 'Búsqueda', ICON.search)}
     ${link('#/marcadores', 'Marcadores', ICON.mark)}
     </details>
-    <details class="m-pub"${openIf(inSection(['#/ajustes', '#/acerca']))}><summary class="m-group">Aplicación</summary>
+    <details class="m-pub m-sep"${openIf(inSection(['#/ajustes', '#/acerca']))}><summary class="m-group">Aplicación</summary>
     ${link('#/ajustes', 'Modo lectura', ICON.aa)}
     ${link('#/acerca', 'Acerca de y créditos', ICON.info)}
     </details>`;
@@ -515,7 +521,7 @@ function volumeView(p, n, tab = 1) {
   const pos = store.positions(), read = store.read();
   let body = '';
   if (tab === 0) {
-    body = `<div class="eyebrow">Tesis del volumen según la presentación</div><div class="prose" style="margin-top:10px">${paras(v.presentation)}</div>
+    body = `<div class="eyebrow">Resumen de la presentación</div><div class="prose" style="margin-top:10px">${paras(v.presentation)}</div>
       ${v.presentation_text ? `<a class="btn ghost block" href="#/leer/tomo-${v.number}">${ICON.book}${v.number === 5 ? 'Leer la nota introductoria completa' : 'Leer la presentación completa'}</a>` : ''}`;
   } else if (tab === 1) {
     body = `<p class="muted small">Índice en el orden de la revista. Abre la guía de cada artículo o ve directamente al texto íntegro.</p>` +
@@ -559,7 +565,7 @@ function volumeView(p, n, tab = 1) {
       <div class="eyebrow vol">${esc(v.eyebrow.replace(/^[^·]*·\s*/, ''))}</div><h1>${esc(v.title)}</h1>
       ${v.subtitle ? `<div class="sub">${esc(v.subtitle)}</div>` : ''}
       ${v.editor ? `<div class="muted small" style="margin-top:6px">Edición: ${esc(v.editor)}${v.issn ? ` · ISSN ${esc(v.issn)}` : ''}${v.deposito_legal ? ` · D. L. ${esc(v.deposito_legal)}` : ''}</div>` : ''}
-      ${v.data_notes ? `<details class="vol-notes"><summary>Ficha del número</summary><p>${esc(v.data_notes)}</p></details>` : ''}</div>
+</div>
       ${v.cover ? `<div class="ph-cover">${coverHtml(v)}</div>` : ''}
       ${headNav(
         // antes del primero, la portada de la revista («Intro»); después del último, sus conclusiones comunes
@@ -680,21 +686,32 @@ function articleView(id, tab = 0) {
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
       ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
       ${(() => {
-        // paso dentro del volumen o número: antes del primero y después del último, el propio volumen
+        // paso dentro del volumen o número: antes del primero, el propio volumen; después del último, sus conclusiones
         const i = v.articles.indexOf(a), pa = v.articles[i - 1], na = v.articles[i + 1];
         const toVol = { href: v.href, label: volShort(v), tip: volHead(v), vol: v.key };
+        const toConcl = { href: `${v.href}/2`, label: 'Concl.', tip: `Conclusiones · ${volHead(v)}`, vol: v.key };
         const toArt = x => ({ href: `#/articulo/${x.id}/${tab}`, label: artLabel(x), tip: x.title, vol: v.key });
-        return headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toVol, 'Artículos contiguos');
+        return headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toConcl, 'Artículos contiguos');
       })()}</header>
     ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, TAB.texto)}
     ${body}
     ${tab !== TAB.texto ? relatedPanel(a) : ''}
     <nav class="neighbours" aria-label="Artículos contiguos">
       ${prev ? neighbourLink(prev, 'prev', tab) : '<span></span>'}
-      ${next ? neighbourLink(next, 'next', tab) : '<span></span>'}
+      ${next && article(next.id)?.v === v ? neighbourLink(next, 'next', tab) : conclusionsLink(v)}
     </nav>
   </div>
   <a class="btn fab" href="#/leer/${a.id}" data-vol="${v.key}">${ICON.book}${p > 0 ? 'Seguir leyendo' : 'Leer texto completo'}</a>`;
+}
+
+/** Tras el último artículo no se pasa al volumen o número siguiente: se va a sus conclusiones. */
+function conclusionsLink(v) {
+  return `<a class="next" href="${v.href}/2" data-vol="${v.key}">
+    <small>Siguiente →</small>
+    <span class="nb-vol">${esc(volHead(v))}</span>
+    <span class="nb-title">Conclusiones</span>
+    <span class="nb-author">${v.conclusions.length} conclusiones</span>
+  </a>`;
 }
 
 /** Enlace al artículo anterior/siguiente: volumen, título del volumen, título y autor (cruza de volumen). */
@@ -731,8 +748,14 @@ function thesesView(p, tab = 0, params) {
       ${lib().synthesis ? `<p class="small" style="margin-top:20px"><a href="#/sintesis/1">Cómo se alinean estas tesis con las de la otra revista: síntesis de la colección →</a></p>` : ''}`
     : `${cv.map ? figure(cv.map) + '<p class="muted small">Toca el mapa para ampliarlo.</p>' : '<p class="empty">Esta revista no tiene mapa común.</p>'}`;
   const html = `<div class="wrap">
-    <header class="page-head"><a class="eyebrow ph-pub" href="${p.home}">${esc(p.name)}</a><h1>${esc(p.name)}: Síntesis</h1>
-    <div class="sub">${cv.theses.length} tesis comunes a los ${n} ${esc(p.unit_plural)} y su mapa conceptual.</div></header>
+    <header class="page-head with-aside"><div class="ph-main"><a class="eyebrow ph-pub" href="${p.home}">${esc(p.name)}</a><h1>${esc(p.name)}: Síntesis</h1>
+    <div class="sub">${cv.theses.length} tesis comunes a los ${n} ${esc(p.unit_plural)} y su mapa conceptual.</div></div>
+      ${(() => {
+        // final del recorrido por volúmenes o números: antes, el último; después, «Inicio» (portada de la revista)
+        const last = p.volumes[p.volumes.length - 1];
+        return headNav(last ? { href: `${last.href}/1`, label: volShort(last), tip: volHead(last), vol: last.key } : null,
+          { href: p.home, label: 'Inicio', tip: `Portada de ${p.name}`, vol: last?.key || '' }, 'Recorrido de la revista');
+      })()}</header>
     ${tabs(thesesHref(p), THESES_TABS, tab)}
     ${body}
     ${aiNote()}
@@ -830,6 +853,11 @@ function synthesisView(tab = 0, params) {
   if (!(tab >= 0 && tab < SYNTH_TABS.length)) tab = 0;
   setBar('Síntesis de la colección');
   const mx = pub('marx-xxi'), nc = pub('nuevo-ciclo');
+  // fuentes de cada revista en las tesis comunes: plegadas bajo su explicación
+  const sourcesFor = (where, p) => {
+    const n = p && where ? whereLinks(where, p).length : 0;
+    return n ? `<details class="synth-src"><summary>Fuentes en ${esc(p.name)} (${n})</summary>${chipsFor(where, p)}</details>` : '';
+  };
   const chipsFor = (where, p) => p && where ? `<div class="chips">${whereLinks(where, p).map(([label, href]) =>
     `<a class="chip" href="${href}">${esc(label)}</a>`).join('')}</div>` : '';
   const thesisLinks = (nums, p) => nums?.length ? nums.map(n =>
@@ -850,8 +878,8 @@ function synthesisView(tab = 0, params) {
       <summary><div class="row-actions"><span class="eyebrow">Tesis ${t.number}</span><span class="grow"></span>${t.status ? `<span class="tag ${t.status === 'común' ? 'soft' : 'olive'}">${esc(t.status)}</span>` : ''}</div>
       <h3>${esc(t.title)}</h3></summary>
       <div class="thesis-body">
-      ${t.principle ? `<div class="synth-col"><div class="eyebrow vol">Principio · Marx XXI</div><p>${esc(t.principle)}</p>${chipsFor(t.where_marx_xxi, mx)}</div>` : ''}
-      ${t.application ? `<div class="synth-col" data-vol="n1"><div class="eyebrow vol">Aplicación · Nuevo Ciclo</div><p>${esc(t.application)}</p>${chipsFor(t.where_nuevo_ciclo, nc)}</div>` : ''}
+      ${t.principle ? `<div class="synth-col"><div class="eyebrow vol">Principio · Marx XXI</div><p>${esc(t.principle)}</p>${sourcesFor(t.where_marx_xxi, mx)}</div>` : ''}
+      ${t.application ? `<div class="synth-col" data-vol="n1"><div class="eyebrow vol">Aplicación · Nuevo Ciclo</div><p>${esc(t.application)}</p>${sourcesFor(t.where_nuevo_ciclo, nc)}</div>` : ''}
       <p class="muted small synth-align">Tesis originales: Marx XXI ${thesisLinks(t.marx_xxi_theses, mx)} · Nuevo Ciclo ${thesisLinks(t.nuevo_ciclo_theses, nc)}</p>
     </div></details>`).join('')}`;
   } else {
@@ -1136,8 +1164,10 @@ export function bindSettings(root, onChange) {
   });
 }
 
+/** El tema elegido en los ajustes de lectura solo se aplica mientras se lee (body.reading); el resto de la
+ *  app sigue el tema del sistema. */
 export function applyTheme(s = store.settings()) {
-  if (s.theme === 'system') delete document.documentElement.dataset.theme;
+  if (s.theme === 'system' || !document.body.classList.contains('reading')) delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = s.theme === 'light' ? 'light' : s.theme;
   const head = getComputedStyle(document.documentElement).getPropertyValue('--head').trim();
   document.querySelector('meta[name=theme-color]').content = head || '#2c332f';
@@ -1145,6 +1175,7 @@ export function applyTheme(s = store.settings()) {
 
 /** Aplica los ajustes de lectura como variables CSS y clases sobre un contenedor .reader. */
 export function styleReader(el, s) {
+  if (s.theme === 'system') delete el.dataset.theme; else el.dataset.theme = s.theme;
   el.style.setProperty('--r-size', s.size + 'px');
   el.style.setProperty('--r-lh', s.lineHeight);
   el.style.setProperty('--r-gap', s.paraGap + 'em');
@@ -1271,6 +1302,7 @@ async function route() {
   // recuerda dónde se dejó cada texto (store.position: bloque y porcentaje leído).
   if (parts[0] !== 'leer') window.scrollTo(0, 0);
   cleanup = mount?.() || null;
+  applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') bindOffline();
 }
 
