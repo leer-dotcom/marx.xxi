@@ -271,10 +271,10 @@ export function searchGuide(q) {
 }
 
 /** Recorre todos los textos; llama a onHit por cada coincidencia y onProgress(i, total). Cancelable con signal. */
-export async function searchFullText(q, { onHit, onProgress, signal, perArticle = 5 }) {
+export async function searchFullText(q, { onHit, onProgress, signal, perArticle = 5, pub = '' }) {
   const f = fold(q).trim();
   if (f.length < 3) return;
-  const all = library.allArticles;
+  const all = pub ? library.allArticles.filter(x => x.v.pub.id === pub) : library.allArticles; // pub: solo esa revista
   for (let i = 0; i < all.length; i++) {
     if (signal?.aborted) return;
     const { v, a } = all[i];

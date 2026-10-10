@@ -266,6 +266,24 @@ function currentVolKey(here) {
   return '';
 }
 
+/** Revista a la que pertenece la pantalla (volumen, número, artículo, portada o síntesis de la revista), o ''. */
+function pubOfRoute(here) {
+  const curVol = currentVolKey(here), path = here.split('?')[0];
+  return curVol ? (curVol.startsWith('n') ? 'nuevo-ciclo' : 'marx-xxi')
+    : (path.match(/^#\/(marx-xxi|nuevo-ciclo)\b/) || [])[1]
+      || (/^#\/tesis(\/|$)/.test(path) ? (/^[a-z]/.test(path.split('/')[2] || '') ? path.split('/')[2] : 'marx-xxi') : '');
+}
+
+// La lupa de la barra lleva a la búsqueda con la revista de la pantalla actual ya marcada
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href="#/buscar"]:not(.m-link)');
+  if (!a || lib().pubs.length < 2) return;
+  const pub = pubOfRoute(location.hash || '#/');
+  if (!pub) return;
+  e.preventDefault();
+  location.hash = `#/buscar?p=${pub}`;
+});
+
 function menuHtml() {
   const L = lib();
   const here = location.hash || '#/';
@@ -299,9 +317,7 @@ function menuHtml() {
   // Secciones plegables (cada revista, Estudio, Aplicación): solo empieza desplegada la que contiene la
   // pantalla actual; fuera de ellas (p. ej. en la biblioteca) todas empiezan plegadas.
   const path = here.split('?')[0];
-  const curPub = curVol ? (curVol.startsWith('n') ? 'nuevo-ciclo' : 'marx-xxi')
-    : (path.match(/^#\/(marx-xxi|nuevo-ciclo)\b/) || [])[1]
-      || (/^#\/tesis(\/|$)/.test(path) ? (/^[a-z]/.test(path.split('/')[2] || '') ? path.split('/')[2] : 'marx-xxi') : '');
+  const curPub = pubOfRoute(here);
   const openIf = cond => cond ? ' open' : '';
   const inSection = routes => routes.some(r => path === r || path.startsWith(r + '/'));
   // separadores entre bloques del menú; entre las dos revistas no hay
@@ -448,7 +464,7 @@ function studyTools(p) {
       ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Conceptualización de artículos y publicaciones')}
       ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
-      ${toolCard('#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
+      ${toolCard(p ? `#/buscar?p=${p.id}` : '#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
       ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Fuente, tamaño, interlineado')}
     </div>`;
@@ -848,7 +864,7 @@ function glossaryView(params) {
     <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los artículos de las dos revistas' : 'los artículos'}. Toca uno para ir a su artículo.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div></header>
     <div class="sticky-tools">
       <label class="field">${ICON.search}<input id="g-q" type="search" placeholder="Buscar concepto o definición" value="${esc(params.get('q') || '')}" autocomplete="off"></label>
-      ${multi ? `<div class="chips" id="g-pub">${[['', 'Toda la biblioteca'], ...L.pubs.map(p => [p.id, p.name]), ['puentes', 'Puentes']].map(([k, label]) =>
+      ${multi ? `<div class="chips" id="g-pub">${[['', 'Toda la colección'], ...L.pubs.map(p => [p.id, p.name]), ['puentes', 'Puentes']].map(([k, label]) =>
         `<button class="chip" data-p="${k}" aria-pressed="${bridges ? k === 'puentes' : k === pubId}">${esc(label)}</button>`).join('')}</div>` : ''}
       <div class="chips" id="g-vol">${volChips()}</div>
       <div class="muted small" id="g-count" style="margin-top:8px"></div>
@@ -1051,6 +1067,9 @@ function authorsView(params) {
 
 function searchView(params) {
   setBar('Buscar');
+  const L = lib(), multi = L.pubs.length > 1;
+  // segunda capa: en qué revista buscar (llega marcada según desde dónde se entra: ?p=)
+  let pubId = L.byId[params.get('p')] ? params.get('p') : '';
   const html = `<div class="wrap">
     <div class="sticky-tools">
       <label class="field">${ICON.search}<input id="s-q" type="search" placeholder="Concepto, autor, tema…" value="${esc(params.get('q') || '')}" autocomplete="off" enterkeyhint="search"></label>
@@ -1058,6 +1077,8 @@ function searchView(params) {
         <button class="chip" id="s-guide" aria-pressed="${params.get('en') !== 'textos'}">Guía</button>
         <button class="chip" id="s-full" aria-pressed="${params.get('en') === 'textos'}">Textos íntegros</button>
       </div>
+      ${multi ? `<div class="chips" id="s-pub">${[['', 'Toda la colección'], ...L.pubs.map(p => [p.id, p.name])].map(([k, label]) =>
+        `<button class="chip" data-p="${k}" aria-pressed="${k === pubId}">${esc(label)}</button>`).join('')}</div>` : ''}
       <div class="progress blue" id="s-prog" hidden><i style="width:0"></i></div>
     </div>
     <div id="s-list"></div>
@@ -1081,14 +1102,19 @@ function searchView(params) {
     const run = () => {
       ctrl?.abort();
       const q = input.value.trim();
-      history.replaceState(null, '', '#/buscar' + (q ? `?q=${encodeURIComponent(q)}${full ? '&en=textos' : ''}` : ''));
+      const qs = new URLSearchParams();
+      if (q) qs.set('q', q);
+      if (q && full) qs.set('en', 'textos');
+      if (pubId) qs.set('p', pubId);
+      history.replaceState(null, '', '#/buscar' + (qs.toString() ? '?' + qs : ''));
       $('#s-prog').hidden = true;
       if (q.length < 2) {
-        list.innerHTML = `<p class="empty">Busca en resúmenes, píldoras, conceptos, conclusiones y tesis comunes. Cambia a «Textos íntegros» para buscar dentro de los ${lib().allArticles.length} artículos completos.</p>`;
+        const nArts = L.allArticles.filter(x => !pubId || x.v.pub.id === pubId).length;
+        list.innerHTML = `<p class="empty">Busca en resúmenes, píldoras, conceptos, conclusiones y tesis comunes${pubId ? ` de ${esc(L.byId[pubId].name)}` : ''}. Cambia a «Textos íntegros» para buscar dentro de los ${nArts} artículos completos.</p>`;
         return;
       }
       if (!full) {
-        const hits = searchGuide(q);
+        const hits = searchGuide(q).filter(h => !pubId || h.pub?.id === pubId); // la síntesis común solo en «Toda la colección»
         list.innerHTML = hits.length ? `<p class="muted small">${hits.length} resultados</p>` + hits.map(item).join('') : '<p class="empty">Sin resultados en la guía. Prueba en «Textos íntegros».</p>';
         return;
       }
@@ -1099,7 +1125,7 @@ function searchView(params) {
       list.innerHTML = '<p class="muted small" id="s-count">Buscando…</p>';
       const bar = $('#s-prog'); bar.hidden = false;
       searchFullText(q, {
-        signal: my.signal,
+        signal: my.signal, pub: pubId,
         onHit: h => { if (my.signal.aborted) return; n++; list.insertAdjacentHTML('beforeend', item(h)); },
         onProgress: (i, t) => {
           if (my.signal.aborted) return;
@@ -1112,6 +1138,12 @@ function searchView(params) {
     input.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(run, full ? 400 : 120); });
     $('#s-guide').onclick = () => { full = false; $('#s-guide').setAttribute('aria-pressed', true); $('#s-full').setAttribute('aria-pressed', false); run(); };
     $('#s-full').onclick = () => { full = true; $('#s-full').setAttribute('aria-pressed', true); $('#s-guide').setAttribute('aria-pressed', false); run(); };
+    $('#s-pub')?.addEventListener('click', e => {
+      const b = e.target.closest('[data-p]'); if (!b) return;
+      pubId = b.dataset.p;
+      for (const c of $('#s-pub').children) c.setAttribute('aria-pressed', c === b);
+      run();
+    });
     run();
     if (!input.value) input.focus();
     return () => ctrl?.abort();
