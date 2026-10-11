@@ -1720,18 +1720,12 @@ window.addEventListener('hashchange', e => {
 let installEvt = null;
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-/** Fecha del sello de los datos cargados («11/10/2026 00:57»), que renueva cada publicación. */
-function dataDate() {
-  const m = (lib()?.v || '').match(/(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)/);
-  return m ? `${m[3]}/${m[2]}/${m[1]} ${m[4]}:${m[5]}` : '';
-}
 function installHtml() {
-  // versión nueva ya instalada y a la espera: «Actualizar» antes que nada (también en la barra flotante)
-  const upd = waitingSw ? `<p class="install-new"><span class="tick" aria-hidden="true">↑</span>Hay una versión nueva del lector.</p>
+  // versión nueva ya descargada y a la espera: solo el aviso y «Actualizar» (el aviso flotante remite aquí)
+  const upd = waitingSw ? `<p class="install-new">${ICON.refresh}Hay una nueva versión de la aplicación para descargar.</p>
     <button type="button" class="btn" data-update>${ICON.refresh}Actualizar</button>` : '';
-  const d = dataDate();
-  if (isStandalone()) return upd + `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo${!waitingSw && d ? ` y está al día (versión del ${d})` : ''}. Las versiones nuevas se detectan al abrirla y se ofrecen aquí y en un aviso flotante.</p>`;
   if (upd) return upd;
+  if (isStandalone()) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La última versión ya está instalada en el dispositivo.</p>`;
   if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
     <p class="muted small">Se añadirá su icono a la pantalla de inicio o al escritorio, se abrirá como una aplicación y quedará descargada entera para usarla sin conexión.</p>`;
   if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>. Al abrirla desde su icono se descargará entera para usarla sin conexión.</p>';
@@ -1797,8 +1791,19 @@ loadLibrary().then(() => {
 // mezclan en la sesión abierta código nuevo y datos viejos. Mientras espera se ofrece «Actualizar» (barra flotante y
 // «Acerca de › Instalar»); al pulsarlo la nueva toma el control y la app se recarga entera. Si no se pulsa, se activa
 // sola al cerrar la app del todo. Tras la recarga, autoDownload() baja los textos de la versión nueva.
-let swReg = null, waitingSw = null, askedUpdate = false;
-const renderUpdate = () => { const el = $('#update'); if (el) el.hidden = !waitingSw; renderInstall(); };
+let swReg = null, waitingSw = null, askedUpdate = false, updateSeen = false; // updateSeen: «Aceptar» pulsado en el aviso
+const renderUpdate = () => {
+  const el = $('#update');
+  if (el) {
+    const show = !!waitingSw && !updateSeen;
+    el.hidden = !show;
+    // el aviso se retira solo a los 4 segundos (hasta entonces se puede pulsar Aceptar o Actualizar)
+    clearTimeout(renderUpdate._t);
+    if (show) renderUpdate._t = setTimeout(() => { updateSeen = true; el.hidden = true; }, 4000);
+  }
+  renderInstall();
+};
+document.addEventListener('click', e => { if (e.target.closest('[data-update-ok]')) { updateSeen = true; renderUpdate(); } });
 const checkUpdate = () => swReg?.update().catch(() => {});
 if ('serviceWorker' in navigator && location.protocol === 'https:') {
   // primera visita: el service worker recién instalado toma el control sin que haya que recargar nada
