@@ -210,7 +210,8 @@ function openZoom(host, keepList = false) {
   cap.innerHTML = zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml;
   if (!dlg.open) dlg.showModal();
 
-  // El dibujo a su tamaño natural (el ancho de su viewBox) y encima translate(x, y) scale(s)
+  // El dibujo se dimensiona de verdad (ancho = W·s, posición left/top), no con transform: scale(), que
+  // estiraría un mapa de bits y se vería borroso. Al ser SVG, cada tamaño se vuelve a dibujar nítido.
   const box = st.firstChild, svg = box.querySelector('svg');
   const W = svg?.viewBox?.baseVal?.width || 760;
   box.style.width = W + 'px';
@@ -220,7 +221,7 @@ function openZoom(host, keepList = false) {
   const area = () => ({ w: st.clientWidth, h: st.clientHeight, top: cap.textContent ? cap.offsetHeight : 0, bottom: $('.zoom-bar').offsetHeight + 24 });
   const fitScale = () => { const a = area(), m = 10; return Math.max(0.05, Math.min((a.w - 2 * m) / W, (a.h - a.top - a.bottom - 2 * m) / H)); };
   const apply = () => {
-    box.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+    box.style.width = W * s + 'px'; box.style.left = x + 'px'; box.style.top = y + 'px';
     level.textContent = Math.round(s / fitScale() * 100) + ' %'; // 100 % = ajustado a la pantalla
   };
   // si cabe, centrado en la zona libre; si no, nunca más allá del borde (no se puede perder de vista)

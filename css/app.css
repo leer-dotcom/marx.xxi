@@ -340,7 +340,7 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .zoom[open]{display:block}
 .zoom-stage{position:absolute;inset:0;overflow:hidden;touch-action:none;overscroll-behavior:contain;cursor:grab;user-select:none;-webkit-user-select:none}
 .zoom-stage.dragging{cursor:grabbing}
-.zoom-stage .dg{position:absolute;left:0;top:0;transform-origin:0 0;margin:0;max-width:none;background:none;will-change:transform}
+.zoom-stage .dg{position:absolute;left:0;top:0;margin:0;max-width:none;background:none} /* tamaño real, no transform: nítido */
 /* pie arriba, entero (el dibujo se ajusta al espacio que queda); si es muy largo, con desplazamiento */
 .zoom-caption{position:absolute;left:0;right:0;top:0;margin:0;padding:calc(8px + var(--safe-t)) 16px 8px;font-size:15px;line-height:1.35;color:var(--ink-2);background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);max-height:38vh;overflow:auto}
 .zoom-caption:empty{display:none}

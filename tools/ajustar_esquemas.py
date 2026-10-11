@@ -160,9 +160,10 @@ def attr(a, n):
 
 
 def apply(svg, rules, front):
-    tail = []
-
-    def rep(m):
+    """Añade los style; las etiquetas con halo pasan al final de su grupo <g> (o del SVG) para pintarse
+    encima de las líneas sin perder el transform del grupo."""
+    out, moved, pos = [], [], 0
+    for m in TEXT.finditer(svg):
         a, body = m.group(1), m.group(2)
         key = (attr(a, "x"), attr(a, "y"), html.unescape(re.sub(r"<[^>]+>", "", body)))
         if key in rules:
@@ -175,12 +176,21 @@ def apply(svg, rules, front):
             new = ";".join(f"{k}:{v}" for k, v in props.items())
             a = a.replace(f' style="{st}"', f' style="{new}"') if st is not None else a + f' style="{new}"'
         el = f"<text{a}>{body}</text>\n"
+        out.append(svg[pos:m.start()])
+        pos = m.end()
         if key in front:
-            tail.append(el)
-            return ""
-        return el
-    out = TEXT.sub(rep, svg)
-    return out.replace("</svg>", "".join(tail) + "</svg>") if tail else out
+            before = svg[:m.start()]
+            depth = len(re.findall(r"<g\b", before)) - before.count("</g>")
+            moved.append((depth, el))
+        else:
+            out.append(el)
+    out.append(svg[pos:])
+    res = "".join(out)
+    for depth, el in moved:
+        anchor = "</g>" if depth > 0 else "</svg>"
+        i = res.find(anchor, res.find("<g") if depth > 0 else 0) if depth > 0 else res.rfind("</svg>")
+        res = res[:i] + el + res[i:]
+    return res
 
 
 def skeleton(s):
