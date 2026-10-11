@@ -11,7 +11,7 @@ y se puede publicar directamente en GitHub Pages.
 ```
 index.html              estructura de la página
 css/app.css             diseño inspirado en marxxxi.com (Alegreya, verde #2c332f, color por volumen) + temas sepia/oscuro/negro
-js/app.js               rutas (#/…) y vistas: inicio, volumen, artículo, tesis, glosario, búsqueda, marcadores, ajustes
+js/app.js               rutas (#/…) y vistas: inicio, volumen, artículo, tesis, glosario, búsqueda, marcadores, lista de lectura, ajustes
 js/reader.js            modo lectura
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
@@ -90,7 +90,8 @@ síntesis ya existentes, decidiendo tesis por tesis si el número las confirma, 
 `#/` biblioteca · `#/marx-xxi` y `#/nuevo-ciclo` portada de cada revista · `#/volumen/1[/pestaña]` ·
 `#/numero/1[/pestaña]` · `#/articulo/t1-a1[/pestaña]` · `#/articulo/n1-a6` · `#/leer/t1-a1[?b=bloque]` · `#/leer/tomo-1`
 (presentación) · `#/tesis[?t=3]` · `#/tesis/nuevo-ciclo` · `#/sintesis` · `#/glosario[?p=nuevo-ciclo|puentes]` ·
-`#/autores` · `#/buscar?q=…` · `#/marcadores` · `#/ajustes` · `#/acerca` · `#/creditos`
+`#/autores` · `#/buscar?q=…` · `#/marcadores` · `#/lista[/1]` (Mi lista de lectura: pendientes / leídos) · `#/ajustes` ·
+`#/acerca` · `#/creditos`
 
 Los enlaces se pueden compartir: `…/#/leer/t3-a2?b=40` abre ese texto en ese párrafo.
 
@@ -140,8 +141,10 @@ este README se quedan en el repositorio.
 
 - Las fuentes (Alegreya, Alegreya SC, Alegreya Sans, Source Serif 4, Literata, Atkinson Hyperlegible, IBM Plex Mono) se cargan de Google Fonts;
   el service worker las guarda en caché para usarlas sin conexión.
-- Los ajustes, la posición de lectura y los marcadores se guardan en el navegador (`localStorage`); no se envía nada a
-  ningún servidor.
+- Los ajustes, la posición de lectura, los marcadores y Mi lista de lectura se guardan en el navegador (`localStorage`);
+  no se envía nada a ningún servidor. La lista (`mx.list`) guarda solo los ids y el orden elegido: un texto está en
+  «Pendientes» o en «Leídos» según la marca de leído (`mx.read`, que se pone al llegar al final en el modo lectura), y
+  «Leídos» se ordena por la fecha en que se terminó (`mx.readAt`).
 - La pantalla «Acerca de» indica que la guía es una lectura generada con IA y recoge la licencia de libre distribución
   de la revista.
 - **Versiones nuevas.** Al abrir la app (y al volver a primer plano o entrar en «Acerca de») el navegador comprueba

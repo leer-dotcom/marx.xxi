@@ -26,19 +26,27 @@ const ICON = {
   map: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="5" rx="1"/><rect x="14" y="4" width="7" height="5" rx="1"/><rect x="8.5" y="15" width="7" height="5" rx="1"/><path d="M6.5 9v2.5h11V9M12 11.5V15"/></svg>',
   people: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c.6-3.4 3-5.3 6-5.3s5.4 1.9 6 5.3"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.3c2.3.2 4 1.8 4.5 4.6"/></svg>',
   link: '<svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+  list: '<svg viewBox="0 0 24 24"><path d="M4 6h11M4 12h11M4 18h7M17.5 14.5v6M14.5 17.5h6"/></svg>',
+  listOn: '<svg viewBox="0 0 24 24"><path d="M4 6h11M4 12h11M4 18h7M14 17.5l2.6 2.5L21.5 15"/></svg>',
+  up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+  down: '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>',
 };
 export { ICON };
 
 // ---------------------------------------------------------------- utilidades de UI
 
-/** Título y botón «atrás». `up` es el nivel superior (no la pantalla anterior del historial). */
+/** Título y botón «atrás». `up` es el nivel superior, al que va «atrás» si no hay pantalla anterior. */
 export function setBar(title, { back = true, up = '#/' } = {}) {
   $('#appbar-title').textContent = title || '';
   $('#btn-back').hidden = !back;
   $('#btn-back').dataset.up = up;
   document.title = title ? `${title} · Lector de Marx XXI` : 'Lector de Marx XXI';
 }
-$('#btn-back').addEventListener('click', e => { location.hash = e.currentTarget.dataset.up || '#/'; });
+// «Atrás»: a la pantalla anterior del recorrido (las pestañas no cuentan); si no la hay, al nivel superior
+$('#btn-back').addEventListener('click', e => {
+  const h = backHash();
+  if (h) { backBtn = true; location.hash = h; } else location.hash = e.currentTarget.dataset.up || '#/';
+});
 
 // Compartir: el enlace de la pantalla actual (útil sobre todo con la app instalada, que no muestra la barra de
 // direcciones). Hoja de compartir del sistema si la hay; si no, se copia al portapapeles.
@@ -406,9 +414,10 @@ function menuHtml() {
     ${link(thesesHref(p), 'Síntesis de la publicación', ICON.hub)}
   </details>`).join('');
   return `
-    <details class="m-pub"${openIf(path === '#/' || path === '')}><summary class="m-group">Biblioteca</summary>
+    <details class="m-pub"${openIf(path === '#/' || path === '' || inSection(['#/lista']))}><summary class="m-group">Biblioteca</summary>
     ${link('#/', 'Colección', ICON.home)}
     ${last ? link(`#/leer/${last.a.id}`, `Seguir leyendo<small>${esc(last.a.title)}</small>`, ICON.book) : ''}
+    ${link('#/lista', 'Mi lista de lectura', ICON.list)}
     </details>
     ${pubs}
     <details class="m-pub m-sep"${openIf(inSection(['#/sintesis', '#/tesis', '#/glosario', '#/mapas', '#/autores', '#/buscar', '#/marcadores']))}><summary class="m-group">Estudio</summary>
@@ -526,6 +535,7 @@ function studyTools(p) {
   const L = lib();
   const gl = p ? L.glossary.filter(e => e.pub === p) : L.glossary;
   const au = p ? L.authors.filter(x => x.items.some(i => i.v.pub.id === p.id)) : L.authors;
+  const read = store.read(), pend = store.list().filter(x => !read.has(x.id) && article(x.id)).length; // Mi lista: pendientes
   // en móvil el aviso se puede plegar; se recuerda por página solo durante la sesión (sessionStorage)
   const abKey = 'mx.about.' + (p ? p.id : 'coleccion');
   let folded = false;
@@ -546,7 +556,7 @@ function studyTools(p) {
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
       ${toolCard(p ? `#/buscar?p=${p.id}` : '#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
       ${toolCard('#/marcadores', 'mark', 'Marcadores', 'Subrayados y notas propias')}
-      ${toolCard('#/ajustes', 'aa', 'Modo lectura', 'Configura cómo ves los textos')}
+      ${toolCard('#/lista', 'list', 'Mi lista de lectura', pend ? `${pend} ${pend === 1 ? 'texto pendiente' : 'textos pendientes'}` : 'Pendientes y leídos')}
     </div>`;
 }
 
@@ -566,7 +576,7 @@ const siteFoot = () => `<footer class="site-foot">
 
 /** Inicio: la biblioteca con sus publicaciones. */
 function libraryView() {
-  setBar('', { back: false });
+  setBar('', { back: !!backHash() }); // flecha atrás si se llega desde otra pantalla (no al abrir la app)
   const L = lib(), S = L.synthesis;
   const span = p => {
     const vs = p.volumes, a = vs[0], b = vs[vs.length - 1];
@@ -824,7 +834,8 @@ function articleView(id, tab = 0) {
       <a class="eyebrow vol ph-vol" href="${v.href}">${esc(volHead(v).replace(v.pub.name + ' ', ''))}</a>
       <div class="eyebrow vol ph-art">${isInterview(a) ? 'Entrevista' : `Artículo ${a.number}`}</div>
       <h1>${esc(a.title)}</h1><div class="by">${esc(byline(a))}</div>
-      ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}</div>
+      ${a.interviewee ? `<div class="muted small">${esc(a.author)}</div>` : ''}
+      ${listBtn(a.id)}</div>
       ${(() => {
         // paso dentro del volumen o número: antes del primero, el propio volumen; después del último, sus conclusiones
         const i = v.articles.indexOf(a), pa = v.articles[i - 1], na = v.articles[i + 1];
@@ -863,6 +874,100 @@ function neighbourLink(a, dir, tab) {
     <span class="nb-title">${esc(a.title)}</span>
     <span class="nb-author">${esc(byline(a))}</span>
   </a>`;
+}
+
+/** Botón «Añadir a Mi lista» de la cabecera de la guía; si el texto ya está en la lista, «En Mi lista» (y quita). */
+function listBtn(id) {
+  const on = store.inList(id);
+  return `<button type="button" class="ph-list" data-list="${esc(id)}" aria-pressed="${on}" title="${on ? 'Quitar de Mi lista' : 'Añadir a Mi lista de lectura'}">${on ? ICON.listOn : ICON.list}<span>${on ? 'En Mi lista' : 'Añadir a Mi lista'}</span></button>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-list]'); if (!b) return;
+  const id = b.dataset.list, had = store.inList(id);
+  had ? store.removeFromList(id) : store.addToList(id);
+  b.outerHTML = listBtn(id);
+  toast(had ? 'Quitado de Mi lista' : `Añadido a Mi lista: ${store.read().has(id) ? 'Leídos' : 'Pendientes'}`);
+});
+
+const LIST_TABS = ['Pendientes', 'Leídos'];
+/** Mi lista de lectura (#/lista[/1]): los textos añadidos desde su guía. Pendientes, numerados en el orden elegido
+ *  (los primeros añadidos arriba; se pueden reordenar); Leídos, del más reciente al más antiguo. */
+function listView(tab = 0) {
+  setBar('Mi lista de lectura');
+  tab = tab === 1 ? 1 : 0;
+  let reorder = false;
+  const fmtDate = t => t ? new Date(t).toLocaleDateString('es', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+  const row = (x, i, n, done) => {
+    const { v, a } = x.hit, p = store.reached(a.id);
+    return `<li class="rl-item" data-vol="${v.key}" data-id="${a.id}">
+      <span class="rl-num" aria-hidden="true">${i + 1}.º</span>
+      <a class="rl-main" href="#/articulo/${a.id}">
+        <div class="eyebrow vol">${esc(volName(v))} · ${esc(artLabel(a))}</div>
+        <h3>${esc(a.title)}</h3><div class="muted small">${esc(byline(a))}</div>
+        ${a.summary[0] ? `<p class="rl-sum small">${esc(a.summary[0])}</p>` : ''}
+        ${done ? `<div class="rl-when">Leído el ${esc(fmtDate(x.at))}</div>` : p > 0 ? progressBar(p) : ''}
+      </a>
+      <div class="rl-actions">
+        ${done ? '' : `<button type="button" class="icon-btn rl-move" data-move="-1" aria-label="Subir"${i === 0 ? ' disabled' : ''}>${ICON.up}</button>
+        <button type="button" class="icon-btn rl-move" data-move="1" aria-label="Bajar"${i === n - 1 ? ' disabled' : ''}>${ICON.down}</button>`}
+        <button type="button" class="icon-btn rl-del" data-unlist="${a.id}" aria-label="Quitar de la lista">${ICON.x}</button>
+      </div>
+    </li>`;
+  };
+  const body = () => {
+    const read = store.read();
+    const items = store.list().map(x => ({ ...x, hit: article(x.id) })).filter(x => x.hit);
+    if (tab === 1) {
+      const done = items.filter(x => read.has(x.id)).map(x => ({ ...x, at: store.readAt(x.id) })).sort((a, b) => b.at - a.at);
+      return done.length ? `<div class="rl-bar"><span class="muted">${done.length} ${done.length === 1 ? 'texto leído' : 'textos leídos'}, el más reciente primero</span></div>
+        <ol class="rl">${done.map((x, i) => row(x, i, done.length, true)).join('')}</ol>`
+        : `<div class="empty">Todavía no has terminado ningún texto de tu lista.<br>Un texto pasa a «Leídos» al llegar al final en el modo lectura.</div>`;
+    }
+    const pending = items.filter(x => !read.has(x.id));
+    return pending.length ? `<div class="rl-bar">
+        <span class="muted">${pending.length} ${pending.length === 1 ? 'texto pendiente' : 'textos pendientes'}</span>
+        ${pending.length > 1 ? `<button type="button" class="chip" data-reorder aria-pressed="${reorder}">${reorder ? 'Listo' : 'Reordenar'}</button>` : ''}
+      </div>
+      ${reorder ? '<p class="muted small rl-hint">Sube o baja cada texto con las flechas.</p>' : ''}
+      <ol class="rl${reorder ? ' reorder' : ''}">${pending.map((x, i) => row(x, i, pending.length, false)).join('')}</ol>`
+      : `<div class="empty">Aún no hay textos pendientes.<br>En la cabecera de la guía de cada artículo, toca <b>Añadir a Mi lista</b>: los textos se van añadiendo al final, en el orden en que los eliges.</div>`;
+  };
+  const html = `<div class="wrap">
+    <header class="page-head"><div class="eyebrow">Biblioteca</div><h1>Mi lista de lectura</h1>
+      <div class="sub">Los textos que quieres leer, en el orden que elijas. Cuando termines uno, pasa a «Leídos».</div></header>
+    ${tabs('#/lista', LIST_TABS, tab)}
+    <div id="rl-body">${body()}</div>
+  </div>`;
+  return [html, () => {
+    const redraw = () => { $('#rl-body').innerHTML = body(); };
+    const onClick = e => {
+      const re = e.target.closest('[data-reorder]');
+      if (re) { reorder = !reorder; redraw(); $('[data-reorder]')?.focus(); return; }
+      const mv = e.target.closest('[data-move]');
+      if (mv) {
+        const id = mv.closest('[data-id]').dataset.id, by = +mv.dataset.move;
+        const ids = [...view.querySelectorAll('.rl [data-id]')].map(li => li.dataset.id);
+        const i = ids.indexOf(id), j = i + by;
+        if (j < 0 || j >= ids.length) return;
+        [ids[i], ids[j]] = [ids[j], ids[i]];
+        store.reorderList(ids);
+        redraw();
+        view.querySelector(`[data-id="${id}"] [data-move="${by}"]:not([disabled])`)?.focus();
+        return;
+      }
+      const del = e.target.closest('[data-unlist]');
+      if (del) {
+        const id = del.dataset.unlist, a = article(id)?.a;
+        confirmDialog({
+          title: 'Quitar de Mi lista', text: `${a ? `«${a.title}»` : 'El texto'} dejará de aparecer en tu lista de lectura.
+El progreso, los subrayados y las notas se conservan.`,
+          ok: 'Quitar', cancel: 'Cancelar', danger: true,
+        }).then(yes => { if (yes) { store.removeFromList(id); redraw(); toast('Quitado de Mi lista'); } });
+      }
+    };
+    view.addEventListener('click', onClick);
+    return () => view.removeEventListener('click', onClick); // si no, cada visita sumaría un manejador
+  }];
 }
 
 const THESES_TABS = ['Conclusiones', 'Mapa conceptual'];
@@ -964,7 +1069,7 @@ function glossaryView(params) {
         <h3 style="font-weight:700"><span style="color:var(--vol)">▪</span> ${highlight(e.c.term, q)}${multi && e.bridge ? ' <span class="tag olive">puente</span>' : ''}</h3><p>${highlight(e.c.definition, q)}</p>
         <div class="src">${multi && !e.v.label ? 'Marx XXI · ' : ''}${esc(volName(e.v))} · ${esc(byline(e.a))} · ${esc(e.a.title)}</div></a>`).join('') || '<p class="empty">Sin resultados.</p>';
     };
-    input.addEventListener('input', () => { render(); history.replaceState(null, '', url()); });
+    input.addEventListener('input', () => { render(); history.replaceState(history.state, '', url()); });
     $('#g-pub')?.addEventListener('click', e => {
       const b = e.target.closest('[data-p]'); if (!b) return;
       bridges = b.dataset.p === 'puentes';
@@ -972,7 +1077,7 @@ function glossaryView(params) {
       vol = '';
       for (const c of $('#g-pub').children) c.setAttribute('aria-pressed', c === b);
       $('#g-vol').innerHTML = volChips();
-      history.replaceState(null, '', url());
+      history.replaceState(history.state, '', url());
       render();
     });
     $('#g-vol').addEventListener('click', e => {
@@ -1136,7 +1241,7 @@ function authorsView(params) {
     };
     input.addEventListener('input', () => {
       render();
-      history.replaceState(null, '', '#/autores' + (input.value ? '?q=' + encodeURIComponent(input.value) : ''));
+      history.replaceState(history.state, '', '#/autores' + (input.value ? '?q=' + encodeURIComponent(input.value) : ''));
     });
     render();
   }];
@@ -1183,7 +1288,7 @@ function searchView(params) {
       if (q) qs.set('q', q);
       if (q && full) qs.set('en', 'textos');
       if (pubId) qs.set('p', pubId);
-      history.replaceState(null, '', '#/buscar' + (qs.toString() ? '?' + qs : ''));
+      history.replaceState(history.state, '', '#/buscar' + (qs.toString() ? '?' + qs : ''));
       $('#s-prog').hidden = true;
       if (q.length < 2) {
         const nArts = L.allArticles.filter(x => !pubId || x.v.pub.id === pubId).length;
@@ -1254,10 +1359,11 @@ function bookmarksView(params) {
       ${Object.entries(HL_COLORS).filter(([k]) => used.has(k)).map(([k, [n, c]]) =>
         `<a class="chip" href="#/marcadores?c=${k}"${k === color ? ' aria-pressed="true"' : ''}><i class="hl-dot" style="--hl:${c}"></i>${n}</a>`).join('')}
     </div>` : ''}
-    ${groups.length ? groups.map(g => `<section class="hl-group" data-vol="${g.v.key}">
-      <div class="eyebrow vol">${esc(volHead(g.v))}</div>
-      <h2 class="hl-group-title"><a href="#/leer/${g.key}">${esc(g.title)}</a></h2>
-      ${g.author ? `<div class="muted small">${esc(g.author)}</div>` : ''}
+    ${groups.length ? groups.map(g => `<details class="hl-group" data-vol="${g.v.key}"${groups.length === 1 ? ' open' : ''}>
+      <summary><div class="eyebrow vol">${esc(volHead(g.v))}</div>
+      <h2 class="hl-group-title">${esc(g.title)} <span class="m-count">${g.items.length}</span></h2>
+      ${g.author ? `<div class="muted small">${esc(g.author)}</div>` : ''}</summary>
+      <a class="hl-open small" href="#/leer/${g.key}">Abrir el texto →</a>
       ${g.items.map(h => `<div class="hl-item" style="--hl:${(HL_COLORS[h.color] || HL_COLORS.yellow)[1]}">
         <a class="hl-link" href="#/leer/${g.key}?b=${h.b0}">
           <p class="hl-text">${esc(h.text.length > 320 ? h.text.slice(0, 320) + '…' : h.text)}</p>
@@ -1266,18 +1372,20 @@ function bookmarksView(params) {
         </a>
         <button class="icon-btn" data-del="${esc(h.uid)}" aria-label="Eliminar subrayado">${ICON.x}</button>
       </div>`).join('')}
-    </section>`).join('')
+    </details>`).join('')
     : `<div class="empty">Aún no hay marcadores.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`}
   </div>`;
   return [html, () => {
-    view.addEventListener('click', e => {
+    const onClick = e => {
       const b = e.target.closest('[data-del]'); if (!b) return;
       const h = all.find(x => x.uid === b.dataset.del);
       const del = () => { store.removeHighlight(b.dataset.del); route(); };
       if (!h?.note.trim()) return del();
       confirmDialog({ title: 'Eliminar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Eliminar', danger: true })
         .then(yes => yes && del());
-    });
+    };
+    view.addEventListener('click', onClick);
+    return () => view.removeEventListener('click', onClick);
   }];
 }
 
@@ -1304,7 +1412,6 @@ export function settingsPanel(s) {
     ${sw('justify', 'Texto justificado')}
     ${sw('hyphens', 'Partir palabras con guion')}
     ${sw('indent', 'Sangría de primera línea')}
-    ${sw('notes', 'Mostrar notas al pie')}
     ${'wakeLock' in navigator ? sw('wakeLock', 'Mantener la pantalla encendida') : ''}
     <button class="link-btn" data-reset>Restablecer valores</button>`;
 }
@@ -1332,12 +1439,10 @@ export function bindSettings(root, onChange) {
 }
 
 /** La app tiene siempre sus propios colores (los claros de marxxxi.com), sin seguir el modo oscuro del sistema.
- *  El tema de los ajustes de lectura solo se aplica mientras se lee (body.reading); ahí «Sistema» sí sigue al
- *  dispositivo. */
+ *  El tema de los ajustes de lectura (claro por defecto) solo se aplica mientras se lee (body.reading). */
 export function applyTheme(s = store.settings()) {
   const root = document.documentElement;
   if (!document.body.classList.contains('reading')) root.dataset.theme = 'light';
-  else if (s.theme === 'system') delete root.dataset.theme;
   else root.dataset.theme = s.theme;
   const head = getComputedStyle(document.documentElement).getPropertyValue('--head').trim();
   document.querySelector('meta[name=theme-color]').content = head || '#2c332f';
@@ -1345,7 +1450,7 @@ export function applyTheme(s = store.settings()) {
 
 /** Aplica los ajustes de lectura como variables CSS y clases sobre un contenedor .reader. */
 export function styleReader(el, s) {
-  if (s.theme === 'system') delete el.dataset.theme; else el.dataset.theme = s.theme;
+  el.dataset.theme = s.theme;
   el.style.setProperty('--r-size', s.size + 'px');
   el.style.setProperty('--r-lh', s.lineHeight);
   el.style.setProperty('--r-gap', s.paraGap + 'em');
@@ -1355,7 +1460,6 @@ export function styleReader(el, s) {
   el.classList.toggle('justify', s.justify);
   el.classList.toggle('hyphens', s.hyphens);
   el.classList.toggle('indent', s.indent);
-  el.classList.toggle('no-notes', !s.notes);
 }
 
 function settingsView() {
@@ -1508,6 +1612,7 @@ async function route() {
     case 'glosario': out = glossaryView(params); break;
     case 'buscar': out = searchView(params); break;
     case 'marcadores': out = bookmarksView(params); break;
+    case 'lista': out = listView(+(parts[1] || 0)); break;
     case 'ajustes': out = settingsView(); break;
     case 'acerca': out = aboutView(); break;
     case 'creditos': out = creditsView(); break;
@@ -1543,13 +1648,33 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 // regresa al volumen o número si se entró desde ahí
 let fromHash = '';
 export const cameFrom = () => fromHash;
-// Memoria de desplazamiento de una sola pantalla: la inmediatamente anterior y dónde se dejó
-// pinned: guía de artículo en la que la barra de pestañas estaba (o se quiso dejar) arriba; si una pestaña corta
-// obligó a mostrar la cabecera y no se ha desplazado desde entonces, la siguiente pestaña vuelve a dejarla arriba
-let prevScreen = null, navInfo = null, userScrolled = false, pinned = null;
+// Recorrido de pantallas para el botón «atrás» de la barra: cada entrada es una pantalla con la altura a la que se
+// dejó. Las pestañas de un artículo, de un volumen o número y de una síntesis son la misma pantalla (cambiarlas
+// solo actualiza su entrada), así que «atrás» vuelve a la sección anterior, se hayan visto las pestañas que sean.
+// pinned: pantalla con pestañas en la que la barra de pestañas estaba (o se quiso dejar) arriba; si una pestaña
+// corta obligó a mostrar la cabecera y no se ha desplazado desde entonces, la siguiente vuelve a dejarla arriba.
+let trail = [], navInfo = null, userScrolled = false, pinned = null;
+// Índice de cada entrada del historial (en history.state): distingue volver atrás (botón del navegador o del
+// sistema) de llegar de nuevo a una pantalla ya vista por un enlace. backBtn: se pulsó la flecha de la barra.
+let histI = typeof history.state?.i === 'number' ? history.state.i : 0, backBtn = false;
+if (typeof history.state?.i !== 'number') history.replaceState({ ...(history.state || {}), i: 0 }, '');
 for (const ev of ['wheel', 'touchstart', 'keydown']) addEventListener(ev, () => { userScrolled = true; }, { passive: true });
-const artId = h => (h.match(/^#\/articulo\/([^/?]+)/) || [])[1];
-/** En la guía de un artículo, desplazamiento a partir del cual la barra de pestañas queda fija arriba. */
+// la portada es «#/» o, al abrir la app por primera vez, sin hash: las dos cuentan como la misma pantalla
+const normHash = h => h && h !== '#' ? h : '#/';
+/** Pantalla a la que pertenece un hash: las pestañas de una misma guía comparten pantalla. */
+function screenOf(h) {
+  const path = normHash(h).split('?')[0];
+  let m;
+  if ((m = path.match(/^#\/articulo\/([^/]+)/))) return 'articulo/' + m[1];
+  if ((m = path.match(/^#\/(volumen|tomo|numero)\/(\d+)/))) return (m[1] === 'numero' ? 'numero/' : 'volumen/') + m[2];
+  if ((m = path.match(/^#\/tesis(?:\/([a-z][a-z-]*))?/))) return 'tesis/' + (m[1] || 'marx-xxi');
+  if (/^#\/sintesis(\/|$)/.test(path)) return 'sintesis';
+  return path;
+}
+const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^sintesis$/.test(sc);
+/** Pantalla anterior del recorrido (su última pestaña), o null si se está en la primera. */
+export const backHash = () => trail.length > 1 ? trail[trail.length - 2].hash : null;
+/** En una pantalla con pestañas, desplazamiento a partir del cual la barra de pestañas queda fija arriba. */
 function artTabsY() {
   const head = view.querySelector('.page-head'), tabs = view.querySelector('.tabs');
   if (!head || !tabs) return null;
@@ -1557,18 +1682,32 @@ function artTabsY() {
   return Math.max(0, head.getBoundingClientRect().bottom + scrollY + parseFloat(cs.marginTop) - parseFloat(cs.top));
 }
 window.addEventListener('hashchange', e => {
-  // la portada es «#/» o, al abrir la app por primera vez, sin hash: las dos cuentan como la misma pantalla
-  const norm = h => h && h !== '#' ? h : '#/';
-  const old = norm(new URL(e.oldURL).hash), now = norm(location.hash);
+  const old = normHash(new URL(e.oldURL).hash), now = normHash(location.hash);
   if (!old.startsWith('#/leer/')) fromHash = old;
-  const id = artId(old), ty = id ? artTabsY() : null;
-  const stuck = ty != null && scrollY >= ty - 1, wanted = pinned === id && !userScrolled;
-  navInfo = {
-    restoreY: prevScreen && prevScreen.hash === now ? prevScreen.y : null,
-    keepTabs: !!id && id === artId(now) && (stuck || wanted),
-  };
-  pinned = navInfo.keepTabs ? id : null;
-  prevScreen = { hash: old, y: scrollY };
+  const scOld = screenOf(old), scNow = screenOf(now);
+  let goingBack = backBtn; backBtn = false;
+  if (typeof history.state?.i === 'number') { goingBack ||= history.state.i < histI; histI = history.state.i; }
+  else history.replaceState({ ...(history.state || {}), i: ++histI }, '');
+  if (!trail.length || trail[trail.length - 1].sc !== scOld) trail.push({ hash: old, sc: scOld, y: 0 });
+  const top = trail[trail.length - 1];
+  top.hash = old; top.y = scrollY;
+  let restoreY = null, keepTabs = false;
+  if (scNow === scOld) {
+    // otra pestaña de la misma pantalla: si la barra de pestañas estaba arriba, sigue arriba
+    const ty = tabbed(scOld) ? artTabsY() : null;
+    keepTabs = tabbed(scOld) && ((ty != null && scrollY >= ty - 1) || (pinned === scOld && !userScrolled));
+    top.hash = now;
+  } else if (goingBack && trail.length > 1 && trail[trail.length - 2].sc === scNow) {
+    // de vuelta a la pantalla anterior: a la altura a la que se dejó
+    trail.pop();
+    const prev = trail[trail.length - 1];
+    restoreY = prev.y; prev.hash = now;
+  } else {
+    trail.push({ hash: now, sc: scNow, y: 0 });
+    if (trail.length > 60) trail.splice(0, trail.length - 60);
+  }
+  navInfo = { restoreY, keepTabs };
+  pinned = keepTabs ? scOld : null;
   userScrolled = false;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });

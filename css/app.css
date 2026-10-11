@@ -500,7 +500,13 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .hl-dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--hl)}
 .hl-group{margin-top:26px}
 .hl-group-title{font-size:21px;margin:4px 0 2px}
-.hl-group-title a{color:inherit;text-decoration:none}
+/* cada texto, plegable: a la vista el volumen, el título, el autor y cuántos subrayados tiene */
+.hl-group > summary{list-style:none;cursor:pointer;position:relative;padding-right:34px}
+.hl-group > summary::-webkit-details-marker{display:none}
+.hl-group > summary::after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;border-right:1.6px solid var(--ink-3);border-bottom:1.6px solid var(--ink-3);transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.hl-group[open] > summary::after{transform:translateY(-20%) rotate(-135deg)}
+.hl-group-title .m-count{font-size:14px;color:var(--ink-3);font-weight:400;vertical-align:middle}
+.hl-open{display:inline-block;margin-top:8px;color:var(--ink-2)}
 .hl-item{display:flex;align-items:flex-start;gap:4px;margin-top:12px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 10%,var(--paper));border-radius:0 6px 6px 0}
 .hl-link{flex:1;min-width:0;padding:10px 4px 10px 14px;color:inherit;text-decoration:none}
 .hl-text{margin:0;font-size:17px;line-height:1.5}
@@ -630,7 +636,9 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
   .about-banner p{grid-column:1/-1;font-size:13.5px;padding:0 4px 2px}
   .about-banner .ab-toggle{display:inline;background:none;border:0;padding:0;font:inherit;font-size:12px;font-style:italic;color:var(--ink-3);text-decoration:none;
     cursor:pointer}
-  .about-banner .ab-less{display:block;margin:4px 0 0 auto} /* a la derecha, en su propia línea */
+  /* a la derecha: en la última línea del texto si cabe; si no, en la siguiente (flotado al final del párrafo) */
+  .about-banner .ab-less{float:right;margin:3px 0 0 12px}
+  .about-banner p{display:flow-root}
   .about-banner .ab-more{display:none;grid-column:1/-1;justify-self:end;margin:-2px 4px 0}
   .about-banner.folded p{display:none}
   .about-banner.folded .ab-more{display:inline}
@@ -808,3 +816,32 @@ dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink
 .install-ok{display:flex;align-items:baseline;gap:8px}
 .install-ok .tick{color:#2e8b4f;font-weight:700;font-size:1.15em}
 #instalar{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 12px)}
+
+/* Mi lista de lectura (#/lista): botón de la cabecera de la guía y lista numerada (Pendientes / Leídos) */
+.ph-list{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:6px 13px 6px 11px;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:var(--radius);
+  background:color-mix(in srgb,var(--paper) 45%,transparent);color:var(--ink);font-family:var(--f-body);font-size:15.5px;letter-spacing:.02em;line-height:1.2;cursor:pointer}
+.ph-list:hover{border-color:var(--vol)}
+.ph-list svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ph-list[aria-pressed="true"]{background:color-mix(in srgb,var(--vol) 20%,var(--paper));border-color:var(--vol)}
+.ph-list[aria-pressed="true"] svg{stroke:var(--vol)}
+.rl-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:-4px 0 4px}
+.rl-bar .chip{padding:5px 12px;font-size:15.5px}
+.rl-hint{margin:0 0 4px}
+.rl{list-style:none;margin:0;padding:0}
+.rl-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rl-num{flex:none;align-self:center;min-width:34px;text-align:center;font-family:var(--f-sc);font-size:17px;font-weight:500;white-space:nowrap;
+  color:var(--ink-3);font-variant-numeric:tabular-nums}
+.rl-main{flex:1;min-width:0;color:inherit;text-decoration:none}
+.rl-main h3{font-size:20px;margin:3px 0 2px}
+.rl-main:hover h3{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.rl-main .progress-row{margin-top:8px}
+.rl-sum{margin:6px 0 0;color:var(--ink-2);line-height:1.4;text-align:left;hyphens:none;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rl-when{font-family:var(--f-sc);text-transform:lowercase;letter-spacing:.03em;font-size:14.5px;color:var(--ink-3);margin-top:6px}
+.rl-actions{display:flex;flex:none;margin:-4px -8px 0 0}
+.rl-actions .icon-btn{width:40px;height:40px}
+.rl-actions .icon-btn[disabled]{opacity:.3;cursor:default;background:none}
+.rl .rl-move{display:none}
+.rl.reorder .rl-move{display:inline-grid}
+.rl.reorder .rl-del{display:none}
+.rl.reorder .rl-item{background:color-mix(in srgb,var(--vol) 5%,transparent);border-radius:6px;padding-left:8px;padding-right:4px;border-bottom-color:transparent;margin-top:4px}
+@media (max-width:420px){.rl-actions{flex-direction:column;margin-right:-10px}}

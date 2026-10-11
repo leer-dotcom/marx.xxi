@@ -334,12 +334,17 @@ export const FONTS = {
 };
 
 export const THEMES = {
-  system: ['Sistema', null, null], light: ['Claro', '#efecec', '#252525'], sepia: ['Sepia', '#f8f1e3', '#3b2f22'],
+  light: ['Claro', '#efecec', '#252525'], sepia: ['Sepia', '#f8f1e3', '#3b2f22'],
   dark: ['Oscuro', '#2c332f', '#efecec'], black: ['Negro', '#000000', '#d6d3d3'],
 };
 
 export const store = {
-  settings() { return { ...DEFAULT_SETTINGS, ...LS.get('mx.settings', {}) }; },
+  settings() {
+    const s = { ...DEFAULT_SETTINGS, ...LS.get('mx.settings', {}) };
+    if (!THEMES[s.theme]) s.theme = 'light'; // ya no hay tema «Sistema»: claro por defecto
+    s.notes = true; // las notas van siempre en el texto
+    return s;
+  },
   saveSettings(s) { LS.set('mx.settings', s); },
 
   positions() { return LS.get('mx.pos', {}) || {}; }, // también si quedó guardado «null»
@@ -371,6 +376,27 @@ export const store = {
     const s = this.read();
     on ? s.add(id) : s.delete(id);
     LS.set('mx.read', [...s]);
+    // cuándo se terminó (ordena «Leídos» en Mi lista de lectura); se conserva la primera vez
+    const at = LS.get('mx.readAt', {}) || {};
+    if (on ? !at[id] : at[id]) { on ? (at[id] = Date.now()) : delete at[id]; LS.set('mx.readAt', at); }
+  },
+  /** Fecha en que se dio por leído un texto (0 si no lo está); los leídos antes de guardarla usan su última posición. */
+  readAt(id) {
+    if (!this.read().has(id)) return 0;
+    return (LS.get('mx.readAt', {}) || {})[id] || this.positions()[id]?.t || 0;
+  },
+
+  // Mi lista de lectura: [{ id, t }] en el orden elegido por el lector (los primeros añadidos, arriba).
+  // Pendiente o leído no se guarda aquí: lo dice read().
+  list() { return LS.get('mx.list', []) || []; },
+  inList(id) { return this.list().some(x => x.id === id); },
+  addToList(id) { if (!this.inList(id)) LS.set('mx.list', [...this.list(), { id, t: Date.now() }]); },
+  removeFromList(id) { LS.set('mx.list', this.list().filter(x => x.id !== id)); },
+  /** Nuevo orden de una parte de la lista (ids): esos textos se recolocan entre sí; los demás no se mueven. */
+  reorderList(ids) {
+    const all = this.list(), set = new Set(ids);
+    const queue = ids.map(id => all.find(x => x.id === id)).filter(Boolean);
+    LS.set('mx.list', all.map(x => set.has(x.id) ? queue.shift() : x));
   },
 
   bookmarks() { return LS.get('mx.bm', []).sort((a, b) => b.t - a.t); },

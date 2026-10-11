@@ -360,7 +360,7 @@ function mount({ key, a, v, blocks, params }) {
   const place = () => {
     if (startB != null) goTo(+startB);
     else if (saved) goTo(saved.block);
-    else window.scrollTo(0, 0);
+    else goTo(0); // sin empezar (0 %): en el primer párrafo, no en la cabecera con los títulos
   };
   requestAnimationFrame(() => {
     restored = true;
