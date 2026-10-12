@@ -197,7 +197,10 @@ figure.diagram .dg{width:100%;background:none}
 figure.diagram .dg[data-state="loading"]{background:linear-gradient(90deg,var(--line-2),transparent,var(--line-2));background-size:200% 100%;animation:shimmer 1.2s linear infinite;border-radius:4px}
 @keyframes shimmer{to{background-position:-200% 0}}
 .dg-error{margin:0;padding:24px;color:var(--ink-3);text-align:center}
-figure.diagram button::after{content:"ampliar";position:absolute;top:8px;right:10px;font-family:var(--f-body);font-size:13px;color:var(--btn-ink);background:var(--btn);padding:1px 8px;border-radius:6px}
+/* ampliar: una lupa con + en la esquina (caja del color del botón y el icono en su tinta) */
+figure.diagram button::before,figure.diagram button::after{content:"";position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:6px}
+figure.diagram button::before{background:var(--btn);opacity:.92}
+figure.diagram button::after{background:var(--btn-ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat}
 figure.diagram figcaption{font-size:16px;color:var(--ink-2);margin-top:8px}
 .fig-tag{font-weight:700;font-style:italic;color:var(--ink)} /* nombre de la figura: «Esquema MX1.14», «Mapa conceptual NC2» */
 .neighbours{display:flex;justify-content:space-between;gap:12px;margin-top:36px;border-top:1px solid var(--line);padding-top:16px}
@@ -346,16 +349,38 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .zoom-stage.dragging{cursor:grabbing}
 .zoom-stage .dg{position:absolute;left:0;top:0;margin:0;max-width:none;background:none} /* tamaño real, no transform: nítido */
 /* pie arriba, entero (el dibujo se ajusta al espacio que queda); si es muy largo, con desplazamiento */
-.zoom-caption{position:absolute;left:0;right:0;top:0;margin:0;padding:calc(8px + var(--safe-t)) 16px 8px;font-size:15px;line-height:1.35;color:var(--ink-2);background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);max-height:38vh;overflow:auto}
+.zoom-caption{position:absolute;left:0;right:0;top:0;margin:0;padding:calc(8px + var(--safe-t)) 44px 8px 16px;font-size:15px;line-height:1.35;color:var(--ink-2);background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);max-height:38vh;overflow:auto}
 .zoom-caption:empty{display:none}
+@media (max-width:600px){.zoom-caption{font-size:13.5px}} /* en el móvil, el pie ocupa menos pantalla */
+/* plegar el pie: queda solo el título (qué esquema es); doble flecha abajo a la derecha */
+.zoom-fold{position:absolute;right:6px;bottom:2px;width:32px;height:32px;border:0;border-radius:50%;background:none;color:var(--ink-3);cursor:pointer;display:grid;place-items:center}
+.zoom-fold:hover{background:var(--line-2);color:var(--ink)}
+.zoom-fold svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.zoom-caption.folded .zoom-fold svg{transform:rotate(180deg)}
+.zoom-caption.folded .zc-desc{display:none}
 /* barra flotante inferior: anterior y siguiente, zoom y cerrar */
-.zoom-bar{position:absolute;left:50%;bottom:calc(12px + var(--safe-b));transform:translateX(-50%);display:flex;align-items:center;gap:0;padding:4px 6px;border-radius:999px;background:rgba(44,51,47,.94);color:#efecec;font-size:15px;box-shadow:0 6px 18px rgb(0 0 0 / .28);max-width:calc(100% - 20px)}
+.zoom-bar{position:absolute;left:50%;bottom:calc(12px + var(--safe-b));transform:translateX(-50%);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:0;padding:4px 6px;border-radius:999px;background:rgba(44,51,47,.94);color:#efecec;font-size:15px;box-shadow:0 6px 18px rgb(0 0 0 / .28);max-width:calc(100% - 20px)}
 .zoom-bar .icon-btn{color:#efecec;width:42px;height:42px}
 .zoom-bar .icon-btn:hover{background:rgba(255,255,255,.14)}
 .zoom-sep{width:1px;height:24px;background:rgba(255,255,255,.28);margin:0 4px;flex:none}
 #zoom-level{min-width:58px;height:42px;padding:0 6px;border:0;border-radius:21px;background:none;color:inherit;font:inherit;font-size:14px;cursor:pointer}
 #zoom-level:hover{background:rgba(255,255,255,.14)}
-.zoom-pos{min-width:48px;text-align:center;font-size:14px;opacity:.85}
+.zoom-pos{min-width:48px;height:42px;padding:0 6px;border:0;border-radius:21px;background:none;color:inherit;font:inherit;text-align:center;font-size:14px;opacity:.85;cursor:pointer}
+.zoom-pos:hover{background:rgba(255,255,255,.14);opacity:1}
+.zoom-pos:empty{display:none} /* un solo esquema */
+/* barra: zoom y girar a la izquierda, el paso entre esquemas en el centro y cerrar a la derecha */
+.zoom-side,.zoom-mid{display:flex;align-items:center}
+.zoom-side.end{justify-content:center} /* cerrar, centrado en su lado */
+.zoom-mid{margin:0 6px;padding:0 6px;border-left:1px solid rgba(255,255,255,.28);border-right:1px solid rgba(255,255,255,.28)}
+.zoom-mid:not(:has(.icon-btn:not([hidden]))){border-right:0;padding:0;margin:0 0 0 6px} /* un solo esquema: sin paso */
+.zoom-zwrap{position:relative}
+.zoom-bar .icon-btn.on{background:rgba(255,255,255,.18)}
+/* control de zoom: se despliega hacia arriba sobre la lupa, en vertical, como el del volumen */
+.zoom-slider{position:absolute;left:50%;bottom:calc(100% + 14px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:4px 0 6px;width:52px;border-radius:26px;background:rgba(44,51,47,.94);box-shadow:0 6px 18px rgb(0 0 0 / .28)}
+.zoom-slider[hidden]{display:none}
+#zoom-range{writing-mode:vertical-lr;direction:rtl;width:24px;height:150px;margin:4px 0;accent-color:#efecec;cursor:pointer}
+.zoom-slider #zoom-level{min-width:0;width:48px;height:30px;padding:0;font-size:12.5px}
 
 .toast{position:fixed;left:50%;bottom:calc(110px + var(--safe-b));transform:translateX(-50%);z-index:60;background:var(--head);color:var(--head-ink);padding:10px 18px;border-radius:var(--radius);font-size:16px;box-shadow:0 6px 18px rgb(0 0 0 / .25)}
 
@@ -470,7 +495,7 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 
 /* ---------- móvil: esquemas y objetivos táctiles ---------- */
 @media (max-width:600px){
-  figure.diagram button::after{content:"toca para leer";font-size:14px;padding:3px 10px}
+
 }
 @media (pointer:coarse){
   .chip{min-height:44px;padding:8px 14px}
@@ -670,8 +695,8 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
    también en el móvil */
 .dg-gallery.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .maps-coll > .dg-item:first-child{grid-column:1 / -1}
-/* en las dos columnas, el aviso «toca para leer» taparía medio esquema: uno pequeño */
-.dg-gallery.two > .dg-item:not(:first-child) figure.diagram button::after{content:"ampliar";font-size:12px;padding:1px 6px;top:6px;right:6px}
+
+.dg-gallery.two > .dg-item:not(:first-child) figure.diagram button::before,.dg-gallery.two > .dg-item:not(:first-child) figure.diagram button::after{top:6px;right:6px;width:26px;height:26px}
 .maps-sub-nav .chip[aria-pressed="true"][data-vol]{background:var(--vol);border-color:var(--vol);color:#fff}
 .maps-pub{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 8px)}
 #mapas-biblioteca{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 8px)}

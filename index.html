@@ -62,17 +62,26 @@
     <div class="zoom-stage" id="zoom-stage"></div>
     <p class="zoom-caption" id="zoom-caption"></p>
     <div class="zoom-bar">
-      <button class="icon-btn" data-zstep="-1" aria-label="Esquema anterior" title="Anterior (←)"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <span id="zoom-pos" class="zoom-pos"></span>
-      <button class="icon-btn" data-zstep="1" aria-label="Esquema siguiente" title="Siguiente (→)"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-      <span class="zoom-sep"></span>
-      <button class="icon-btn" data-z="-" aria-label="Reducir" title="Reducir (−)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
-      <button type="button" id="zoom-level" data-z="0" aria-label="Ajustar a la pantalla" title="Ajustar a la pantalla (0)">100 %</button>
-      <button class="icon-btn" data-z="+" aria-label="Ampliar" title="Ampliar (+)"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
-      <span class="zoom-sep"></span>
-      <button class="icon-btn zoom-rot-btn" data-zrot aria-label="Girar a horizontal" title="Girar a horizontal"><svg viewBox="0 0 24 24"><path d="M4 4v5h5"/><path d="M4.6 9A8 8 0 1 1 6 17.7"/></svg></button>
-      <span class="zoom-sep"></span>
-      <button class="icon-btn" data-close aria-label="Cerrar" title="Cerrar (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="zoom-side">
+      <div class="zoom-zwrap">
+        <div class="zoom-slider" id="zoom-slider" hidden>
+          <button class="icon-btn" data-z="+" aria-label="Ampliar" title="Ampliar (+)"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
+          <input type="range" id="zoom-range" min="0" max="100" step="1" value="0" aria-label="Zoom">
+          <button class="icon-btn" data-z="-" aria-label="Reducir" title="Reducir (−)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+          <button type="button" id="zoom-level" data-z="0" aria-label="Ajustar a la pantalla" title="Ajustar a la pantalla (0)">100 %</button>
+        </div>
+        <button class="icon-btn" data-zmenu aria-label="Zoom" aria-expanded="false" aria-controls="zoom-slider" title="Zoom"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3L20.5 20.5M10.5 6.8v4M8.5 8.8h4M8.5 13h4"/></svg></button>
+      </div>
+        <button class="icon-btn zoom-rot-btn" data-zrot aria-label="Girar a horizontal" title="Girar a horizontal"><svg viewBox="0 0 24 24"><path d="M4 4v5h5"/><path d="M4.6 9A8 8 0 1 1 6 17.7"/></svg></button>
+      </div>
+      <div class="zoom-mid">
+        <button class="icon-btn" data-zstep="-1" aria-label="Esquema anterior" title="Anterior (←)"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="zoom-pos" class="zoom-pos" data-z="0" aria-label="Restablecer la vista" title="Restablecer la vista (0)"></button>
+        <button class="icon-btn" data-zstep="1" aria-label="Esquema siguiente" title="Siguiente (→)"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="zoom-side end">
+        <button class="icon-btn" data-close aria-label="Cerrar" title="Cerrar (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
     </div>
     </div>
   </dialog>

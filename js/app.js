@@ -189,14 +189,22 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 // arrastra para desplazarlo. Barra flotante inferior: anterior y siguiente (también flechas del teclado), zoom y
 // cerrar. El pie va arriba, entero; el dibujo se ajusta al espacio que queda.
 // Esquemas que se recorren: los visibles de la pantalla (o de la hoja) de partida.
-let zoomList = [], zoomIdx = -1, zoomFit = null;
+let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
+/** Abre o cierra el control vertical de zoom (sobre la lupa). */
+function toggleZoomSlider(on) {
+  const sl = $('#zoom-slider'), b = $('#zoom [data-zmenu]');
+  on ??= sl.hidden;
+  sl.hidden = !on;
+  b.setAttribute('aria-expanded', on);
+  b.classList.toggle('on', on);
+}
 function zoomStep(d) {
   if (zoomList.length < 2) return;
   zoomIdx = (zoomIdx + d + zoomList.length) % zoomList.length;
   openZoom(zoomList[zoomIdx], true);
 }
 function openZoom(host, keepList = false) {
-  const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level');
+  const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
@@ -212,10 +220,12 @@ function openZoom(host, keepList = false) {
   const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel;
   // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
   const tag = host.dataset.tag || '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
-  const capHtml = tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(rest);
+  // la descripción (zc-desc) se pliega con la doble flecha; queda el título: qué esquema es y su nombre
+  const capHtml = tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? `<span class="zc-desc"> ${esc(rest)}</span>` : ''}` : rest ? `<span class="zc-desc">${esc(rest)}</span>` : '';
   const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);
   const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ');
-  cap.innerHTML = zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml;
+  const fold = rest ? `<button type="button" class="zoom-fold" data-zfold aria-label="${cap.classList.contains('folded') ? 'Mostrar la descripción' : 'Ocultar la descripción'}"><svg viewBox="0 0 24 24"><path d="M6 12l6-6 6 6M6 18l6-6 6 6"/></svg></button>` : '';
+  cap.innerHTML = (zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml) + fold;
   if (!dlg.open) dlg.showModal();
 
   // El dibujo se dimensiona de verdad (ancho = W·s, posición left/top), no con transform: scale(), que
@@ -230,15 +240,25 @@ function openZoom(host, keepList = false) {
   const fitScale = () => { const a = area(), m = 10; return Math.max(0.05, Math.min((a.w - 2 * m) / W, (a.h - a.top - a.bottom - 2 * m) / H)); };
   const apply = () => {
     box.style.width = W * s + 'px'; box.style.left = x + 'px'; box.style.top = y + 'px';
-    level.textContent = Math.round(s / fitScale() * 100) + ' %'; // 100 % = ajustado a la pantalla
+    const k = s / fitScale();
+    level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
+    range.value = Math.round(Math.log10(Math.max(1, k)) * 100); // también con el control abierto y enfocado
   };
-  // si cabe, centrado en la zona libre; si no, nunca más allá del borde (no se puede perder de vista)
+  // Alrededor del dibujo hay un margen en blanco de 1/3 de su ancho (a los lados) y de su alto (arriba y abajo)
+  // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
+  // quede tieso contra el marco.
   const clamp = () => {
-    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom;
-    x = w <= a.w ? (a.w - w) / 2 : Math.min(0, Math.max(a.w - w, x));
-    y = h <= free ? a.top + (free - h) / 2 : Math.min(a.top, Math.max(a.h - a.bottom - h, y));
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 3, my = h / 3;
+    x = w + 2 * mx <= a.w ? (a.w - w) / 2 : Math.min(mx, Math.max(a.w - w - mx, x));
+    y = h + 2 * my <= free ? a.top + (free - h) / 2 : Math.min(a.top + my, Math.max(a.h - a.bottom - h - my, y));
   };
-  const fit = () => { s = fitScale(); clamp(); apply(); };
+  // ajustado: centrado en la zona libre (como siempre al abrirlo)
+  const fit = () => {
+    const a = area();
+    s = fitScale();
+    x = (a.w - W * s) / 2; y = a.top + (a.h - a.top - a.bottom - H * s) / 2;
+    clamp(); apply();
+  };
   /** Cambia la escala manteniendo fijo el punto (cx, cy) del visor; nunca más pequeño que ajustado. */
   const zoomTo = (ns, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
     const f = fitScale();
@@ -247,14 +267,23 @@ function openZoom(host, keepList = false) {
     x = cx - (cx - x) * k; y = cy - (cy - y) * k; s = ns;
     clamp(); apply();
   };
-  zoomFit = fit;
+  zoomFit = fit; zoomBy = z => z === '0' ? fit() : zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5));
   dlg.onclick = e => {
     if (e.target.closest('[data-zrot]')) return setZoomRot(!dlg.classList.contains('rot')); // se reajusta solo (ResizeObserver)
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
+    if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
+    if (e.target.closest('[data-zfold]')) {
+      const f = cap.classList.toggle('folded');
+      e.target.closest('[data-zfold]').setAttribute('aria-label', f ? 'Mostrar la descripción' : 'Ocultar la descripción');
+      return fit(); // el pie cambia de alto: el esquema se reajusta al espacio libre
+    }
     const b = e.target.closest('[data-z]');
-    if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); }
+    if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
+    if (!e.target.closest('#zoom-slider')) toggleZoomSlider(false); // tocar fuera cierra el control de zoom
   };
+  // control de zoom vertical (como el del volumen): de ajustado a la pantalla (abajo) a ×10 (arriba)
+  range.oninput = () => zoomTo(fitScale() * 10 ** (range.value / 100));
   // punto del visor bajo el dedo o el cursor, en las coordenadas del dibujo (también con el visor girado)
   const rel = e => {
     const r = dlg.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
@@ -315,14 +344,14 @@ function setZoomRot(on) {
   const label = on ? 'Volver a vertical' : 'Girar a horizontal';
   b.setAttribute('aria-label', label); b.title = label;
 }
-$('#zoom').addEventListener('close', () => setZoomRot(false));
+$('#zoom').addEventListener('close', () => { setZoomRot(false); toggleZoomSlider(false); $('#zoom-caption').classList.remove('folded'); });
 // al girar el móvil o cambiar el tamaño de la ventana, volver a ajustar a la pantalla
 new ResizeObserver(() => { if ($('#zoom').open) zoomFit?.(); }).observe($('#zoom-stage'));
 document.addEventListener('keydown', e => {
   const dlg = $('#zoom');
   if (!dlg.open) return;
   if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); zoomStep(e.key === 'ArrowRight' ? 1 : -1); }
-  else if (e.key === '+' || e.key === '-' || e.key === '0') { e.preventDefault(); dlg.querySelector(`[data-z="${e.key}"]`)?.click(); }
+  else if (e.key === '+' || e.key === '-' || e.key === '0') { e.preventDefault(); zoomBy?.(e.key); }
 });
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-zoom]');
