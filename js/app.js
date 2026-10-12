@@ -657,7 +657,8 @@ function libraryView() {
       <div class="eyebrow">Biblioteca</div>
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       ${L.pubs.length > 1
-        ? `<p class="lede">Marx XXI y Nuevo Ciclo son dos revistas de un mismo proyecto socialista. Marx XXI es la revista de fondo: cada volumen desarrolla en profundidad una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre contrasta ese marco con la actualidad. Aquí se reúnen sus textos íntegros, las guías de estudio y las conexiones entre ambas, para leerlas, subrayarlas y estudiarlas en cualquier dispositivo. Todos los textos están disponibles gratuitamente en <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>, donde puedes suscribirte para seguir apoyando su edición.</p>`
+        ? `<div class="lede sm"><p>Marx XXI y Nuevo Ciclo son dos revistas de un mismo proyecto socialista. Marx XXI es la revista de fondo: cada volumen desarrolla en profundidad una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre contrasta ese marco con la actualidad.</p>
+          <p>Aquí se reúnen sus textos íntegros, las guías de estudio y las conexiones entre ambas, para leerlas, subrayarlas y estudiarlas en cualquier dispositivo. Todos los textos están disponibles gratuitamente en <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>, donde puedes suscribirte para seguir apoyando su edición.</p></div>`
         : `<p class="lede">${esc(L.pubs[0].cross_volume.lede || '')}</p>`}
     </section>
     ${continueCard()}
