@@ -615,7 +615,7 @@ document.addEventListener('click', e => {
 
 /** Pie de las portadas (colección y cada revista): solo los enlaces de referencia. */
 const siteFoot = () => `<footer class="site-foot">
-      <span>Basado en: <a href="https://marxxxi.com/" rel="noopener" target="_blank">marxxxi.com</a> · <a href="#/acerca">Acerca de este lector</a> · <a href="#/creditos">Créditos</a></span>
+      <span>Edición original: <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a> · <a href="#/acerca">Acerca de este lector</a> · <a href="#/creditos">Créditos</a></span>
     </footer>`;
 
 // ---------------------------------------------------------------- vistas
