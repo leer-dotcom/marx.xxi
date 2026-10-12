@@ -244,11 +244,11 @@ function openZoom(host, keepList = false) {
     level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
     range.value = Math.round(Math.log10(Math.max(1, k)) * 100); // también con el control abierto y enfocado
   };
-  // Alrededor del dibujo hay un margen en blanco de 1/3 de su ancho (a los lados) y de su alto (arriba y abajo)
+  // Alrededor del dibujo hay un margen en blanco de 1/4 de su ancho (a los lados) y de su alto (arriba y abajo)
   // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
   // quede tieso contra el marco.
   const clamp = () => {
-    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 3, my = h / 3;
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 4, my = h / 4;
     x = w + 2 * mx <= a.w ? (a.w - w) / 2 : Math.min(mx, Math.max(a.w - w - mx, x));
     y = h + 2 * my <= free ? a.top + (free - h) / 2 : Math.min(a.top + my, Math.max(a.h - a.bottom - h - my, y));
   };
