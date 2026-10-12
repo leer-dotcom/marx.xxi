@@ -199,7 +199,7 @@ figure.diagram .dg[data-state="loading"]{background:linear-gradient(90deg,var(--
 .dg-error{margin:0;padding:24px;color:var(--ink-3);text-align:center}
 /* ampliar: una lupa con + en la esquina (caja del color del botón y el icono en su tinta) */
 figure.diagram button::before,figure.diagram button::after{content:"";position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:6px}
-figure.diagram button::before{background:var(--btn);opacity:.5} /* translúcida: deja ver el esquema */
+figure.diagram button::before{background:color-mix(in srgb,var(--btn) 72%,var(--paper));opacity:.5} /* translúcida: deja ver el esquema */
 figure.diagram button:hover::before{opacity:.75}
 figure.diagram button::after{background:var(--btn-ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat}
 figure.diagram figcaption{font-size:16px;color:var(--ink-2);margin-top:8px}
@@ -690,8 +690,12 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .dg-item figcaption{display:none} /* el pie se ve al ampliar el esquema */
 .dg-gallery.wide{grid-template-columns:1fr}
 /* alto mínimo: con la barra de pestañas fija arriba, cambiar a una pestaña con pocos mapas no la desfija */
-#maps-panel{min-height:calc(100dvh - var(--bar-h) - var(--safe-t))}
+#maps-panel{min-height:100dvh}
 .maps-sub-nav{margin:10px 0 4px}
+/* botones de volumen o número: una línea desplazable, fija debajo de la barra de pestañas */
+.tabs.chip-tabs{top:calc(var(--bar-h) + var(--safe-t) + var(--maps-tabs-h, 47px));z-index:9;margin:-18px -16px 14px;padding:8px 10px;gap:6px;align-items:center}
+.tabs.chip-tabs .chip{flex:none;margin:0}
+.tabs.chip-tabs .tabs-more,.tabs.chip-tabs .tabs-less{padding-bottom:2px}
 /* Colección: el mapa de la colección a todo el ancho y debajo los cuatro de las revistas, en dos columnas
    también en el móvil */
 .dg-gallery.two{grid-template-columns:repeat(2,minmax(0,1fr))}

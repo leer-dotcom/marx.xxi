@@ -244,11 +244,11 @@ function openZoom(host, keepList = false) {
     level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
     range.value = Math.round(Math.log10(Math.max(1, k)) * 100); // también con el control abierto y enfocado
   };
-  // Alrededor del dibujo hay un margen en blanco de 1/4 de su ancho (a los lados) y de su alto (arriba y abajo)
+  // Alrededor del dibujo hay un margen en blanco de 1/3 de su ancho (a los lados) y de su alto (arriba y abajo)
   // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
   // quede tieso contra el marco.
   const clamp = () => {
-    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 4, my = h / 4;
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 3, my = h / 3;
     x = w + 2 * mx <= a.w ? (a.w - w) / 2 : Math.min(mx, Math.max(a.w - w - mx, x));
     y = h + 2 * my <= free ? a.top + (free - h) / 2 : Math.min(a.top + my, Math.max(a.h - a.bottom - h - my, y));
   };
@@ -1249,10 +1249,12 @@ function mapsView(params, tabArg) {
     if (!pubId) return `<div class="dg-gallery two maps-coll">${S?.map ? titled('Mapa conceptual · La colección', S.map, '#/sintesis', 'Colección · Mapa conceptual') : ''}${L.pubs.map(p => common(p, true)).join('')}</div>`;
     const p = L.byId[pubId], v = p.volumes.find(x => x.key === volKey);
     if (!v) volKey = '';
-    return `<div class="chips maps-sub-nav" role="tablist" aria-label="${esc(p.name)}">
-        <button class="chip" role="tab" data-v="" aria-selected="${!v}" aria-pressed="${!v}">La publicación</button>
-        ${p.volumes.map(x => `<button class="chip" role="tab" data-v="${x.key}" data-vol="${x.key}" aria-selected="${x === v}" aria-pressed="${x === v}">${esc(volShort(x))}</button>`).join('')}
-      </div>
+    // botones en una sola línea, desplazable y con flechas como la barra de pestañas (initTabs), fija debajo de ella
+    const cur = on => `aria-selected="${on}" aria-pressed="${on}"${on ? ' aria-current="page"' : ''}`;
+    return `<nav class="tabs chip-tabs maps-sub-nav" role="tablist" aria-label="${esc(p.name)}">
+        <button class="chip" role="tab" data-v="" ${cur(!v)}>La publicación</button>
+        ${p.volumes.map(x => `<button class="chip" role="tab" data-v="${x.key}" data-vol="${x.key}" ${cur(x === v)}>${esc(volShort(x))}</button>`).join('')}
+      </nav>
       <div class="dg-gallery"${v ? ` data-vol="${v.key}"` : ''}>${v ? volMaps(v) : common(p)}</div>`;
   };
   const html = `<div class="wrap">
@@ -1264,8 +1266,14 @@ function mapsView(params, tabArg) {
   </div>`;
   return [html, () => {
     const box = $('#maps-panel');
+    // altura de la barra de pestañas: la de los botones se fija justo debajo
+    const tabsEl = view.querySelector('.tabs');
+    if (tabsEl) view.style.setProperty('--maps-tabs-h', tabsEl.offsetHeight + 'px');
     const redraw = () => {
+      // si las barras estaban fijas arriba, siguen fijas: el nuevo contenido empieza justo debajo de ellas
+      const ty = artTabsY(), stuck = ty != null && scrollY >= ty - 1;
       box.innerHTML = panel();
+      if (stuck) window.scrollTo(0, ty);
       history.replaceState(history.state, '', `#/mapas/${tab}` + (pubId && volKey ? `?v=${volKey}` : ''));
     };
     const onClick = e => {
