@@ -244,11 +244,11 @@ function openZoom(host, keepList = false) {
     level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
     range.value = Math.round(Math.log10(Math.max(1, k)) * 100); // también con el control abierto y enfocado
   };
-  // Alrededor del dibujo hay un margen en blanco de 1/3 de su ancho (a los lados) y de su alto (arriba y abajo)
+  // Alrededor del dibujo hay un margen en blanco de 1/2 de su ancho (a los lados) y de su alto (arriba y abajo)
   // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
   // quede tieso contra el marco.
   const clamp = () => {
-    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 3, my = h / 3;
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 2, my = h / 2;
     x = w + 2 * mx <= a.w ? (a.w - w) / 2 : Math.min(mx, Math.max(a.w - w - mx, x));
     y = h + 2 * my <= free ? a.top + (free - h) / 2 : Math.min(a.top + my, Math.max(a.h - a.bottom - h - my, y));
   };
@@ -588,7 +588,9 @@ function studyTools(p) {
     <div class="grid two">
       <div class="about-banner${folded ? ' folded' : ''}" data-ab-key="${abKey}">
         ${toolCard('#/acerca', 'info', 'Acerca de', 'Las revistas, la IA y la aplicación')}
-        <p>El objetivo de esta aplicación es divulgativo, facilitando la lectura y el subrayado del contenido en dispositivos digitales.<span class="p-gap"></span>
+        <p>El objetivo de esta aplicación es divulgativo: facilitar la lectura y el subrayado en dispositivos digitales del contenido publicado por Marx XXI.
+        Siempre se recomienda el apoyo a su edición mediante la suscripción o la compra de los ejemplares físicos en
+        <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>.<span class="p-gap"></span>
         Los resúmenes y esquemas que acompañan cada texto se han elaborado con Claude Fable 5.1, de Anthropic —uno de los modelos
         de IA más avanzados— como apoyo al estudio. No obstante, <strong>en ningún caso son sustitutos de la lectura de los textos completos</strong>,
         y han de analizarse críticamente a la luz de estos, pues podrían contener inexactitudes y errores.
@@ -646,9 +648,10 @@ function libraryView() {
     <section class="hero">
       <div class="eyebrow">Biblioteca</div>
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
-      <p class="lede">${L.pubs.length > 1
-        ? 'Dos revistas del mismo proyecto socialista. Marx XXI es la de fondo: cada volumen fija a conciencia una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre pone ese marco a prueba frente a lo que está ocurriendo. Textos íntegros, guías de estudio y los enlaces entre ambas. Esta aplicación facilita su lectura, subrayado y estudio en dispositivos digitales.'
-        : esc(L.pubs[0].cross_volume.lede || '')}</p>
+      ${L.pubs.length > 1
+        ? `<div class="lede sm"><p>Marx XXI y Nuevo Ciclo son dos revistas de un mismo proyecto socialista. Marx XXI es la revista de fondo: cada volumen desarrolla en profundidad una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre contrasta ese marco con la actualidad. Aquí se reúnen sus textos íntegros, las guías de estudio y las conexiones entre ambas, para leerlas, subrayarlas y estudiarlas en cualquier dispositivo.</p>
+          <p>Todos los textos están disponibles gratuitamente en <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>, donde puedes suscribirte para seguir apoyando su edición.</p></div>`
+        : `<p class="lede">${esc(L.pubs[0].cross_volume.lede || '')}</p>`}
     </section>
     ${continueCard()}
     <h2 class="sec-title">Publicaciones</h2>
@@ -1552,10 +1555,10 @@ function settingsView() {
 const REPO_URL = 'https://github.com/leer-dotcom/marx.xxi';
 
 /** Secciones de «Acerca de» y «Créditos»: **…** en los textos de data/about.json se pinta en negrita. */
-function aboutSec(title, paragraphs, cls = '') {
-  // «## …» es un título intermedio; **…**, negrita
-  return paragraphs?.length ? `<section class="card about ${cls}"><h2>${esc(title)}</h2>${paragraphs.map(t => t.startsWith('## ')
-    ? `<h3>${esc(t.slice(3))}</h3>` : `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}</section>` : '';
+function aboutSec(title, paragraphs, cls = '', extra = '') {
+  // «## …» es un título intermedio; **…**, negrita; `extra`, HTML al final (p. ej. un botón)
+  return paragraphs?.length ? `<section class="card about ${cls}">${title ? `<h2>${esc(title)}</h2>` : ''}${paragraphs.map(t => t.startsWith('## ')
+    ? `<h3>${esc(t.slice(3))}</h3>` : `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}${extra}</section>` : '';
 }
 
 /** «Sobre Marx XXI», «Sobre Nuevo Ciclo»: su texto y un enlace a la publicación en marxxxi.com (site_url). */
@@ -1567,20 +1570,17 @@ function magSec(id, name, mag) {
     </section>`;
 }
 
-function aboutView() {
+const ABOUT_TABS = ['Sobre la aplicación', 'Sobre la colección'];
+
+/** «Acerca de», en dos pestañas: el lector (aplicación, código, instalación) y la colección (apoyo y revistas). */
+function aboutView(tab) {
   setBar('Acerca de');
   const L = lib(), ab = L.about || {};
   const mag = ab.magazine || {};
   // Textos propios de las demás publicaciones (p. ej. data/nuevo-ciclo/about.json)
   const others = L.pubs.filter(p => p.id !== 'marx-xxi' && p.about);
-  return `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Acerca de</h1>
-      <div class="sub">Qué objetivos tiene este lector, cómo se han elaborado sus guías de estudio, qué son Marx XXI y Nuevo Ciclo, y cómo instalarlo y usarlo sin conexión.</div></header>
-
-    ${aboutSec(ab.ai?.title || 'Objetivo y uso de la IA', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
-
-    ${magSec('marx-xxi', 'Marx XXI', mag)}
-    ${others.map(p => magSec(p.id, p.name, p.about.magazine || {})).join('')}
+  // sin título: lo dan sus apartados («Objetivo de la aplicación», «Uso de la Inteligencia Artificial»)
+  const reader = () => `${aboutSec('', [...(ab.ai?.paragraphs || []), ...others.flatMap(p => p.about.ai?.paragraphs || [])], 'ai')}
 
     <section class="card about" id="aplicacion">
       <h2>Código abierto</h2>
@@ -1593,7 +1593,17 @@ function aboutView() {
       <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
       <div id="install-area" class="install-area">${installHtml()}</div>
-    </section>
+    </section>`;
+  const collection = () => `${ab.support ? aboutSec(ab.support.title, ab.support.paragraphs, 'support', ab.support.url
+      ? `<a class="btn ghost" href="${esc(ab.support.url)}" rel="noopener" target="_blank">Ir a la web oficial de Marx XXI</a>` : '') : ''}
+
+    ${magSec('marx-xxi', 'Marx XXI', mag)}
+    ${others.map(p => magSec(p.id, p.name, p.about.magazine || {})).join('')}`;
+  return `<div class="wrap">
+    <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Acerca de</h1>
+      <div class="sub">Qué objetivos tiene este lector, cómo se han elaborado sus guías de estudio y cómo instalarlo y usarlo sin conexión; qué son Marx XXI y Nuevo Ciclo, y cómo apoyar su edición.</div></header>
+    ${tabs('#/acerca', ABOUT_TABS, tab)}
+    ${tab === 1 ? collection() : reader()}
 
     <p class="muted small" style="margin-top:20px;text-align:center"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
   </div>`;
@@ -1682,7 +1692,7 @@ async function route() {
     case 'marcadores': out = bookmarksView(params); break;
     case 'lista': out = listView(+(parts[1] || 0)); break;
     case 'ajustes': out = settingsView(); break;
-    case 'acerca': out = aboutView(); break;
+    case 'acerca': out = aboutView(parts[1] === '1' ? 1 : 0); break; // #/acerca/instalar: pestaña del lector
     case 'creditos': out = creditsView(); break;
     default: out = notFound();
   }
@@ -1738,9 +1748,10 @@ function pageOf(h) {
   if ((m = path.match(/^#\/tesis(?:\/([a-z][a-z-]*))?/))) return 'tesis/' + (m[1] || 'marx-xxi');
   if (/^#\/sintesis(\/|$)/.test(path)) return 'sintesis';
   if (/^#\/mapas(\/|$)/.test(path)) return 'mapas';
+  if (/^#\/acerca(\/|$)/.test(path)) return 'acerca';
   return path;
 }
-const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas)$/.test(sc);
+const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas|acerca)$/.test(sc);
 /** Pantalla del recorrido de «atrás»: además de las pestañas, ir de un artículo a otro (o de un volumen o número
  *  a otro) sigue siendo la misma pantalla; «atrás» vuelve a donde se estaba antes de entrar en el primero. */
 const screenOf = h => pageOf(h).replace(/^(articulo|volumen|numero)\/.*/, '$1');
@@ -1791,6 +1802,12 @@ window.addEventListener('hashchange', e => {
 // Instalar es también descargarla entera: al pulsar el botón y, en la app instalada, al abrirla tras cada
 // versión nueva, se bajan en segundo plano los textos íntegros y las tipografías (lo demás ya lo precarga sw.js).
 let installEvt = null;
+// ¿Ya instalada en este dispositivo, aunque ahora se abra en el navegador? Lo recuerda el navegador donde se
+// instaló (appinstalled) y, en Chrome y Edge, lo confirma getInstalledRelatedApps (related_applications del
+// manifiesto). Si vuelve a ofrecerse la instalación (beforeinstallprompt), es que ya no lo está.
+let installedHere = (() => { try { return localStorage.getItem('mx.installed') === '1'; } catch { return false; } })();
+const setInstalled = on => { installedHere = on; try { on ? localStorage.setItem('mx.installed', '1') : localStorage.removeItem('mx.installed'); } catch { /* sin almacenamiento */ } };
+navigator.getInstalledRelatedApps?.().then(apps => { if (apps.length && !installedHere) { setInstalled(true); renderInstall(); } }).catch(() => {});
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function installHtml() {
@@ -1801,12 +1818,17 @@ function installHtml() {
   if (isStandalone()) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La última versión ya está instalada en el dispositivo.</p>`;
   if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
     <p class="muted small">Se añadirá su icono a la pantalla de inicio o al escritorio, se abrirá como una aplicación y quedará descargada entera para usarla sin conexión.</p>`;
+  if (installedHere) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo.</p>
+    <p class="muted small">Ábrela desde su icono para usarla como aplicación y sin conexión.</p>`;
   if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>. Al abrirla desde su icono se descargará entera para usarla sin conexión.</p>';
-  return '<p>Para instalarla, desde el menú del navegador elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>. Si no aparece la opción, tu navegador no permite instalarla; se puede usar igual desde aquí.</p>';
+  // el navegador sabe ofrecer la instalación con un botón pero no la ofrece: o ya está instalada (y no se ha podido
+  // saber) o aún no cumple las condiciones (p. ej. ventana privada)
+  if ('BeforeInstallPromptEvent' in window) return '<p>Si ya la instalaste, ábrela desde su icono. Si no, desde el menú del navegador elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>; si no aparece la opción, se puede usar igual desde aquí.</p>';
+  return '<p>Este navegador no permite instalarla con un botón. Búscalo en su menú (<b>Instalar</b>, <b>Añadir a pantalla de inicio</b> o <b>Añadir al Dock</b>); si no aparece la opción, se puede usar igual desde aquí.</p>';
 }
 const renderInstall = () => { const el = $('#install-area'); if (el) el.innerHTML = installHtml(); };
-addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; renderInstall(); });
-addEventListener('appinstalled', () => { installEvt = null; renderInstall(); toast('Aplicación instalada'); });
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; setInstalled(false); renderInstall(); });
+addEventListener('appinstalled', () => { installEvt = null; setInstalled(true); renderInstall(); toast('Aplicación instalada'); });
 document.addEventListener('click', async e => {
   if (!e.target.closest('#install-app') || !installEvt) return;
   installEvt.prompt();

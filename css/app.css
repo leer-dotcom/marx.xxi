@@ -368,6 +368,13 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 #zoom-level:hover{background:rgba(255,255,255,.14)}
 .zoom-pos{min-width:48px;height:42px;padding:0 6px;border:0;border-radius:21px;background:none;color:inherit;font:inherit;text-align:center;font-size:14px;opacity:.85;cursor:pointer}
 .zoom-pos:hover{background:rgba(255,255,255,.14);opacity:1}
+/* en pantallas táctiles no hay cursor: tras pulsar un botón del visor no queda marcado como si lo tuviera encima
+   (la lupa abierta sí sigue marcada: .on) */
+@media (hover:none){
+  .zoom-bar .icon-btn:not(.on):hover,#zoom-level:hover,.zoom-pos:hover{background:none}
+  .zoom-pos:hover{opacity:.85}
+  .zoom-fold:hover{background:none;color:var(--ink-3)}
+}
 .zoom-pos:empty{display:none} /* un solo esquema */
 /* barra: zoom y girar a la izquierda, el paso entre esquemas en el centro y cerrar a la derecha */
 .zoom-side,.zoom-mid{display:flex;align-items:center}
@@ -408,6 +415,8 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .card.about h2{font-size:24px;margin-bottom:10px}
 .card.about h3{font-size:19px;margin:18px 0 6px}
 .card.about h2 + h3{margin-top:14px} /* aire entre el título de la sección y su primer subtítulo */
+.card.about.ai h3{font-size:24px;margin:22px 0 10px} /* sin título propio: sus apartados, al tamaño de los títulos */
+.card.about.ai h3:first-child{margin-top:0}
 .card.about p{margin-bottom:.6em} /* párrafos de un mismo apartado, más juntos */
 .card.about p:last-child{margin-bottom:0}
 /* aviso sobre la guía: mismo amarillo suave que el recuadro «Acerca de» de inicio */
@@ -659,7 +668,8 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 /* «Acerca de» destacado: fila propia en amarillo suave; la tarjeta ocupa la primera columna y el aviso el resto */
 .about-banner{grid-column:1/-1;display:grid;grid-template-columns:subgrid;gap:12px;align-items:center;padding:12px;border-radius:6px;
   background:color-mix(in srgb,var(--mark) 16%,var(--bg));border:1px solid color-mix(in srgb,var(--mark) 40%,var(--line))}
-.about-banner .card{background:color-mix(in srgb,var(--bg) 70%,transparent);align-self:stretch}
+.about-banner .card{background:color-mix(in srgb,var(--bg) 70%,transparent);align-self:stretch;
+  align-items:center} /* icono y texto, centrados en vertical y alineados a la izquierda */
 .about-banner p{grid-column:2/-1;margin:0;padding:6px 0;font-size:14px;line-height:1.42;letter-spacing:.01em;color:var(--ink-2);text-wrap:pretty;hyphens:auto}
 .about-banner .p-gap{display:block;height:7px}
 .about-banner .ab-toggle{display:none} /* «Menos.» / «Mostrar más…»: solo en móvil */

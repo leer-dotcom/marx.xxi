@@ -6,6 +6,7 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "related_applications": [{ "platform": "webapp", "url": "https://leer-dotcom.github.io/marx.xxi/manifest.webmanifest" }],
   "background_color": "#efecec",
   "theme_color": "#2c332f",
   "icons": [
