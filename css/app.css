@@ -375,12 +375,11 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
   .zoom-pos:hover{opacity:.85}
   .zoom-fold:hover{background:none;color:var(--ink-3)}
 }
-.zoom-pos:empty{display:none} /* un solo esquema */
+.zoom-pos svg{display:block;margin:auto;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round} /* un solo esquema */
 /* barra: zoom y girar a la izquierda, el paso entre esquemas en el centro y cerrar a la derecha */
 .zoom-side,.zoom-mid{display:flex;align-items:center}
 .zoom-side.end{justify-content:center} /* cerrar, centrado en su lado */
 .zoom-mid{margin:0 6px;padding:0 6px;border-left:1px solid rgba(255,255,255,.28);border-right:1px solid rgba(255,255,255,.28)}
-.zoom-mid:not(:has(.icon-btn:not([hidden]))){border-right:0;padding:0;margin:0 0 0 6px} /* un solo esquema: sin paso */
 .zoom-zwrap{position:relative}
 .zoom-bar .icon-btn.on{background:rgba(255,255,255,.18)}
 /* control de zoom: se despliega hacia arriba sobre la lupa, en vertical, como el del volumen */

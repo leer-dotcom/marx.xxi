@@ -42,6 +42,12 @@ export function setBar(title, { back = true, up = '#/' } = {}) {
   $('#btn-back').dataset.up = up;
   document.title = title ? `${title} · Lector de Marx XXI` : 'Lector de Marx XXI';
 }
+// El nombre de la barra lleva a la portada; si ya se está en ella, sube hasta arriba
+$('.appbar .brand').addEventListener('click', e => {
+  if (normHash(location.hash) !== '#/') return;
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 // «Atrás»: a la pantalla anterior del recorrido (las pestañas no cuentan); si no la hay, al nivel superior
 $('#btn-back').addEventListener('click', e => {
   const h = backHash();
@@ -210,7 +216,9 @@ function openZoom(host, keepList = false) {
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
   }
-  $('#zoom-pos').textContent = zoomList.length > 1 ? `${zoomIdx + 1} / ${zoomList.length}` : '';
+  // varios esquemas: «n / N»; uno solo: el icono de las cuatro flechas. En los dos casos, restablece la vista
+  $('#zoom-pos').innerHTML = zoomList.length > 1 ? `${zoomIdx + 1} / ${zoomList.length}`
+    : '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   const vol = host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
@@ -1556,9 +1564,10 @@ const REPO_URL = 'https://github.com/leer-dotcom/marx.xxi';
 
 /** Secciones de «Acerca de» y «Créditos»: **…** en los textos de data/about.json se pinta en negrita. */
 function aboutSec(title, paragraphs, cls = '', extra = '') {
-  // «## …» es un título intermedio; **…**, negrita; `extra`, HTML al final (p. ej. un botón)
+  // «## …» es un título intermedio; **…**, negrita; [texto](https://…), enlace; `extra`, HTML al final (p. ej. un botón)
   return paragraphs?.length ? `<section class="card about ${cls}">${title ? `<h2>${esc(title)}</h2>` : ''}${paragraphs.map(t => t.startsWith('## ')
-    ? `<h3>${esc(t.slice(3))}</h3>` : `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`).join('')}${extra}</section>` : '';
+    ? `<h3>${esc(t.slice(3))}</h3>` : `<p>${esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" rel="noopener" target="_blank">$1</a>')}</p>`).join('')}${extra}</section>` : '';
 }
 
 /** «Sobre Marx XXI», «Sobre Nuevo Ciclo»: su texto y un enlace a la publicación en marxxxi.com (site_url). */
@@ -1584,8 +1593,8 @@ function aboutView(tab) {
 
     <section class="card about" id="aplicacion">
       <h2>Código abierto</h2>
-      <p>Como ejercicio de transparencia, esta aplicación es abierta: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, con el historial completo de cambios.</p>
-      <p>Cualquiera puede consultarlo, descargarlo o hacer su propia copia; los cambios en esta aplicación, no obstante, solo los publica quien la mantiene.</p>
+      <p>Esta aplicación es de código abierto: el código, los textos íntegros, las guías de estudio, los esquemas y los datos están publicados en un repositorio público de GitHub, junto con el historial completo de cambios. Así, cualquiera puede comprobar cómo está hecha y qué hace con sus datos.</p>
+      <p>El repositorio se puede consultar, descargar o copiar libremente; los cambios en esta aplicación, no obstante, solo los publica quien la mantiene.</p>
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
