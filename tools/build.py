@@ -137,6 +137,15 @@ def check():
             if not os.path.isfile(os.path.join(WEB, f)):
                 errors.append(f"css/fonts.css usa {f}, que no existe (python tools/fuentes.py)")
 
+    # Lo que sube a GitHub Pages: el flujo copia una lista fija de carpetas; tienen que estar todas las que usa la app
+    wf = os.path.join(WEB, ".github", "workflows", "pages.yml")
+    if os.path.isfile(wf):
+        cp = re.search(r"cp -r (.*) _site/", open(wf, encoding="utf-8").read())
+        copied = set(cp.group(1).split()) if cp else set()
+        for d in ("css", "js", "img", "data", "fonts"):
+            if d not in copied:
+                errors.append(f".github/workflows/pages.yml no copia {d}/ a la web publicada")
+
     # Módulos JS importados
     for js in ("app.js", "data.js", "reader.js"):
         src = open(os.path.join(WEB, "js", js), encoding="utf-8").read()

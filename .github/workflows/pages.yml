@@ -33,7 +33,7 @@ jobs:
       - name: Preparar el sitio (sin herramientas ni documentación)
         run: |
           mkdir _site
-          cp -r index.html manifest.webmanifest sw.js .nojekyll css js img data _site/
+          cp -r index.html manifest.webmanifest sw.js .nojekyll css js img data fonts _site/
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
