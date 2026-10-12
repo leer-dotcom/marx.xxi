@@ -58,6 +58,7 @@
   </dialog>
 
   <dialog id="zoom" class="zoom" aria-label="Esquema ampliado">
+    <div class="zoom-rot">
     <div class="zoom-stage" id="zoom-stage"></div>
     <p class="zoom-caption" id="zoom-caption"></p>
     <div class="zoom-bar">
@@ -69,7 +70,10 @@
       <button type="button" id="zoom-level" data-z="0" aria-label="Ajustar a la pantalla" title="Ajustar a la pantalla (0)">100 %</button>
       <button class="icon-btn" data-z="+" aria-label="Ampliar" title="Ampliar (+)"><svg viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></svg></button>
       <span class="zoom-sep"></span>
+      <button class="icon-btn zoom-rot-btn" data-zrot aria-label="Girar a horizontal" title="Girar a horizontal"><svg viewBox="0 0 24 24"><path d="M4 4v5h5"/><path d="M4.6 9A8 8 0 1 1 6 17.7"/></svg></button>
+      <span class="zoom-sep"></span>
       <button class="icon-btn" data-close aria-label="Cerrar" title="Cerrar (Esc)"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
     </div>
   </dialog>
 

@@ -24,7 +24,8 @@ def step(msg):
 def file_list():
     """data/files.json: lista de archivos que el service worker precarga para el modo sin conexión."""
     files = sorted(os.path.relpath(os.path.join(dp, f), WEB).replace(os.sep, "/")
-                   for dp, _, fs in os.walk(DATA) for f in fs)
+                   for dp, _, fs in os.walk(DATA) for f in fs
+                   if os.path.join("svg", "revision") not in os.path.relpath(dp, DATA))  # carpeta de trabajo
     p = os.path.join(DATA, "files.json")
     new = json.dumps(files)
     old = open(p, encoding="utf-8").read() if os.path.isfile(p) else ""
@@ -91,6 +92,8 @@ def check():
         if not os.path.isdir(svg_dir):
             continue
         for name in os.listdir(svg_dir):
+            if not name.endswith(".svg") or not os.path.isfile(os.path.join(svg_dir, name)):
+                continue  # subcarpetas (p. ej. «revision») u otros archivos
             n_svg += 1
             svg = open(os.path.join(svg_dir, name), encoding="utf-8").read()
             m = re.search(r"<svg\s[^>]*>", svg)

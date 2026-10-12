@@ -249,12 +249,17 @@ function openZoom(host, keepList = false) {
   };
   zoomFit = fit;
   dlg.onclick = e => {
+    if (e.target.closest('[data-zrot]')) return setZoomRot(!dlg.classList.contains('rot')); // se reajusta solo (ResizeObserver)
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
     const b = e.target.closest('[data-z]');
     if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); }
   };
-  const rel = e => { const r = st.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  // punto del visor bajo el dedo o el cursor, en las coordenadas del dibujo (también con el visor girado)
+  const rel = e => {
+    const r = dlg.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
+    return dlg.classList.contains('rot') ? [sy, r.width - sx] : [sx, sy];
+  };
   // rueda del ratón o trackpad: zoom en el punto del cursor
   st.onwheel = e => { e.preventDefault(); zoomTo(s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), ...rel(e)); };
   // doble clic o doble toque: ampliar ahí ×2,5; si ya está ampliado, volver a ajustar
@@ -269,7 +274,7 @@ function openZoom(host, keepList = false) {
     lastType = e.pointerType;
     try { st.setPointerCapture(e.pointerId); } catch { /* puntero ya levantado */ }
     pts.set(e.pointerId, e);
-    if (pts.size === 1) { drag = { x: e.clientX, y: e.clientY, bx: x, by: y, moved: false }; pinch = null; }
+    if (pts.size === 1) { const [px, py] = rel(e); drag = { x: px, y: py, bx: x, by: y, moved: false }; pinch = null; }
     else { drag = null; pinch = null; }
     st.classList.add('dragging');
   };
@@ -283,7 +288,7 @@ function openZoom(host, keepList = false) {
       if (!pinch) pinch = { d, s, cx, cy };
       else { x += cx - pinch.cx; y += cy - pinch.cy; pinch.cx = cx; pinch.cy = cy; zoomTo(pinch.s * d / pinch.d, cx, cy); }
     } else if (drag) {
-      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      const [px, py] = rel(e), dx = px - drag.x, dy = py - drag.y;
       if (Math.hypot(dx, dy) > 4) drag.moved = true;
       x = drag.bx + dx; y = drag.by + dy; clamp(); apply();
     }
@@ -301,6 +306,16 @@ function openZoom(host, keepList = false) {
   };
   fit();
 }
+// Girar a horizontal: el visor entero (dibujo, pie y barra) gira 90°, como si se girase el móvil hacia la
+// izquierda, sin depender del giro automático ni del sensor. Solo dos posiciones; al cerrar el visor vuelve a
+// vertical (no se recuerda): fuera del visor nada cambia.
+function setZoomRot(on) {
+  const dlg = $('#zoom'), b = dlg.querySelector('[data-zrot]');
+  dlg.classList.toggle('rot', on);
+  const label = on ? 'Volver a vertical' : 'Girar a horizontal';
+  b.setAttribute('aria-label', label); b.title = label;
+}
+$('#zoom').addEventListener('close', () => setZoomRot(false));
 // al girar el móvil o cambiar el tamaño de la ventana, volver a ajustar a la pantalla
 new ResizeObserver(() => { if ($('#zoom').open) zoomFit?.(); }).observe($('#zoom-stage'));
 document.addEventListener('keydown', e => {
@@ -551,7 +566,7 @@ function studyTools(p) {
         <button type="button" class="ab-toggle ab-less" data-ab-toggle>…menos</button></p>
         <button type="button" class="ab-toggle ab-more" data-ab-toggle>Mostrar más…</button>
       </div>
-      ${toolCard(p ? `#/mapas?p=${p.id}` : '#/mapas', 'map', 'Mapas conceptuales', 'Esquemas de artículos y publicaciones')}
+      ${toolCard(p ? `#/mapas/${L.pubs.indexOf(p) + 1}` : '#/mapas', 'map', 'Mapas conceptuales', 'Esquemas de artículos y publicaciones')}
       ${toolCard(p ? `#/glosario?p=${p.id}` : '#/glosario', 'az', 'Glosario', `${gl.length} conceptos`)}
       ${toolCard('#/autores', 'people', 'Autores', p ? `${au.length} firmas en ${esc(p.name)}` : `${au.length} firmas en ${L.pubs.length > 1 ? 'las dos revistas' : 'la revista'}`)}
       ${toolCard(p ? `#/buscar?p=${p.id}` : '#/buscar', 'search', 'Búsqueda', 'Guía y textos íntegros')}
@@ -611,9 +626,9 @@ function libraryView() {
     <div class="grid pubs">${L.pubs.map(pubCard).join('')}</div>
     ${studyTools()}
     ${S ? `<h2 class="sec-title">Síntesis de la colección</h2>
-      <div class="prose synth-intro"><p>Marx XXI y Nuevo Ciclo son dos caras de un mismo proyecto: los volúmenes fijan el marco
+      <div class="prose synth-intro"><p>Marx XXI y Nuevo Ciclo son dos caras de un mismo proyecto: el primero fija el marco
         (qué es el marxismo, por qué no la socialdemocracia, el partido, el derecho a la revolución, la escala internacional)
-        y los números lo ponen a prueba en la coyuntura. La síntesis reúne las dos revistas en <b>${S.theses.length} tesis comunes</b>,
+        y el segundo lo pone a prueba en la coyuntura. La síntesis reúne las dos revistas en <b>${S.theses.length} tesis comunes</b>,
         cada una con su principio en Marx XXI y su aplicación en Nuevo Ciclo, y las alinea con las tesis propias de cada revista.
         Recoge además los ${S.bridge_concepts?.length || 0} conceptos que hacen de puente entre ambas y lo que aporta cada una en exclusiva.</p></div>
       <a class="card tool synth-link" href="#/sintesis">${ICON.hub}<strong>Leer la síntesis de la colección</strong></a>
@@ -842,7 +857,8 @@ function articleView(id, tab = 0) {
         const toVol = { href: v.href, label: volShort(v), tip: volHead(v), vol: v.key };
         const toConcl = { href: `${v.href}/2`, label: 'Concl.', tip: `Conclusiones · ${volHead(v)}`, vol: v.key };
         const toArt = x => ({ href: `#/articulo/${x.id}/${tab}`, label: artLabel(x), tip: x.title, vol: v.key });
-        return headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toConcl, 'Artículos contiguos');
+        // en el móvil, «Añadir a Mi lista» va en la misma línea que el paso entre artículos (copia de la de .ph-main)
+        return `<div class="ph-navrow">${listBtn(a.id)}${headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toConcl, 'Artículos contiguos')}</div>`;
       })()}</header>
     ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, TAB.texto)}
     ${body}
@@ -883,11 +899,27 @@ function listBtn(id) {
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-list]'); if (!b) return;
-  const id = b.dataset.list, had = store.inList(id);
-  had ? store.removeFromList(id) : store.addToList(id);
-  b.outerHTML = listBtn(id);
-  toast(had ? 'Quitado de Mi lista' : `Añadido a Mi lista: ${store.read().has(id) ? 'Leídos' : 'Pendientes'}`);
+  const id = b.dataset.list;
+  if (!store.inList(id)) {
+    store.addToList(id);
+    redrawList(id);
+    toast(`Añadido a Mi lista: ${store.read().has(id) ? 'Leídos' : 'Pendientes'}`);
+    return;
+  }
+  // quitar: con el mismo aviso que desde Mi lista
+  confirmUnlist(id, () => redrawList(id));
 });
+/** Vuelve a pintar los botones de Mi lista de un texto (en la guía hay dos: escritorio y móvil). */
+const redrawList = id => document.querySelectorAll(`[data-list="${CSS.escape(id)}"]`).forEach(x => { x.outerHTML = listBtn(id); });
+/** Confirma y quita un texto de Mi lista; luego `after` (redibujar) y el aviso. */
+function confirmUnlist(id, after) {
+  const a = article(id)?.a;
+  confirmDialog({
+    title: 'Quitar de Mi lista', text: `${a ? `«${a.title}»` : 'El texto'} dejará de aparecer en tu lista de lectura.
+El progreso, los subrayados y las notas se conservan.`,
+    ok: 'Quitar', cancel: 'Cancelar', danger: true,
+  }).then(yes => { if (yes) { store.removeFromList(id); after?.(); toast('Quitado de Mi lista'); } });
+}
 
 const LIST_TABS = ['Pendientes', 'Leídos'];
 /** Mi lista de lectura (#/lista[/1]): los textos añadidos desde su guía. Pendientes, numerados en el orden elegido
@@ -957,12 +989,7 @@ function listView(tab = 0) {
       }
       const del = e.target.closest('[data-unlist]');
       if (del) {
-        const id = del.dataset.unlist, a = article(id)?.a;
-        confirmDialog({
-          title: 'Quitar de Mi lista', text: `${a ? `«${a.title}»` : 'El texto'} dejará de aparecer en tu lista de lectura.
-El progreso, los subrayados y las notas se conservan.`,
-          ok: 'Quitar', cancel: 'Cancelar', danger: true,
-        }).then(yes => { if (yes) { store.removeFromList(id); redraw(); toast('Quitado de Mi lista'); } });
+        confirmUnlist(del.dataset.unlist, redraw);
       }
     };
     view.addEventListener('click', onClick);
@@ -1158,62 +1185,66 @@ function synthesisView(tab = 0, params) {
 
 /** Mapas conceptuales y esquemas de todos los niveles: biblioteca, cada revista (arco y mapa común),
  *  cada volumen o número y cada artículo. `?p=nuevo-ciclo` lleva directamente a una revista. */
-function mapsView(params) {
+function mapsView(params, tabArg) {
   setBar('Mapas conceptuales');
   const L = lib(), S = L.synthesis;
   // zl: qué esquema es (revista, volumen o número, artículo y título), antepuesto a su descripción al ampliarlo
   const titled = (title, f, href, zl = '', zhi = 0) => f ? `<div class="dg-item"${zl ? ` data-zlabel="${esc(zl)}" data-zhi="${zhi}"` : ''}>
     ${href ? `<a class="dg-title" href="${href}">${title}</a>` : `<div class="dg-title">${title}</div>`}${figure(f)}</div>` : '';
-  const pubSection = p => {
-    const cv = p.cross_volume, mx = p.id === 'marx-xxi';
-    const tesis = thesesHref(p, 1); // pestaña Mapa conceptual
-    return `<details class="maps-sec" id="mapas-${p.id}">
-      <summary><h2 class="sec-title">${esc(p.name)}</h2></summary>
-      <details class="maps-sub">
-        <summary>Mapas comunes de la revista</summary>
-        <div class="dg-gallery">
-          ${titled(`Mapa conceptual · Los ${numWord(p.volumes.length)} ${esc(p.unit_plural)}`, cv.map, tesis,
-            `${p.name} · Mapa conceptual · Los ${numWord(p.volumes.length)} ${p.unit_plural}`)}
-          ${titled('Trayectoria de la publicación', cv.arc, p.home, `${p.name} · Trayectoria de la publicación`)}
-          ${p.volumes.map(v => `<div data-vol="${v.key}">${titled(
-            `<b>${esc(volShort(v))}</b> · ${esc(v.label ? monthName(v.month) : v.title)}`, v.concept_map, `${v.href}/3`,
-            `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`, 1)}</div>`).join('')}
-        </div>
-      </details>
-      ${p.volumes.map(v => {
-        const n = v.articles.reduce((s, a) => s + a.diagrams.length, 0) + (v.concept_map ? 1 : 0);
-        return `<details class="maps-sub" data-vol="${v.key}">
-        <summary><i class="m-dot"></i><span>${esc(volHead(v))}</span><span class="m-count">${n}</span></summary>
-        <div class="dg-gallery">
-          ${titled(`<b>${v.label ? 'Número ' + esc(v.label) : 'Volumen ' + v.number}</b> · ${v.articles.length} artículos`, v.concept_map, `${v.href}/3`,
-            `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`, 1)}
-          ${v.articles.filter(a => a.diagrams.length).map(a => {
-            const zl = `${volShort(v)} · ${artLabel(a)} · ${a.title}`;
-            return titled(`<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
-              a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`, zl, 2)
-              + a.diagrams.slice(1).map(d => `<div class="dg-item" data-zlabel="${esc(zl)}" data-zhi="2">${figure(d)}</div>`).join('');
-          }).join('')}
-        </div>
-      </details>`;
-      }).join('')}
-    </details>`;
+  // los dos mapas comunes de una revista: su mapa conceptual y su trayectoria
+  // (en «Colección», con el nombre de la revista en el título)
+  const common = (p, inCollection) => {
+    const cv = p.cross_volume, n = `Los ${numWord(p.volumes.length)} ${p.unit_plural}`;
+    return titled(inCollection ? `${esc(p.name)} · ${esc(n)}` : `Mapa conceptual · ${esc(n)}`, cv.map, thesesHref(p, 1), `${p.name} · Mapa conceptual · ${n}`)
+      + titled(inCollection ? `Trayectoria de la publicación · ${esc(p.name)}` : 'Trayectoria de la publicación', cv.arc, p.home, `${p.name} · Trayectoria de la publicación`);
+  };
+  // un volumen o número: su mapa y los esquemas de sus artículos
+  const volMaps = v => {
+    const vn = `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`;
+    return titled(`<b>${esc(vn.split(' · ')[0])}</b> · ${v.articles.length} artículos`, v.concept_map, `${v.href}/3`, vn, 1)
+      + v.articles.filter(a => a.diagrams.length).map(a => {
+        const zl = `${volShort(v)} · ${artLabel(a)} · ${a.title}`;
+        return titled(`<b>${esc(artLabel(a))}</b> · ${esc(a.title)}<small>${esc(byline(a))}</small>`,
+          a.diagrams[0], `#/articulo/${a.id}/${TAB.esquema}`, zl, 2)
+          + a.diagrams.slice(1).map(d => `<div class="dg-item" data-zlabel="${esc(zl)}" data-zhi="2">${figure(d)}</div>`).join('');
+      }).join('');
+  };
+  // Pestañas: Colección (el mapa de la colección y los dos comunes de cada revista) y una por revista; dentro de
+  // cada revista, «La publicación» (sus dos mapas comunes) y un botón por volumen o número.
+  // pestaña: #/mapas/0 Colección, #/mapas/1… cada revista (también vale ?p=marx-xxi, de enlaces anteriores)
+  const tab = tabArg != null ? Math.max(0, Math.min(L.pubs.length, +tabArg || 0))
+    : L.byId[params.get('p')] ? L.pubs.indexOf(L.byId[params.get('p')]) + 1 : 0;
+  const pubId = tab ? L.pubs[tab - 1].id : '';
+  let volKey = params.get('v') || '';
+  const panel = () => {
+    if (!pubId) return `<div class="dg-gallery two maps-coll">${S?.map ? titled('Mapa conceptual · La colección', S.map, '#/sintesis', 'Colección · Mapa conceptual') : ''}${L.pubs.map(p => common(p, true)).join('')}</div>`;
+    const p = L.byId[pubId], v = p.volumes.find(x => x.key === volKey);
+    if (!v) volKey = '';
+    return `<div class="chips maps-sub-nav" role="tablist" aria-label="${esc(p.name)}">
+        <button class="chip" role="tab" data-v="" aria-selected="${!v}" aria-pressed="${!v}">La publicación</button>
+        ${p.volumes.map(x => `<button class="chip" role="tab" data-v="${x.key}" data-vol="${x.key}" aria-selected="${x === v}" aria-pressed="${x === v}">${esc(volShort(x))}</button>`).join('')}
+      </div>
+      <div class="dg-gallery"${v ? ` data-vol="${v.key}"` : ''}>${v ? volMaps(v) : common(p)}</div>`;
   };
   const html = `<div class="wrap">
-    <header class="page-head"><div class="eyebrow">Biblioteca</div><h1>Mapas conceptuales</h1>
-      <div class="sub">Todos los mapas y esquemas, de lo general a lo particular: la biblioteca, cada revista y cada volumen o número junto a los esquemas de sus artículos. Toca uno para ampliarlo y pasa al siguiente con las flechas; su título lleva a su página.</div></header>
-    <nav class="chips maps-nav" aria-label="Ir a">
-      ${S?.map ? '<button class="chip" data-go="mapas-biblioteca">Biblioteca</button>' : ''}
-      ${L.pubs.map(p => `<button class="chip" data-go="mapas-${p.id}">${esc(p.name)}</button>`).join('')}
-    </nav>
-    ${S?.map ? `<details class="maps-sec" id="mapas-biblioteca"><summary><h2 class="sec-title">Biblioteca</h2></summary>
-      <div class="dg-gallery wide">${titled('Mapa de la biblioteca: Marx XXI y Nuevo Ciclo', S.map, '#/sintesis')}</div></details>` : ''}
-    ${L.pubs.map(pubSection).join('')}
+    <header class="page-head"><div class="eyebrow">Colección</div><h1>Mapas conceptuales</h1>
+      <div class="sub">Todos los mapas y esquemas, de lo general a lo particular: la colección, cada revista y cada volumen o número junto a los esquemas de sus artículos. Toca uno para ampliarlo y pasa al siguiente con las flechas; su título lleva a su página.</div></header>
+    ${tabs('#/mapas', ['Colección', ...L.pubs.map(p => p.name)], tab)}
+    <div id="maps-panel">${panel()}</div>
     ${aiNote()}
   </div>`;
   return [html, () => {
-    const go = id => { const d = document.getElementById(id); if (d) { d.open = true; d.scrollIntoView(); } };
-    view.querySelector('.maps-nav').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) go(b.dataset.go); });
-    if (params.get('p')) requestAnimationFrame(() => go('mapas-' + params.get('p')));
+    const box = $('#maps-panel');
+    const redraw = () => {
+      box.innerHTML = panel();
+      history.replaceState(history.state, '', `#/mapas/${tab}` + (pubId && volKey ? `?v=${volKey}` : ''));
+    };
+    const onClick = e => {
+      const v = e.target.closest('.maps-sub-nav [data-v]');
+      if (v) { volKey = v.dataset.v; redraw(); }
+    };
+    view.addEventListener('click', onClick);
+    return () => view.removeEventListener('click', onClick);
   }];
 }
 
@@ -1608,7 +1639,7 @@ async function route() {
     }
     case 'sintesis': out = synthesisView(+(parts[1] || 0), params); break;
     case 'autores': out = authorsView(params); break;
-    case 'mapas': out = mapsView(params); break;
+    case 'mapas': out = mapsView(params, parts[1]); break;
     case 'glosario': out = glossaryView(params); break;
     case 'buscar': out = searchView(params); break;
     case 'marcadores': out = bookmarksView(params); break;
@@ -1661,17 +1692,21 @@ if (typeof history.state?.i !== 'number') history.replaceState({ ...(history.sta
 for (const ev of ['wheel', 'touchstart', 'keydown']) addEventListener(ev, () => { userScrolled = true; }, { passive: true });
 // la portada es «#/» o, al abrir la app por primera vez, sin hash: las dos cuentan como la misma pantalla
 const normHash = h => h && h !== '#' ? h : '#/';
-/** Pantalla a la que pertenece un hash: las pestañas de una misma guía comparten pantalla. */
-function screenOf(h) {
+/** Página a la que pertenece un hash: las pestañas de una misma guía comparten página. */
+function pageOf(h) {
   const path = normHash(h).split('?')[0];
   let m;
   if ((m = path.match(/^#\/articulo\/([^/]+)/))) return 'articulo/' + m[1];
   if ((m = path.match(/^#\/(volumen|tomo|numero)\/(\d+)/))) return (m[1] === 'numero' ? 'numero/' : 'volumen/') + m[2];
   if ((m = path.match(/^#\/tesis(?:\/([a-z][a-z-]*))?/))) return 'tesis/' + (m[1] || 'marx-xxi');
   if (/^#\/sintesis(\/|$)/.test(path)) return 'sintesis';
+  if (/^#\/mapas(\/|$)/.test(path)) return 'mapas';
   return path;
 }
-const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^sintesis$/.test(sc);
+const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas)$/.test(sc);
+/** Pantalla del recorrido de «atrás»: además de las pestañas, ir de un artículo a otro (o de un volumen o número
+ *  a otro) sigue siendo la misma pantalla; «atrás» vuelve a donde se estaba antes de entrar en el primero. */
+const screenOf = h => pageOf(h).replace(/^(articulo|volumen|numero)\/.*/, '$1');
 /** Pantalla anterior del recorrido (su última pestaña), o null si se está en la primera. */
 export const backHash = () => trail.length > 1 ? trail[trail.length - 2].hash : null;
 /** En una pantalla con pestañas, desplazamiento a partir del cual la barra de pestañas queda fija arriba. */
@@ -1684,7 +1719,7 @@ function artTabsY() {
 window.addEventListener('hashchange', e => {
   const old = normHash(new URL(e.oldURL).hash), now = normHash(location.hash);
   if (!old.startsWith('#/leer/')) fromHash = old;
-  const scOld = screenOf(old), scNow = screenOf(now);
+  const scOld = screenOf(old), scNow = screenOf(now), pgOld = pageOf(old), pgNow = pageOf(now);
   let goingBack = backBtn; backBtn = false;
   if (typeof history.state?.i === 'number') { goingBack ||= history.state.i < histI; histI = history.state.i; }
   else history.replaceState({ ...(history.state || {}), i: ++histI }, '');
@@ -1693,9 +1728,10 @@ window.addEventListener('hashchange', e => {
   top.hash = old; top.y = scrollY;
   let restoreY = null, keepTabs = false;
   if (scNow === scOld) {
-    // otra pestaña de la misma pantalla: si la barra de pestañas estaba arriba, sigue arriba
-    const ty = tabbed(scOld) ? artTabsY() : null;
-    keepTabs = tabbed(scOld) && ((ty != null && scrollY >= ty - 1) || (pinned === scOld && !userScrolled));
+    // otra pestaña de la misma página: si la barra de pestañas estaba arriba, sigue arriba
+    // (otro artículo, volumen o número: misma pantalla para «atrás», pero se entra por arriba)
+    const ty = pgNow === pgOld && tabbed(pgOld) ? artTabsY() : null;
+    keepTabs = ty != null && (scrollY >= ty - 1 || (pinned === pgOld && !userScrolled));
     top.hash = now;
   } else if (goingBack && trail.length > 1 && trail[trail.length - 2].sc === scNow) {
     // de vuelta a la pantalla anterior: a la altura a la que se dejó
@@ -1707,7 +1743,7 @@ window.addEventListener('hashchange', e => {
     if (trail.length > 60) trail.splice(0, trail.length - 60);
   }
   navInfo = { restoreY, keepTabs };
-  pinned = keepTabs ? scOld : null;
+  pinned = keepTabs ? pgOld : null;
   userScrolled = false;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
 });

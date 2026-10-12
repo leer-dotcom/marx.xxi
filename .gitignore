@@ -10,3 +10,6 @@ desktop.ini
 # archivos de trabajo de Claude Code
 .claude/
 .tmp-claude/
+
+# revisión de esquemas en curso (no publicar)
+data/svg/revision/

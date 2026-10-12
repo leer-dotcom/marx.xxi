@@ -338,6 +338,10 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 #zoom[data-vol="4"]{--vol:#d39504} #zoom[data-vol="5"]{--vol:#7ea52a}
 #zoom[data-vol^="n"]{--vol:#be2544} #zoom[data-vol="n2"]{--vol:#cf4868} #zoom[data-vol="n3"]{--vol:#e0658c} #zoom[data-vol="n4"]{--vol:#e8473f}
 .zoom[open]{display:block}
+/* contenido del visor; girado («Girar a horizontal»), ocupa la pantalla a lo ancho y gira 90° */
+.zoom-rot{position:absolute;inset:0}
+.zoom.rot .zoom-rot{inset:auto;left:50%;top:50%;width:100dvh;height:100vw;transform:translate(-50%,-50%) rotate(90deg)}
+.zoom.rot .zoom-rot-btn svg{transform:scaleX(-1)} /* el botón pasa a ser el inverso: volver a vertical */
 .zoom-stage{position:absolute;inset:0;overflow:hidden;touch-action:none;overscroll-behavior:contain;cursor:grab;user-select:none;-webkit-user-select:none}
 .zoom-stage.dragging{cursor:grabbing}
 .zoom-stage .dg{position:absolute;left:0;top:0;margin:0;max-width:none;background:none} /* tamaño real, no transform: nítido */
@@ -659,7 +663,16 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .dg-item figure.diagram{margin:0 0 10px}
 .dg-item figcaption{display:none} /* el pie se ve al ampliar el esquema */
 .dg-gallery.wide{grid-template-columns:1fr}
-.maps-nav{margin:4px 0 6px}
+/* alto mínimo: con la barra de pestañas fija arriba, cambiar a una pestaña con pocos mapas no la desfija */
+#maps-panel{min-height:calc(100dvh - var(--bar-h) - var(--safe-t))}
+.maps-sub-nav{margin:10px 0 4px}
+/* Colección: el mapa de la colección a todo el ancho y debajo los cuatro de las revistas, en dos columnas
+   también en el móvil */
+.dg-gallery.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.maps-coll > .dg-item:first-child{grid-column:1 / -1}
+/* en las dos columnas, el aviso «toca para leer» taparía medio esquema: uno pequeño */
+.dg-gallery.two > .dg-item:not(:first-child) figure.diagram button::after{content:"ampliar";font-size:12px;padding:1px 6px;top:6px;right:6px}
+.maps-sub-nav .chip[aria-pressed="true"][data-vol]{background:var(--vol);border-color:var(--vol);color:#fff}
 .maps-pub{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 8px)}
 #mapas-biblioteca{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 8px)}
 div.dg-title{color:var(--ink)}
@@ -787,6 +800,16 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 .art-band .ph-nav a.hn-short{padding:3px 4px;gap:4px;min-height:28px}
 .art-band .ph-nav .hn-short b{font-size:13px}
 @media (max-width:600px){.art-band .ph-nav{justify-content:start}}
+/* «Añadir a Mi lista»: en pantallas anchas, bajo el autor; en el móvil, en una línea con el paso entre artículos
+   (a la derecha y algo más estrechos) */
+.ph-navrow{display:contents}
+.ph-navrow > .ph-list{display:none}
+@media (max-width:600px){
+  .ph-main > .ph-list{display:none}
+  .page-head.art-band .ph-navrow{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px}
+  .ph-navrow > .ph-list{display:inline-flex;margin-top:0;flex:none}
+  .page-head.art-band .ph-navrow .ph-nav{margin:0;grid-template-columns:repeat(2,64px);gap:4px;justify-content:end;align-self:center}
+}
 
 /* barras de pestañas desplazables: flecha fija en el borde derecho mientras quedan pestañas por ver */
 .tabs{--tabs-bg:var(--bg)}
