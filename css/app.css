@@ -199,7 +199,8 @@ figure.diagram .dg[data-state="loading"]{background:linear-gradient(90deg,var(--
 .dg-error{margin:0;padding:24px;color:var(--ink-3);text-align:center}
 /* ampliar: una lupa con + en la esquina (caja del color del botón y el icono en su tinta) */
 figure.diagram button::before,figure.diagram button::after{content:"";position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:6px}
-figure.diagram button::before{background:var(--btn);opacity:.92}
+figure.diagram button::before{background:var(--btn);opacity:.5} /* translúcida: deja ver el esquema */
+figure.diagram button:hover::before{opacity:.75}
 figure.diagram button::after{background:var(--btn-ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.3 15.3l5.2 5.2M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E") center/19px no-repeat}
 figure.diagram figcaption{font-size:16px;color:var(--ink-2);margin-top:8px}
 .fig-tag{font-weight:700;font-style:italic;color:var(--ink)} /* nombre de la figura: «Esquema MX1.14», «Mapa conceptual NC2» */
