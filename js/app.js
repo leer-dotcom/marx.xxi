@@ -1598,6 +1598,8 @@ function aboutView(tab) {
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
+    ${ab.security ? aboutSec(ab.security.title, ab.security.paragraphs) : ''}
+
     <section class="card about" id="instalar">
       <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
@@ -1862,8 +1864,9 @@ async function downloadAll(announce = false) {
     if (!files.length) return;
     for (let i = 0; i < files.length; i += 6) await Promise.all(files.slice(i, i + 6).map(f => get(dataUrl(f))));
     await Promise.all(['img/icon-192.png', 'img/icon-512.png', 'img/apple-touch-icon.png', 'img/favicon-32.png'].map(get));
-    const fams = [...new Set(['"Alegreya SC"', ...Object.values(FONTS).map(([, css]) => css.split(',')[0])])].filter(f => !/system/.test(f));
-    await Promise.all(fams.flatMap(f => ['400', 'italic 400', '700', 'italic 700'].map(w => document.fonts.load(`${w} 1em ${f}`).catch(() => null))));
+    // tipografías: todos los archivos de css/fonts.css (fonts/, en el propio servidor)
+    const fontCss = await fetch('css/fonts.css').then(r => r.text()).catch(() => '');
+    await Promise.all([...new Set(fontCss.match(/fonts\/[\w.-]+\.woff2/g) || [])].map(get));
     try { await navigator.storage?.persist?.(); } catch { /* lo decide el navegador */ }
     if (!failed) try { localStorage.setItem('mx.offline', lib().v || '1'); } catch { /* sin almacenamiento */ }
     if (announce) toast(failed ? 'Descarga incompleta: se reintentará al abrir la aplicación' : 'Lista para usar sin conexión');

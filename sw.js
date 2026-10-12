@@ -2,9 +2,9 @@
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
 // La versión nueva se instala en cuanto el navegador la ve, pero no toma el control de la app abierta por sí
 // sola: espera a que el lector pulse «Actualizar» (app.js le manda 'skipWaiting') o a que cierre la app del todo.
-const VERSION = 'mx-20261012-2001';
+const VERSION = 'mx-20261012-2015';
 const SHELL = [
-  './', 'index.html', 'css/app.css', 'js/app.js', 'js/data.js', 'js/reader.js',
+  './', 'index.html', 'css/app.css', 'css/fonts.css', 'js/app.js', 'js/data.js', 'js/reader.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
   'data/nuevo-ciclo/content.json', 'data/diagram.css',
   // portadas
@@ -42,8 +42,7 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const sameOrigin = url.origin === location.origin;
-  const isFont = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
-  if (!sameOrigin && !isFont) return;
+  if (!sameOrigin) return; // la app no carga nada de otros servidores (ver la CSP de index.html)
 
   // Código de la app: red primero (para recibir actualizaciones), caché si no hay conexión.
   const isCode = sameOrigin && /\.(html|js|css|webmanifest)$|\/$/.test(url.pathname);
@@ -59,12 +58,12 @@ self.addEventListener('fetch', e => {
         return (await cache.match(req, { ignoreSearch: true })) || cache.match('index.html');
       }
     }
-    // Datos y fuentes: caché primero. La app pide data/… con el sello de versión (?v=…) y la precarga los
+    // Datos y tipografías (fonts/): caché primero. La app pide data/… con el sello de versión (?v=…) y la precarga los
     // guarda sin él: la caché es de esta misma versión, así que vale cualquiera de las dos.
     const hit = (await cache.match(req)) || (sameOrigin && url.pathname.includes('/data/') ? await cache.match(req, { ignoreSearch: true }) : null);
     if (hit) return hit;
     const res = await fetch(req);
-    if (res.ok || res.type === 'opaque') cache.put(req, res.clone());
+    if (res.ok) cache.put(req, res.clone());
     return res;
   })());
 });

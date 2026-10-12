@@ -6,7 +6,9 @@ Uso (desde MarxXXI-web):
 
 (--no-data se acepta por compatibilidad y no hace nada: ya no se regeneran datos.)
 """
+import base64
 import datetime
+import hashlib
 import json
 import os
 import re
@@ -113,6 +115,27 @@ def check():
     for path in re.findall(r"'([^']+)'", shell):
         if path != "./" and not os.path.isfile(os.path.join(WEB, path)):
             errors.append(f"sw.js precarga {path}, que no existe")
+
+    # Seguridad (ver la CSP de index.html): nada de otros servidores, hash del script en línea al día y
+    # tipografías propias completas (css/fonts.css, generado por tools/fuentes.py)
+    html = open(os.path.join(WEB, "index.html"), encoding="utf-8").read()
+    for url in re.findall(r'(?:src|href)="(https?://[^"]+)"', html):
+        errors.append(f"index.html carga {url}: la CSP lo bloquearía (solo se permite el propio servidor)")
+    csp = re.search(r'http-equiv="Content-Security-Policy" content="([^"]+)"', html)
+    if not csp:
+        errors.append("index.html: falta la Content-Security-Policy")
+    else:
+        for body in re.findall(r"<script>(.*?)</script>", html, re.S):
+            h = base64.b64encode(hashlib.sha256(body.encode("utf-8")).digest()).decode()
+            if f"'sha256-{h}'" not in csp.group(1):
+                errors.append(f"index.html: el script en línea ha cambiado; pon 'sha256-{h}' en script-src de la CSP")
+    fonts_css = os.path.join(WEB, "css", "fonts.css")
+    if not os.path.isfile(fonts_css):
+        errors.append("falta css/fonts.css (python tools/fuentes.py)")
+    else:
+        for f in set(re.findall(r"url\(\.\./(fonts/[^)]+)\)", open(fonts_css, encoding="utf-8").read())):
+            if not os.path.isfile(os.path.join(WEB, f)):
+                errors.append(f"css/fonts.css usa {f}, que no existe (python tools/fuentes.py)")
 
     # Módulos JS importados
     for js in ("app.js", "data.js", "reader.js"):

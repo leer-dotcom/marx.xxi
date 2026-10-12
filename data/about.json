@@ -19,7 +19,7 @@
       "## ¿Al usar la aplicación alimento modelos de IA?",
       "No. La inteligencia artificial se utilizó antes de publicar la aplicación: para ayudar a desarrollarla y para elaborar, a partir de los textos, las guías de estudio. Todo ese material quedó fijado como texto y esquemas que forman parte de la propia aplicación. La aplicación no está conectada a Anthropic ni a ningún otro servicio de inteligencia artificial, y no consulta ningún modelo mientras se lee.",
       "Tampoco envía datos sobre su uso: no hay cuentas de usuario, ni analítica, ni publicidad, ni seguimiento. La posición de lectura, los subrayados, las notas, la lista de lectura y los ajustes se guardan únicamente en el dispositivo del lector y no salen de él.",
-      "Lo único que hace es descargar sus propios archivos (textos, guías y esquemas) desde GitHub Pages, donde está alojada, y las tipografías desde Google Fonts, como cualquier página web. Una vez instalada, o descargada desde «Instalar y usar sin conexión», funciona de forma autónoma, sin conexión a internet; solo vuelve a conectarse para comprobar si hay una versión nueva."
+      "Lo único que hace es descargar sus propios archivos (textos, guías, esquemas y tipografías) desde GitHub Pages, donde está alojada; no se conecta a ningún otro servidor. Una vez instalada, o descargada desde «Instalar y usar sin conexión», funciona de forma autónoma, sin conexión a internet; solo vuelve a conectarse para comprobar si hay una versión nueva."
     ]
   },
   "support": {
@@ -31,6 +31,19 @@
     ],
     "url": "https://marxxxi.com/"
   },
+  "security": {
+    "title": "Seguridad y privacidad",
+    "paragraphs": [
+      "## Dirección oficial",
+      "La única dirección oficial de esta aplicación es [leer-dotcom.github.io/marx.xxi](https://leer-dotcom.github.io/marx.xxi/). Al ser de código abierto, cualquiera puede copiarla y publicar en otra dirección una versión modificada con el mismo aspecto; como no se puede saber qué hacen esas copias, conviene usar y compartir solo la oficial.",
+      "## Qué puede hacer la aplicación",
+      "No es un programa que se instale en el sistema: aunque se añada a la pantalla de inicio, es una página web que el navegador guarda y ejecuta en su entorno aislado. No pide permisos (cámara, micrófono, ubicación, contactos ni archivos) y, por su política de seguridad, el propio navegador le impide cargar o enviar nada a servidores distintos del suyo.",
+      "## Quién puede ver la conexión",
+      "La conexión va cifrada (HTTPS): quien gestiona la red —el proveedor de internet o la red del trabajo o de un lugar público— puede ver que se visita esta dirección, pero no qué se lee ni qué se subraya. GitHub, que aloja la aplicación, recibe la dirección IP del dispositivo, como cualquier servidor web. Quien prefiera evitarlo puede abrirla a través de una VPN; una vez descargada, además, funciona sin conexión.",
+      "## Los subrayados y las notas",
+      "Los subrayados, las notas y la lista de lectura se guardan en el almacenamiento del navegador, sin cifrar y sin copia en ningún servidor. Quien pueda usar el dispositivo desbloqueado puede verlos; en un dispositivo compartido conviene usar una ventana privada o borrar los datos del sitio al terminar. Y al revés: borrar los datos del navegador los elimina definitivamente."
+    ]
+  },
   "license": {
     "title": "Textos y licencia",
     "paragraphs": [
@@ -39,6 +52,6 @@
     ]
   },
   "credits_title": "Créditos",
-  "design": "Diseño inspirado en la web de las revistas, marxxxi.com. Tipografías, todas con licencia SIL Open Font License 1.1: Alegreya, Alegreya SC y Alegreya Sans (Huerta Tipográfica), Source Serif 4 (Adobe), Literata (TypeTogether), Atkinson Hyperlegible (Braille Institute) e IBM Plex Mono (IBM).",
+  "design": "Diseño inspirado en la web de las revistas, marxxxi.com. Tipografías, todas con licencia SIL Open Font License 1.1 e incluidas en la propia aplicación: Alegreya, Alegreya SC y Alegreya Sans (Huerta Tipográfica), Source Serif 4 (Adobe), Literata (TypeTogether), Atkinson Hyperlegible (Braille Institute) e IBM Plex Mono (IBM).",
   "privacy": "Funciona sin conexión. La posición de lectura, los subrayados con sus notas y los ajustes se guardan solo en este dispositivo; no se envía nada a ningún servidor."
 }
