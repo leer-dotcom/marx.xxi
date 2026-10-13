@@ -394,6 +394,7 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 
 /* aviso de versión nueva: barra flotante con «Actualizar» (sw.js en espera; ver «actualización» en app.js) */
 .update{position:fixed;left:50%;bottom:calc(80px + var(--safe-b));transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:14px;width:max-content;max-width:calc(100% - 32px);background:var(--head);color:var(--head-ink);padding:8px 8px 8px 18px;border-radius:var(--radius);font-size:16px;box-shadow:0 6px 18px rgb(0 0 0 / .25);animation:up .18s ease}
+.update.fading{opacity:0;transition:opacity 1s ease}
 .update .btn{padding:8px 16px;background:var(--head-ink);color:var(--head);flex:none}
 .update .btn.ghost{background:none;color:var(--head-ink);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--head-ink) 60%,transparent);margin-left:auto}
 .update .btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--head-ink)}

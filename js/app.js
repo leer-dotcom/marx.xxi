@@ -1910,9 +1910,13 @@ const renderUpdate = () => {
   if (el) {
     const show = !!waitingSw && !updateSeen;
     el.hidden = !show;
-    // el aviso se retira solo a los 4 segundos (hasta entonces se puede pulsar Aceptar o Actualizar)
-    clearTimeout(renderUpdate._t);
-    if (show) renderUpdate._t = setTimeout(() => { updateSeen = true; el.hidden = true; }, 4000);
+    // el aviso dura 5 segundos y se difumina durante 1 (hasta que desaparece se puede pulsar Aceptar o Actualizar)
+    clearTimeout(renderUpdate._t); clearTimeout(renderUpdate._f);
+    el.classList.remove('fading');
+    if (show) {
+      renderUpdate._f = setTimeout(() => el.classList.add('fading'), 5000);
+      renderUpdate._t = setTimeout(() => { updateSeen = true; el.hidden = true; el.classList.remove('fading'); }, 6000);
+    }
   }
   renderInstall();
 };
