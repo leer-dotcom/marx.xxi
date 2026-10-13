@@ -197,14 +197,14 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 // Esquemas que se recorren: los visibles de la pantalla (o de la hoja) de partida.
 let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 // Versión de cada figura (temporal, para contrastar la revisión de los esquemas): la simplificada (la de siempre,
-// por defecto) o la completa, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
+// por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
 let zoomFull = false, zoomHost = null;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
 function setZoomFull(on) {
   zoomFull = on;
   const b = $('#zoom [data-zfull]');
   b.setAttribute('aria-pressed', on);
-  b.title = on ? 'Viendo la figura completa (c): pasar a la simplificada' : 'Viendo la figura simplificada (s): pasar a la completa';
+  b.title = on ? 'Viendo la figura detallada (d): pasar a la simplificada' : 'Viendo la figura simplificada (s): pasar a la detallada';
 }
 /** Abre o cierra el control vertical de zoom (sobre la lupa). */
 function toggleZoomSlider(on) {
@@ -232,7 +232,7 @@ function openZoom(host, keepList = false, markup = null) {
     : '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   zoomHost = host;
-  // completa: se trae su SVG (si no existe, se queda la simplificada) y se vuelve a abrir con él
+  // detallada: se trae su SVG (si no existe, se queda la simplificada) y se vuelve a abrir con él
   const file = host.querySelector('.dg')?.dataset.svg;
   if (zoomFull && markup == null && file) {
     loadSvg(fullFile(file)).then(m => openZoom(host, true, m), () => openZoom(host, true, host.querySelector('.dg')?.innerHTML || ''));
@@ -246,8 +246,8 @@ function openZoom(host, keepList = false, markup = null) {
   // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
   const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel;
   // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
-  // tras el código, (s) simplificada o (c) completa: qué versión se está viendo
-  const tag = host.dataset.tag ? `${host.dataset.tag} (${zoomFull ? 'c' : 's'})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
+  // tras el código, (s) simplificada o (d) detallada: qué versión se está viendo
+  const tag = host.dataset.tag ? `${host.dataset.tag} (${zoomFull ? 'd' : 's'})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
   // la descripción (zc-desc) se pliega con la doble flecha; queda el título: qué esquema es y su nombre
   const capHtml = tag || rest ? `<span class="zc-desc">${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' : ''}` : ''}${esc(rest)}</span>` : '';
   const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);

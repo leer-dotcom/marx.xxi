@@ -386,7 +386,7 @@ html:has(.zoom[open]){overflow:hidden}
 /* barra: zoom y girar a la izquierda, el paso entre esquemas en el centro y cerrar a la derecha */
 .zoom-side,.zoom-mid{display:flex;align-items:center}
 .zoom-side.end{justify-content:center;gap:6px} /* interruptor y cerrar, centrados en su lado */
-/* interruptor simplificada (S) / completa (C): la opción vista, resaltada */
+/* interruptor simplificada (S) / detallada (D): la opción vista, resaltada */
 .zoom-full{display:inline-flex;align-items:center;padding:3px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:none;color:inherit;font:inherit;font-size:13px;letter-spacing:.04em;cursor:pointer;flex:none}
 .zoom-full span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;opacity:.7}
 .zoom-full[aria-pressed="false"] span:first-child,.zoom-full[aria-pressed="true"] span:last-child{background:#efecec;color:#2c332f;opacity:1;font-weight:700}
