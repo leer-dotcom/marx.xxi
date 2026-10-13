@@ -88,7 +88,7 @@ export function confirmDialog({ title, text, ok = 'Aceptar', cancel = 'Cancelar'
     d.innerHTML = `<h2 id="confirm-title">${esc(title)}</h2>
       ${text ? `<p>${text.split('\n').map(esc).join('<br>')}</p>` : ''}
       <div class="confirm-actions">
-        <button type="button" class="btn ghost" data-answer="0">${esc(cancel)}</button>
+        ${cancel ? `<button type="button" class="btn ghost" data-answer="0">${esc(cancel)}</button>` : ''}
         <button type="button" class="btn${danger ? ' danger' : ''}" data-answer="1" autofocus>${esc(ok)}</button>
       </div>`;
     let done = false;
@@ -657,8 +657,8 @@ function libraryView() {
       <div class="eyebrow">Biblioteca</div>
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       ${L.pubs.length > 1
-        ? `<div class="lede sm"><p>Marx XXI y Nuevo Ciclo son dos revistas de un mismo proyecto socialista. Marx XXI es la revista de fondo: cada volumen desarrolla en profundidad una pieza de la estrategia. Nuevo Ciclo es la de coyuntura: cada trimestre contrasta ese marco con la actualidad.</p>
-          <p>Aquí se reúnen sus textos íntegros, las guías de estudio y las conexiones entre ambas, para leerlas, subrayarlas y estudiarlas en cualquier dispositivo. Todos los textos están disponibles gratuitamente en <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>, donde puedes suscribirte para seguir apoyando su edición.</p></div>`
+        ? `<div class="lede sm"><p>Dos revistas, un proyecto: Marx XXI fija el marco; Nuevo Ciclo lo pone a prueba cada trimestre.</p>
+          <p>Lee, subraya y estudia en esta aplicación los textos íntegros facilitados por <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a> · Apoya su edición suscribiéndote en la página oficial. <a class="btn lede-cta" href="https://marxxxi.com/pages/tipos-de-suscripciones" rel="noopener" target="_blank">Suscríbete →</a></p></div>`
         : `<p class="lede">${esc(L.pubs[0].cross_volume.lede || '')}</p>`}
     </section>
     ${continueCard()}
@@ -1819,6 +1819,8 @@ let installEvt = null;
 let installedHere = (() => { try { return localStorage.getItem('mx.installed') === '1'; } catch { return false; } })();
 const setInstalled = on => { installedHere = on; try { on ? localStorage.setItem('mx.installed', '1') : localStorage.removeItem('mx.installed'); } catch { /* sin almacenamiento */ } };
 navigator.getInstalledRelatedApps?.().then(apps => { if (apps.length && !installedHere) { setInstalled(true); renderInstall(); } }).catch(() => {});
+// tras instalarla desde el navegador: la aplicación se usa desde su icono, y la primera vez termina de descargarse
+const INSTALLED_TIP = 'Ábrela desde su icono (en la pantalla de inicio o en el escritorio) para usarla como aplicación. La primera vez que la abras, hazlo con conexión: termina de descargarse para poder usarla también sin conexión.';
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function installHtml() {
@@ -1830,8 +1832,8 @@ function installHtml() {
   if (installEvt) return `<button type="button" class="btn" id="install-app">${ICON.download}Instalar la aplicación</button>
     <p class="muted small">Se añadirá su icono a la pantalla de inicio o al escritorio, se abrirá como una aplicación y quedará descargada entera para usarla sin conexión.</p>`;
   if (installedHere) return `<p class="install-ok"><span class="tick" aria-hidden="true">✓</span>La aplicación ya está instalada en este dispositivo.</p>
-    <p class="muted small">Ábrela desde su icono para usarla como aplicación y sin conexión.</p>`;
-  if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>. Al abrirla desde su icono se descargará entera para usarla sin conexión.</p>';
+    <p class="muted small">${INSTALLED_TIP}</p>`;
+  if (isIOS()) return '<p>Para instalarla en iPhone o iPad, desde Safari: pulsa <b>Compartir</b> (el cuadrado con la flecha) y elige <b>Añadir a pantalla de inicio</b>.</p><p class="muted small">Después, ábrela una primera vez desde su icono, con conexión, y déjala abierta un momento: en iPhone y iPad la aplicación instalada no comparte lo guardado en Safari, y es entonces cuando se descargan los textos para usarla sin conexión.</p>';
   // el navegador sabe ofrecer la instalación con un botón pero no la ofrece: o ya está instalada (y no se ha podido
   // saber) o aún no cumple las condiciones (p. ej. ventana privada)
   if ('BeforeInstallPromptEvent' in window) return '<p>Si ya la instalaste, ábrela desde su icono. Si no, desde el menú del navegador elige <b>Instalar aplicación</b> o <b>Añadir a pantalla de inicio</b>; si no aparece la opción, se puede usar igual desde aquí.</p>';
@@ -1839,7 +1841,11 @@ function installHtml() {
 }
 const renderInstall = () => { const el = $('#install-area'); if (el) el.innerHTML = installHtml(); };
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; setInstalled(false); renderInstall(); });
-addEventListener('appinstalled', () => { installEvt = null; setInstalled(true); renderInstall(); toast('Aplicación instalada'); });
+addEventListener('appinstalled', () => {
+  installEvt = null; setInstalled(true); renderInstall();
+  downloadAll(); // también si se instaló desde el menú del navegador (con el botón ya se está descargando)
+  confirmDialog({ title: 'Aplicación instalada', text: INSTALLED_TIP, ok: 'Entendido', cancel: null });
+});
 document.addEventListener('click', async e => {
   if (!e.target.closest('#install-app') || !installEvt) return;
   installEvt.prompt();
