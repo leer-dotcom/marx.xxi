@@ -200,6 +200,20 @@ let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 // por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
 let zoomFull = false, zoomHost = null;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
+/** Etiqueta «Versión simplificada / detallada» sobre la barra, centrada en la pantalla, al cambiar de versión con
+ *  el interruptor: solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
+ *  flechas es el mismo uso). Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»). */
+let zoomTipsShown = new Set();
+function flashZoomFull() {
+  const kind = zoomFull ? 'd' : 's';
+  if (zoomTipsShown.has(kind)) return;
+  zoomTipsShown.add(kind);
+  const t = $('#zoom-full-tip');
+  t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
+  clearTimeout(t._t);
+  t.hidden = true; void t.offsetWidth; t.hidden = false; // reinicia la animación
+  t._t = setTimeout(() => { t.hidden = true; }, 900);
+}
 function setZoomFull(on) {
   zoomFull = on;
   const b = $('#zoom [data-zfull]');
@@ -222,7 +236,7 @@ function zoomStep(d) {
 function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
-    if (!$('#zoom').open) setZoomFull(false); // cada vez que se abre el visor, la simplificada
+    if (!$('#zoom').open) { setZoomFull(false); zoomTipsShown = new Set(); } // cada vez que se abre el visor, la simplificada
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
@@ -301,7 +315,7 @@ function openZoom(host, keepList = false, markup = null) {
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
-    if (e.target.closest('[data-zfull]')) { setZoomFull(!zoomFull); return openZoom(zoomHost, true); }
+    if (e.target.closest('[data-zfull]')) { setZoomFull(!zoomFull); flashZoomFull(); return openZoom(zoomHost, true); }
     if (e.target.closest('[data-zfold]')) {
       const f = cap.classList.toggle('folded');
       e.target.closest('[data-zfold]').setAttribute('aria-label', f ? 'Mostrar la descripción' : 'Ocultar la descripción');
