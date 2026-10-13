@@ -657,7 +657,7 @@ function libraryView() {
       <div class="eyebrow">Biblioteca</div>
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       ${L.pubs.length > 1
-        ? `<div class="lede sm"><p>Dos revistas, un proyecto: Marx XXI fija el marco; Nuevo Ciclo lo pone a prueba cada trimestre.</p>
+        ? `<div class="lede sm col"><p>Dos revistas, un proyecto: Marx XXI fija el marco; Nuevo Ciclo lo pone a prueba cada trimestre.</p>
           <p>Lee, subraya y estudia en esta aplicación los textos íntegros facilitados por <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a> · Apoya su edición suscribiéndote en la página oficial. <a class="btn lede-cta" href="https://marxxxi.com/pages/tipos-de-suscripciones" rel="noopener" target="_blank">Suscríbete →</a></p></div>`
         : `<p class="lede">${esc(L.pubs[0].cross_volume.lede || '')}</p>`}
     </section>
