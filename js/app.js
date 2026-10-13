@@ -196,6 +196,16 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 // cerrar. El pie va arriba, entero; el dibujo se ajusta al espacio que queda.
 // Esquemas que se recorren: los visibles de la pantalla (o de la hoja) de partida.
 let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
+// Versión de cada figura (temporal, para contrastar la revisión de los esquemas): la simplificada (la de siempre,
+// por defecto) o la completa, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
+let zoomFull = false, zoomHost = null;
+const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
+function setZoomFull(on) {
+  zoomFull = on;
+  const b = $('#zoom [data-zfull]');
+  b.setAttribute('aria-pressed', on);
+  b.title = on ? 'Viendo la figura completa (c): pasar a la simplificada' : 'Viendo la figura simplificada (s): pasar a la completa';
+}
 /** Abre o cierra el control vertical de zoom (sobre la lupa). */
 function toggleZoomSlider(on) {
   const sl = $('#zoom-slider'), b = $('#zoom [data-zmenu]');
@@ -209,9 +219,10 @@ function zoomStep(d) {
   zoomIdx = (zoomIdx + d + zoomList.length) % zoomList.length;
   openZoom(zoomList[zoomIdx], true);
 }
-function openZoom(host, keepList = false) {
+function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
+    if (!$('#zoom').open) setZoomFull(false); // cada vez que se abre el visor, la simplificada
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
@@ -220,19 +231,28 @@ function openZoom(host, keepList = false) {
   $('#zoom-pos').innerHTML = zoomList.length > 1 ? `${zoomIdx + 1} / ${zoomList.length}`
     : '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
+  zoomHost = host;
+  // completa: se trae su SVG (si no existe, se queda la simplificada) y se vuelve a abrir con él
+  const file = host.querySelector('.dg')?.dataset.svg;
+  if (zoomFull && markup == null && file) {
+    loadSvg(fullFile(file)).then(m => openZoom(host, true, m), () => openZoom(host, true, host.querySelector('.dg')?.innerHTML || ''));
+    if (!dlg.open) dlg.showModal();
+    return;
+  }
   const vol = host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
-  st.innerHTML = `<div class="dg">${host.querySelector('.dg')?.innerHTML || ''}</div>`;
+  st.innerHTML = `<div class="dg">${markup ?? host.querySelector('.dg')?.innerHTML ?? ''}</div>`;
   // pie: en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción;
   // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
   const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel;
   // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
-  const tag = host.dataset.tag || '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
+  // tras el código, (s) simplificada o (c) completa: qué versión se está viendo
+  const tag = host.dataset.tag ? `${host.dataset.tag} (${zoomFull ? 'c' : 's'})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
   // la descripción (zc-desc) se pliega con la doble flecha; queda el título: qué esquema es y su nombre
-  const capHtml = tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? `<span class="zc-desc"> ${esc(rest)}</span>` : ''}` : rest ? `<span class="zc-desc">${esc(rest)}</span>` : '';
+  const capHtml = tag || rest ? `<span class="zc-desc">${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' : ''}` : ''}${esc(rest)}</span>` : '';
   const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);
   const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ');
-  const fold = rest ? `<button type="button" class="zoom-fold" data-zfold aria-label="${cap.classList.contains('folded') ? 'Mostrar la descripción' : 'Ocultar la descripción'}"><svg viewBox="0 0 24 24"><path d="M6 12l6-6 6 6M6 18l6-6 6 6"/></svg></button>` : '';
+  const fold = capHtml ? `<button type="button" class="zoom-fold" data-zfold aria-label="${cap.classList.contains('folded') ? 'Mostrar la descripción' : 'Ocultar la descripción'}"><svg viewBox="0 0 24 24"><path d="M6 12l6-6 6 6M6 18l6-6 6 6"/></svg></button>` : '';
   cap.innerHTML = (zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml) + fold;
   if (!dlg.open) dlg.showModal();
 
@@ -281,10 +301,11 @@ function openZoom(host, keepList = false) {
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
+    if (e.target.closest('[data-zfull]')) { setZoomFull(!zoomFull); return openZoom(zoomHost, true); }
     if (e.target.closest('[data-zfold]')) {
       const f = cap.classList.toggle('folded');
       e.target.closest('[data-zfold]').setAttribute('aria-label', f ? 'Mostrar la descripción' : 'Ocultar la descripción');
-      return fit(); // el pie cambia de alto: el esquema se reajusta al espacio libre
+      clamp(); apply(); return; // el pie cambia de alto: el esquema conserva su zoom (solo se recoloca si hace falta)
     }
     const b = e.target.closest('[data-z]');
     if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
@@ -352,7 +373,7 @@ function setZoomRot(on) {
   const label = on ? 'Volver a vertical' : 'Girar a horizontal';
   b.setAttribute('aria-label', label); b.title = label;
 }
-$('#zoom').addEventListener('close', () => { setZoomRot(false); toggleZoomSlider(false); $('#zoom-caption').classList.remove('folded'); });
+$('#zoom').addEventListener('close', () => { setZoomRot(false); toggleZoomSlider(false); setZoomFull(false); $('#zoom-caption').classList.remove('folded'); });
 // al girar el móvil o cambiar el tamaño de la ventana, volver a ajustar a la pantalla
 new ResizeObserver(() => { if ($('#zoom').open) zoomFit?.(); }).observe($('#zoom-stage'));
 document.addEventListener('keydown', e => {
@@ -520,7 +541,7 @@ const paras = list => list.map(p => `<p>${esc(p)}</p>`).join('');
 /** Pestañas; `primary` marca la principal (Artículos en el volumen, Texto completo en el artículo). */
 function tabs(base, names, current, primary = -1) {
   return `<nav class="tabs" aria-label="Secciones">${names.map((n, i) => n == null ? '' : // null: pestaña que no aplica
-    `<a href="${base}/${i}"${i === primary ? ' class="primary"' : ''}${i === current ? ' aria-current="page"' : ''}>${esc(n)}</a>`).join('')}</nav>`;
+    `<a href="${base}/${i}"${i === primary ? ' class="primary"' : ''}${i === current ? ' aria-current="page"' : ''}>${n.html ?? esc(n)}</a>`).join('')}</nav>`;
 }
 
 const NUM_WORDS = ['cero', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'];
@@ -810,6 +831,8 @@ function volNeighbourLink(v, dir, tab) {
 export const ART_TABS = ['Píldoras', 'Texto completo', 'Resumen', 'Esquema', 'Conceptos', 'Cita y conclusión'];
 /** Índice de cada pestaña del artículo (las rutas #/articulo/<id>/<n> usan estos números). */
 export const TAB = { pildoras: 0, texto: 1, resumen: 2, esquema: 3, conceptos: 4, cita: 5 };
+/** Última pestaña de la guía, solo en la página del artículo (no en la hoja «Guía» del lector): sus marcadores. */
+const MARKS_TAB = ART_TABS.length;
 
 /** Contenido de las pestañas de guía (también se usa en la hoja «Guía» del lector). */
 /** Aviso breve de que la guía está elaborada con IA (Claude), con enlace a los créditos. */
@@ -882,6 +905,12 @@ function articleView(id, tab = 0) {
       </div>
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;
+  } else if (tab === MARKS_TAB) {
+    const items = store.highlights(a.id).sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
+    body = items.length ? `<div class="art-marks">
+        <p class="muted small" style="margin-top:0">${items.length} ${items.length === 1 ? 'pasaje subrayado' : 'pasajes subrayados'} en este texto, en su orden. Toca uno para ir a él en el modo lectura.</p>
+        ${items.map(hlItem).join('')}</div>`
+      : `<div class="empty">Aún no hay marcadores en este texto.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`;
   } else body = guideTab(a, tab);
   return `<div class="wrap has-fab" data-vol="${v.key}">
     <header class="page-head with-aside vol-head art-band"><div class="ph-main">
@@ -900,7 +929,7 @@ function articleView(id, tab = 0) {
         // en el móvil, «Añadir a Mi lista» va en la misma línea que el paso entre artículos (copia de la de .ph-main)
         return `<div class="ph-navrow">${listBtn(a.id)}${headNav(pa ? toArt(pa) : toVol, na ? toArt(na) : toConcl, 'Artículos contiguos')}</div>`;
       })()}</header>
-    ${tabs(`#/articulo/${a.id}`, ART_TABS, tab, TAB.texto)}
+    ${tabs(`#/articulo/${a.id}`, [...ART_TABS, { html: `<span class="tab-marks">${ICON.mark}<i>Marcadores</i></span>` }], tab, TAB.texto)}
     ${body}
     ${tab !== TAB.texto ? relatedPanel(a) : ''}
     <nav class="neighbours" aria-label="Artículos contiguos">
@@ -1412,6 +1441,26 @@ function searchView(params) {
 }
 
 /** Marcadores = subrayados del modo lectura (con su color y nota propia), agrupados por texto. */
+/** Un subrayado (con su nota, si la tiene): lleva a su pasaje en el modo lectura; la cruz lo elimina. */
+const hlItem = h => `<div class="hl-item" style="--hl:${(HL_COLORS[h.color] || HL_COLORS.yellow)[1]}">
+        <a class="hl-link" href="#/leer/${h.key}?b=${h.b0}">
+          <p class="hl-text">${esc(h.text.length > 320 ? h.text.slice(0, 320) + '…' : h.text)}</p>
+          ${h.note ? `<p class="hl-own">${esc(h.note).replace(/\n/g, '<br>')}</p>` : ''}
+          <span class="src">${new Date(h.t).toLocaleDateString('es')}</span>
+        </a>
+        <button class="icon-btn" data-del="${esc(h.uid)}" aria-label="Eliminar subrayado">${ICON.x}</button>
+      </div>`;
+/** Elimina un subrayado (si tiene nota, tras confirmarlo) y vuelve a pintar la pantalla. */
+function deleteHighlight(uid) {
+  const h = store.highlights().find(x => x.uid === uid);
+  const del = () => { store.removeHighlight(uid); route(); };
+  if (!h?.note.trim()) return del();
+  confirmDialog({ title: 'Eliminar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Eliminar', danger: true })
+    .then(yes => yes && del());
+}
+// pestaña «Marcadores» de la guía de un artículo
+document.addEventListener('click', e => { const b = e.target.closest('.art-marks [data-del]'); if (b) deleteHighlight(b.dataset.del); });
+
 function bookmarksView(params) {
   setBar('Marcadores');
   const all = store.highlights();
@@ -1443,26 +1492,12 @@ function bookmarksView(params) {
       <h2 class="hl-group-title">${esc(g.title)} <span class="m-count">${g.items.length}</span></h2>
       ${g.author ? `<div class="muted small">${esc(g.author)}</div>` : ''}</summary>
       <a class="hl-open small" href="#/leer/${g.key}">Abrir el texto →</a>
-      ${g.items.map(h => `<div class="hl-item" style="--hl:${(HL_COLORS[h.color] || HL_COLORS.yellow)[1]}">
-        <a class="hl-link" href="#/leer/${g.key}?b=${h.b0}">
-          <p class="hl-text">${esc(h.text.length > 320 ? h.text.slice(0, 320) + '…' : h.text)}</p>
-          ${h.note ? `<p class="hl-own">${esc(h.note).replace(/\n/g, '<br>')}</p>` : ''}
-          <span class="src">${new Date(h.t).toLocaleDateString('es')}</span>
-        </a>
-        <button class="icon-btn" data-del="${esc(h.uid)}" aria-label="Eliminar subrayado">${ICON.x}</button>
-      </div>`).join('')}
+      ${g.items.map(hlItem).join('')}
     </details>`).join('')
     : `<div class="empty">Aún no hay marcadores.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`}
   </div>`;
   return [html, () => {
-    const onClick = e => {
-      const b = e.target.closest('[data-del]'); if (!b) return;
-      const h = all.find(x => x.uid === b.dataset.del);
-      const del = () => { store.removeHighlight(b.dataset.del); route(); };
-      if (!h?.note.trim()) return del();
-      confirmDialog({ title: 'Eliminar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Eliminar', danger: true })
-        .then(yes => yes && del());
-    };
+    const onClick = e => { const b = e.target.closest('[data-del]'); if (b) deleteHighlight(b.dataset.del); };
     view.addEventListener('click', onClick);
     return () => view.removeEventListener('click', onClick);
   }];

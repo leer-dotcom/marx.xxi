@@ -11,5 +11,6 @@ desktop.ini
 .claude/
 .tmp-claude/
 
-# revisión de esquemas en curso (no publicar)
-data/svg/revision/
+# revisión de esquemas: las figuras completas se publican (temporalmente, para contrastarlas en la app);
+# la hoja de trabajo, no
+data/**/revision/*.xlsx
