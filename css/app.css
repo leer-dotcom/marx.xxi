@@ -300,6 +300,8 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 #r-hl.on{color:var(--ink);background:color-mix(in srgb,var(--hl) 55%,transparent);border-radius:10px}
 #r-hl.on svg{stroke-width:2}
 .reader.hl-mode{cursor:text}
+/* subrayador táctil: arrastrar subraya (sin la selección ni el menú del sistema); en vertical, sigue desplazando */
+@media (pointer:coarse){.reader.hl-mode{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}}
 /* marcadores del texto (ventana del lector) */
 .r-mark{display:block;margin-top:10px;padding:10px 12px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 12%,var(--paper));border-radius:0 6px 6px 0;color:var(--ink);text-decoration:none}
 .r-mark-t{display:block;font-size:16px;line-height:1.45}

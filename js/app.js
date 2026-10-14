@@ -10,6 +10,7 @@ const $ = (s, el = document) => el.querySelector(s);
 const view = $('#view');
 const ICON = {
   download: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 19h14"/></svg>',
+  upload: '<svg viewBox="0 0 24 24"><path d="M12 20V9M7 14l5-5 5 5M5 5h14"/></svg>',
   refresh: '<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>',
   code: '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/></svg>',
   book: '<svg viewBox="0 0 24 24"><path d="M3 5.5C5.5 4.5 8.5 4.5 11.5 6v13c-3-1.5-6-1.5-8.5-.5zM20.5 5.5C18 4.5 15 4.5 12.5 6v13c3-1.5 6-1.5 8-.5z"/></svg>',
@@ -1752,7 +1753,7 @@ function magSec(id, name, mag) {
     </section>`;
 }
 
-const ABOUT_TABS = ['Sobre la aplicación', 'Sobre la colección'];
+const ABOUT_TABS = ['Sobre la aplicación', 'Sobre la colección', 'Descarga'];
 
 /** «Acerca de», en dos pestañas: el lector (aplicación, código, instalación) y la colección (apoyo y revistas). */
 function aboutView(tab) {
@@ -1771,8 +1772,9 @@ function aboutView(tab) {
       <a class="btn ghost" href="${REPO_URL}" rel="noopener" target="_blank">${ICON.code}Ver el repositorio en GitHub</a>
     </section>
 
-    ${ab.security ? aboutSec(ab.security.title, ab.security.paragraphs) : ''}
-
+    ${ab.security ? aboutSec(ab.security.title, ab.security.paragraphs) : ''}`;
+  // Descarga: instalar y usar sin conexión, y exportar o importar los datos del lector
+  const download = () => `
     <section class="card about" id="instalar">
       <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
@@ -1784,8 +1786,8 @@ function aboutView(tab) {
       <p>Todo lo tuyo se guarda solo en este navegador: el progreso y el punto de lectura de cada texto, los leídos, Mi lista, los subrayados con sus notas, la leyenda de colores y los ajustes de lectura. No se envía a ningún servidor, así que <b>si se borran los datos de navegación del navegador, se pierden</b>.</p>
       <p><b>Exportar</b> descarga un archivo con todo ello, para guardar una copia o pasarlo a otro dispositivo o navegador. <b>Importar</b> carga un archivo exportado y sustituye los datos de este navegador por los suyos (pide confirmación antes).</p>
       <div class="data-actions">
-        <button type="button" class="btn" data-export>${ICON.download}Exportar datos</button>
-        <button type="button" class="btn ghost" data-import>Importar datos</button>
+        <button type="button" class="btn" data-export>${ICON.upload}Exportar datos</button>
+        <button type="button" class="btn ghost" data-import>${ICON.download}Importar datos</button>
         <input type="file" id="import-file" accept=".json,application/json" hidden>
       </div>
     </section>`;
@@ -1796,9 +1798,9 @@ function aboutView(tab) {
     ${others.map(p => magSec(p.id, p.name, p.about.magazine || {})).join('')}`;
   return `<div class="wrap">
     <header class="page-head"><div class="eyebrow">Lector de Marx XXI</div><h1>Acerca de</h1>
-      <div class="sub">Qué objetivos tiene este lector, cómo se han elaborado sus guías de estudio y cómo instalarlo y usarlo sin conexión; qué son Marx XXI y Nuevo Ciclo, y cómo apoyar su edición.</div></header>
+      <div class="sub">Qué objetivos tiene este lector y cómo se han elaborado sus guías de estudio; qué son Marx XXI y Nuevo Ciclo, y cómo apoyar su edición; y cómo instalarlo, usarlo sin conexión y guardar una copia de tus datos.</div></header>
     ${tabs('#/acerca', ABOUT_TABS, tab)}
-    ${tab === 1 ? collection() : reader()}
+    ${tab === 2 ? download() : tab === 1 ? collection() : reader()}
 
     <p class="muted small" style="margin-top:20px;text-align:center"><a href="#/creditos">Créditos: textos y licencia, autores y diseño →</a></p>
   </div>`;
@@ -1887,7 +1889,8 @@ async function route() {
     case 'marcadores': out = bookmarksView(params, parts[1]); break;
     case 'lista': out = listView(+(parts[1] || 0)); break;
     case 'ajustes': out = settingsView(); break;
-    case 'acerca': out = aboutView(parts[1] === '1' ? 1 : 0); break; // #/acerca/instalar: pestaña del lector
+    // #/acerca/instalar y #/acerca/datos: pestaña Descarga, en su apartado
+    case 'acerca': out = aboutView(parts[1] === '1' ? 1 : ['2', 'instalar', 'datos'].includes(parts[1]) ? 2 : 0); break;
     case 'creditos': out = creditsView(); break;
     default: out = notFound();
   }

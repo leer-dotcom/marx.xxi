@@ -19,6 +19,7 @@ const SVG = {
   gear: '<svg class="ico-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
 };
 const hlColor = hlHex;
+const coarse = () => matchMedia('(pointer: coarse)').matches; // pantalla táctil
 /** Botones de los colores que se ofrecen al subrayar (leyenda: casilla «Mostrar»), con su categoría. */
 const swatches = (attr, label = n => `Subrayar: ${n}`) => shownSlots().map(sl =>
   `<button type="button" class="hl-sw" ${attr}="${sl.id}" style="--hl:${hlHex(sl.id)}" aria-label="${esc(label(hlCat(sl.id)))}" title="${esc(hlCat(sl.id))}"></button>`).join('');
@@ -235,8 +236,11 @@ function mount({ key, a, v, blocks, params }) {
   function selectionRange() {
     const sel = getSelection();
     if (!sel.rangeCount || sel.isCollapsed) return null;
-    const r = sel.getRangeAt(0);
-    if (!reader.contains(r.commonAncestorContainer)) return null;
+    return rangePos(sel.getRangeAt(0));
+  }
+  /** Un Range del texto → { b0, o0, b1, o1 } (bloque y carácter de inicio y fin) o null. */
+  function rangePos(r) {
+    if (!r || r.collapsed || !reader.contains(r.commonAncestorContainer)) return null;
     const hit = els.filter(e => e.offsetParent !== null && !e.classList.contains('tbl') && r.intersectsNode(e));
     if (!hit.length) return null;
     const len = e => blocks[+e.dataset.b].p.length;
@@ -270,7 +274,7 @@ function mount({ key, a, v, blocks, params }) {
   const onSel = () => {
     clearTimeout(selT);
     // con el subrayado directo activo no hay barra: lo seleccionado se subraya al terminar de seleccionar
-    if (tool) { bar.hidden = true; selT = setTimeout(() => { if (!ptrDown) applyTool(); }, 700); return; }
+    if (tool) { bar.hidden = true; if (!coarse()) selT = setTimeout(() => { if (!ptrDown) applyTool(); }, 700); return; }
     selT = setTimeout(placeBar, 150);
   };
   document.addEventListener('selectionchange', onSel);
@@ -302,9 +306,9 @@ function mount({ key, a, v, blocks, params }) {
     reader.classList.toggle('hl-mode', !!k);
     if (k) { bar.hidden = true; toast(`Subrayado directo: ${hlCat(k)}. Selecciona texto para subrayarlo`); }
   }
-  function applyTool() {
+  function applyTool(range) {
     if (!tool) return;
-    const r = selectionRange(); if (!r) return;
+    const r = range ? rangePos(range) : selectionRange(); if (!r) return;
     const h = store.addHighlight({ key, ...r, color: tool, text: hlText(r) });
     hls = store.highlights(key);
     getSelection().removeAllRanges();
@@ -337,9 +341,63 @@ function mount({ key, a, v, blocks, params }) {
     if (!pop.hidden && !e.target.closest('.hl-tool')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); }
     if (reader.contains(e.target)) ptrDown = true;
   };
-  const onDocUp = () => { if (!ptrDown) return; ptrDown = false; if (tool) setTimeout(applyTool, 30); };
+  const onDocUp = e => { if (!ptrDown) return; ptrDown = false; if (tool && e.pointerType === 'mouse') setTimeout(() => applyTool(), 30); };
   document.addEventListener('pointerdown', onDocDown);
   document.addEventListener('pointerup', onDocUp);
+
+  // En pantallas táctiles, el subrayado directo es un subrayador de verdad: tocar y arrastrar sobre el texto va
+  // subrayando, en orden, desde donde se tocó hasta donde está el dedo (sin la selección del sistema). Arrastrar
+  // en vertical desde el principio sigue desplazando el texto (touch-action: pan-y); cerca de los bordes, el texto
+  // se desplaza solo para seguir subrayando. Con ratón se usa la selección normal (arriba).
+  let drag = null;
+  const caretAt = (x, y) => {
+    if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(x, y); return p && { node: p.offsetNode, off: p.offset }; }
+    const r = document.caretRangeFromPoint?.(x, y); return r && { node: r.startContainer, off: r.startOffset };
+  };
+  const draftStyle = document.createElement('style');
+  document.head.append(draftStyle);
+  const showDraft = r => {
+    if (window.CSS?.highlights && window.Highlight) {
+      draftStyle.textContent = `::highlight(hl-draft){background-color:${hlColor(tool)}}`;
+      CSS.highlights.set('hl-draft', new Highlight(r));
+    } else { const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  };
+  const clearDraft = () => { if (window.CSS?.highlights) CSS.highlights.delete('hl-draft'); };
+  const onTouchDown = e => {
+    if (!tool || e.pointerType === 'mouse' || !e.isPrimary) return;
+    const c = caretAt(e.clientX, e.clientY);
+    if (!c || !reader.contains(c.node) || e.target.closest('a,button')) return;
+    drag = { c0: c, x: e.clientX, y: e.clientY, moved: false, range: null };
+  };
+  const onTouchMove = e => {
+    if (!drag) return;
+    if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 8) return;
+    drag.moved = true;
+    e.preventDefault();
+    const c = caretAt(e.clientX, e.clientY);
+    if (c && reader.contains(c.node)) {
+      const r = document.createRange();
+      r.setStart(drag.c0.node, drag.c0.off);
+      if (r.comparePoint(c.node, c.off) < 0) { r.setStart(c.node, c.off); r.setEnd(drag.c0.node, drag.c0.off); } // hacia atrás
+      else r.setEnd(c.node, c.off);
+      drag.range = r;
+      showDraft(r);
+    }
+    // cerca del borde inferior o superior, el texto avanza o retrocede
+    const bottom = innerHeight - (document.body.classList.contains('chrome-hidden') ? 0 : ($('.reader-bottom')?.offsetHeight || 0));
+    if (e.clientY > bottom - 50) window.scrollBy(0, 14);
+    else if (e.clientY < topH() + 30) window.scrollBy(0, -14);
+  };
+  const onTouchEnd = e => {
+    if (!drag) return;
+    const d = drag; drag = null;
+    clearDraft();
+    if (e.type === 'pointerup' && d.moved && d.range) { applyTool(d.range); getSelection().removeAllRanges(); }
+  };
+  reader.addEventListener('pointerdown', onTouchDown);
+  document.addEventListener('pointermove', onTouchMove, { passive: false });
+  document.addEventListener('pointerup', onTouchEnd);
+  document.addEventListener('pointercancel', onTouchEnd);
   /** Ventana con los subrayados y notas de este texto, en su orden; tocar uno lleva a su pasaje. */
   function openMarks() {
     const list = [...hls].sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
@@ -674,6 +732,10 @@ function mount({ key, a, v, blocks, params }) {
     document.removeEventListener('selectionchange', onSel);
     document.removeEventListener('pointerdown', onDocDown);
     document.removeEventListener('pointerup', onDocUp);
+    document.removeEventListener('pointermove', onTouchMove);
+    document.removeEventListener('pointerup', onTouchEnd);
+    document.removeEventListener('pointercancel', onTouchEnd);
+    clearDraft(); draftStyle.remove();
     clearTimeout(selT);
     document.removeEventListener('visibilitychange', onVis);
     clearTimeout(saveT);
