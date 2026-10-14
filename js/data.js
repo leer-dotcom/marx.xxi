@@ -432,13 +432,54 @@ export const store = {
     if (patch.color) LS.set('mx.hlColor', patch.color);
   },
   removeHighlight(id) { LS.set('mx.hl', this.highlights().filter(h => h.uid !== id)); },
-  lastColor() { return LS.get('mx.hlColor', 'yellow'); },
+  lastColor() { const k = LS.get('mx.hlColor', 'yellow'); return hlSlot(k)?.show ? k : shownSlots()[0]?.id || 'yellow'; },
+
+  // Leyenda de los subrayados (para toda la aplicación): cada color usado para subrayar es una «línea» con su
+  // color de la paleta, su categoría y si se muestra al subrayar. Los subrayados guardan el id de la línea, así que
+  // cambiar su color o su categoría cambia todos los subrayados de esa línea.
+  legend() {
+    const l = LS.get('mx.legend', null);
+    return Array.isArray(l) && l.length ? l : DEFAULT_LEGEND.map(x => ({ ...x }));
+  },
+  saveLegend(l) { LS.set('mx.legend', l); },
 };
 
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
-/** Colores de subrayado: clave → [nombre, color]. */
-export const HL_COLORS = {
-  yellow: ['Amarillo', '#f2cf4a'], green: ['Verde', '#7fd36f'], blue: ['Azul', '#6fb4ee'],
-  pink: ['Rosa', '#f08ab5'], orange: ['Naranja', '#f5a04f'],
+/** Paleta de subrayadores (25): clave → [nombre, color]. Los cinco primeros son los colores de siempre. */
+export const HL_PALETTE = {
+  amarillo: ['Amarillo', '#f2cf4a'], verde: ['Verde', '#7fd36f'], azul: ['Azul', '#6fb4ee'], rosa: ['Rosa', '#f08ab5'],
+  naranja: ['Naranja', '#f5a04f'], limon: ['Limón', '#e3e05a'], menta: ['Menta', '#86e0c0'], turquesa: ['Turquesa', '#4fcfd6'],
+  celeste: ['Celeste', '#a4cff7'], lavanda: ['Lavanda', '#b6a3ef'], lila: ['Lila', '#d79be8'], fucsia: ['Fucsia', '#ea6fc0'],
+  coral: ['Coral', '#f5877a'], melocoton: ['Melocotón', '#f8bd8e'], arena: ['Arena', '#d8c48c'], gris: ['Gris', '#b9bdbd'],
+  mostaza: ['Mostaza', '#dcae38'], oliva: ['Oliva', '#b6c04f'], pistacho: ['Pistacho', '#bde27f'], esmeralda: ['Esmeralda', '#4ec48a'],
+  aguamarina: ['Aguamarina', '#7fe0e8'], indigo: ['Índigo', '#8c97f0'], violeta: ['Violeta', '#a57ff0'], cereza: ['Cereza', '#e8607f'],
+  salmon: ['Salmón', '#f7a291'],
 };
+/** Categorías habituales de subrayado (la categoría de cada color se puede escribir libremente). */
+export const HL_CATEGORIES = [
+  'Ideas principales', 'Tesis del autor', 'Conceptos clave', 'Definiciones', 'Argumentos', 'Pruebas y evidencias',
+  'Ejemplos y casos prácticos', 'Autores citados', 'Obras y fuentes', 'Fechas y acontecimientos', 'Cifras y datos',
+  'Citas destacadas', 'Críticas y objeciones', 'Conclusiones', 'Dudas y para revisar',
+];
+/** Paleta en orden cromático (por tono, de los rojos a los violetas; los grises y pardos apagados, al final). */
+export const HL_PALETTE_ORDER = Object.keys(HL_PALETTE).map(k => {
+  const h = HL_PALETTE[k][1], [r, g, b] = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+  let hue = 0;
+  if (d) hue = max === r ? ((g - b) / d + 6) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  const sat = d / (1 - Math.abs(max + min - 1) || 1);
+  return [k, sat < 0.25 ? 100 + hue : hue]; // apagados (gris, arena) detrás
+}).sort((a, b) => a[1] - b[1]).map(x => x[0]);
+// la leyenda de partida: los cinco colores de siempre, con su nombre como categoría (los subrayados ya hechos
+// guardan estas claves: yellow, green…)
+const DEFAULT_LEGEND = [['yellow', 'amarillo'], ['green', 'verde'], ['blue', 'azul'], ['pink', 'rosa'], ['orange', 'naranja']]
+  .map(([id, color]) => ({ id, color, cat: HL_PALETTE[color][0], show: true }));
+/** Línea de la leyenda de un subrayado (por su id), o undefined. */
+export const hlSlot = id => store.legend().find(s => s.id === id);
+/** Color (hex) con el que se pinta un subrayado de esa línea. */
+export const hlHex = id => HL_PALETTE[hlSlot(id)?.color]?.[1] || HL_PALETTE.amarillo[1];
+/** Categoría (o, si no tiene, el nombre del color) de esa línea. */
+export const hlCat = id => { const s = hlSlot(id); return s?.cat?.trim() || HL_PALETTE[s?.color]?.[0] || 'Subrayado'; };
+/** Líneas que se ofrecen al subrayar (casilla «Mostrar»). */
+export const shownSlots = () => store.legend().filter(s => s.show && s.color);

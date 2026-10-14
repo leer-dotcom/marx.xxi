@@ -1,6 +1,6 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
-import { article, volume, neighbours, text, esc, highlight, fold, store, MK, HL_COLORS, volHead, volShort, artLabel, byline } from './data.js';
-import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog } from './app.js';
+import { article, volume, neighbours, text, esc, highlight, fold, store, MK, hlHex, hlCat, shownSlots, volHead, volShort, artLabel, byline } from './data.js';
+import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog, openLegend } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -15,8 +15,13 @@ const SVG = {
   x: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
   note: '<svg viewBox="0 0 24 24"><path d="M5 4h14v12H10l-5 4z"/><path d="M8.5 8.5h7M8.5 12h4.5"/></svg>',
+  pen: '<svg viewBox="0 0 24 24"><path d="M14.5 4.5l5 5L10 19H5v-5z"/><path d="M12.5 6.5l5 5M4 21.5h9"/></svg>',
+  gear: '<svg class="ico-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
 };
-const hlColor = k => (HL_COLORS[k] || HL_COLORS.yellow)[1];
+const hlColor = hlHex;
+/** Botones de los colores que se ofrecen al subrayar (leyenda: casilla «Mostrar»), con su categoría. */
+const swatches = (attr, label = n => `Subrayar: ${n}`) => shownSlots().map(sl =>
+  `<button type="button" class="hl-sw" ${attr}="${sl.id}" style="--hl:${hlHex(sl.id)}" aria-label="${esc(label(hlCat(sl.id)))}" title="${esc(hlCat(sl.id))}"></button>`).join('');
 
 /** Convierte las marcas internas (cursiva, negrita, llamadas a nota, página impresa) en HTML. */
 function rich(html) {
@@ -147,7 +152,7 @@ export async function readerView(key, params) {
     <button class="icon-btn" data-share aria-label="Compartir enlace" title="Compartir enlace"><svg viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg></button>
   </div></div>
   <div class="hl-bar" id="hl-bar" role="toolbar" aria-label="Subrayar el pasaje seleccionado" hidden>
-    ${Object.entries(HL_COLORS).map(([k, [n, c]]) => `<button type="button" class="hl-sw" data-color="${k}" style="--hl:${c}" aria-label="Subrayar en ${n.toLowerCase()}" title="${n}"></button>`).join('')}
+    <span class="hl-sws">${swatches('data-color')}</span>
     <button type="button" class="hl-add-note" data-color="note" aria-label="Subrayar y añadir una nota" title="Subrayar y añadir nota">${SVG.note}</button>
   </div>
 
@@ -173,6 +178,15 @@ export async function readerView(key, params) {
     <div class="seek"><input type="range" id="r-seek" min="0" max="1000" value="0" aria-label="Posición en el texto"><span class="pct" id="r-pct">0 %</span></div>
     <div class="buttons">
       <button class="bar-btn" id="r-index">${SVG.list}Índice</button>
+      <div class="hl-tool">
+        <div class="hl-pop" id="hl-pop" role="group" aria-label="Subrayado directo" hidden>
+          <button type="button" class="hl-pop-marks" data-hllegend aria-label="Leyenda de los subrayados" title="Leyenda">${SVG.gear}</button>
+          <button type="button" class="hl-pop-marks" data-hlmarks aria-label="Marcadores de este texto" title="Marcadores de este texto">${SVG.mark}</button>
+          <span class="hl-pop-sep" aria-hidden="true"></span>
+          <span class="hl-pop-sws">${swatches('data-tcolor')}</span>
+        </div>
+        <button class="bar-btn" id="r-hl" aria-expanded="false" aria-pressed="false">${SVG.pen}Subrayar</button>
+      </div>
       ${a ? `<button class="bar-btn" id="r-guide">${SVG.guide}Guía de estudio</button>` : ''}
       <button class="bar-btn" id="r-aa">${SVG.aa}Aa</button>
     </div>
@@ -253,7 +267,12 @@ function mount({ key, a, v, blocks, params }) {
     bar.style.top = top + 'px';
     bar.style.left = Math.min(innerWidth - bw - 8, Math.max(8, cx - bw / 2)) + 'px';
   }
-  const onSel = () => { clearTimeout(selT); selT = setTimeout(placeBar, 150); };
+  const onSel = () => {
+    clearTimeout(selT);
+    // con el subrayado directo activo no hay barra: lo seleccionado se subraya al terminar de seleccionar
+    if (tool) { bar.hidden = true; selT = setTimeout(() => { if (!ptrDown) applyTool(); }, 700); return; }
+    selT = setTimeout(placeBar, 150);
+  };
   document.addEventListener('selectionchange', onSel);
   bar.addEventListener('pointerdown', e => e.preventDefault()); // no perder la selección
   bar.addEventListener('click', e => {
@@ -268,10 +287,80 @@ function mount({ key, a, v, blocks, params }) {
     else toast('Subrayado guardado · tócalo para añadir una nota');
   });
 
+  // --- subrayado directo: «Subrayar» despliega los cinco colores y, arriba, los marcadores del texto. Con un color
+  // elegido, el botón queda marcado y todo lo que se seleccione (arrastrando con el ratón, o con la selección del
+  // sistema en pantallas táctiles) se subraya en ese color; volver a pulsar «Subrayar» lo desactiva.
+  let tool = null, ptrDown = false, justApplied = 0;
+  const hlBtn = $('#r-hl'), pop = $('#hl-pop');
+  function setTool(k) {
+    tool = k;
+    pop.hidden = true;
+    hlBtn.setAttribute('aria-expanded', false);
+    hlBtn.setAttribute('aria-pressed', !!k);
+    hlBtn.classList.toggle('on', !!k);
+    if (k) hlBtn.style.setProperty('--hl', hlColor(k)); else hlBtn.style.removeProperty('--hl');
+    reader.classList.toggle('hl-mode', !!k);
+    if (k) { bar.hidden = true; toast(`Subrayado directo: ${hlCat(k)}. Selecciona texto para subrayarlo`); }
+  }
+  function applyTool() {
+    if (!tool) return;
+    const r = selectionRange(); if (!r) return;
+    const h = store.addHighlight({ key, ...r, color: tool, text: hlText(r) });
+    hls = store.highlights(key);
+    getSelection().removeAllRanges();
+    repaint(h);
+    justApplied = Date.now();
+  }
+  hlBtn.onclick = () => {
+    if (tool) return setTool(null);
+    pop.hidden = !pop.hidden;
+    hlBtn.setAttribute('aria-expanded', !pop.hidden);
+  };
+  pop.onclick = e => {
+    const c = e.target.closest('[data-tcolor]');
+    if (c) return setTool(c.dataset.tcolor);
+    if (e.target.closest('[data-hlmarks]')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); openMarks(); }
+    if (e.target.closest('[data-hllegend]')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); openLegend(onLegend); }
+  };
+  // la leyenda cambió: colores y categorías en los botones, en el texto y en el subrayado directo
+  function onLegend() {
+    $('.hl-pop-sws', pop).innerHTML = swatches('data-tcolor');
+    $('.hl-sws', bar).innerHTML = swatches('data-color');
+    if (tool && !shownSlots().some(x => x.id === tool)) setTool(null);
+    else if (tool) hlBtn.style.setProperty('--hl', hlColor(tool));
+    for (const m of reader.querySelectorAll('mark.hl')) {
+      const h = hls.find(x => x.uid === m.dataset.hl);
+      if (h) m.style.setProperty('--hl', hlColor(h.color));
+    }
+  }
+  const onDocDown = e => {
+    if (!pop.hidden && !e.target.closest('.hl-tool')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); }
+    if (reader.contains(e.target)) ptrDown = true;
+  };
+  const onDocUp = () => { if (!ptrDown) return; ptrDown = false; if (tool) setTimeout(applyTool, 30); };
+  document.addEventListener('pointerdown', onDocDown);
+  document.addEventListener('pointerup', onDocUp);
+  /** Ventana con los subrayados y notas de este texto, en su orden; tocar uno lleva a su pasaje. */
+  function openMarks() {
+    const list = [...hls].sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
+    const cut = t => esc(t.length > 300 ? t.slice(0, 300) + '…' : t);
+    openSheet('Marcadores', list.length ? `<p class="muted small" style="margin-top:0">${list.length} ${list.length === 1 ? 'pasaje subrayado' : 'pasajes subrayados'} en este texto. Toca uno para ir a él.</p>
+      <div class="r-marks">${list.map(h => `<a href="#" class="r-mark" data-jump="${h.b0}" style="--hl:${hlColor(h.color)}">
+        <span class="r-mark-t">${cut(h.text)}</span>${h.note ? `<span class="r-mark-n">${esc(h.note).replace(/\n/g, '<br>')}</span>` : ''}</a>`).join('')}</div>
+      <p class="muted small"><a href="#/marcadores" data-close>Ver los marcadores de todos los textos</a></p>`
+      : `<p class="empty">Aún no hay subrayados en este texto.<br>Selecciona un pasaje y elige un color, o usa <b>Subrayar</b> para subrayar directamente.</p>`, body => {
+      body.onclick = e => {
+        const j = e.target.closest('[data-jump]'); if (!j) return;
+        e.preventDefault(); closeSheet(); goTo(+j.dataset.jump, { flash: true });
+      };
+    });
+  }
+
   function openHighlight(id, focusNote = false) {
     const h = hls.find(x => x.uid === id); if (!h) return;
-    const colors = cur => Object.entries(HL_COLORS).map(([k, [n, c]]) =>
-      `<button type="button" class="hl-sw" data-color="${k}" style="--hl:${c}" aria-pressed="${k === cur}" aria-label="${n}" title="${n}"></button>`).join('');
+    // los colores que se ofrecen y, si el subrayado es de uno oculto, también el suyo
+    const colors = cur => [...shownSlots(), ...(shownSlots().some(x => x.id === cur) ? [] : [{ id: cur }])].map(sl =>
+      `<button type="button" class="hl-sw" data-color="${sl.id}" style="--hl:${hlHex(sl.id)}" aria-pressed="${sl.id === cur}" aria-label="${esc(hlCat(sl.id))}" title="${esc(hlCat(sl.id))}"></button>`).join('');
     openSheet('Subrayado', `
       <blockquote class="hl-quote" style="--hl:${hlColor(h.color)}">${esc(h.text.length > 600 ? h.text.slice(0, 600) + '…' : h.text)}</blockquote>
       <div class="hl-colors" role="group" aria-label="Color del subrayado">${colors(h.color)}</div>
@@ -414,6 +503,7 @@ function mount({ key, a, v, blocks, params }) {
   // --- tocar el texto muestra/oculta las barras
   reader.addEventListener('click', e => {
     if (e.target.closest('a,button,mark.hl') || String(getSelection()).length) return;
+    if (Date.now() - justApplied < 400) return; // acaba de subrayar (subrayado directo): no ocultar las barras
     document.body.classList.toggle('chrome-hidden');
   });
 
@@ -430,7 +520,7 @@ function mount({ key, a, v, blocks, params }) {
   // --- tocar un subrayado abre su nota
   reader.addEventListener('click', e => {
     const m = e.target.closest('mark.hl');
-    if (!m || e.target.closest('[data-note]') || String(getSelection()).length) return;
+    if (!m || e.target.closest('[data-note]') || String(getSelection()).length || Date.now() - justApplied < 400) return;
     openHighlight(m.dataset.hl);
   });
 
@@ -582,6 +672,8 @@ function mount({ key, a, v, blocks, params }) {
     removeEventListener('scroll', onScroll);
     removeEventListener('keydown', onKey);
     document.removeEventListener('selectionchange', onSel);
+    document.removeEventListener('pointerdown', onDocDown);
+    document.removeEventListener('pointerup', onDocUp);
     clearTimeout(selT);
     document.removeEventListener('visibilitychange', onVis);
     clearTimeout(saveT);

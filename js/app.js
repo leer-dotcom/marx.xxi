@@ -1,7 +1,7 @@
 // Marx XXI · lector web. SPA sin dependencias con rutas por hash (compatible con GitHub Pages).
 import {
   loadLibrary, lib, dataUrl, pub, volume, article, neighbours, text, esc, highlight, fold,
-  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS, HL_COLORS,
+  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS, HL_PALETTE, HL_PALETTE_ORDER, HL_CATEGORIES, hlHex, hlCat,
   volName, volShort, volHead, volDate, artLabel, byline, isInterview, related, monthName,
 } from './data.js';
 import { readerView } from './reader.js';
@@ -17,6 +17,7 @@ const ICON = {
   az: '<svg viewBox="0 0 24 24"><path d="M3 18L7 6l4 12M4.3 14h5.4M14 6h7l-7 12h7"/></svg>',
   search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>',
   mark: '<svg viewBox="0 0 24 24"><path d="M7 4h10v16l-5-4-5 4z"/></svg>',
+  gear: '<svg class="ico-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
   aa: '<svg viewBox="0 0 24 24"><path d="M4 18L9 6l5 12M5.8 14h6.4M15 18l3-7 3 7M15.9 16h4.2"/></svg>',
   info: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
   guide: '<svg viewBox="0 0 24 24"><path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c3 2.3 8 2.3 11 0V11"/></svg>',
@@ -1456,7 +1457,7 @@ function searchView(params) {
 
 /** Marcadores = subrayados del modo lectura (con su color y nota propia), agrupados por texto. */
 /** Un subrayado (con su nota, si la tiene): lleva a su pasaje en el modo lectura; la cruz lo elimina. */
-const hlItem = h => `<div class="hl-item" style="--hl:${(HL_COLORS[h.color] || HL_COLORS.yellow)[1]}">
+const hlItem = h => `<div class="hl-item" style="--hl:${hlHex(h.color)}" title="${esc(hlCat(h.color))}">
         <a class="hl-link" href="#/leer/${h.key}?b=${h.b0}">
           <p class="hl-text">${esc(h.text.length > 320 ? h.text.slice(0, 320) + '…' : h.text)}</p>
           ${h.note ? `<p class="hl-own">${esc(h.note).replace(/\n/g, '<br>')}</p>` : ''}
@@ -1475,8 +1476,19 @@ function deleteHighlight(uid) {
 // pestaña «Marcadores» de la guía de un artículo
 document.addEventListener('click', e => { const b = e.target.closest('.art-marks [data-del]'); if (b) deleteHighlight(b.dataset.del); });
 
-function bookmarksView(params) {
+const BM_TABS = () => [{ html: `<span class="tab-ico">${ICON.mark}Marcadores</span>` }, { html: `<span class="tab-ico">${ICON.gear}Configurar leyenda</span>` }];
+function bookmarksView(params, tabArg) {
   setBar('Marcadores');
+  const tab = +tabArg === 1 ? 1 : 0;
+  if (tab === 1) {
+    const html = `<div class="wrap">
+      <header class="page-head"><h1>Marcadores</h1>
+        <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div></header>
+      ${tabs('#/marcadores', BM_TABS(), 1)}
+      <div class="bm-panel" id="legend-box"></div>
+    </div>`;
+    return [html, () => { mountLegend($('#legend-box')); }];
+  }
   const all = store.highlights();
   const color = params.get('c') || '';
   const shown = color ? all.filter(h => h.color === color) : all;
@@ -1495,11 +1507,13 @@ function bookmarksView(params) {
   const used = new Set(all.map(h => h.color));
   const html = `<div class="wrap">
     <header class="page-head"><h1>Marcadores</h1>
-      <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias.</div></header>
+      <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div></header>
+    ${tabs('#/marcadores', BM_TABS(), 0)}
+    <div class="bm-panel">
     ${used.size > 1 ? `<div class="chips hl-filter" role="group" aria-label="Filtrar por color">
-      <a class="chip" href="#/marcadores"${color ? '' : ' aria-pressed="true"'}>Todos <span class="m-count">${all.length}</span></a>
-      ${Object.entries(HL_COLORS).filter(([k]) => used.has(k)).map(([k, [n, c]]) =>
-        `<a class="chip" href="#/marcadores?c=${k}"${k === color ? ' aria-pressed="true"' : ''}><i class="hl-dot" style="--hl:${c}"></i>${n}</a>`).join('')}
+      <a class="chip" href="#/marcadores/0"${color ? '' : ' aria-pressed="true"'}>Todos <span class="m-count">${all.length}</span></a>
+      ${store.legend().filter(s => used.has(s.id)).map(s =>
+        `<a class="chip" href="#/marcadores/0?c=${s.id}"${s.id === color ? ' aria-pressed="true"' : ''}><i class="hl-dot" style="--hl:${hlHex(s.id)}"></i>${esc(hlCat(s.id))}</a>`).join('')}
     </div>` : ''}
     ${groups.length ? groups.map(g => `<details class="hl-group" data-vol="${g.v.key}"${groups.length === 1 ? ' open' : ''}>
       <summary><div class="eyebrow vol">${esc(volHead(g.v))}</div>
@@ -1509,12 +1523,122 @@ function bookmarksView(params) {
       ${g.items.map(hlItem).join('')}
     </details>`).join('')
     : `<div class="empty">Aún no hay marcadores.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`}
+    </div>
   </div>`;
   return [html, () => {
     const onClick = e => { const b = e.target.closest('[data-del]'); if (b) deleteHighlight(b.dataset.del); };
     view.addEventListener('click', onClick);
     return () => view.removeEventListener('click', onClick);
   }];
+}
+
+/** Leyenda de los subrayados (para toda la aplicación): una línea por color, con su círculo (toca para elegir entre
+ *  los 16 colores de la paleta), su categoría (se escribe o se elige de la lista con la flecha) y «Mostrar» (si se
+ *  ofrece al subrayar). La última línea, vacía, crea un color nuevo al elegirle color. `onChange` tras cada cambio. */
+export function openLegend(onChange) {
+  openSheet('Leyenda', '', body => mountLegend(body, onChange, () => closeSheet()));
+}
+/** Pinta la leyenda en `root` y la deja editable (ver openLegend). */
+function mountLegend(root, onChange, onDone) {
+  // se edita una copia: nada cambia en la aplicación hasta «Guardar» (que pide confirmación); «Cancelar» la descarta
+  let legend = store.legend().map(x => ({ ...x })), picking = null, listing = null, dirty = false;
+  const save = () => { dirty = true; };
+  const row = (s, i) => {
+    const hex = HL_PALETTE[s.color]?.[1];
+    return `<div class="lg-row${s.color ? '' : ' empty'}" data-i="${i}">
+      <button type="button" class="lg-dot" data-pick="${i}" style="${hex ? `--hl:${hex}` : ''}" aria-label="${hex ? `Color: ${HL_PALETTE[s.color][0]}. Cambiar` : 'Elegir color para una categoría nueva'}" aria-expanded="${picking === i}"></button>
+      <span class="lg-cat${isDef(s) ? ' is-default' : ''}"><input type="text" data-cat="${i}" value="${esc(isDef(s) ? colorName(s) : s.cat)}" placeholder="${s.color ? 'Categoría' : 'Nueva categoría: elige antes su color'}" ${s.color ? '' : 'disabled'} aria-label="Categoría">
+        <span class="lg-pen" aria-hidden="true" title="Escribe la categoría que quieras"><svg viewBox="0 0 24 24"><path d="M15 5l4 4L9 19H5v-4z"/><path d="M13 7l4 4"/></svg></span>
+        <button type="button" class="lg-more" data-catlist="${i}" aria-label="Categorías habituales" aria-expanded="${listing === i}" ${s.color ? '' : 'disabled'}>▾</button></span>
+      <label class="lg-show"><input type="checkbox" data-show="${i}" ${s.show && s.color ? 'checked' : ''} ${s.color ? '' : 'disabled'}><span>Usar</span></label>
+    </div>
+    ${picking === i ? `<div class="lg-palette" role="group" aria-label="Colores">${HL_PALETTE_ORDER.map(k => { const [n, c] = HL_PALETTE[k];
+      return `<button type="button" class="lg-pal" data-color="${k}" style="--hl:${c}" aria-pressed="${k === s.color}"><i></i>${n}</button>`; }).join('')}</div>` : ''}
+    ${listing === i ? `<div class="lg-cats" role="listbox" aria-label="Categorías habituales">
+      <button type="button" role="option" data-pickcat="" title="Volver al nombre del color">—</button>${freeCats(i).map(c =>
+      `<button type="button" role="option" data-pickcat="${esc(c)}">${esc(c)}</button>`).join('')}</div>` : ''}`;
+  };
+  // sin categoría propia (vacía o el nombre de su color): se muestra el nombre del color, con un lápiz al lado
+  const colorName = s => HL_PALETTE[s.color]?.[0] || '';
+  const isDef = s => !!s.color && (!s.cat?.trim() || s.cat === colorName(s));
+  // categorías sugeridas que no usa ya otra línea
+  const norm = t => (t || '').trim().toLocaleLowerCase('es');
+  const freeCats = i => HL_CATEGORIES.filter(c => !legend.some((s, j) => j !== i && norm(s.cat) === norm(c)));
+  // siempre una línea vacía al final para crear un color nuevo (tantas como colores tiene la paleta)
+  const rows = () => [...legend, ...(legend.length < Object.keys(HL_PALETTE).length ? [{ id: '', color: '', cat: '', show: false }] : [])];
+  const html = () => `<p class="muted small" style="margin-top:0">Para toda la aplicación: cambiar el color o la categoría de una línea cambia todos los subrayados hechos con ella. «Usar» decide qué colores se ofrecen al subrayar.</p>
+    <div class="legend">${rows().map(row).join('')}</div>
+    <div class="lg-actions"><button type="button" class="btn ghost" data-lgcancel>Cancelar</button><button type="button" class="btn" data-lgsave>Guardar</button></div>`;
+  {
+    const body = root;
+    const redraw = () => { const y = body.scrollTop; body.innerHTML = html(); body.scrollTop = y; };
+    redraw();
+    body.onclick = e => {
+      if (e.target.closest('[data-lgcancel]')) {
+        legend = store.legend().map(x => ({ ...x })); picking = listing = null; dirty = false;
+        return onDone ? onDone(false) : redraw();
+      }
+      if (e.target.closest('[data-lgsave]')) {
+        confirmDialog({ title: 'Guardar la leyenda', text: 'Los cambios de color y de categoría se aplicarán a todos los subrayados hechos con cada línea, en todos los textos.', ok: 'Guardar' })
+          .then(yes => {
+            if (!yes) return;
+            store.saveLegend(legend); dirty = false; onChange?.(legend);
+            toast('Leyenda guardada');
+            onDone ? onDone(true) : redraw();
+          });
+        return;
+      }
+      const p = e.target.closest('[data-pick]');
+      if (p) { picking = picking === +p.dataset.pick ? null : +p.dataset.pick; listing = null; return redraw(); }
+      const c = e.target.closest('[data-color]');
+      if (c && picking != null) {
+        const s = legend[picking];
+        if (!s) { // línea nueva: se crea con ese color y su nombre como categoría
+          let n = legend.length + 1; while (legend.some(x => x.id === 'c' + n)) n++;
+          legend.push({ id: 'c' + n, color: c.dataset.color, cat: HL_PALETTE[c.dataset.color][0], show: true });
+        } else {
+          // si la categoría era el nombre del color anterior, pasa a ser el del nuevo
+          if (!s.cat?.trim() || s.cat === HL_PALETTE[s.color]?.[0]) s.cat = HL_PALETTE[c.dataset.color][0];
+          s.color = c.dataset.color;
+        }
+        picking = null; save(); return redraw();
+      }
+      const l = e.target.closest('[data-catlist]'); // (data-list es el botón de Mi lista)
+      if (l) { listing = listing === +l.dataset.catlist ? null : +l.dataset.catlist; picking = null; return redraw(); }
+      const pc = e.target.closest('[data-pickcat]');
+      if (pc && listing != null && legend[listing]) { // «—»: vuelve al nombre del color
+        legend[listing].cat = pc.dataset.pickcat || colorName(legend[listing]); listing = null; save(); return redraw();
+      }
+    };
+    // si la categoría es aún el nombre de su color, al entrar en el campo se vacía para escribir la suya
+    // (focusin no tiene propiedad on…: se sustituye el anterior si la ventana se reutiliza)
+    if (body._lgFocus) body.removeEventListener('focusin', body._lgFocus);
+    body._lgFocus = e => {
+      const i = e.target.dataset.cat, s = i != null && legend[+i];
+      if (s && isDef(s)) { e.target.value = ''; s.cat = ''; }
+    };
+    body.addEventListener('focusin', body._lgFocus);
+    // si se sale sin escribir nada, vuelve al nombre del color
+    if (body._lgBlur) body.removeEventListener('focusout', body._lgBlur);
+    body._lgBlur = e => {
+      const i = e.target.dataset.cat, s = i != null && legend[+i];
+      if (!s || e.target.value.trim()) return;
+      s.cat = colorName(s); e.target.value = s.cat;
+      e.target.parentElement.classList.add('is-default');
+    };
+    body.addEventListener('focusout', body._lgBlur);
+    body.oninput = e => {
+      const i = e.target.dataset.cat;
+      if (i != null && legend[+i]) {
+        legend[+i].cat = e.target.value; save();
+        e.target.parentElement.classList.toggle('is-default', isDef(legend[+i]));
+      }
+    };
+    body.onchange = e => {
+      const i = e.target.dataset.show;
+      if (i != null && legend[+i]) { legend[+i].show = e.target.checked; save(); }
+    };
+  }
 }
 
 /** Panel de ajustes de lectura; se usa en /ajustes y en la hoja «Aa» del lector. */
@@ -1653,6 +1777,17 @@ function aboutView(tab) {
       <h2>Instalar y usar sin conexión</h2>
       ${ab.privacy ? `<p>${esc(ab.privacy)}</p>` : ''}
       <div id="install-area" class="install-area">${installHtml()}</div>
+    </section>
+
+    <section class="card about" id="datos">
+      <h2>Exportar e importar tus datos</h2>
+      <p>Todo lo tuyo se guarda solo en este navegador: el progreso y el punto de lectura de cada texto, los leídos, Mi lista, los subrayados con sus notas, la leyenda de colores y los ajustes de lectura. No se envía a ningún servidor, así que <b>si se borran los datos de navegación del navegador, se pierden</b>.</p>
+      <p><b>Exportar</b> descarga un archivo con todo ello, para guardar una copia o pasarlo a otro dispositivo o navegador. <b>Importar</b> carga un archivo exportado y sustituye los datos de este navegador por los suyos (pide confirmación antes).</p>
+      <div class="data-actions">
+        <button type="button" class="btn" data-export>${ICON.download}Exportar datos</button>
+        <button type="button" class="btn ghost" data-import>Importar datos</button>
+        <input type="file" id="import-file" accept=".json,application/json" hidden>
+      </div>
     </section>`;
   const collection = () => `${ab.support ? aboutSec(ab.support.title, ab.support.paragraphs, 'support', ab.support.url
       ? `<a class="btn ghost" href="${esc(ab.support.url)}" rel="noopener" target="_blank">Ir a la web oficial de Marx XXI</a>` : '') : ''}
@@ -1749,7 +1884,7 @@ async function route() {
     case 'mapas': out = mapsView(params, parts[1]); break;
     case 'glosario': out = glossaryView(params); break;
     case 'buscar': out = searchView(params); break;
-    case 'marcadores': out = bookmarksView(params); break;
+    case 'marcadores': out = bookmarksView(params, parts[1]); break;
     case 'lista': out = listView(+(parts[1] || 0)); break;
     case 'ajustes': out = settingsView(); break;
     case 'acerca': out = aboutView(parts[1] === '1' ? 1 : 0); break; // #/acerca/instalar: pestaña del lector
@@ -1775,7 +1910,7 @@ async function route() {
   cleanup = mount?.() || null;
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') {
-    if (parts[1] === 'instalar') document.getElementById('instalar')?.scrollIntoView();
+    if (parts[1] === 'instalar' || parts[1] === 'datos') document.getElementById(parts[1])?.scrollIntoView();
     checkUpdate();
   }
 }
@@ -1808,10 +1943,11 @@ function pageOf(h) {
   if ((m = path.match(/^#\/tesis(?:\/([a-z][a-z-]*))?/))) return 'tesis/' + (m[1] || 'marx-xxi');
   if (/^#\/sintesis(\/|$)/.test(path)) return 'sintesis';
   if (/^#\/mapas(\/|$)/.test(path)) return 'mapas';
+  if (/^#\/marcadores(\/|$)/.test(path)) return 'marcadores';
   if (/^#\/acerca(\/|$)/.test(path)) return 'acerca';
   return path;
 }
-const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas|acerca)$/.test(sc);
+const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas|acerca|marcadores)$/.test(sc);
 /** Pantalla del recorrido de «atrás»: además de las pestañas, ir de un artículo a otro (o de un volumen o número
  *  a otro) sigue siendo la misma pantalla; «atrás» vuelve a donde se estaba antes de entrar en el primero. */
 const screenOf = h => pageOf(h).replace(/^(articulo|volumen|numero)\/.*/, '$1');
@@ -1854,6 +1990,62 @@ window.addEventListener('hashchange', e => {
   pinned = keepTabs ? pgOld : null;
   userScrolled = false;
   if (lib()) route(); // si los datos aún cargan, la primera ruta ya leerá el hash actual
+});
+
+// ---------------------------------------------------------------- exportar e importar los datos del lector
+// Los datos del lector están en localStorage con claves «mx.…». Se exportan todos menos los que describen este
+// dispositivo (si está instalada o descargada) en un archivo JSON con una cabecera que lo identifica.
+const DATA_APP = 'lector-marx-xxi', DATA_SKIP = ['mx.offline', 'mx.installed'];
+const dataKeys = () => Object.keys(localStorage).filter(k => k.startsWith('mx.') && !DATA_SKIP.includes(k));
+/** Resumen de unos datos para la confirmación: subrayados, textos empezados, en Mi lista, leídos. */
+function dataSummary(d) {
+  const n = k => { try { const v = JSON.parse(d[k] ?? 'null'); return Array.isArray(v) ? v.length : v && typeof v === 'object' ? Object.keys(v).length : 0; } catch { return 0; } };
+  return `${n('mx.hl')} subrayados, ${n('mx.pos')} textos empezados, ${n('mx.read')} leídos y ${n('mx.list')} en Mi lista`;
+}
+function exportData() {
+  const datos = Object.fromEntries(dataKeys().map(k => [k, localStorage.getItem(k)]));
+  const file = { app: DATA_APP, formato: 1, exportado: new Date().toISOString(), version: lib()?.v || '', datos };
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 1)], { type: 'application/json' }));
+  a.download = `lector-marx-xxi-datos-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast(`Datos exportados: ${dataSummary(datos)}`);
+}
+async function importData(f) {
+  let file;
+  try { file = JSON.parse(await f.text()); } catch { file = null; }
+  if (!file || file.app !== DATA_APP || !file.datos || typeof file.datos !== 'object') {
+    confirmDialog({ title: 'No se puede importar', text: 'El archivo no es una exportación de datos de este lector.', ok: 'Entendido', cancel: null });
+    return;
+  }
+  const datos = Object.fromEntries(Object.entries(file.datos).filter(([k, v]) => k.startsWith('mx.') && !DATA_SKIP.includes(k) && typeof v === 'string'));
+  const when = file.exportado ? new Date(file.exportado).toLocaleString('es') : 'fecha desconocida';
+  const yes = await confirmDialog({
+    title: 'Importar datos',
+    text: `El archivo (exportado el ${when}) tiene ${dataSummary(datos)}.
+Sustituirá los datos de este navegador: ${dataSummary(Object.fromEntries(dataKeys().map(k => [k, localStorage.getItem(k)])))}.`,
+    ok: 'Importar', danger: true,
+  });
+  if (!yes) return;
+  try {
+    dataKeys().forEach(k => localStorage.removeItem(k));
+    for (const [k, v] of Object.entries(datos)) localStorage.setItem(k, v);
+  } catch {
+    confirmDialog({ title: 'No se pudo importar', text: 'El navegador no ha permitido guardar los datos (¿ventana privada o sin espacio?).', ok: 'Entendido', cancel: null });
+    return;
+  }
+  try { sessionStorage.setItem('mx.imported', '1'); } catch { /* sin almacenamiento */ }
+  location.reload(); // todo se vuelve a leer con los datos importados
+}
+document.addEventListener('click', e => {
+  if (e.target.closest('[data-export]')) exportData();
+  else if (e.target.closest('[data-import]')) $('#import-file')?.click();
+});
+document.addEventListener('change', e => {
+  if (e.target.id !== 'import-file' || !e.target.files?.[0]) return;
+  importData(e.target.files[0]);
+  e.target.value = ''; // poder volver a elegir el mismo archivo
 });
 
 // ---------------------------------------------------------------- instalar y usar sin conexión
@@ -1943,6 +2135,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () 
 loadLibrary().then(() => {
   route(); autoDownload();
   try { if (sessionStorage.getItem('mx.updated')) { sessionStorage.removeItem('mx.updated'); toast('Aplicación actualizada'); } } catch { /* sin almacenamiento */ }
+  try { if (sessionStorage.getItem('mx.imported')) { sessionStorage.removeItem('mx.imported'); toast('Datos importados'); } } catch { /* sin almacenamiento */ }
 }).catch(err => {
   view.innerHTML = `<div class="wrap"><p class="empty">No se pudieron cargar los contenidos (${esc(err.message)}). Si has abierto el archivo directamente desde el disco, sírvelo con un servidor local: <code>python -m http.server</code>.</p></div>`;
 });

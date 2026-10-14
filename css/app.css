@@ -254,6 +254,56 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 #r-seek:focus-visible{outline:2px solid var(--vol);outline-offset:3px;border-radius:4px}
 .reader-bottom .pct{font-size:14px;color:var(--ink-3);min-width:42px;text-align:right}
 .reader-bottom .buttons{display:flex;justify-content:space-around}
+/* «Subrayar»: despliega hacia arriba los cinco colores y, arriba y separado, los marcadores del texto */
+.hl-tool{position:relative;display:flex}
+.hl-pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:8px;border-radius:26px;background:var(--paper);border:1px solid var(--line);box-shadow:0 6px 20px rgb(0 0 0 / .18);z-index:45}
+.hl-pop[hidden]{display:none}
+.hl-pop-marks{display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer}
+.hl-pop-marks:hover{background:var(--line-2)}
+.hl-pop-marks svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.hl-pop-sep{width:24px;height:1px;background:var(--line)}
+/* la rueda dentada ocupa todo su recuadro: algo menor que los demás iconos para que pese lo mismo */
+.hl-pop-marks svg.ico-gear{width:18px;height:18px}
+.tab-ico svg.ico-gear{width:15px;height:15px;vertical-align:-2px}
+.hl-pop-sws,.hl-sws{display:contents}
+/* Leyenda de los subrayados */
+.legend{display:grid;gap:6px}
+.lg-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+/* Marcadores: alto mínimo para que, con la barra de pestañas fija, cambiar de pestaña no la desfije */
+.bm-panel{min-height:100dvh}
+.tab-ico{display:inline}
+.tab-ico svg{width:17px;height:17px;margin-right:6px;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.lg-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.lg-dot{width:34px;height:34px;border-radius:50%;border:2px solid var(--paper);background:var(--hl);box-shadow:0 0 0 1px var(--line);cursor:pointer;padding:0}
+.lg-row.empty .lg-dot{background:none;border:2px dashed var(--ink-3);box-shadow:none}
+.lg-dot[aria-expanded="true"]{box-shadow:0 0 0 3px var(--ink)}
+.lg-cat{display:flex;align-items:center;min-width:0;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.lg-cat input{flex:1;min-width:0;border:0;background:none;padding:8px 10px;font:inherit;font-size:16px;color:var(--ink);outline:none}
+.lg-cat input:disabled{color:var(--ink-3)}
+.lg-pen{display:none;padding:0 2px;color:var(--ink-3)}
+.lg-cat.is-default .lg-pen{display:grid;place-items:center} /* sin categoría propia: lápiz gris, se puede escribir */
+.lg-cat.is-default input{color:var(--ink-2)}
+.lg-pen svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+.lg-more{border:0;background:none;padding:0 10px;align-self:stretch;font-size:15px;color:var(--ink-2);cursor:pointer}
+.lg-more:disabled{opacity:.4;cursor:default}
+.lg-show{display:flex;align-items:center;gap:5px;font-size:14px;color:var(--ink-2);white-space:nowrap}
+.lg-show input{accent-color:var(--btn)} /* casilla marcada en el oscuro de los botones de la app */
+.lg-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;padding:8px 0 10px}
+.lg-pal{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left}
+.lg-pal i{width:20px;height:20px;border-radius:50%;background:var(--hl);flex:none}
+.lg-pal[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.lg-cats{display:grid;gap:2px;padding:4px 0 10px 44px}
+.lg-cats button{text-align:left;padding:7px 10px;border:0;border-radius:6px;background:none;font:inherit;font-size:15px;color:var(--ink);cursor:pointer}
+.lg-cats button:hover{background:var(--line-2)}
+/* activo: el botón marcado con el color elegido */
+#r-hl.on{color:var(--ink);background:color-mix(in srgb,var(--hl) 55%,transparent);border-radius:10px}
+#r-hl.on svg{stroke-width:2}
+.reader.hl-mode{cursor:text}
+/* marcadores del texto (ventana del lector) */
+.r-mark{display:block;margin-top:10px;padding:10px 12px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 12%,var(--paper));border-radius:0 6px 6px 0;color:var(--ink);text-decoration:none}
+.r-mark-t{display:block;font-size:16px;line-height:1.45}
+.r-mark-n{display:block;margin-top:6px;font-size:15px;font-style:italic;color:var(--ink-2)}
 .bar-btn{display:flex;flex-direction:column;align-items:center;gap:1px;background:none;border:0;padding:4px 14px;cursor:pointer;color:var(--ink);font-family:var(--f-sc);text-transform:lowercase;font-size:14px}
 .bar-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .findbar{display:flex;align-items:center;gap:4px;flex:1}
@@ -903,7 +953,9 @@ dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink
 .install-area #install-app + p{text-align:center;margin:8px 0 0}
 .install-ok{display:flex;align-items:baseline;gap:8px}
 .install-ok .tick{color:#2e8b4f;font-weight:700;font-size:1.15em}
-#instalar{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 12px)}
+#instalar,#datos{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 70px)}
+.data-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.data-actions .btn{margin:0}
 
 /* Mi lista de lectura (#/lista): botón de la cabecera de la guía y lista numerada (Pendientes / Leídos) */
 .ph-list{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:6px 13px 6px 11px;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:var(--radius);
