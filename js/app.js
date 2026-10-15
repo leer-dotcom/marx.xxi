@@ -368,20 +368,38 @@ function openZoom(host, keepList = false, markup = null) {
     if (Math.abs(ns / f - 1) > 0.02) flashZoomRestore();
     if (!free) settle();
   };
-  zoomFit = fit; zoomBy = z => z === '0' ? fit() : zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5));
+  // restablecer (botón «n / N» o el de las cuatro flechas): vuelta rápida y animada al ajuste
+  let restoreT = 0;
+  const restore = () => {
+    box.classList.remove('settle'); box.classList.add('restore'); fit();
+    clearTimeout(restoreT); restoreT = setTimeout(() => box.classList.remove('restore'), 200);
+  };
+  zoomFit = fit; zoomBy = z => z === '0' ? restore() : zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5));
   dlg.onclick = e => {
     if (e.target.closest('[data-zrot]')) return setZoomRot(!dlg.classList.contains('rot')); // se reajusta solo (ResizeObserver)
     const sb = e.target.closest('[data-zstep]');
     if (sb) return zoomStep(+sb.dataset.zstep);
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
-    if (e.target.closest('[data-zfull]')) { setZoomFull(!zoomFull); flashZoomFull(); return openZoom(zoomHost, true); }
+    if (e.target.closest('[data-zfull]')) {
+      setZoomFull(!zoomFull); flashZoomFull();
+      // la otra versión se abre ajustada (100 %): mientras se trae, la vista vuelve deprisa a ese ajuste, para que el
+      // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
+      const file = zoomHost.querySelector('.dg')?.dataset.svg;
+      if (zoomFull && file) loadSvg(fullFile(file)).catch(() => {});
+      const [ox, oy, os] = [x, y, s];
+      box.classList.remove('settle'); box.classList.add('restore'); fit();
+      if (Math.abs(ox - x) + Math.abs(oy - y) < 1 && Math.abs(os / s - 1) < 0.005) return openZoom(zoomHost, true);
+      const host = zoomHost;
+      setTimeout(() => { if (dlg.open && zoomHost === host) openZoom(host, true); }, 170);
+      return;
+    }
     if (e.target.closest('[data-zfold]')) {
       const f = cap.classList.toggle('folded');
       e.target.closest('[data-zfold]').setAttribute('aria-label', f ? 'Mostrar la descripción' : 'Ocultar la descripción');
       settle(); return; // el pie cambia de alto: el esquema conserva su zoom (solo se recoloca si hace falta)
     }
     const b = e.target.closest('[data-z]');
-    if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
+    if (b) { const z = b.dataset.z; if (z === '0') restore(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
     if (!e.target.closest('#zoom-slider')) toggleZoomSlider(false); // tocar fuera cierra el control de zoom
   };
   // control de zoom vertical (como el del volumen): del 50 % (abajo) a ×10 (arriba), en escala logarítmica; el 100 %
@@ -396,7 +414,7 @@ function openZoom(host, keepList = false, markup = null) {
   // rueda del ratón o trackpad: zoom en el punto del cursor
   let wheelT = 0;
   st.onwheel = e => {
-    e.preventDefault(); box.classList.remove('settle');
+    e.preventDefault(); box.classList.remove('settle', 'restore');
     zoomTo(s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), ...rel(e), true);
     clearTimeout(wheelT); wheelT = setTimeout(settle, 180);
   };
@@ -412,7 +430,7 @@ function openZoom(host, keepList = false, markup = null) {
     lastType = e.pointerType;
     try { st.setPointerCapture(e.pointerId); } catch { /* puntero ya levantado */ }
     pts.set(e.pointerId, e);
-    box.classList.remove('settle'); clearTimeout(settleT);
+    box.classList.remove('settle', 'restore'); clearTimeout(settleT);
     if (pts.size === 1) { const [px, py] = rel(e); drag = { x: px, y: py, bx: x, by: y, moved: false }; pinch = null; }
     else { drag = null; pinch = null; }
     st.classList.add('dragging');
