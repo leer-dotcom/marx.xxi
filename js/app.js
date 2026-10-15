@@ -387,10 +387,10 @@ function openZoom(host, keepList = false, markup = null) {
       // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
       const file = zoomHost.querySelector('.dg')?.dataset.svg;
       if (zoomFull && file) loadSvg(fullFile(file)).catch(() => {});
-      // la de antes se difumina a la vez y la nueva aparece con un fundido rápido
+      // al llegar al ajuste, la nueva aparece con un destello
       const [ox, oy, os] = [x, y, s];
       zoomSwap = true;
-      box.classList.remove('settle'); box.classList.add('restore', 'swap-out'); fit();
+      box.classList.remove('settle'); box.classList.add('restore'); fit();
       if (Math.abs(ox - x) + Math.abs(oy - y) < 1 && Math.abs(os / s - 1) < 0.005) return openZoom(zoomHost, true);
       const host = zoomHost;
       setTimeout(() => { if (dlg.open && zoomHost === host) openZoom(host, true); }, 120);
