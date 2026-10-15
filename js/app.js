@@ -606,6 +606,13 @@ $('#menu').addEventListener('click', e => {
   $('#menu').close();
   location.hash = sum.dataset.href;
 });
+// Acordeón: al desplegar una rama del menú se pliegan sus hermanas del mismo nivel (secciones, volúmenes…)
+$('#menu').addEventListener('toggle', e => {
+  const d = e.target;
+  if (!(d instanceof HTMLDetailsElement) || !d.open) return;
+  for (const x of d.parentElement.children) if (x !== d && x instanceof HTMLDetailsElement) x.open = false;
+}, true);
+
 const minutes = w => Math.max(1, Math.round(w / 230));
 const pct = p => Math.round((p || 0) * 100);
 const paras = list => list.map(p => `<p>${esc(p)}</p>`).join('');

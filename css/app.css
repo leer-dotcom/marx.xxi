@@ -536,6 +536,18 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .drawer-head .icon-btn{color:var(--head-ink)}
 .drawer-brand{font-size:24px;color:var(--head-ink);text-decoration:none;letter-spacing:.03em}
 .drawer-body{flex:1;overflow:auto;padding:8px 0 calc(24px + var(--safe-b))}
+/* el contenido del menú, centrado en vertical (si no cabe, empieza arriba y se desplaza: márgenes automáticos) */
+.drawer-body{display:flex;flex-direction:column}
+.drawer-body > :first-child{margin-top:auto}
+.drawer-body > :last-child{margin-bottom:auto}
+/* desplegar y plegar las ramas del menú: animación breve de la altura (Chrome, Edge; donde no se puede animar la
+   altura, solo aparece el contenido con un leve fundido) */
+.drawer{interpolate-size:allow-keywords}
+.drawer details::details-content{block-size:0;overflow:hidden;transition:block-size .18s ease,content-visibility .18s allow-discrete}
+.drawer details[open]::details-content{block-size:auto}
+.drawer details[open] > :not(summary){animation:menu-fold .18s ease}
+@keyframes menu-fold{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.drawer details::details-content{transition:none}.drawer details[open] > :not(summary){animation:none}}
 .m-group{margin:18px 18px 6px;font-family:var(--f-sc);font-size:15px;letter-spacing:.06em;text-transform:lowercase;color:var(--olive)}
 .m-link{display:flex;align-items:center;gap:12px;padding:10px 18px;color:var(--ink);text-decoration:none;font-size:17.5px;line-height:1.25}
 .m-link svg{width:21px;height:21px;flex:none;fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
