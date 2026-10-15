@@ -586,8 +586,10 @@ function menuHtml() {
 export function openMenu() {
   const d = $('#menu');
   $('#menu-body').innerHTML = menuHtml();
+  d.classList.remove('ready'); // al abrir, sin animar la sección ya desplegada
   d.showModal(); // siempre con los volúmenes plegados
   $('#menu-body').scrollTop = 0;
+  requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('ready'))); // desde aquí, despliegues animados
 }
 document.addEventListener('click', e => {
   if (e.target.closest('[data-open-menu]')) { e.preventDefault(); openMenu(); return; }
