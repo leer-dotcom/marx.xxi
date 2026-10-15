@@ -585,15 +585,14 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .appbar .lead{gap:0}
 /* menú a la izquierda */
 .drawer{margin:0 auto 0 0;box-shadow:8px 0 30px rgb(0 0 0 / .25)}
-.drawer[open]{animation:none}
-/* Abrir y cerrar sin parpadeo: el panel entra y sale deslizándose (siempre opaco) y el oscurecido del fondo aparece
-   y desaparece poco a poco, en vez de encenderse y apagarse de golpe (en el móvil se veía como un destello negro). */
-.drawer{transform:translateX(-100%);transition:transform .22s ease,overlay .22s allow-discrete,display .22s allow-discrete}
-.drawer[open]{transform:none}
-.drawer::backdrop{opacity:0;transition:opacity .22s ease,overlay .22s allow-discrete,display .22s allow-discrete}
-.drawer[open]::backdrop{opacity:1}
-@starting-style{.drawer[open]{transform:translateX(-100%)}.drawer[open]::backdrop{opacity:0}}
-@media (prefers-reduced-motion:reduce){.drawer,.drawer::backdrop{transition:none}}
+.drawer[open]{animation:drawer-in-left .2s ease}
+@keyframes drawer-in-left{from{transform:translateX(-40px);opacity:.3}}
+/* El oscurecido del fondo aparece a la vez que el menú: si se encendía de golpe, se veía a través del menú aún
+   semitransparente y parpadeaba en negro. (Alternativa probada: el menú entra entero deslizándose desde el borde y
+   también sale así, con transition + @starting-style; sin parpadeo, pero más lenta y solo en Chrome 117+.) */
+.drawer[open]::backdrop{animation:backdrop-in .2s ease}
+@keyframes backdrop-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){.drawer[open],.drawer[open]::backdrop{animation:none}}
 /* tarjeta de artículo: resumen + botones a la derecha */
 /* Tarjeta de artículo: contenido + panel de acciones propio, teñido con el color del volumen */
 .art-card{display:grid;grid-template-columns:1fr auto;padding:0;overflow:hidden}
