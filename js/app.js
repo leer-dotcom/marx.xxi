@@ -98,10 +98,10 @@ export function confirmDialog({ title, text, ok = 'Aceptar', cancel = 'Cancelar'
     d.addEventListener('click', e => {
       const b = e.target.closest('[data-answer]');
       if (b) finish(b.dataset.answer === '1');
-      else if (e.target === d) finish(false); // fuera de la ventana
+      else if (e.target === d) finish(null); // fuera de la ventana: ni una cosa ni otra (null)
     });
-    d.addEventListener('cancel', e => { e.preventDefault(); finish(false); }); // Esc
-    d.addEventListener('close', () => finish(false));
+    d.addEventListener('cancel', e => { e.preventDefault(); finish(null); }); // Esc
+    d.addEventListener('close', () => finish(null));
     document.body.append(d);
     d.showModal();
   });
@@ -1529,7 +1529,14 @@ function bookmarksView(params, tabArg) {
       ${tabs('#/marcadores', BM_TABS(), 1)}
       <div class="bm-panel" id="legend-box"></div>
     </div>`;
-    return [html, () => { mountLegend($('#legend-box')); }];
+    return [html, () => {
+      const box = $('#legend-box');
+      mountLegend(box);
+      leaveGuard = () => box._lg?.dirty() ? box._lg : null;
+      const onUnload = e => { if (box._lg?.dirty()) { e.preventDefault(); e.returnValue = ''; } }; // cerrar o recargar
+      addEventListener('beforeunload', onUnload);
+      return () => { leaveGuard = null; removeEventListener('beforeunload', onUnload); };
+    }];
   }
   const all = store.highlights();
   const color = params.get('c') || '';
@@ -1581,11 +1588,14 @@ function mountLegend(root, onChange, onDone) {
   // se edita una copia: nada cambia en la aplicación hasta «Guardar» (que pide confirmación); «Cancelar» la descarta
   let legend = store.legend().map(x => ({ ...x })), picking = null, listing = null, dirty = false;
   const save = () => { dirty = true; };
+  const commit = () => { store.saveLegend(legend); dirty = false; onChange?.(legend); toast('Leyenda guardada'); };
+  // para el aviso al salir de la página sin guardar
+  root._lg = { dirty: () => dirty, save: commit };
   const row = (s, i) => {
     const hex = HL_PALETTE[s.color]?.[1];
     return `<div class="lg-row${s.color ? '' : ' empty'}" data-i="${i}">
       <button type="button" class="lg-dot" data-pick="${i}" style="${hex ? `--hl:${hex}` : ''}" aria-label="${hex ? `Color: ${HL_PALETTE[s.color][0]}. Cambiar` : 'Elegir color para una categoría nueva'}" aria-expanded="${picking === i}"></button>
-      <span class="lg-cat${isDef(s) ? ' is-default' : ''}"><input type="text" data-cat="${i}" value="${esc(isDef(s) ? colorName(s) : s.cat)}" placeholder="${s.color ? 'Categoría' : 'Nueva categoría: elige antes su color'}" ${s.color ? '' : 'disabled'} aria-label="Categoría">
+      <span class="lg-cat${isDef(s) ? ' is-default' : ''}"><input type="text" data-cat="${i}" value="${esc(isDef(s) ? colorName(s) : s.cat)}" placeholder="${s.color ? 'Categoría' : '← Nueva categoría'}" ${s.color ? '' : 'disabled'} aria-label="Categoría">
         <span class="lg-pen" aria-hidden="true" title="Escribe la categoría que quieras"><svg viewBox="0 0 24 24"><path d="M15 5l4 4L9 19H5v-4z"/><path d="M13 7l4 4"/></svg></span>
         <button type="button" class="lg-more" data-catlist="${i}" aria-label="Categorías habituales" aria-expanded="${listing === i}" ${s.color ? '' : 'disabled'}>▾</button></span>
       <label class="lg-show"><input type="checkbox" data-show="${i}" ${s.show && s.color ? 'checked' : ''} ${s.color ? '' : 'disabled'}><span>Usar</span></label>
@@ -1622,7 +1632,7 @@ function mountLegend(root, onChange, onDone) {
   };
   const html = () => `<p class="muted small" style="margin-top:0">Para toda la aplicación: cambiar el color o la categoría de una línea cambia todos los subrayados hechos con ella. «Usar» decide qué colores se ofrecen al subrayar.</p>
     <div class="legend">${rows().map(row).join('')}</div>
-    <div class="lg-actions"><button type="button" class="btn ghost" data-lgcancel>Cancelar</button><button type="button" class="btn" data-lgsave>Guardar</button></div>
+    <div class="lg-actions"><button type="button" class="btn" data-lgsave>Guardar</button>${onDone ? '<button type="button" class="btn ghost" data-lgcancel>Cancelar</button>' : ''}</div>
     ${listing != null ? picker() : ''}${picking != null ? palette() : ''}`;
   {
     const body = root;
@@ -1640,8 +1650,7 @@ function mountLegend(root, onChange, onDone) {
           + (lost ? `\n${lost === 1 ? 'Un marcador de las categorías eliminadas quedará' : lost + ' marcadores de las categorías eliminadas quedarán'} en gris y sin categoría.` : ''), ok: 'Guardar' })
           .then(yes => {
             if (!yes) return;
-            store.saveLegend(legend); dirty = false; onChange?.(legend);
-            toast('Leyenda guardada');
+            commit();
             onDone ? onDone(true) : redraw();
           });
         return;
@@ -2031,6 +2040,22 @@ function artTabsY() {
   const cs = getComputedStyle(tabs);
   return Math.max(0, head.getBoundingClientRect().bottom + scrollY + parseFloat(cs.marginTop) - parseFloat(cs.top));
 }
+// Salir de una pantalla con cambios sin guardar (la leyenda): se vuelve a ella y se pregunta «¿Salir sin guardar?»;
+// «Sí» sigue adonde se iba, «Guardar» guarda y sigue; cerrar el aviso se queda.
+let leaveGuard = null, leaving = false;
+window.addEventListener('hashchange', e => {
+  const target = location.hash, g = !leaving && leaveGuard?.();
+  if (!g) return;
+  e.stopImmediatePropagation();
+  history.replaceState(history.state, '', e.oldURL); // la dirección vuelve a la pantalla (no se re-dibuja)
+  confirmDialog({ title: '¿Salir sin guardar?', text: 'Has cambiado la leyenda y aún no has guardado los cambios.', ok: 'Guardar', cancel: 'Sí' })
+    .then(res => {
+      if (res == null) return;
+      if (res) g.save();
+      leaving = true; leaveGuard = null; location.hash = target;
+      setTimeout(() => { leaving = false; }, 0);
+    });
+});
 window.addEventListener('hashchange', e => {
   const old = normHash(new URL(e.oldURL).hash), now = normHash(location.hash);
   if (!old.startsWith('#/leer/')) fromHash = old;

@@ -269,7 +269,7 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 .hl-pop-sws,.hl-sws{display:contents}
 /* Leyenda de los subrayados */
 .legend{display:grid;gap:6px}
-.lg-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+.lg-actions{display:flex;justify-content:center;gap:10px;margin-top:16px}
 /* Marcadores: alto mínimo para que, con la barra de pestañas fija, cambiar de pestaña no la desfije */
 .bm-panel{min-height:100dvh}
 .tab-ico{display:inline}
