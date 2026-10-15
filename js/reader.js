@@ -1,6 +1,6 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
 import { article, volume, neighbours, text, esc, highlight, fold, store, MK, hlHex, hlCat, shownSlots, volHead, volShort, artLabel, byline } from './data.js';
-import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog, openLegend } from './app.js';
+import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog, openLegend, hlFilterBar } from './app.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -304,7 +304,7 @@ function mount({ key, a, v, blocks, params }) {
     hlBtn.classList.toggle('on', !!k);
     if (k) hlBtn.style.setProperty('--hl', hlColor(k)); else hlBtn.style.removeProperty('--hl');
     reader.classList.toggle('hl-mode', !!k);
-    if (k) { bar.hidden = true; toast(`Subrayado directo: ${hlCat(k)}. Selecciona texto para subrayarlo`); }
+    if (k) { bar.hidden = true; toast(hlCat(k)); } // la categoría (o, si no tiene, el nombre de su color)
   }
   function applyTool(range) {
     if (!tool) return;
@@ -323,7 +323,7 @@ function mount({ key, a, v, blocks, params }) {
   pop.onclick = e => {
     const c = e.target.closest('[data-tcolor]');
     if (c) return setTool(c.dataset.tcolor);
-    if (e.target.closest('[data-hlmarks]')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); openMarks(); }
+    if (e.target.closest('[data-hlmarks]')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); openMarks(''); }
     if (e.target.closest('[data-hllegend]')) { pop.hidden = true; hlBtn.setAttribute('aria-expanded', false); openLegend(onLegend); }
   };
   // la leyenda cambió: colores y categorías en los botones, en el texto y en el subrayado directo
@@ -399,18 +399,23 @@ function mount({ key, a, v, blocks, params }) {
   document.addEventListener('pointerup', onTouchEnd);
   document.addEventListener('pointercancel', onTouchEnd);
   /** Ventana con los subrayados y notas de este texto, en su orden; tocar uno lleva a su pasaje. */
-  function openMarks() {
-    const list = [...hls].sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
+  function openMarks(c = '') {
+    const all = [...hls].sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0), list = c ? all.filter(h => h.color === c) : all;
     const cut = t => esc(t.length > 300 ? t.slice(0, 300) + '…' : t);
-    openSheet('Marcadores', list.length ? `<p class="muted small" style="margin-top:0">${list.length} ${list.length === 1 ? 'pasaje subrayado' : 'pasajes subrayados'} en este texto. Toca uno para ir a él.</p>
+    // con filtros por categoría (fijos arriba de la ventana); cambiar de filtro no la mueve
+    const y = $('#sheet').open ? $('#sheet-body').scrollTop : 0;
+    openSheet('Marcadores', all.length ? `${hlFilterBar(all, c, id => `button type="button" data-hlf="${id}"`)}<p class="muted small" style="margin-top:0">${list.length} ${list.length === 1 ? 'pasaje subrayado' : 'pasajes subrayados'} en este texto. Toca uno para ir a él.</p>
       <div class="r-marks">${list.map(h => `<a href="#" class="r-mark" data-jump="${h.b0}" style="--hl:${hlColor(h.color)}">
         <span class="r-mark-t">${cut(h.text)}</span>${h.note ? `<span class="r-mark-n">${esc(h.note).replace(/\n/g, '<br>')}</span>` : ''}</a>`).join('')}</div>
       <p class="muted small"><a href="#/marcadores" data-close>Ver los marcadores de todos los textos</a></p>`
       : `<p class="empty">Aún no hay subrayados en este texto.<br>Selecciona un pasaje y elige un color, o usa <b>Subrayar</b> para subrayar directamente.</p>`, body => {
       body.onclick = e => {
+        const f = e.target.closest('[data-hlf]');
+        if (f) return openMarks(f.dataset.hlf);
         const j = e.target.closest('[data-jump]'); if (!j) return;
         e.preventDefault(); closeSheet(); goTo(+j.dataset.jump, { flash: true });
       };
+      body.scrollTop = y; // misma altura tras filtrar
     });
   }
 
@@ -419,7 +424,8 @@ function mount({ key, a, v, blocks, params }) {
     // los colores que se ofrecen y, si el subrayado es de uno oculto, también el suyo
     const colors = cur => [...shownSlots(), ...(shownSlots().some(x => x.id === cur) ? [] : [{ id: cur }])].map(sl =>
       `<button type="button" class="hl-sw" data-color="${sl.id}" style="--hl:${hlHex(sl.id)}" aria-pressed="${sl.id === cur}" aria-label="${esc(hlCat(sl.id))}" title="${esc(hlCat(sl.id))}"></button>`).join('');
-    openSheet('Subrayado', `
+    // título: la categoría de su color (cambia si se cambia el color aquí)
+    openSheet(hlCat(h.color), `
       <blockquote class="hl-quote" style="--hl:${hlColor(h.color)}">${esc(h.text.length > 600 ? h.text.slice(0, 600) + '…' : h.text)}</blockquote>
       <div class="hl-colors" role="group" aria-label="Color del subrayado">${colors(h.color)}</div>
       <label class="hl-label" for="hl-note">Nota propia</label>
@@ -447,6 +453,7 @@ function mount({ key, a, v, blocks, params }) {
           store.updateHighlight(h.uid, { color: h.color });
           body.querySelectorAll('.hl-colors [data-color]').forEach(b => b.setAttribute('aria-pressed', b === sw));
           $('.hl-quote', body).style.setProperty('--hl', hlColor(h.color));
+          $('#sheet-title').textContent = hlCat(h.color);
           repaint(h);
         } else if (e.target.closest('[data-done]')) { save(); closeSheet(); }
         else if (e.target.closest('[data-remove]')) {
@@ -466,11 +473,6 @@ function mount({ key, a, v, blocks, params }) {
       $('#sheet').addEventListener('close', () => { save(); body.oninput = body.onclick = null; }, { once: true });
       if (focusNote) ta.focus();
     });
-  }
-  if (!store.highlights().length) {
-    let seen = true;
-    try { seen = !!sessionStorage.getItem('mx.hlHint'); sessionStorage.setItem('mx.hlHint', '1'); } catch { /* sin almacenamiento */ }
-    if (!seen) setTimeout(() => toast('Selecciona un pasaje para subrayarlo'), 900);
   }
 
   // --- bloque actual (búsqueda binaria sobre las posiciones en pantalla)

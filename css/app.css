@@ -293,6 +293,15 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 .lg-pal{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left}
 .lg-pal i{width:20px;height:20px;border-radius:50%;background:var(--hl);flex:none}
 .lg-pal[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+/* ventana de categorías de la leyenda (encima de todo) */
+.lg-pick-wrap{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:16px;background:rgb(0 0 0 / .25)}
+.lg-pick{width:min(340px,100%);max-height:min(70vh,560px);overflow:auto;padding:8px;border-radius:10px;background:var(--bg);border:1px solid var(--line);box-shadow:0 10px 30px rgb(0 0 0 / .25);display:grid;gap:2px}
+.lg-pick-head{display:flex;align-items:center;gap:8px;padding:6px 10px 8px;font-size:14px;color:var(--ink-3);border-bottom:1px solid var(--line-2);margin-bottom:4px}
+.lg-pick-head i{width:16px;height:16px;border-radius:50%;background:var(--hl)}
+.lg-pick button{text-align:left;padding:8px 10px;border:0;border-radius:6px;background:none;font:inherit;font-size:15.5px;color:var(--ink);cursor:pointer}
+.lg-pick button:hover{background:var(--line-2)}
+.lg-pick button[aria-selected="true"]{font-weight:700}
+.data-tip{margin:6px 0 0}
 .lg-cats{display:grid;gap:2px;padding:4px 0 10px 44px}
 .lg-cats button{text-align:left;padding:7px 10px;border:0;border-radius:6px;background:none;font:inherit;font-size:15px;color:var(--ink);cursor:pointer}
 .lg-cats button:hover{background:var(--line-2)}
@@ -360,6 +369,8 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
    ni la de gestos del móvil) y con el texto visible detrás */
 .sheet{width:min(720px,calc(100% - 16px));max-height:84vh;max-height:calc(100dvh - 96px);margin:auto auto calc(12px + var(--safe-b));padding:0;border:1px solid var(--line);border-radius:10px;background:var(--bg);display:none;flex-direction:column}
 .sheet[open]{display:flex;animation:up .22s ease}
+/* en el móvil, leyendo: las ventanas (guía, índice, leyenda, marcadores…) más arriba, justo debajo de la barra del título */
+@media (max-width:899px){body.reading .sheet{margin:calc(var(--bar-h) + var(--safe-t) + 10px) auto auto;max-height:calc(100dvh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 24px)}}
 @keyframes up{from{transform:translateY(40px);opacity:.4}}
 @media (min-width:900px){.sheet{margin:auto;border-radius:8px;max-height:84vh;max-height:84dvh}}
 .sheet-head{display:flex;align-items:center;gap:8px;padding:12px 8px 6px 20px;border-bottom:1px solid var(--line)}
@@ -779,6 +790,11 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 /* botones de volumen o número: una línea desplazable, fija debajo de la barra de pestañas */
 .tabs.chip-tabs{top:calc(var(--bar-h) + var(--safe-t) + var(--maps-tabs-h, 47px));z-index:9;margin:-18px -16px 14px;padding:8px 10px;gap:6px;align-items:center}
 .tabs.chip-tabs .chip{flex:none;margin:0}
+.tabs.chip-tabs .chip[aria-pressed="true"]:not([data-vol]){background:var(--btn);border-color:var(--btn);color:var(--btn-ink)}
+.tabs.chip-tabs .chip[aria-pressed="true"] .m-count{color:inherit;opacity:.8}
+/* filtros de marcadores: en la guía del artículo, bajo su barra de pestañas; en la ventana del lector, arriba de ella */
+body.art-page .tabs.chip-tabs{margin-top:-30px;margin-bottom:18px}
+.sheet-body .tabs.chip-tabs{top:-12px;margin:-12px -20px 12px;padding:8px 14px}
 .tabs.chip-tabs .tabs-more,.tabs.chip-tabs .tabs-less{padding-bottom:2px}
 /* Colección: el mapa de la colección a todo el ancho y debajo los cuatro de las revistas, en dos columnas
    también en el móvil */
@@ -941,6 +957,8 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 /* esquema ampliado desde «Mapas conceptuales»: volumen o número, artículo y título antes de la descripción */
 .zoom-label{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
 .zoom-label .zl-hi{color:var(--vol)}
+.zoom-label .zl-au{font-weight:400;font-style:italic;color:var(--ink-3)} /* autor del artículo, como en la página */
+.zoom-full.locked{opacity:.5;cursor:not-allowed} /* por ahora, solo versión detallada */
 /* ventana de confirmación propia (sustituye al confirm() del navegador) */
 dialog.confirm{width:min(420px,calc(100% - 32px));margin:auto;padding:22px 22px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);overflow:visible;animation:up .18s ease}
 dialog.confirm h2{margin:0;font-size:23px;font-weight:400;line-height:1.2}

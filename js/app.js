@@ -200,7 +200,7 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 // Versión de cada figura (temporal, para contrastar la revisión de los esquemas): la simplificada (la de siempre,
 // por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
-let zoomFull = false, zoomHost = null;
+let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
 /** Etiqueta «Versión simplificada / detallada» sobre la barra, centrada en la pantalla, al cambiar de versión con
  *  el interruptor: solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
@@ -210,11 +210,30 @@ function flashZoomFull() {
   const kind = zoomFull ? 'd' : 's';
   if (zoomTipsShown.has(kind)) return;
   zoomTipsShown.add(kind);
-  const t = $('#zoom-full-tip');
+  showZoomTip(false);
+}
+/** Muestra la etiqueta de la versión vista: centrada o, al abrir el visor, sobre el interruptor (que es quien la cambia). */
+function showZoomTip(atSwitch) {
+  const t = $('#zoom-full-tip'), bar = $('.zoom-bar'), sw = $('#zoom [data-zfull]');
   t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
+  const br = bar.getBoundingClientRect(), sr = sw.getBoundingClientRect();
+  t.style.left = atSwitch && br.width ? `${sr.left + sr.width / 2 - br.left}px` : '';
   clearTimeout(t._t);
   t.hidden = true; void t.offsetWidth; t.hidden = false; // reinicia la animación
   t._t = setTimeout(() => { t.hidden = true; }, 900);
+}
+/** Título del visor a partir del código de la figura: volumen o número, artículo, título y autor; o qué mapa es. */
+function figLabel(code, type) {
+  const L = lib(); let m;
+  if (code === 'CC') return { text: 'Colección · Mapa conceptual', hi: 0 };
+  if (!(m = code?.match(/^([A-Z]{2})(\d+)?(?:\.(\d+))?/))) return null;
+  const p = L.pubs.find(x => x.code === m[1]); if (!p) return null;
+  if (!m[2]) return { text: type === 'Trayectoria' ? `${p.name} · Trayectoria de la publicación`
+    : `${p.name} · Mapa conceptual · Los ${numWord(p.volumes.length)} ${p.unit_plural}`, hi: 0 };
+  const v = p.volumes.find(x => x.number === +m[2]); if (!v) return null;
+  if (!m[3]) return { text: `${v.label ? 'Número ' + v.label : 'Volumen ' + v.number} · ${v.articles.length} artículos`, hi: 1, vol: v.key };
+  const a = v.articles.find(x => x.number === +m[3]); if (!a) return null;
+  return { text: `${volShort(v)} · ${artLabel(a)} · ${a.title}`, hi: 2, author: byline(a), vol: v.key };
 }
 function setZoomFull(on) {
   zoomFull = on;
@@ -238,7 +257,7 @@ function zoomStep(d) {
 function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
-    if (!$('#zoom').open) { setZoomFull(false); zoomTipsShown = new Set(); } // cada vez que se abre el visor, la simplificada
+    if (!$('#zoom').open) { setZoomFull(false); zoomForced = false; zoomTipsShown = new Set(); zoomOpening = true; } // cada vez que se abre el visor, la simplificada
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
@@ -248,6 +267,11 @@ function openZoom(host, keepList = false, markup = null) {
     : '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   zoomHost = host;
+  // el mapa de la colección, por ahora solo en versión detallada: se abre en ella y el interruptor queda bloqueado
+  const only = 'onlyfull' in host.dataset, swb = $('#zoom [data-zfull]');
+  if (only && !zoomFull) { setZoomFull(true); zoomForced = true; }
+  else if (!only && zoomForced) { setZoomFull(false); zoomForced = false; }
+  swb.disabled = only; swb.classList.toggle('locked', only);
   // detallada: se trae su SVG (si no existe, se queda la simplificada) y se vuelve a abrir con él
   const file = host.querySelector('.dg')?.dataset.svg;
   if (zoomFull && markup == null && file) {
@@ -255,19 +279,22 @@ function openZoom(host, keepList = false, markup = null) {
     if (!dlg.open) dlg.showModal();
     return;
   }
-  const vol = host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
+  const vol = figLabel(host.dataset.code, host.dataset.type)?.vol || host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
   st.innerHTML = `<div class="dg">${markup ?? host.querySelector('.dg')?.innerHTML ?? ''}</div>`;
   // pie: en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción;
   // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
-  const zh = host.closest('[data-zlabel]'), zl = zh?.dataset.zlabel;
+  // título: qué figura es (por su código; si no, el que trae la página) y, en los esquemas de artículo, su autor
+  const fl = figLabel(host.dataset.code, host.dataset.type);
+  const zh = host.closest('[data-zlabel]'), zl = fl?.text || zh?.dataset.zlabel;
   // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
   // tras el código, (s) simplificada o (d) detallada: qué versión se está viendo
   const tag = host.dataset.tag ? `${host.dataset.tag} (${zoomFull ? 'd' : 's'})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
   // la descripción (zc-desc) se pliega con la doble flecha; queda el título: qué esquema es y su nombre
   const capHtml = tag || rest ? `<span class="zc-desc">${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' : ''}` : ''}${esc(rest)}</span>` : '';
-  const zseg = zl ? zl.split(' · ') : [], zhi = +(zh?.dataset.zhi || 0);
-  const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ');
+  const zseg = zl ? zl.split(' · ') : [], zhi = fl ? fl.hi : +(zh?.dataset.zhi || 0);
+  const zlHtml = zseg.slice(0, zhi).map(t => `<span class="zl-hi">${esc(t)}</span>`).concat(zseg.length > zhi ? [esc(zseg.slice(zhi).join(' · '))] : []).join(' · ')
+    + (fl?.author ? ` · <span class="zl-au">${esc(fl.author)}</span>` : '');
   const fold = capHtml ? `<button type="button" class="zoom-fold" data-zfold aria-label="${cap.classList.contains('folded') ? 'Mostrar la descripción' : 'Ocultar la descripción'}"><svg viewBox="0 0 24 24"><path d="M6 12l6-6 6 6M6 18l6-6 6 6"/></svg></button>` : '';
   cap.innerHTML = (zl ? `<b class="zoom-label">${zlHtml}</b>${capHtml ? ' ' + capHtml : ''}` : capHtml) + fold;
   if (!dlg.open) dlg.showModal();
@@ -379,6 +406,8 @@ function openZoom(host, keepList = false, markup = null) {
     drag = null;
   };
   fit();
+  // al abrir el visor, la etiqueta de la versión sale sobre el interruptor, para indicar qué la cambia
+  if (zoomOpening) { zoomOpening = false; showZoomTip(true); }
 }
 // Girar a horizontal: el visor entero (dibujo, pie y barra) gira 90°, como si se girase el móvil hacia la
 // izquierda, sin depender del giro automático ni del sensor. Solo dos posiciones; al cerrar el visor vuelve a
@@ -423,7 +452,7 @@ export function figure(f) {
   const [tag, rest] = figTag(f);
   const cap = tag ? `${tag}.${rest ? ' ' + rest : ''}` : f.caption || '';
   return `<figure class="diagram">
-    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" aria-label="Ampliar esquema: ${esc(label)}">
+    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" data-code="${esc(f.code || '')}" data-type="${esc(f.type || '')}"${f.code === 'CC' ? ' data-onlyfull' : ''} aria-label="Ampliar esquema: ${esc(label)}">
       <div class="dg" data-svg="${esc(f.file)}" style="${ratio}" role="img" aria-label="${esc(label)}"></div>
     </button>
     ${cap ? `<figcaption>${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(cap)}</figcaption>` : ''}
@@ -900,7 +929,7 @@ function relatedPanel(a) {
   </section>`;
 }
 
-function articleView(id, tab = 0) {
+function articleView(id, tab = 0, params = null) {
   const hit = article(id);
   if (!hit) return notFound();
   const { v, a } = hit;
@@ -922,8 +951,9 @@ function articleView(id, tab = 0) {
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;
   } else if (tab === MARKS_TAB) {
-    const items = store.highlights(a.id).sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
-    body = items.length ? `<div class="art-marks">
+    const all = store.highlights(a.id).sort((x, y) => x.b0 - y.b0 || x.o0 - y.o0);
+    const c = params?.get('c') || '', items = c ? all.filter(h => h.color === c) : all;
+    body = all.length ? `${hlFilterBar(all, c, id => `a href="#/articulo/${a.id}/${MARKS_TAB}${id ? '?c=' + id : ''}"`)}<div class="art-marks bm-panel">
         <p class="muted small" style="margin-top:0">${items.length} ${items.length === 1 ? 'pasaje subrayado' : 'pasajes subrayados'} en este texto, en su orden. Toca uno para ir a él en el modo lectura.</p>
         ${items.map(hlItem).join('')}</div>`
       : `<div class="empty">Aún no hay marcadores en este texto.<br>En el modo lectura, <b>selecciona un pasaje</b> y elige un color para subrayarlo; toca después el subrayado para escribir una nota propia.</div>`;
@@ -1051,7 +1081,7 @@ function listView(tab = 0) {
   };
   const html = `<div class="wrap">
     <header class="page-head"><div class="eyebrow">Biblioteca</div><h1>Mi lista de lectura</h1>
-      <div class="sub">Los textos que quieres leer, en el orden que elijas. Cuando termines uno, pasa a «Leídos».</div></header>
+      <div class="sub">Los textos que quieres leer, en el orden que elijas. Cuando termines uno, pasa a «Leídos».</div><p class="muted small data-tip">Tu lista se guarda solo en este navegador: <a href="#/acerca/datos">expórtala</a> para no perderlos o pasarla a otro dispositivo.</p></header>
     ${tabs('#/lista', LIST_TABS, tab)}
     <div id="rl-body">${body()}</div>
   </div>`;
@@ -1466,6 +1496,17 @@ const hlItem = h => `<div class="hl-item" style="--hl:${hlHex(h.color)}" title="
         </a>
         <button class="icon-btn" data-del="${esc(h.uid)}" aria-label="Eliminar subrayado">${ICON.x}</button>
       </div>`;
+/** Filtros por categoría de unos marcadores (si hay más de una): una línea de botones desplazable y fija arriba, como
+ *  las barras de pestañas. `open(id)` da la etiqueta de apertura de cada botón ('' = todos), p. ej. un enlace. */
+export function hlFilterBar(list, active, open) {
+  const used = new Set(list.map(h => h.color));
+  if (used.size < 2) return '';
+  const n = id => list.filter(h => !id || h.color === id).length;
+  const chip = (id, label) => { const o = open(id), tag = o.split(' ')[0];
+    return `<${o} class="chip"${id === active ? ' aria-pressed="true" aria-current="page"' : ''}>${label} <span class="m-count">${n(id)}</span></${tag}>`; };
+  return `<nav class="tabs chip-tabs hl-filter" aria-label="Filtrar por categoría">${chip('', 'Todos')}${store.legend().filter(s => used.has(s.id)).map(s =>
+    chip(s.id, `<i class="hl-dot" style="--hl:${hlHex(s.id)}"></i>${esc(hlCat(s.id))}`)).join('')}</nav>`;
+}
 /** Elimina un subrayado (si tiene nota, tras confirmarlo) y vuelve a pintar la pantalla. */
 function deleteHighlight(uid) {
   const h = store.highlights().find(x => x.uid === uid);
@@ -1484,7 +1525,7 @@ function bookmarksView(params, tabArg) {
   if (tab === 1) {
     const html = `<div class="wrap">
       <header class="page-head"><h1>Marcadores</h1>
-        <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div></header>
+        <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div><p class="muted small data-tip">Se guardan solo en este navegador: <a href="#/acerca/datos">expórtalos</a> para no perderlos o pasarlos a otro dispositivo.</p></header>
       ${tabs('#/marcadores', BM_TABS(), 1)}
       <div class="bm-panel" id="legend-box"></div>
     </div>`;
@@ -1508,14 +1549,10 @@ function bookmarksView(params, tabArg) {
   const used = new Set(all.map(h => h.color));
   const html = `<div class="wrap">
     <header class="page-head"><h1>Marcadores</h1>
-      <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div></header>
+      <div class="sub">Pasajes subrayados en el modo lectura y tus notas propias. En «Configurar leyenda», el color y la categoría de cada subrayado, y cuáles se usan al subrayar.</div><p class="muted small data-tip">Se guardan solo en este navegador: <a href="#/acerca/datos">expórtalos</a> para no perderlos o pasarlos a otro dispositivo.</p></header>
     ${tabs('#/marcadores', BM_TABS(), 0)}
     <div class="bm-panel">
-    ${used.size > 1 ? `<div class="chips hl-filter" role="group" aria-label="Filtrar por color">
-      <a class="chip" href="#/marcadores/0"${color ? '' : ' aria-pressed="true"'}>Todos <span class="m-count">${all.length}</span></a>
-      ${store.legend().filter(s => used.has(s.id)).map(s =>
-        `<a class="chip" href="#/marcadores/0?c=${s.id}"${s.id === color ? ' aria-pressed="true"' : ''}><i class="hl-dot" style="--hl:${hlHex(s.id)}"></i>${esc(hlCat(s.id))}</a>`).join('')}
-    </div>` : ''}
+    ${hlFilterBar(all, color, id => `a href="#/marcadores/0${id ? '?c=' + id : ''}"`)}
     ${groups.length ? groups.map(g => `<details class="hl-group" data-vol="${g.v.key}"${groups.length === 1 ? ' open' : ''}>
       <summary><div class="eyebrow vol">${esc(volHead(g.v))}</div>
       <h2 class="hl-group-title">${esc(g.title)} <span class="m-count">${g.items.length}</span></h2>
@@ -1555,9 +1592,7 @@ function mountLegend(root, onChange, onDone) {
     </div>
     ${picking === i ? `<div class="lg-palette" role="group" aria-label="Colores">${HL_PALETTE_ORDER.map(k => { const [n, c] = HL_PALETTE[k];
       return `<button type="button" class="lg-pal" data-color="${k}" style="--hl:${c}" aria-pressed="${k === s.color}"><i></i>${n}</button>`; }).join('')}</div>` : ''}
-    ${listing === i ? `<div class="lg-cats" role="listbox" aria-label="Categorías habituales">
-      <button type="button" role="option" data-pickcat="" title="Volver al nombre del color">—</button>${freeCats(i).map(c =>
-      `<button type="button" role="option" data-pickcat="${esc(c)}">${esc(c)}</button>`).join('')}</div>` : ''}`;
+`;
   };
   // sin categoría propia (vacía o el nombre de su color): se muestra el nombre del color, con un lápiz al lado
   const colorName = s => HL_PALETTE[s.color]?.[0] || '';
@@ -1567,9 +1602,21 @@ function mountLegend(root, onChange, onDone) {
   const freeCats = i => HL_CATEGORIES.filter(c => !legend.some((s, j) => j !== i && norm(s.cat) === norm(c)));
   // siempre una línea vacía al final para crear un color nuevo (tantas como colores tiene la paleta)
   const rows = () => [...legend, ...(legend.length < Object.keys(HL_PALETTE).length ? [{ id: '', color: '', cat: '', show: false }] : [])];
+  // ventana de categorías (sobre la leyenda): «—» vuelve al nombre del color; «Personalizado» deja el campo vacío
+  // para escribir; después, las sugeridas que no usa otra línea. La opción actual, en negrita.
+  const picker = () => {
+    const s = legend[listing]; if (!s) return '';
+    const cur = isDef(s) ? '' : HL_CATEGORIES.includes(s.cat) ? s.cat : '*';
+    const opt = (v, label, attr = `data-pickcat="${esc(v)}"`) => `<button type="button" role="option" ${attr} aria-selected="${cur === v}">${label}</button>`;
+    return `<div class="lg-pick-wrap" data-pickclose><div class="lg-pick" role="listbox" aria-label="Categoría">
+      <div class="lg-pick-head"><i style="--hl:${HL_PALETTE[s.color]?.[1] || 'transparent'}"></i>Categoría</div>
+      ${opt('', '—')}${opt('*', '<i>Personalizado</i>', 'data-pickcustom')}
+      ${freeCats(listing).map(c => opt(c, esc(c))).join('')}</div></div>`;
+  };
   const html = () => `<p class="muted small" style="margin-top:0">Para toda la aplicación: cambiar el color o la categoría de una línea cambia todos los subrayados hechos con ella. «Usar» decide qué colores se ofrecen al subrayar.</p>
     <div class="legend">${rows().map(row).join('')}</div>
-    <div class="lg-actions"><button type="button" class="btn ghost" data-lgcancel>Cancelar</button><button type="button" class="btn" data-lgsave>Guardar</button></div>`;
+    <div class="lg-actions"><button type="button" class="btn ghost" data-lgcancel>Cancelar</button><button type="button" class="btn" data-lgsave>Guardar</button></div>
+    ${listing != null ? picker() : ''}`;
   {
     const body = root;
     const redraw = () => { const y = body.scrollTop; body.innerHTML = html(); body.scrollTop = y; };
@@ -1606,6 +1653,12 @@ function mountLegend(root, onChange, onDone) {
       }
       const l = e.target.closest('[data-catlist]'); // (data-list es el botón de Mi lista)
       if (l) { listing = listing === +l.dataset.catlist ? null : +l.dataset.catlist; picking = null; return redraw(); }
+      if (e.target.matches('[data-pickclose]')) { listing = null; return redraw(); } // fuera de la ventana
+      if (e.target.closest('[data-pickcustom]') && legend[listing]) { // «Personalizado»: campo vacío y el cursor en él
+        const i = listing; legend[i].cat = ''; listing = null; save(); redraw();
+        const inp = body.querySelector(`[data-cat="${i}"]`); inp.value = ''; inp.focus();
+        return;
+      }
       const pc = e.target.closest('[data-pickcat]');
       if (pc && listing != null && legend[listing]) { // «—»: vuelve al nombre del color
         legend[listing].cat = pc.dataset.pickcat || colorName(legend[listing]); listing = null; save(); return redraw();
@@ -1874,7 +1927,7 @@ async function route() {
     case 'marx-xxi': case 'nuevo-ciclo': out = collectionView(pub(parts[0])); break;
     case 'volumen': case 'tomo': out = volumeView(pub('marx-xxi'), +parts[1], parts[2] != null ? +parts[2] : 1); break;
     case 'numero': out = volumeView(pub('nuevo-ciclo'), +parts[1], parts[2] != null ? +parts[2] : 1); break;
-    case 'articulo': out = articleView(parts[1], +(parts[2] || TAB.pildoras)); break;
+    case 'articulo': out = articleView(parts[1], +(parts[2] || TAB.pildoras), params); break;
     case 'leer': out = await readerView(parts[1], params); break;
     case 'tesis': {
       const other = parts[1] && !/^\d+$/.test(parts[1]); // #/tesis/nuevo-ciclo[/n] o #/tesis[/n]
@@ -1911,6 +1964,8 @@ async function route() {
     if (y > 0) setTimeout(() => { if (scrollY < target() - 2 && !userScrolled) window.scrollTo(0, target()); }, 300);
   }
   cleanup = mount?.() || null;
+  const mainTabs = view.querySelector('.tabs:not(.chip-tabs)');
+  if (mainTabs) view.style.setProperty('--maps-tabs-h', mainTabs.offsetHeight + 'px');
   applyTheme(); // tema de lectura al entrar en el lector; el del sistema al salir
   if (parts[0] === 'acerca') {
     if (parts[1] === 'instalar' || parts[1] === 'datos') document.getElementById(parts[1])?.scrollIntoView();
@@ -2003,7 +2058,7 @@ const dataKeys = () => Object.keys(localStorage).filter(k => k.startsWith('mx.')
 /** Resumen de unos datos para la confirmación: subrayados, textos empezados, en Mi lista, leídos. */
 function dataSummary(d) {
   const n = k => { try { const v = JSON.parse(d[k] ?? 'null'); return Array.isArray(v) ? v.length : v && typeof v === 'object' ? Object.keys(v).length : 0; } catch { return 0; } };
-  return `${n('mx.hl')} subrayados, ${n('mx.pos')} textos empezados, ${n('mx.read')} leídos y ${n('mx.list')} en Mi lista`;
+  return `${n('mx.hl')} marcadores, ${n('mx.pos')} textos empezados, ${n('mx.read')} leídos y ${n('mx.list')} en Mi lista`;
 }
 function exportData() {
   const datos = Object.fromEntries(dataKeys().map(k => [k, localStorage.getItem(k)]));
