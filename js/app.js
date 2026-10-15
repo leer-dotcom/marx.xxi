@@ -1224,7 +1224,7 @@ function whereLinks(where, p = pub()) {
 
 // Pestañas como en Mapas conceptuales: #/glosario/0 Toda la colección, /1… cada revista, la última Puentes
 // (también vale ?p=marx-xxi o ?p=puentes, de enlaces anteriores); dentro de una revista, un botón por volumen
-// o número (?v=), en una línea fija debajo de la barra de pestañas.
+// o número (?v=), en una línea fija debajo de la barra de pestañas. El buscador, encima de las pestañas (en la cabecera).
 function glossaryView(params, tabArg) {
   setBar('Glosario');
   const L = lib();
@@ -1241,12 +1241,12 @@ function glossaryView(params, tabArg) {
       ${P.volumes.map(x => `<button class="chip" role="tab" data-v="${x.key}" data-vol="${x.key}" ${cur(x.key === vol)}>${esc(volShort(x))}</button>`).join('')}
     </nav>` : '';
   const html = `<div class="wrap">
-    <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los artículos de las dos revistas' : 'los artículos'}. Toca uno para ir a su artículo.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div></header>
+    <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los artículos de las dos revistas' : 'los artículos'}. Toca uno para ir a su artículo.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div>
+      <label class="field g-search">${ICON.search}<input id="g-q" type="search" placeholder="Buscar concepto o definición" value="${esc(params.get('q') || '')}" autocomplete="off"></label></header>
     ${multi ? tabs('#/glosario', ['Toda la colección', ...L.pubs.map(p => p.name), 'Puentes'], tab) : ''}
     ${volNav()}
     <div id="g-list-box">
-      <label class="field">${ICON.search}<input id="g-q" type="search" placeholder="Buscar concepto o definición" value="${esc(params.get('q') || '')}" autocomplete="off"></label>
-      <div class="muted small" id="g-count" style="margin-top:8px"></div>
+      <div class="muted small" id="g-count"></div>
       <div id="g-list"></div>
     </div>
   </div>`;

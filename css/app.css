@@ -812,6 +812,7 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .dg-gallery.wide{grid-template-columns:1fr}
 /* alto mínimo: con la barra de pestañas fija arriba, cambiar a una pestaña con pocos mapas no la desfija */
 #maps-panel,#g-list-box{min-height:100dvh}
+.page-head .g-search{margin-top:14px}
 /* glosario con una sola revista: sin barra de pestañas encima */
 .tabs.chip-tabs.solo{top:calc(var(--bar-h) + var(--safe-t));margin-top:0}
 .maps-sub-nav{margin:10px 0 4px}
