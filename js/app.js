@@ -321,16 +321,16 @@ function openZoom(host, keepList = false, markup = null) {
     range.value = Math.round(zoomPos(k)); // también con el control abierto y enfocado
   };
   // Desplazamiento libre, sin el marco del dibujo: se puede llevar a cualquier parte. La única condición es que el
-  // dibujo siga ocupando al menos 1/5 de la pantalla a lo ancho y a lo alto (que no quede vacía): al arrastrar más
+  // dibujo siga ocupando al menos 1/3 de la pantalla a lo ancho y a lo alto (que no quede vacía): al arrastrar más
   // allá, ofrece resistencia; al soltar, vuelve con un pequeño rebote hasta cumplirla.
   const bounds = () => {
     const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom;
-    return { xlo: a.w * 0.2 - w, xhi: a.w * 0.8, ylo: a.top + free * 0.2 - h, yhi: a.top + free * 0.8 };
+    return { xlo: a.w / 3 - w, xhi: a.w * 2 / 3, ylo: a.top + free / 3 - h, yhi: a.top + free * 2 / 3 };
   };
   const rubber = (v, lo, hi) => v < lo ? lo - (lo - v) * 0.35 : v > hi ? hi + (v - hi) * 0.35 : v;
   const clamp = () => { const b = bounds(); x = Math.min(b.xhi, Math.max(b.xlo, x)); y = Math.min(b.yhi, Math.max(b.ylo, y)); };
   let settleT = 0;
-  /** Si la pantalla ha quedado casi vacía, el dibujo vuelve (animado, con rebote) hasta ocupar 1/5 de ella. */
+  /** Si la pantalla ha quedado casi vacía, el dibujo vuelve (animado, con rebote) hasta ocupar 1/3 de ella. */
   const settle = () => {
     const ox = x, oy = y; clamp();
     if (ox === x && oy === y) return;
