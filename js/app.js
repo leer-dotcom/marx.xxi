@@ -200,7 +200,7 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 // Versión de cada figura (temporal, para contrastar la revisión de los esquemas): la simplificada (la de siempre,
 // por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
-let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false, zoomSwap = false;
+let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
 /** Etiqueta «Versión simplificada / detallada» sobre el interruptor, con una flechita hacia él: al abrir el visor y
  *  al cambiar de versión, solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
@@ -275,7 +275,7 @@ const zoomAt = v => 10 ** (ZL + v / 100 * ZR);
 function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
-    if (!$('#zoom').open) { setZoomFull(false); zoomForced = false; zoomTipsShown = new Set(); zoomOpening = true; zoomSwap = false; } // cada vez que se abre el visor, la simplificada
+    if (!$('#zoom').open) { setZoomFull(false); zoomForced = false; zoomTipsShown = new Set(); zoomOpening = true; } // cada vez que se abre el visor, la simplificada
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
@@ -299,8 +299,7 @@ function openZoom(host, keepList = false, markup = null) {
   }
   const vol = figLabel(host.dataset.code, host.dataset.type)?.vol || host.closest('[data-vol]')?.dataset.vol || document.body.dataset.vol;
   if (vol) dlg.dataset.vol = vol; else delete dlg.dataset.vol;
-  st.innerHTML = `<div class="dg${zoomSwap ? ' swap-in' : ''}">${markup ?? host.querySelector('.dg')?.innerHTML ?? ''}</div>`;
-  zoomSwap = false;
+  st.innerHTML = `<div class="dg">${markup ?? host.querySelector('.dg')?.innerHTML ?? ''}</div>`;
   // pie: en «Mapas conceptuales», qué esquema es (volumen o número, artículo y título) antes de su descripción;
   // los primeros `zhi` tramos (volumen o número y nº de artículo) van en el color del volumen
   // título: qué figura es (por su código; si no, el que trae la página) y, en los esquemas de artículo, su autor
@@ -387,9 +386,7 @@ function openZoom(host, keepList = false, markup = null) {
       // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
       const file = zoomHost.querySelector('.dg')?.dataset.svg;
       if (zoomFull && file) loadSvg(fullFile(file)).catch(() => {});
-      // al llegar al ajuste, la nueva aparece con un destello
       const [ox, oy, os] = [x, y, s];
-      zoomSwap = true;
       box.classList.remove('settle'); box.classList.add('restore'); fit();
       if (Math.abs(ox - x) + Math.abs(oy - y) < 1 && Math.abs(os / s - 1) < 0.005) return openZoom(zoomHost, true);
       const host = zoomHost;
