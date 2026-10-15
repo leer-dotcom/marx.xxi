@@ -289,7 +289,11 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 .lg-more:disabled{opacity:.4;cursor:default}
 .lg-show{display:flex;align-items:center;gap:5px;font-size:14px;color:var(--ink-2);white-space:nowrap}
 .lg-show input{accent-color:var(--btn)} /* casilla marcada en el oscuro de los botones de la app */
-.lg-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;padding:8px 0 10px}
+.lg-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;padding:4px 2px 8px}
+.lg-pick.lg-pick-colors{width:min(560px,100%)}
+.lg-del{justify-self:center;display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:7px 14px 7px 8px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font:inherit;font-size:14.5px;color:var(--ink-2);cursor:pointer}
+.lg-del i{width:20px;height:20px;border-radius:50%;border:2px dashed var(--ink-3)}
+.lg-del:hover{border-color:var(--ink-3);color:var(--ink)}
 .lg-pal{display:flex;align-items:center;gap:8px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font:inherit;font-size:14.5px;color:var(--ink);cursor:pointer;text-align:left}
 .lg-pal i{width:20px;height:20px;border-radius:50%;background:var(--hl);flex:none}
 .lg-pal[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
@@ -409,6 +413,9 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .zoom[open]{display:block}
 /* con el visor abierto, la página de debajo no se desplaza ni muestra su barra de desplazamiento */
 html:has(.zoom[open]){overflow:hidden}
+/* con cualquier ventana abierta (o la ventana de opciones de la leyenda), la página de detrás no se desplaza */
+html:has(dialog[open]),html:has(.lg-pick-wrap){overflow:hidden;overscroll-behavior:none}
+.sheet-body,.lg-pick{overscroll-behavior:contain}
 /* contenido del visor; girado («Girar a horizontal»), ocupa la pantalla a lo ancho y gira 90° */
 .zoom-rot{position:absolute;inset:0}
 .zoom.rot .zoom-rot{inset:auto;left:50%;top:50%;width:100dvh;height:100vw;transform:translate(-50%,-50%) rotate(90deg)}
@@ -958,7 +965,7 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 .zoom-label{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
 .zoom-label .zl-hi{color:var(--vol)}
 .zoom-label .zl-au{font-weight:400;font-style:italic;color:var(--ink-3)} /* autor del artículo, como en la página */
-.zoom-full.locked{opacity:.5;cursor:not-allowed} /* por ahora, solo versión detallada */
+.zoom-full.locked{opacity:.5;cursor:default} /* por ahora, solo versión detallada: no hace nada */
 /* ventana de confirmación propia (sustituye al confirm() del navegador) */
 dialog.confirm{width:min(420px,calc(100% - 32px));margin:auto;padding:22px 22px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);overflow:visible;animation:up .18s ease}
 dialog.confirm h2{margin:0;font-size:23px;font-weight:400;line-height:1.2}
@@ -1005,3 +1012,15 @@ dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink
 .rl.reorder .rl-del{display:none}
 .rl.reorder .rl-item{background:color-mix(in srgb,var(--vol) 5%,transparent);border-radius:6px;padding-left:8px;padding-right:4px;border-bottom-color:transparent;margin-top:4px}
 @media (max-width:420px){.rl-actions{flex-direction:column;margin-right:-10px}}
+
+/* ---------- al tocar: sin el recuadro azul de Chrome en Android; en su lugar, un leve oscurecido y encogido que
+   respeta la forma de cada elemento (círculos, botones redondeados, pestañas, tarjetas) ---------- */
+html{-webkit-tap-highlight-color:transparent}
+:where(button,.btn,.chip,.icon-btn,.bar-btn,.tabs a,.m-link,.m-art-title,.m-art-read,summary,.card.tool,.ph-list,.ph-nav a,
+  .hl-sw,.lg-dot,.lg-pal,.lg-del,.lg-more,.hl-pop-marks,.zoom-full,.zoom-pos,label.lg-show){transition:transform .08s ease,filter .08s ease}
+:where(button,.btn,.chip,.icon-btn,.bar-btn,.tabs a,.m-link,.m-art-title,.m-art-read,.ph-list,.ph-nav a,
+  .hl-sw,.lg-dot,.lg-pal,.lg-del,.lg-more,.hl-pop-marks,.zoom-full,.zoom-pos):active:not(:disabled){transform:scale(.95);filter:brightness(.9)}
+/* las tarjetas y desplegables grandes, apenas: que no «salte» toda la fila */
+:where(.card.tool,a.card,summary):active{transform:scale(.985);filter:brightness(.96)}
+/* los enlaces dentro del texto: solo se atenúan */
+:where(p,li,.sub,.muted) a:active{opacity:.6}

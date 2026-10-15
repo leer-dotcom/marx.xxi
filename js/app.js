@@ -1590,8 +1590,6 @@ function mountLegend(root, onChange, onDone) {
         <button type="button" class="lg-more" data-catlist="${i}" aria-label="Categorías habituales" aria-expanded="${listing === i}" ${s.color ? '' : 'disabled'}>▾</button></span>
       <label class="lg-show"><input type="checkbox" data-show="${i}" ${s.show && s.color ? 'checked' : ''} ${s.color ? '' : 'disabled'}><span>Usar</span></label>
     </div>
-    ${picking === i ? `<div class="lg-palette" role="group" aria-label="Colores">${HL_PALETTE_ORDER.map(k => { const [n, c] = HL_PALETTE[k];
-      return `<button type="button" class="lg-pal" data-color="${k}" style="--hl:${c}" aria-pressed="${k === s.color}"><i></i>${n}</button>`; }).join('')}</div>` : ''}
 `;
   };
   // sin categoría propia (vacía o el nombre de su color): se muestra el nombre del color, con un lápiz al lado
@@ -1613,10 +1611,19 @@ function mountLegend(root, onChange, onDone) {
       ${opt('', '—')}${opt('*', '<i>Personalizado</i>', 'data-pickcustom')}
       ${freeCats(listing).map(c => opt(c, esc(c))).join('')}</div></div>`;
   };
+  // ventana de colores (como la de categorías): la paleta y, debajo, «Eliminar categoría» (si la línea existe)
+  const palette = () => {
+    const s = legend[picking];
+    return `<div class="lg-pick-wrap" data-pickclose><div class="lg-pick lg-pick-colors" role="group" aria-label="Color">
+      <div class="lg-pick-head">${s ? `<i style="--hl:${HL_PALETTE[s.color]?.[1]}"></i>${esc(isDef(s) ? colorName(s) : s.cat)}` : 'Color de la categoría nueva'}</div>
+      <div class="lg-palette">${HL_PALETTE_ORDER.map(k => { const [n, c] = HL_PALETTE[k];
+        return `<button type="button" class="lg-pal" data-color="${k}" style="--hl:${c}" aria-pressed="${k === s?.color}"><i></i>${n}</button>`; }).join('')}</div>
+      ${s ? `<button type="button" class="lg-del" data-lgdel><i></i>Eliminar categoría</button>` : ''}</div></div>`;
+  };
   const html = () => `<p class="muted small" style="margin-top:0">Para toda la aplicación: cambiar el color o la categoría de una línea cambia todos los subrayados hechos con ella. «Usar» decide qué colores se ofrecen al subrayar.</p>
     <div class="legend">${rows().map(row).join('')}</div>
     <div class="lg-actions"><button type="button" class="btn ghost" data-lgcancel>Cancelar</button><button type="button" class="btn" data-lgsave>Guardar</button></div>
-    ${listing != null ? picker() : ''}`;
+    ${listing != null ? picker() : ''}${picking != null ? palette() : ''}`;
   {
     const body = root;
     const redraw = () => { const y = body.scrollTop; body.innerHTML = html(); body.scrollTop = y; };
@@ -1627,7 +1634,10 @@ function mountLegend(root, onChange, onDone) {
         return onDone ? onDone(false) : redraw();
       }
       if (e.target.closest('[data-lgsave]')) {
-        confirmDialog({ title: 'Guardar la leyenda', text: 'Los cambios de color y de categoría se aplicarán a todos los subrayados hechos con cada línea, en todos los textos.', ok: 'Guardar' })
+        const gone = store.legend().filter(x => !legend.some(y => y.id === x.id));
+        const lost = store.highlights().filter(h => gone.some(g => g.id === h.color)).length;
+        confirmDialog({ title: 'Guardar la leyenda', text: 'Los cambios de color y de categoría se aplicarán a todos los subrayados hechos con cada línea, en todos los textos.'
+          + (lost ? `\n${lost === 1 ? 'Un marcador de las categorías eliminadas quedará' : lost + ' marcadores de las categorías eliminadas quedarán'} en gris y sin categoría.` : ''), ok: 'Guardar' })
           .then(yes => {
             if (!yes) return;
             store.saveLegend(legend); dirty = false; onChange?.(legend);
@@ -1653,7 +1663,10 @@ function mountLegend(root, onChange, onDone) {
       }
       const l = e.target.closest('[data-catlist]'); // (data-list es el botón de Mi lista)
       if (l) { listing = listing === +l.dataset.catlist ? null : +l.dataset.catlist; picking = null; return redraw(); }
-      if (e.target.matches('[data-pickclose]')) { listing = null; return redraw(); } // fuera de la ventana
+      if (e.target.matches('[data-pickclose]')) { listing = picking = null; return redraw(); } // fuera de la ventana
+      if (e.target.closest('[data-lgdel]') && legend[picking]) { // se quita al guardar; sus marcadores quedan sin categoría
+        legend.splice(picking, 1); picking = null; save(); return redraw();
+      }
       if (e.target.closest('[data-pickcustom]') && legend[listing]) { // «Personalizado»: campo vacío y el cursor en él
         const i = listing; legend[i].cat = ''; listing = null; save(); redraw();
         const inp = body.querySelector(`[data-cat="${i}"]`); inp.value = ''; inp.focus();
