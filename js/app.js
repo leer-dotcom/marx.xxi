@@ -1920,7 +1920,7 @@ function aboutView(tab) {
 
     <section class="card about" id="datos">
       <h2>Exportar e importar tus datos</h2>
-      <p>Todo lo tuyo se guarda solo en este navegador: el progreso y el punto de lectura de cada texto, los leídos, Mi lista, los subrayados con sus notas, la leyenda de colores y los ajustes de lectura. No se envía a ningún servidor, así que <b>si se borran los datos de navegación del navegador, se pierden</b>.</p>
+      <p>Lo que personalizas en el lector se guarda solo en este navegador: el progreso y el punto de lectura de cada texto, los leídos, Mi lista, los subrayados con sus notas, la leyenda de colores y los ajustes de lectura. No se envía a ningún servidor, así que <b>si se borran los datos de navegación del navegador, se pierden</b>.</p>
       <p><b>Exportar</b> descarga un archivo con todo ello, para guardar una copia o pasarlo a otro dispositivo o navegador. <b>Importar</b> carga un archivo exportado y sustituye los datos de este navegador por los suyos (pide confirmación antes).</p>
       <div class="data-actions">
         <button type="button" class="btn" data-export>${ICON.upload}Exportar datos</button>
