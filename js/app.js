@@ -202,23 +202,35 @@ let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 // por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
 let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
-/** Etiqueta «Versión simplificada / detallada» sobre la barra, centrada en la pantalla, al cambiar de versión con
- *  el interruptor: solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
- *  flechas es el mismo uso). Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»). */
+/** Etiqueta «Versión simplificada / detallada» sobre el interruptor, con una flechita hacia él: al abrir el visor y
+ *  al cambiar de versión, solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
+ *  flechas es el mismo uso). Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»).
+ *  En los visores de varios esquemas, la primera vez que se amplía o se reduce en cada uso, la misma etiqueta sale
+ *  sobre «n / N» con el icono de restablecer: tocarlo devuelve el zoom inicial. */
 let zoomTipsShown = new Set();
 function flashZoomFull() {
   const kind = zoomFull ? 'd' : 's';
   if (zoomTipsShown.has(kind)) return;
   zoomTipsShown.add(kind);
-  showZoomTip(false);
+  showZoomTip();
 }
-/** Muestra la etiqueta de la versión vista: centrada o, al abrir el visor, sobre el interruptor (que es quien la cambia). */
-function showZoomTip(atSwitch) {
-  const t = $('#zoom-full-tip'), bar = $('.zoom-bar'), sw = $('#zoom [data-zfull]');
-  t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
-  const br = bar.getBoundingClientRect(), sr = sw.getBoundingClientRect();
-  t.style.left = atSwitch && br.width ? `${sr.left + sr.width / 2 - br.left}px` : '';
-  t.classList.toggle('at-switch', !!atSwitch); // con una flechita que apunta al interruptor
+const RESTORE_ICON = '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
+/** Primera vez que cambia el zoom en este uso del visor, con varios esquemas: aviso sobre «n / N» (restablecer). */
+function flashZoomRestore() {
+  if (zoomList.length < 2 || zoomTipsShown.has('r')) return;
+  zoomTipsShown.add('r');
+  showZoomTip($('#zoom-pos'), `${RESTORE_ICON}Restablecer el zoom`);
+}
+/** Muestra una etiqueta sobre un botón de la barra (por defecto, la versión vista sobre el interruptor S | D), con
+ *  una flechita que lo señala. La posición se mide dentro de la barra, así que vale también con el visor girado. */
+function showZoomTip(anchor = $('#zoom [data-zfull]'), html = null) {
+  const t = $('#zoom-full-tip'), bar = $('.zoom-bar');
+  if (html) t.innerHTML = html;
+  else t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
+  let x = anchor.offsetWidth / 2, el = anchor;
+  for (; el && el !== bar; el = el.offsetParent) x += el.offsetLeft;
+  t.style.left = el === bar && anchor.offsetWidth ? `${x}px` : '';
+  t.classList.add('at-switch');
   clearTimeout(t._t);
   t.hidden = true; void t.offsetWidth; t.hidden = false; // reinicia la animación
   t._t = setTimeout(() => { t.hidden = true; }, 900);
@@ -269,7 +281,7 @@ function openZoom(host, keepList = false, markup = null) {
   }
   // varios esquemas: «n / N»; uno solo: el icono de las cuatro flechas. En los dos casos, restablece la vista
   $('#zoom-pos').innerHTML = zoomList.length > 1 ? `${zoomIdx + 1} / ${zoomList.length}`
-    : '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
+    : RESTORE_ICON;
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   zoomHost = host;
   // el mapa de la colección, por ahora solo en versión detallada: se abre en ella y el interruptor queda bloqueado
@@ -321,16 +333,16 @@ function openZoom(host, keepList = false, markup = null) {
     range.value = Math.round(zoomPos(k)); // también con el control abierto y enfocado
   };
   // Desplazamiento libre, sin el marco del dibujo: se puede llevar a cualquier parte. La única condición es que el
-  // dibujo siga ocupando al menos 1/3 de la pantalla a lo ancho y a lo alto (que no quede vacía): al arrastrar más
+  // dibujo siga ocupando al menos 1/2 de la pantalla a lo ancho y a lo alto (que no quede vacía): al arrastrar más
   // allá, ofrece resistencia; al soltar, vuelve con un pequeño rebote hasta cumplirla.
   const bounds = () => {
     const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom;
-    return { xlo: a.w / 3 - w, xhi: a.w * 2 / 3, ylo: a.top + free / 3 - h, yhi: a.top + free * 2 / 3 };
+    return { xlo: a.w / 2 - w, xhi: a.w / 2, ylo: a.top + free / 2 - h, yhi: a.top + free / 2 };
   };
   const rubber = (v, lo, hi) => v < lo ? lo - (lo - v) * 0.35 : v > hi ? hi + (v - hi) * 0.35 : v;
   const clamp = () => { const b = bounds(); x = Math.min(b.xhi, Math.max(b.xlo, x)); y = Math.min(b.yhi, Math.max(b.ylo, y)); };
   let settleT = 0;
-  /** Si la pantalla ha quedado casi vacía, el dibujo vuelve (animado, con rebote) hasta ocupar 1/3 de ella. */
+  /** Si la pantalla ha quedado medio vacía, el dibujo vuelve (animado, con rebote) hasta ocupar 1/2 de ella. */
   const settle = () => {
     const ox = x, oy = y; clamp();
     if (ox === x && oy === y) return;
@@ -352,6 +364,7 @@ function openZoom(host, keepList = false, markup = null) {
     const k = ns / s;
     x = cx - (cx - x) * k; y = cy - (cy - y) * k; s = ns;
     apply();
+    if (Math.abs(ns / f - 1) > 0.02) flashZoomRestore();
     if (!free) settle();
   };
   zoomFit = fit; zoomBy = z => z === '0' ? fit() : zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5));
@@ -433,7 +446,7 @@ function openZoom(host, keepList = false, markup = null) {
   };
   fit();
   // al abrir el visor, la etiqueta de la versión sale sobre el interruptor, para indicar qué la cambia
-  if (zoomOpening) { zoomOpening = false; showZoomTip(true); }
+  if (zoomOpening) { zoomOpening = false; showZoomTip(); }
 }
 // Girar a horizontal: el visor entero (dibujo, pie y barra) gira 90°, como si se girase el móvil hacia la
 // izquierda, sin depender del giro automático ni del sensor. Solo dos posiciones; al cerrar el visor vuelve a
