@@ -529,8 +529,7 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 /* ---------- menú lateral (derecha) ---------- */
 .drawer{margin:0 0 0 auto;height:100dvh;max-height:none;width:min(380px,92vw);max-width:none;padding:0;border:0;
   background:var(--bg);color:var(--ink);box-shadow:-8px 0 30px rgb(0 0 0 / .25)}
-.drawer[open]{display:flex;flex-direction:column;animation:drawer-in .2s ease}
-@keyframes drawer-in{from{transform:translateX(40px);opacity:.3}}
+.drawer[open]{display:flex;flex-direction:column}
 .drawer::backdrop{background:rgb(20 24 22 / .45)}
 .drawer-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:calc(6px + var(--safe-t)) 8px 6px 18px;background:var(--head);color:var(--head-ink)}
 .drawer-head .icon-btn{color:var(--head-ink)}
@@ -586,8 +585,15 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .appbar .lead{gap:0}
 /* menú a la izquierda */
 .drawer{margin:0 auto 0 0;box-shadow:8px 0 30px rgb(0 0 0 / .25)}
-.drawer[open]{animation:drawer-in-left .2s ease}
-@keyframes drawer-in-left{from{transform:translateX(-40px);opacity:.3}}
+.drawer[open]{animation:none}
+/* Abrir y cerrar sin parpadeo: el panel entra y sale deslizándose (siempre opaco) y el oscurecido del fondo aparece
+   y desaparece poco a poco, en vez de encenderse y apagarse de golpe (en el móvil se veía como un destello negro). */
+.drawer{transform:translateX(-100%);transition:transform .22s ease,overlay .22s allow-discrete,display .22s allow-discrete}
+.drawer[open]{transform:none}
+.drawer::backdrop{opacity:0;transition:opacity .22s ease,overlay .22s allow-discrete,display .22s allow-discrete}
+.drawer[open]::backdrop{opacity:1}
+@starting-style{.drawer[open]{transform:translateX(-100%)}.drawer[open]::backdrop{opacity:0}}
+@media (prefers-reduced-motion:reduce){.drawer,.drawer::backdrop{transition:none}}
 /* tarjeta de artículo: resumen + botones a la derecha */
 /* Tarjeta de artículo: contenido + panel de acciones propio, teñido con el color del volumen */
 .art-card{display:grid;grid-template-columns:1fr auto;padding:0;overflow:hidden}
