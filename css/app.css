@@ -1000,8 +1000,9 @@ dialog.confirm p{margin:10px 0 0;font-size:17px;line-height:1.45;color:var(--ink
 .install-ok{display:flex;align-items:baseline;gap:8px}
 .install-ok .tick{color:#2e8b4f;font-weight:700;font-size:1.15em}
 #instalar,#datos{scroll-margin-top:calc(var(--bar-h) + var(--safe-t) + 70px)}
-.data-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
-.data-actions .btn{margin:0}
+.data-actions{display:flex;justify-content:center;gap:8px;margin-top:6px} /* los dos juntos, en una línea */
+.data-actions .btn{margin:0;flex:0 1 auto;min-width:0;padding:12px 16px;white-space:nowrap}
+@media (max-width:420px){.data-actions .btn{flex:1 1 0;padding:11px 10px;gap:6px;font-size:16px;letter-spacing:.02em}}
 
 /* Mi lista de lectura (#/lista): botón de la cabecera de la guía y lista numerada (Pendientes / Leídos) */
 .ph-list{display:inline-flex;align-items:center;gap:7px;margin-top:14px;padding:6px 13px 6px 11px;border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:var(--radius);
