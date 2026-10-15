@@ -583,6 +583,21 @@ function menuHtml() {
     </details>`;
 }
 
+// Con una ventana abierta (menú, ventanas del lector, avisos, opciones de la leyenda), arrastrar o usar la rueda fuera
+// de lo que se puede desplazar dentro de ella no mueve la página de detrás.
+function blockBehind(e) {
+  const layer = document.querySelector('.lg-pick-wrap') || [...document.querySelectorAll('dialog[open]')].pop();
+  if (!layer || layer.classList.contains('zoom')) return; // el visor gestiona sus propios gestos
+  for (let el = e.target; el && el !== layer.parentElement; el = el.parentElement) {
+    if (el === layer) break;
+    const cs = getComputedStyle(el);
+    if (/(auto|scroll)/.test(cs.overflowY + cs.overflowX) && (el.scrollHeight > el.clientHeight || el.scrollWidth > el.clientWidth)) return; // se desplaza dentro
+  }
+  if (e.cancelable) e.preventDefault();
+}
+addEventListener('wheel', blockBehind, { passive: false });
+addEventListener('touchmove', blockBehind, { passive: false });
+
 export function openMenu() {
   const d = $('#menu');
   $('#menu-body').innerHTML = menuHtml();

@@ -416,9 +416,9 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 .zoom[open]{display:block}
 /* con el visor abierto, la página de debajo no se desplaza ni muestra su barra de desplazamiento */
 html:has(.zoom[open]){overflow:hidden}
-/* con cualquier ventana abierta (o la ventana de opciones de la leyenda), la página de detrás no se desplaza */
-html:has(dialog[open]),html:has(.lg-pick-wrap){overflow:hidden;overscroll-behavior:none}
-.sheet-body,.lg-pick{overscroll-behavior:contain}
+/* con una ventana abierta, la página de detrás no se desplaza: lo impide app.js (sin tocar el overflow de la
+   página, que al cambiar hacía parpadear la pantalla al abrir y cerrar el menú); dentro, sin encadenar el desplazamiento */
+.sheet-body,.drawer-body,.lg-pick{overscroll-behavior:contain}
 /* contenido del visor; girado («Girar a horizontal»), ocupa la pantalla a lo ancho y gira 90° */
 .zoom-rot{position:absolute;inset:0}
 .zoom.rot .zoom-rot{inset:auto;left:50%;top:50%;width:100dvh;height:100vw;transform:translate(-50%,-50%) rotate(90deg)}
@@ -536,7 +536,7 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .drawer-head .icon-btn{color:var(--head-ink)}
 .drawer-brand{font-size:24px;color:var(--head-ink);text-decoration:none;letter-spacing:.03em}
 .drawer-body{flex:1;overflow:auto;padding:8px 0 calc(24px + var(--safe-b))}
-.drawer-body{padding-top:16px} /* algo de aire entre la cabecera («Lector de Marx XXI») y «Biblioteca» */
+.drawer-body{padding-top:10px} /* algo de aire entre la cabecera («Lector de Marx XXI») y «Biblioteca» */
 /* desplegar y plegar las ramas del menú: animación breve de la altura (Chrome, Edge; en los demás, sin animación) */
 .drawer{interpolate-size:allow-keywords}
 .drawer details::details-content{block-size:0;overflow:hidden}
