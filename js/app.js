@@ -320,28 +320,39 @@ function openZoom(host, keepList = false, markup = null) {
     level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
     range.value = Math.round(zoomPos(k)); // también con el control abierto y enfocado
   };
-  // Alrededor del dibujo hay un margen en blanco de 1/2 de su ancho (a los lados) y de su alto (arriba y abajo)
-  // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
-  // quede tieso contra el marco.
-  const clamp = () => {
-    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom, mx = w / 2, my = h / 2;
-    x = w + 2 * mx <= a.w ? (a.w - w) / 2 : Math.min(mx, Math.max(a.w - w - mx, x));
-    y = h + 2 * my <= free ? a.top + (free - h) / 2 : Math.min(a.top + my, Math.max(a.h - a.bottom - h - my, y));
+  // Desplazamiento libre, sin el marco del dibujo: se puede llevar a cualquier parte. La única condición es que el
+  // dibujo siga ocupando al menos 1/5 de la pantalla a lo ancho y a lo alto (que no quede vacía): al arrastrar más
+  // allá, ofrece resistencia; al soltar, vuelve con un pequeño rebote hasta cumplirla.
+  const bounds = () => {
+    const a = area(), w = W * s, h = H * s, free = a.h - a.top - a.bottom;
+    return { xlo: a.w * 0.2 - w, xhi: a.w * 0.8, ylo: a.top + free * 0.2 - h, yhi: a.top + free * 0.8 };
+  };
+  const rubber = (v, lo, hi) => v < lo ? lo - (lo - v) * 0.35 : v > hi ? hi + (v - hi) * 0.35 : v;
+  const clamp = () => { const b = bounds(); x = Math.min(b.xhi, Math.max(b.xlo, x)); y = Math.min(b.yhi, Math.max(b.ylo, y)); };
+  let settleT = 0;
+  /** Si la pantalla ha quedado casi vacía, el dibujo vuelve (animado, con rebote) hasta ocupar 1/5 de ella. */
+  const settle = () => {
+    const ox = x, oy = y; clamp();
+    if (ox === x && oy === y) return;
+    box.classList.add('settle'); apply();
+    clearTimeout(settleT); settleT = setTimeout(() => box.classList.remove('settle'), 480);
   };
   // ajustado: centrado en la zona libre (como siempre al abrirlo)
   const fit = () => {
     const a = area();
     s = fitScale();
     x = (a.w - W * s) / 2; y = a.top + (a.h - a.top - a.bottom - H * s) / 2;
-    clamp(); apply();
+    apply();
   };
   /** Cambia la escala manteniendo fijo el punto (cx, cy) del visor; de la mitad de ajustado (50 %) a ×10. */
-  const zoomTo = (ns, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
+  // (`free`: durante un pellizco o la rueda no se recoloca; se hace al terminar)
+  const zoomTo = (ns, cx = st.clientWidth / 2, cy = st.clientHeight / 2, free = false) => {
     const f = fitScale();
     ns = Math.min(f * ZOOM_MAX, Math.max(f * ZOOM_MIN, ns));
     const k = ns / s;
     x = cx - (cx - x) * k; y = cy - (cy - y) * k; s = ns;
-    clamp(); apply();
+    apply();
+    if (!free) settle();
   };
   zoomFit = fit; zoomBy = z => z === '0' ? fit() : zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5));
   dlg.onclick = e => {
@@ -353,7 +364,7 @@ function openZoom(host, keepList = false, markup = null) {
     if (e.target.closest('[data-zfold]')) {
       const f = cap.classList.toggle('folded');
       e.target.closest('[data-zfold]').setAttribute('aria-label', f ? 'Mostrar la descripción' : 'Ocultar la descripción');
-      clamp(); apply(); return; // el pie cambia de alto: el esquema conserva su zoom (solo se recoloca si hace falta)
+      settle(); return; // el pie cambia de alto: el esquema conserva su zoom (solo se recoloca si hace falta)
     }
     const b = e.target.closest('[data-z]');
     if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
@@ -361,14 +372,20 @@ function openZoom(host, keepList = false, markup = null) {
   };
   // control de zoom vertical (como el del volumen): del 50 % (abajo) a ×10 (arriba), en escala logarítmica; el 100 %
   // (ajustado a la pantalla) queda algo por encima de la base
-  range.oninput = () => zoomTo(fitScale() * zoomAt(+range.value));
+  range.oninput = () => zoomTo(fitScale() * zoomAt(+range.value), undefined, undefined, true);
+  range.onchange = () => settle(); // al soltar la barra
   // punto del visor bajo el dedo o el cursor, en las coordenadas del dibujo (también con el visor girado)
   const rel = e => {
     const r = dlg.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
     return dlg.classList.contains('rot') ? [sy, r.width - sx] : [sx, sy];
   };
   // rueda del ratón o trackpad: zoom en el punto del cursor
-  st.onwheel = e => { e.preventDefault(); zoomTo(s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), ...rel(e)); };
+  let wheelT = 0;
+  st.onwheel = e => {
+    e.preventDefault(); box.classList.remove('settle');
+    zoomTo(s * (e.deltaY < 0 ? 1.15 : 1 / 1.15), ...rel(e), true);
+    clearTimeout(wheelT); wheelT = setTimeout(settle, 180);
+  };
   // doble clic o doble toque: ampliar ahí ×2,5; si ya está ampliado, volver a ajustar
   const dbl = (cx, cy) => zoomTo(s > fitScale() * 1.05 ? fitScale() : fitScale() * 2.5, cx, cy);
   let lastType = 'mouse';
@@ -381,6 +398,7 @@ function openZoom(host, keepList = false, markup = null) {
     lastType = e.pointerType;
     try { st.setPointerCapture(e.pointerId); } catch { /* puntero ya levantado */ }
     pts.set(e.pointerId, e);
+    box.classList.remove('settle'); clearTimeout(settleT);
     if (pts.size === 1) { const [px, py] = rel(e); drag = { x: px, y: py, bx: x, by: y, moved: false }; pinch = null; }
     else { drag = null; pinch = null; }
     st.classList.add('dragging');
@@ -393,11 +411,12 @@ function openZoom(host, keepList = false, markup = null) {
       const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
       const [cx, cy] = rel({ clientX: (a.clientX + b.clientX) / 2, clientY: (a.clientY + b.clientY) / 2 });
       if (!pinch) pinch = { d, s, cx, cy };
-      else { x += cx - pinch.cx; y += cy - pinch.cy; pinch.cx = cx; pinch.cy = cy; zoomTo(pinch.s * d / pinch.d, cx, cy); }
+      else { x += cx - pinch.cx; y += cy - pinch.cy; pinch.cx = cx; pinch.cy = cy; zoomTo(pinch.s * d / pinch.d, cx, cy, true); }
     } else if (drag) {
       const [px, py] = rel(e), dx = px - drag.x, dy = py - drag.y;
       if (Math.hypot(dx, dy) > 4) drag.moved = true;
-      x = drag.bx + dx; y = drag.by + dy; clamp(); apply();
+      const b = bounds();
+      x = rubber(drag.bx + dx, b.xlo, b.xhi); y = rubber(drag.by + dy, b.ylo, b.yhi); apply();
     }
   };
   st.onpointerup = st.onpointercancel = e => {
@@ -410,6 +429,7 @@ function openZoom(host, keepList = false, markup = null) {
       if (now - lastTap < 320) { dbl(...rel(e)); lastTap = 0; } else lastTap = now;
     }
     drag = null;
+    settle(); // al soltar: si la pantalla ha quedado casi vacía, el dibujo vuelve
   };
   fit();
   // al abrir el visor, la etiqueta de la versión sale sobre el interruptor, para indicar qué la cambia
