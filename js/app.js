@@ -1222,36 +1222,47 @@ function whereLinks(where, p = pub()) {
   return out;
 }
 
-function glossaryView(params) {
+// Pestañas como en Mapas conceptuales: #/glosario/0 Toda la colección, /1… cada revista, la última Puentes
+// (también vale ?p=marx-xxi o ?p=puentes, de enlaces anteriores); dentro de una revista, un botón por volumen
+// o número (?v=), en una línea fija debajo de la barra de pestañas.
+function glossaryView(params, tabArg) {
   setBar('Glosario');
   const L = lib();
-  const multi = L.pubs.length > 1;
-  let pubId = L.byId[params.get('p')] ? params.get('p') : '', vol = '', bridges = params.get('p') === 'puentes';
-  const volChips = () => {
-    const p = L.byId[pubId] || (multi ? null : L.pubs[0]);
-    if (!p) return '';
-    return [['', 'Todos'], ...p.volumes.map(v => [v.key, volShort(v)])].map(([k, label]) =>
-      `<button class="chip" data-v="${k}" aria-pressed="${k === vol}">${esc(label)}</button>`).join('');
-  };
+  const multi = L.pubs.length > 1, bridgeTab = L.pubs.length + 1;
+  const pp = params.get('p');
+  let tab = !multi ? 1 : tabArg != null ? Math.max(0, Math.min(bridgeTab, +tabArg || 0))
+    : pp === 'puentes' ? bridgeTab : L.byId[pp] ? L.pubs.indexOf(L.byId[pp]) + 1 : 0;
+  const bridges = tab === bridgeTab, pubId = tab && !bridges ? L.pubs[tab - 1].id : '';
+  const P = L.byId[pubId];
+  let vol = P?.volumes.some(v => v.key === params.get('v')) ? params.get('v') : '';
+  const cur = on => `aria-selected="${on}" aria-pressed="${on}"${on ? ' aria-current="page"' : ''}`;
+  const volNav = () => P ? `<nav class="tabs chip-tabs maps-sub-nav${multi ? '' : ' solo'}" role="tablist" aria-label="${esc(P.name)}">
+      <button class="chip" role="tab" data-v="" ${cur(!vol)}>Todos</button>
+      ${P.volumes.map(x => `<button class="chip" role="tab" data-v="${x.key}" data-vol="${x.key}" ${cur(x.key === vol)}>${esc(volShort(x))}</button>`).join('')}
+    </nav>` : '';
   const html = `<div class="wrap">
     <header class="page-head"><h1>Glosario</h1><div class="sub">${L.glossary.length} conceptos definidos en ${multi ? 'los artículos de las dos revistas' : 'los artículos'}. Toca uno para ir a su artículo.${multi ? ' Los <b>conceptos puente</b> aparecen en las dos.' : ''}</div></header>
-    <div class="sticky-tools">
+    ${multi ? tabs('#/glosario', ['Toda la colección', ...L.pubs.map(p => p.name), 'Puentes'], tab) : ''}
+    ${volNav()}
+    <div id="g-list-box">
       <label class="field">${ICON.search}<input id="g-q" type="search" placeholder="Buscar concepto o definición" value="${esc(params.get('q') || '')}" autocomplete="off"></label>
-      ${multi ? `<div class="chips" id="g-pub">${[['', 'Toda la colección'], ...L.pubs.map(p => [p.id, p.name]), ['puentes', 'Puentes']].map(([k, label]) =>
-        `<button class="chip" data-p="${k}" aria-pressed="${bridges ? k === 'puentes' : k === pubId}">${esc(label)}</button>`).join('')}</div>` : ''}
-      <div class="chips" id="g-vol">${volChips()}</div>
       <div class="muted small" id="g-count" style="margin-top:8px"></div>
+      <div id="g-list"></div>
     </div>
-    <div id="g-list"></div>
   </div>`;
   return [html, () => {
     const input = $('#g-q'), list = $('#g-list');
-    const url = () => '#/glosario' + (() => {
-      const qs = new URLSearchParams();
-      if (input.value) qs.set('q', input.value);
-      if (bridges) qs.set('p', 'puentes'); else if (pubId) qs.set('p', pubId);
-      return qs.toString() ? '?' + qs : '';
-    })();
+    const qs = () => {
+      const q = new URLSearchParams();
+      if (input.value) q.set('q', input.value);
+      if (vol) q.set('v', vol);
+      return q.toString() ? '?' + q : '';
+    };
+    // la búsqueda escrita se conserva al cambiar de pestaña
+    const syncTabs = () => {
+      for (const t of view.querySelectorAll('.tabs:not(.chip-tabs) a')) t.href = t.getAttribute('href').split('?')[0] + (input.value ? '?q=' + encodeURIComponent(input.value) : '');
+      history.replaceState(history.state, '', `#/glosario${multi ? '/' + tab : ''}` + qs());
+    };
     const render = () => {
       const q = input.value.trim(), f = fold(q);
       const items = L.glossary.filter(e => (!pubId || e.pub.id === pubId) && (!vol || e.v.key === vol) && (!bridges || e.bridge)
@@ -1261,24 +1272,19 @@ function glossaryView(params) {
         <h3 style="font-weight:700"><span style="color:var(--vol)">▪</span> ${highlight(e.c.term, q)}${multi && e.bridge ? ' <span class="tag olive">puente</span>' : ''}</h3><p>${highlight(e.c.definition, q)}</p>
         <div class="src">${multi && !e.v.label ? 'Marx XXI · ' : ''}${esc(volName(e.v))} · ${esc(byline(e.a))} · ${esc(e.a.title)}</div></a>`).join('') || '<p class="empty">Sin resultados.</p>';
     };
-    input.addEventListener('input', () => { render(); history.replaceState(history.state, '', url()); });
-    $('#g-pub')?.addEventListener('click', e => {
-      const b = e.target.closest('[data-p]'); if (!b) return;
-      bridges = b.dataset.p === 'puentes';
-      pubId = bridges ? '' : b.dataset.p;
-      vol = '';
-      for (const c of $('#g-pub').children) c.setAttribute('aria-pressed', c === b);
-      $('#g-vol').innerHTML = volChips();
-      history.replaceState(history.state, '', url());
-      render();
-    });
-    $('#g-vol').addEventListener('click', e => {
-      const b = e.target.closest('[data-v]'); if (!b) return;
+    input.addEventListener('input', () => { render(); syncTabs(); });
+    const onClick = e => {
+      const b = e.target.closest('.maps-sub-nav [data-v]'); if (!b) return;
+      // si las barras estaban fijas arriba, siguen fijas: la lista nueva empieza justo debajo de ellas
+      const ty = artTabsY(), stuck = ty != null && scrollY >= ty - 1;
       vol = b.dataset.v;
-      for (const c of $('#g-vol').children) c.setAttribute('aria-pressed', c === b);
-      render();
-    });
-    render();
+      for (const c of b.parentElement.querySelectorAll('[data-v]')) { const on = c === b; c.setAttribute('aria-pressed', on); c.setAttribute('aria-selected', on); on ? c.setAttribute('aria-current', 'page') : c.removeAttribute('aria-current'); }
+      render(); syncTabs();
+      if (stuck) window.scrollTo(0, ty);
+    };
+    view.addEventListener('click', onClick);
+    render(); syncTabs();
+    return () => view.removeEventListener('click', onClick);
   }];
 }
 
@@ -2021,7 +2027,7 @@ async function route() {
     case 'sintesis': out = synthesisView(+(parts[1] || 0), params); break;
     case 'autores': out = authorsView(params); break;
     case 'mapas': out = mapsView(params, parts[1]); break;
-    case 'glosario': out = glossaryView(params); break;
+    case 'glosario': out = glossaryView(params, parts[1]); break;
     case 'buscar': out = searchView(params); break;
     case 'marcadores': out = bookmarksView(params, parts[1]); break;
     case 'lista': out = listView(+(parts[1] || 0)); break;
@@ -2085,11 +2091,12 @@ function pageOf(h) {
   if ((m = path.match(/^#\/tesis(?:\/([a-z][a-z-]*))?/))) return 'tesis/' + (m[1] || 'marx-xxi');
   if (/^#\/sintesis(\/|$)/.test(path)) return 'sintesis';
   if (/^#\/mapas(\/|$)/.test(path)) return 'mapas';
+  if (/^#\/glosario(\/|$)/.test(path)) return 'glosario';
   if (/^#\/marcadores(\/|$)/.test(path)) return 'marcadores';
   if (/^#\/acerca(\/|$)/.test(path)) return 'acerca';
   return path;
 }
-const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas|acerca|marcadores)$/.test(sc);
+const tabbed = sc => /^(articulo|volumen|numero|tesis)\/|^(sintesis|mapas|glosario|acerca|marcadores)$/.test(sc);
 /** Pantalla del recorrido de «atrás»: además de las pestañas, ir de un artículo a otro (o de un volumen o número
  *  a otro) sigue siendo la misma pantalla; «atrás» vuelve a donde se estaba antes de entrar en el primero. */
 const screenOf = h => pageOf(h).replace(/^(articulo|volumen|numero)\/.*/, '$1');

@@ -811,7 +811,9 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .dg-item figcaption{display:none} /* el pie se ve al ampliar el esquema */
 .dg-gallery.wide{grid-template-columns:1fr}
 /* alto mínimo: con la barra de pestañas fija arriba, cambiar a una pestaña con pocos mapas no la desfija */
-#maps-panel{min-height:100dvh}
+#maps-panel,#g-list-box{min-height:100dvh}
+/* glosario con una sola revista: sin barra de pestañas encima */
+.tabs.chip-tabs.solo{top:calc(var(--bar-h) + var(--safe-t));margin-top:0}
 .maps-sub-nav{margin:10px 0 4px}
 /* botones de volumen o número: una línea desplazable, fija debajo de la barra de pestañas */
 .tabs.chip-tabs{top:calc(var(--bar-h) + var(--safe-t) + var(--maps-tabs-h, 47px));z-index:9;margin:-18px -16px 14px;padding:8px 10px;gap:6px;align-items:center}
