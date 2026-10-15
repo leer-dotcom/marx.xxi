@@ -206,7 +206,8 @@ const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
  *  al cambiar de versión, solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
  *  flechas es el mismo uso). Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»).
  *  En los visores de varios esquemas, la primera vez que se amplía o se reduce en cada uso, la misma etiqueta sale
- *  sobre «n / N» con el icono de restablecer: tocarlo devuelve el zoom inicial. */
+ *  sobre «n / N», solo con el icono de restablecer (tocarlo devuelve el zoom inicial); es otra etiqueta, así que
+ *  no corta la de la versión si coinciden. */
 let zoomTipsShown = new Set();
 function flashZoomFull() {
   const kind = zoomFull ? 'd' : 's';
@@ -219,12 +220,12 @@ const RESTORE_ICON = '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h
 function flashZoomRestore() {
   if (zoomList.length < 2 || zoomTipsShown.has('r')) return;
   zoomTipsShown.add('r');
-  showZoomTip($('#zoom-pos'), `${RESTORE_ICON}Restablecer el zoom`);
+  showZoomTip($('#zoom-pos'), RESTORE_ICON, $('#zoom-restore-tip'));
 }
 /** Muestra una etiqueta sobre un botón de la barra (por defecto, la versión vista sobre el interruptor S | D), con
  *  una flechita que lo señala. La posición se mide dentro de la barra, así que vale también con el visor girado. */
-function showZoomTip(anchor = $('#zoom [data-zfull]'), html = null) {
-  const t = $('#zoom-full-tip'), bar = $('.zoom-bar');
+function showZoomTip(anchor = $('#zoom [data-zfull]'), html = null, t = $('#zoom-full-tip')) {
+  const bar = $('.zoom-bar');
   if (html) t.innerHTML = html;
   else t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
   let x = anchor.offsetWidth / 2, el = anchor;
