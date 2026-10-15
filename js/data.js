@@ -313,6 +313,9 @@ export async function searchFullText(q, { onHit, onProgress, signal, perArticle 
 
 // ---------- almacenamiento local ----------
 
+// Todo lo que el lector personaliza se guarda en localStorage con claves «mx.…» (posiciones, leídos, Mi lista,
+// subrayados, leyenda, ajustes…): así entra solo en Acerca de › Descarga › Exportar e importar (app.js, dataKeys).
+// Cualquier personalización nueva debe guardarse igual, con prefijo «mx.», para que se exporte e importe.
 const LS = {
   get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* modo privado o lleno */ } },
@@ -474,7 +477,7 @@ export const HL_PALETTE_ORDER = Object.keys(HL_PALETTE).map(k => {
 }).sort((a, b) => a[1] - b[1]).map(x => x[0]);
 // la leyenda de partida: los cinco colores de siempre, con su nombre como categoría (los subrayados ya hechos
 // guardan estas claves: yellow, green…)
-const DEFAULT_LEGEND = [['yellow', 'amarillo'], ['green', 'verde'], ['blue', 'azul'], ['pink', 'rosa'], ['orange', 'naranja']]
+export const DEFAULT_LEGEND = [['yellow', 'amarillo'], ['green', 'verde'], ['blue', 'azul'], ['pink', 'rosa'], ['orange', 'naranja']]
   .map(([id, color]) => ({ id, color, cat: HL_PALETTE[color][0], show: true }));
 /** Línea de la leyenda de un subrayado (por su id), o undefined. */
 export const hlSlot = id => store.legend().find(s => s.id === id);

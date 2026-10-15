@@ -1,7 +1,7 @@
 // Marx XXI · lector web. SPA sin dependencias con rutas por hash (compatible con GitHub Pages).
 import {
   loadLibrary, lib, dataUrl, pub, volume, article, neighbours, text, esc, highlight, fold,
-  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS, HL_PALETTE, HL_PALETTE_ORDER, HL_CATEGORIES, hlHex, hlCat,
+  searchGuide, searchFullText, KIND, store, FONTS, THEMES, DEFAULT_SETTINGS, HL_PALETTE, HL_PALETTE_ORDER, HL_CATEGORIES, DEFAULT_LEGEND, hlHex, hlCat,
   volName, volShort, volHead, volDate, artLabel, byline, isInterview, related, monthName,
 } from './data.js';
 import { readerView } from './reader.js';
@@ -218,6 +218,7 @@ function showZoomTip(atSwitch) {
   t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
   const br = bar.getBoundingClientRect(), sr = sw.getBoundingClientRect();
   t.style.left = atSwitch && br.width ? `${sr.left + sr.width / 2 - br.left}px` : '';
+  t.classList.toggle('at-switch', !!atSwitch); // con una flechita que apunta al interruptor
   clearTimeout(t._t);
   t.hidden = true; void t.offsetWidth; t.hidden = false; // reinicia la animación
   t._t = setTimeout(() => { t.hidden = true; }, 900);
@@ -254,6 +255,10 @@ function zoomStep(d) {
   zoomIdx = (zoomIdx + d + zoomList.length) % zoomList.length;
   openZoom(zoomList[zoomIdx], true);
 }
+// zoom del visor, relativo a «ajustado a la pantalla» (1 = 100 %), y su posición (0-100) en el control vertical
+const ZOOM_MIN = 0.5, ZOOM_MAX = 10, ZL = Math.log10(ZOOM_MIN), ZR = Math.log10(ZOOM_MAX) - ZL;
+const zoomPos = k => (Math.log10(Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, k))) - ZL) / ZR * 100;
+const zoomAt = v => 10 ** (ZL + v / 100 * ZR);
 function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
@@ -313,7 +318,7 @@ function openZoom(host, keepList = false, markup = null) {
     box.style.width = W * s + 'px'; box.style.left = x + 'px'; box.style.top = y + 'px';
     const k = s / fitScale();
     level.textContent = Math.round(k * 100) + ' %'; // 100 % = ajustado a la pantalla
-    range.value = Math.round(Math.log10(Math.max(1, k)) * 100); // también con el control abierto y enfocado
+    range.value = Math.round(zoomPos(k)); // también con el control abierto y enfocado
   };
   // Alrededor del dibujo hay un margen en blanco de 1/2 de su ancho (a los lados) y de su alto (arriba y abajo)
   // por el que también se puede desplazar: así se puede centrar una casilla del borde sin que el dibujo se
@@ -330,10 +335,10 @@ function openZoom(host, keepList = false, markup = null) {
     x = (a.w - W * s) / 2; y = a.top + (a.h - a.top - a.bottom - H * s) / 2;
     clamp(); apply();
   };
-  /** Cambia la escala manteniendo fijo el punto (cx, cy) del visor; nunca más pequeño que ajustado. */
+  /** Cambia la escala manteniendo fijo el punto (cx, cy) del visor; de la mitad de ajustado (50 %) a ×10. */
   const zoomTo = (ns, cx = st.clientWidth / 2, cy = st.clientHeight / 2) => {
     const f = fitScale();
-    ns = Math.min(f * 10, Math.max(f, ns));
+    ns = Math.min(f * ZOOM_MAX, Math.max(f * ZOOM_MIN, ns));
     const k = ns / s;
     x = cx - (cx - x) * k; y = cy - (cy - y) * k; s = ns;
     clamp(); apply();
@@ -354,8 +359,9 @@ function openZoom(host, keepList = false, markup = null) {
     if (b) { const z = b.dataset.z; if (z === '0') fit(); else zoomTo(s * (z === '+' ? 1.5 : 1 / 1.5)); return; }
     if (!e.target.closest('#zoom-slider')) toggleZoomSlider(false); // tocar fuera cierra el control de zoom
   };
-  // control de zoom vertical (como el del volumen): de ajustado a la pantalla (abajo) a ×10 (arriba)
-  range.oninput = () => zoomTo(fitScale() * 10 ** (range.value / 100));
+  // control de zoom vertical (como el del volumen): del 50 % (abajo) a ×10 (arriba), en escala logarítmica; el 100 %
+  // (ajustado a la pantalla) queda algo por encima de la base
+  range.oninput = () => zoomTo(fitScale() * zoomAt(+range.value));
   // punto del visor bajo el dedo o el cursor, en las coordenadas del dibujo (también con el visor girado)
   const rel = e => {
     const r = dlg.getBoundingClientRect(), sx = e.clientX - r.left, sy = e.clientY - r.top;
@@ -1595,7 +1601,7 @@ function mountLegend(root, onChange, onDone) {
     const hex = HL_PALETTE[s.color]?.[1];
     return `<div class="lg-row${s.color ? '' : ' empty'}" data-i="${i}">
       <button type="button" class="lg-dot" data-pick="${i}" style="${hex ? `--hl:${hex}` : ''}" aria-label="${hex ? `Color: ${HL_PALETTE[s.color][0]}. Cambiar` : 'Elegir color para una categoría nueva'}" aria-expanded="${picking === i}"></button>
-      <span class="lg-cat${isDef(s) ? ' is-default' : ''}"><input type="text" data-cat="${i}" value="${esc(isDef(s) ? colorName(s) : s.cat)}" placeholder="${s.color ? 'Categoría' : '← Nueva categoría'}" ${s.color ? '' : 'disabled'} aria-label="Categoría">
+      <span class="lg-cat${isDef(s) ? ' is-default' : ''}">${s.color ? '' : '<span class="lg-new" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 7l-5 5 5 5"/></svg>Nueva categoría</span>'}<input type="text" data-cat="${i}" value="${esc(isDef(s) ? colorName(s) : s.cat)}" placeholder="${s.color ? 'Categoría' : ''}" ${s.color ? '' : 'disabled'} aria-label="Categoría">
         <span class="lg-pen" aria-hidden="true" title="Escribe la categoría que quieras"><svg viewBox="0 0 24 24"><path d="M15 5l4 4L9 19H5v-4z"/><path d="M13 7l4 4"/></svg></span>
         <button type="button" class="lg-more" data-catlist="${i}" aria-label="Categorías habituales" aria-expanded="${listing === i}" ${s.color ? '' : 'disabled'}>▾</button></span>
       <label class="lg-show"><input type="checkbox" data-show="${i}" ${s.show && s.color ? 'checked' : ''} ${s.color ? '' : 'disabled'}><span>Usar</span></label>
@@ -1632,7 +1638,7 @@ function mountLegend(root, onChange, onDone) {
   };
   const html = () => `<p class="muted small" style="margin-top:0">Para toda la aplicación: cambiar el color o la categoría de una línea cambia todos los subrayados hechos con ella. «Usar» decide qué colores se ofrecen al subrayar.</p>
     <div class="legend">${rows().map(row).join('')}</div>
-    <div class="lg-actions"><button type="button" class="btn" data-lgsave>Guardar</button>${onDone ? '<button type="button" class="btn ghost" data-lgcancel>Cancelar</button>' : ''}</div>
+    <div class="lg-actions">${onDone ? '' : '<button type="button" class="btn ghost" data-lgreset>Restaurar leyenda</button>'}<button type="button" class="btn" data-lgsave>Guardar</button>${onDone ? '<button type="button" class="btn ghost" data-lgcancel>Cancelar</button>' : ''}</div>
     ${listing != null ? picker() : ''}${picking != null ? palette() : ''}`;
   {
     const body = root;
@@ -1642,6 +1648,18 @@ function mountLegend(root, onChange, onDone) {
       if (e.target.closest('[data-lgcancel]')) {
         legend = store.legend().map(x => ({ ...x })); picking = listing = null; dirty = false;
         return onDone ? onDone(false) : redraw();
+      }
+      if (e.target.closest('[data-lgreset]')) {
+        const ids = DEFAULT_LEGEND.map(x => x.id);
+        const lost = store.highlights().filter(h => !ids.includes(h.color)).length;
+        confirmDialog({ title: 'Restaurar la leyenda', text: 'Vuelven los cinco colores de partida (amarillo, verde, azul, rosa y naranja), con su nombre como categoría y todos en uso. Se pierden las categorías y los colores personalizados, y también los cambios sin guardar.'
+          + (lost ? `\n${lost === 1 ? 'Un marcador de otras categorías quedará' : lost + ' marcadores de otras categorías quedarán'} en gris y sin categoría.` : ''), ok: 'Aceptar' })
+          .then(yes => {
+            if (!yes) return;
+            legend = DEFAULT_LEGEND.map(x => ({ ...x })); picking = listing = null;
+            commit(); redraw();
+          });
+        return;
       }
       if (e.target.closest('[data-lgsave]')) {
         const gone = store.legend().filter(x => !legend.some(y => y.id === x.id));
@@ -2096,7 +2114,7 @@ const dataKeys = () => Object.keys(localStorage).filter(k => k.startsWith('mx.')
 /** Resumen de unos datos para la confirmación: subrayados, textos empezados, en Mi lista, leídos. */
 function dataSummary(d) {
   const n = k => { try { const v = JSON.parse(d[k] ?? 'null'); return Array.isArray(v) ? v.length : v && typeof v === 'object' ? Object.keys(v).length : 0; } catch { return 0; } };
-  return `${n('mx.hl')} marcadores, ${n('mx.pos')} textos empezados, ${n('mx.read')} leídos y ${n('mx.list')} en Mi lista`;
+  return `${n('mx.hl')} marcadores, ${n('mx.pos')} textos empezados, ${n('mx.read')} leídos y ${n('mx.list')} en Mi lista${d['mx.legend'] ? ', con la leyenda personalizada' : ''}`;
 }
 function exportData() {
   const datos = Object.fromEntries(dataKeys().map(k => [k, localStorage.getItem(k)]));
