@@ -350,9 +350,20 @@ function mount({ key, a, v, blocks, params }) {
   // en vertical desde el principio sigue desplazando el texto (touch-action: pan-y); cerca de los bordes, el texto
   // se desplaza solo para seguir subrayando. Con ratón se usa la selección normal (arriba).
   let drag = null;
-  const caretAt = (x, y) => {
-    if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(x, y); return p && { node: p.offsetNode, off: p.offset }; }
+  const caretRaw = (x, y) => {
+    if (document.caretPositionFromPoint) { const p = document.caretPositionFromPoint(x, y); if (p?.offsetNode) return { node: p.offsetNode, off: p.offset }; }
     const r = document.caretRangeFromPoint?.(x, y); return r && { node: r.startContainer, off: r.startOffset };
+  };
+  // Safari (iPad, iPhone) no devuelve posiciones dentro de texto no seleccionable (user-select:none en hl-mode):
+  // si falla, se vuelve a consultar con el texto seleccionable un instante (.hl-probe)
+  const caretAt = (x, y) => {
+    let c = caretRaw(x, y);
+    if (!c || !reader.contains(c.node)) {
+      reader.classList.add('hl-probe');
+      c = caretRaw(x, y);
+      reader.classList.remove('hl-probe');
+    }
+    return c;
   };
   const draftStyle = document.createElement('style');
   document.head.append(draftStyle);
@@ -395,6 +406,9 @@ function mount({ key, a, v, blocks, params }) {
     if (e.type === 'pointerup' && d.moved && d.range) { applyTool(d.range); getSelection().removeAllRanges(); }
   };
   reader.addEventListener('pointerdown', onTouchDown);
+  // en Safari, cancelar pointermove no detiene el desplazamiento: mientras se subraya, se cancela el touchmove
+  const onTouchScroll = e => { if (drag?.moved && e.cancelable) e.preventDefault(); };
+  reader.addEventListener('touchmove', onTouchScroll, { passive: false });
   document.addEventListener('pointermove', onTouchMove, { passive: false });
   document.addEventListener('pointerup', onTouchEnd);
   document.addEventListener('pointercancel', onTouchEnd);
@@ -506,10 +520,11 @@ function mount({ key, a, v, blocks, params }) {
   // la maquetación se asienta (fuentes web, esquemas) se vuelve a colocar el bloque guardado; en cuanto el
   // lector toca, desliza o pulsa una tecla, lo que manda es su desplazamiento.
   let restored = false, settling = true;
+  // sin empezar o al 0 %: arriba del todo, con el volumen o número y el título completos a la vista
   const place = () => {
     if (startB != null) goTo(+startB);
-    else if (saved) goTo(saved.block);
-    else goTo(0); // sin empezar (0 %): en el primer párrafo, no en la cabecera con los títulos
+    else if (saved && Math.round((saved.progress || 0) * 100) > 0) goTo(saved.block);
+    else window.scrollTo(0, 0);
   };
   requestAnimationFrame(() => {
     restored = true;
@@ -687,9 +702,9 @@ function mount({ key, a, v, blocks, params }) {
     openSheet('Ajustes de lectura', settingsPanel(store.settings()), body => {
       body.onclick = null;
       bindSettings(body, ns => {
-        const cb = currentBlock();
+        const cb = currentBlock(), atTop = scrollY < 4;
         s = ns; styleReader(reader, s);
-        requestAnimationFrame(() => { goTo(cb); updateUi(); });
+        requestAnimationFrame(() => { atTop ? window.scrollTo(0, 0) : goTo(cb); updateUi(); });
         requestWake(s.wakeLock);
       });
     });
@@ -734,6 +749,7 @@ function mount({ key, a, v, blocks, params }) {
     document.removeEventListener('selectionchange', onSel);
     document.removeEventListener('pointerdown', onDocDown);
     document.removeEventListener('pointerup', onDocUp);
+    reader.removeEventListener('touchmove', onTouchScroll);
     document.removeEventListener('pointermove', onTouchMove);
     document.removeEventListener('pointerup', onTouchEnd);
     document.removeEventListener('pointercancel', onTouchEnd);

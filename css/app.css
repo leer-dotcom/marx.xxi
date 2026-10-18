@@ -318,6 +318,9 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 .reader.hl-mode{cursor:text}
 /* subrayador táctil: arrastrar subraya (sin la selección ni el menú del sistema); en vertical, sigue desplazando */
 @media (pointer:coarse){.reader.hl-mode{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}}
+/* Safari (iPad, iPhone) no da posiciones del texto bajo el dedo en texto no seleccionable: reader.js lo vuelve
+   seleccionable un instante para consultarlas */
+.reader.hl-mode.hl-probe{-webkit-user-select:text;user-select:text}
 /* marcadores del texto (ventana del lector) */
 .r-mark{display:block;margin-top:10px;padding:10px 12px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 12%,var(--paper));border-radius:0 6px 6px 0;color:var(--ink);text-decoration:none}
 .r-mark-t{display:block;font-size:16px;line-height:1.45}
@@ -376,10 +379,16 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
    ni la de gestos del móvil) y con el texto visible detrás */
 .sheet{width:min(720px,calc(100% - 16px));max-height:84vh;max-height:calc(100dvh - 96px);margin:auto auto calc(12px + var(--safe-b));padding:0;border:1px solid var(--line);border-radius:10px;background:var(--bg);display:none;flex-direction:column}
 .sheet[open]{display:flex;animation:up .22s ease}
-/* en el móvil, leyendo: las ventanas (guía, índice, leyenda, marcadores…) más arriba, justo debajo de la barra del título */
-@media (max-width:899px){body.reading .sheet{margin:calc(var(--bar-h) + var(--safe-t) + 10px) auto auto;max-height:calc(100dvh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 24px)}}
 @keyframes up{from{transform:translateY(40px);opacity:.4}}
 @media (min-width:900px){.sheet{margin:auto;border-radius:8px;max-height:84vh;max-height:84dvh}}
+/* leyendo: las ventanas (guía, índice, leyenda, marcadores…) centradas en vertical en el hueco que queda bajo la barra
+   del título; al crecer, nunca la tapan (la ventana es fixed con alto fit-content: los márgenes auto la centran
+   entre top y bottom) */
+body.reading .sheet{top:calc(var(--bar-h) + var(--safe-t) + 10px);bottom:calc(12px + var(--safe-b));margin:auto;
+  max-height:calc(100vh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px);
+  max-height:calc(100dvh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px)}
+/* ventanas y menú: al abrirse reciben el foco ellas mismas (no su primer enlace o botón), sin recuadro */
+dialog:focus,dialog:focus-visible{outline:none}
 .sheet-head{display:flex;align-items:center;gap:8px;padding:12px 8px 6px 20px;border-bottom:1px solid var(--line)}
 .sheet-head h2{flex:1;font-size:24px}
 .sheet-body{overflow:auto;padding:12px 20px 24px}
@@ -540,13 +549,8 @@ body.reading .update,body.about-page .update{display:none} /* leyendo no se mole
 .drawer-brand{font-size:24px;color:var(--head-ink);text-decoration:none;letter-spacing:.03em}
 .drawer-body{flex:1;overflow:auto;padding:8px 0 calc(24px + var(--safe-b))}
 .drawer-body{padding-top:10px} /* algo de aire entre la cabecera («Lector de Marx XXI») y «Biblioteca» */
-/* desplegar y plegar las ramas del menú: animación breve de la altura (Chrome, Edge; en los demás, sin animación) */
-.drawer{interpolate-size:allow-keywords}
-.drawer details::details-content{block-size:0;overflow:hidden}
-.drawer details[open]::details-content{block-size:auto}
-/* solo al tocar, no al abrir el menú (la sección actual ya viene desplegada): .ready se pone tras abrirlo */
-.drawer.ready details::details-content{transition:block-size .18s ease,content-visibility .18s allow-discrete}
-@media (prefers-reduced-motion:reduce){.drawer.ready details::details-content{transition:none}}
+/* desplegar y plegar las ramas del menú: animación breve de la altura, en app.js (animateDetails) para que funcione en
+   todos los navegadores (Safari y los de iPad/iPhone no animan ::details-content) */
 .m-group{margin:18px 18px 6px;font-family:var(--f-sc);font-size:15px;letter-spacing:.06em;text-transform:lowercase;color:var(--olive)}
 .m-link{display:flex;align-items:center;gap:12px;padding:10px 18px;color:var(--ink);text-decoration:none;font-size:17.5px;line-height:1.25}
 .m-link svg{width:21px;height:21px;flex:none;fill:none;stroke:var(--ink-2);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}

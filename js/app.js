@@ -113,7 +113,7 @@ export function openSheet(title, html, onMount) {
   const body = $('#sheet-body');
   body.innerHTML = html;
   body.scrollTop = 0;
-  if (!d.open) d.showModal();
+  if (!d.open) { d.showModal(); d.focus(); } // el foco, en la ventana (no recuadrar su botón de cerrar)
   onMount?.(body, d);
   return d;
 }
@@ -620,6 +620,8 @@ function menuHtml() {
 function blockBehind(e) {
   const layer = document.querySelector('.lg-pick-wrap') || [...document.querySelectorAll('dialog[open]')].pop();
   if (!layer || layer.classList.contains('zoom')) return; // el visor gestiona sus propios gestos
+  // las barras deslizantes (tamaño, interlineado…): en Safari (iPad, iPhone) cancelar el touchmove las bloquea
+  if (e.target.closest?.('input[type=range]')) return;
   for (let el = e.target; el && el !== layer.parentElement; el = el.parentElement) {
     if (el === layer) break;
     const cs = getComputedStyle(el);
@@ -633,10 +635,9 @@ addEventListener('touchmove', blockBehind, { passive: false });
 export function openMenu() {
   const d = $('#menu');
   $('#menu-body').innerHTML = menuHtml();
-  d.classList.remove('ready'); // al abrir, sin animar la sección ya desplegada
   d.showModal(); // siempre con los volúmenes plegados
+  d.focus(); // el foco, en el menú y no en «Lector de Marx XXI» (en iPad se veía recuadrado)
   $('#menu-body').scrollTop = 0;
-  requestAnimationFrame(() => requestAnimationFrame(() => d.classList.add('ready'))); // desde aquí, despliegues animados
 }
 document.addEventListener('click', e => {
   if (e.target.closest('[data-open-menu]')) { e.preventDefault(); openMenu(); return; }
@@ -655,12 +656,36 @@ $('#menu').addEventListener('click', e => {
   $('#menu').close();
   location.hash = sum.dataset.href;
 });
-// Acordeón: al desplegar una rama del menú se pliegan sus hermanas del mismo nivel (secciones, volúmenes…)
-$('#menu').addEventListener('toggle', e => {
-  const d = e.target;
-  if (!(d instanceof HTMLDetailsElement) || !d.open) return;
-  for (const x of d.parentElement.children) if (x !== d && x instanceof HTMLDetailsElement) x.open = false;
-}, true);
+/** Despliega o pliega un <details> animando su altura (Web Animations: funciona en Safari, iPad y iPhone, donde
+ *  ::details-content no se anima). Si se toca otra vez a medias, sigue desde la altura en que estaba. */
+function animateDetails(d, open) {
+  const sum = d.querySelector(':scope > summary');
+  const from = d.getBoundingClientRect().height; // con la animación en curso, la altura de ese momento
+  d._anim?.cancel();
+  d.open = true;
+  const to = open ? d.offsetHeight : sum.offsetHeight + d.offsetHeight - d.clientHeight;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || from === to) { d.style.overflow = ''; d.open = open; return; }
+  d.style.overflow = 'hidden';
+  const anim = d._anim = d.animate({ height: [from + 'px', to + 'px'] }, { duration: 180, easing: 'ease' });
+  const done = () => { if (d._anim !== anim) return; d._anim = null; anim.cancel(); d.style.overflow = ''; d.open = open; };
+  anim.onfinish = done;
+  setTimeout(done, 400); // por si la animación no avanza ni avisa (pestaña oculta)
+}
+// Desplegar y plegar animado; acordeón: al desplegar una rama se pliegan sus hermanas del mismo nivel (secciones,
+// volúmenes…). Va después del manejador de los títulos de volumen (que, fuera de la flecha, navega y cancela el clic).
+$('#menu').addEventListener('click', e => {
+  const sum = e.target.closest('#menu summary');
+  if (!sum || e.defaultPrevented) return;
+  const d = sum.parentElement;
+  if (!(d instanceof HTMLDetailsElement)) return;
+  e.preventDefault();
+  const open = d._anim ? !d._target : !d.open;
+  d._target = open;
+  animateDetails(d, open);
+  if (open) for (const x of d.parentElement.children) {
+    if (x !== d && x instanceof HTMLDetailsElement && (x._anim ? x._target : x.open)) { x._target = false; animateDetails(x, false); }
+  }
+});
 
 const minutes = w => Math.max(1, Math.round(w / 230));
 const pct = p => Math.round((p || 0) * 100);
