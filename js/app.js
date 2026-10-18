@@ -1614,12 +1614,14 @@ export function hlFilterBar(list, active, open) {
   return `<nav class="tabs chip-tabs hl-filter" aria-label="Filtrar por categoría">${chip('', 'Todos')}${store.legend().filter(s => used.has(s.id)).map(s =>
     chip(s.id, `<i class="hl-dot" style="--hl:${hlHex(s.id)}"></i>${esc(hlCat(s.id))}`)).join('')}</nav>`;
 }
-/** Elimina un subrayado (si tiene nota, tras confirmarlo) y vuelve a pintar la pantalla. */
+/** Elimina un subrayado tras confirmarlo (página Marcadores y pestaña Marcadores de la guía) y vuelve a pintar la
+ *  pantalla. En el modo lectura (guía dentro del lector) solo se pregunta si tiene nota. */
 function deleteHighlight(uid) {
   const h = store.highlights().find(x => x.uid === uid);
   const del = () => { store.removeHighlight(uid); route(); };
-  if (!h?.note.trim()) return del();
-  confirmDialog({ title: 'Eliminar el subrayado', text: 'También se borrará la nota que escribiste en él.', ok: 'Eliminar', danger: true })
+  const note = !!h?.note.trim();
+  if (!note && document.body.classList.contains('reading')) return del();
+  confirmDialog({ title: 'Eliminar el subrayado', text: note ? 'También se borrará la nota que escribiste en él.' : '', ok: 'Eliminar', danger: true })
     .then(yes => yes && del());
 }
 // pestaña «Marcadores» de la guía de un artículo
