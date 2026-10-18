@@ -1621,7 +1621,7 @@ function deleteHighlight(uid) {
   const del = () => { store.removeHighlight(uid); route(); };
   const note = !!h?.note.trim();
   if (!note && document.body.classList.contains('reading')) return del();
-  confirmDialog({ title: 'Eliminar el subrayado', text: note ? 'También se borrará la nota que escribiste en él.' : '', ok: 'Eliminar', danger: true })
+  confirmDialog({ title: 'Eliminar el subrayado', text: note ? 'Se quitará del texto y de tus marcadores, y también se borrará la nota que escribiste en él.' : 'Se quitará del texto y de tus marcadores.', ok: 'Eliminar', danger: true })
     .then(yes => yes && del());
 }
 // pestaña «Marcadores» de la guía de un artículo
