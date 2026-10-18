@@ -399,8 +399,13 @@ function mount({ key, a, v, blocks, params }) {
   };
   const onTouchMove = e => {
     if (!drag) return;
-    if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 8) return;
-    drag.moved = true;
+    if (!drag.moved) {
+      const dx = Math.abs(e.clientX - drag.x), dy = Math.abs(e.clientY - drag.y);
+      if (Math.hypot(dx, dy) < 8) return;
+      // empezar en vertical desplaza el texto, no subraya (Safari no siempre respeta touch-action: pan-y)
+      if (dy > dx) { drag = null; return; }
+      drag.moved = true;
+    }
     e.preventDefault();
     const c = caretAt(e.clientX, e.clientY);
     if (c && reader.contains(c.node)) {
