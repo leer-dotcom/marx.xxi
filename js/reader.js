@@ -365,15 +365,32 @@ function mount({ key, a, v, blocks, params }) {
     }
     return c;
   };
-  const draftStyle = document.createElement('style');
-  document.head.append(draftStyle);
+  // Subrayado en curso: recuadros del color elegido debajo del texto, uno por línea, en coordenadas de la página
+  // (siguen en su sitio aunque el texto se desplace). Igual en todos los navegadores: Safari y los de iPad no
+  // pintaban ::highlight() sobre el texto no seleccionable del subrayador.
+  const draft = document.createElement('div');
+  draft.className = 'hl-draft';
+  document.body.append(draft);
   const showDraft = r => {
-    if (window.CSS?.highlights && window.Highlight) {
-      draftStyle.textContent = `::highlight(hl-draft){background-color:${hlColor(tool)}}`;
-      CSS.highlights.set('hl-draft', new Highlight(r));
-    } else { const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    // solo las líneas de texto (los rectángulos del Range incluyen también las cajas de los párrafos enteros)
+    const rects = [];
+    const w = document.createTreeWalker(r.commonAncestorContainer.nodeType === 3 ? r.commonAncestorContainer.parentNode : r.commonAncestorContainer, NodeFilter.SHOW_TEXT);
+    for (let n; (n = w.nextNode());) {
+      if (!r.intersectsNode(n) || n.parentElement.closest(SKIP)) continue;
+      const sub = document.createRange();
+      sub.selectNodeContents(n);
+      if (n === r.startContainer) sub.setStart(n, r.startOffset);
+      if (n === r.endContainer) sub.setEnd(n, r.endOffset);
+      for (const x of sub.getClientRects()) if (x.width > 0.5 && x.height > 0.5) rects.push(x);
+    }
+    while (draft.children.length < rects.length) draft.append(document.createElement('i'));
+    while (draft.children.length > rects.length) draft.lastChild.remove();
+    draft.style.setProperty('--hl', hlColor(tool));
+    rects.forEach((x, k) => {
+      draft.children[k].style.cssText = `left:${x.left + scrollX}px;top:${x.top + scrollY}px;width:${x.width}px;height:${x.height}px`;
+    });
   };
-  const clearDraft = () => { if (window.CSS?.highlights) CSS.highlights.delete('hl-draft'); };
+  const clearDraft = () => draft.replaceChildren();
   const onTouchDown = e => {
     if (!tool || e.pointerType === 'mouse' || !e.isPrimary) return;
     const c = caretAt(e.clientX, e.clientY);
@@ -754,7 +771,7 @@ function mount({ key, a, v, blocks, params }) {
     document.removeEventListener('pointermove', onTouchMove);
     document.removeEventListener('pointerup', onTouchEnd);
     document.removeEventListener('pointercancel', onTouchEnd);
-    clearDraft(); draftStyle.remove();
+    draft.remove();
     clearTimeout(selT);
     document.removeEventListener('visibilitychange', onVis);
     clearTimeout(saveT);

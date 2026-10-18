@@ -321,6 +321,10 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 /* Safari (iPad, iPhone) no da posiciones del texto bajo el dedo en texto no seleccionable: reader.js lo vuelve
    seleccionable un instante para consultarlas */
 .reader.hl-mode.hl-probe{-webkit-user-select:text;user-select:text}
+/* subrayado en curso (reader.js): debajo del texto (z-index negativo: sobre el fondo de la página, bajo las letras)
+   y con el mismo tono que el subrayado guardado */
+.hl-draft{position:absolute;left:0;top:0;pointer-events:none;z-index:-1}
+.hl-draft i{position:absolute;border-radius:2px;background:color-mix(in srgb,var(--hl) 45%,transparent)}
 /* marcadores del texto (ventana del lector) */
 .r-mark{display:block;margin-top:10px;padding:10px 12px;border-left:4px solid var(--hl);background:color-mix(in srgb,var(--hl) 12%,var(--paper));border-radius:0 6px 6px 0;color:var(--ink);text-decoration:none}
 .r-mark-t{display:block;font-size:16px;line-height:1.45}
