@@ -387,6 +387,9 @@ dialog::backdrop{background:rgb(20 24 22 / .5)}
 body.reading .sheet{top:calc(var(--bar-h) + var(--safe-t) + 10px);bottom:calc(12px + var(--safe-b));margin:auto;
   max-height:calc(100vh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px);
   max-height:calc(100dvh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px)}
+/* la guía de estudio del lector: siempre al alto máximo (todo el hueco bajo la barra del título) */
+body.reading .sheet.sheet-max{height:calc(100vh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px);
+  height:calc(100dvh - var(--bar-h) - var(--safe-t) - var(--safe-b) - 22px)}
 /* ventanas y menú: al abrirse reciben el foco ellas mismas (no su primer enlace o botón), sin recuadro */
 dialog:focus,dialog:focus-visible{outline:none}
 .sheet-head{display:flex;align-items:center;gap:8px;padding:12px 8px 6px 20px;border-bottom:1px solid var(--line)}

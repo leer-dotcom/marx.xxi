@@ -689,7 +689,8 @@ function mount({ key, a, v, blocks, params }) {
     const ids = ART_TABS.map((_, i) => i).filter(i => i !== TAB.texto);
     const render = t => `<nav class="tabs" aria-label="Guía">${ids.map(i =>
       `<a href="#" data-gt="${i}" ${i === t ? 'aria-current="page"' : ''}>${ART_TABS[i]}</a>`).join('')}</nav><div id="g-body">${guideTab(a, t)}</div>`;
-    openSheet('Guía de estudio', render(ids[0]), body => {
+    openSheet('Guía de estudio', render(ids[0]), (body, d) => {
+      d.classList.add('sheet-max'); // siempre al alto máximo: cambiar de pestaña no cambia el tamaño de la ventana
       body.onclick = e => {
         const t = e.target.closest('[data-gt]'); if (!t) return;
         e.preventDefault(); body.innerHTML = render(+t.dataset.gt); body.scrollTop = 0;

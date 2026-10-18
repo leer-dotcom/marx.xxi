@@ -113,6 +113,7 @@ export function openSheet(title, html, onMount) {
   const body = $('#sheet-body');
   body.innerHTML = html;
   body.scrollTop = 0;
+  d.classList.remove('sheet-max'); // a tamaño máximo solo la que lo pida (la guía de estudio del lector)
   if (!d.open) { d.showModal(); d.focus(); } // el foco, en la ventana (no recuadrar su botón de cerrar)
   onMount?.(body, d);
   return d;
@@ -203,18 +204,11 @@ let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
 let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false;
 const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
 /** Etiqueta «Versión simplificada / detallada» sobre el interruptor, con una flechita hacia él: al abrir el visor y
- *  al cambiar de versión, solo la primera vez que se pasa a cada una en cada uso del visor (pasar de esquema con las
- *  flechas es el mismo uso). Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»).
+ *  cada vez que se cambia de versión. Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»).
  *  En los visores de varios esquemas, la primera vez que se amplía o se reduce en cada uso, la misma etiqueta sale
  *  sobre «n / N», solo con el icono de restablecer (tocarlo devuelve el zoom inicial); es otra etiqueta, así que
  *  no corta la de la versión si coinciden. */
 let zoomTipsShown = new Set();
-function flashZoomFull() {
-  const kind = zoomFull ? 'd' : 's';
-  if (zoomTipsShown.has(kind)) return;
-  zoomTipsShown.add(kind);
-  showZoomTip();
-}
 const RESTORE_ICON = '<svg viewBox="0 0 24 24"><path d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6"/></svg>';
 /** Primera vez que cambia el zoom en este uso del visor, con varios esquemas: aviso sobre «n / N» (restablecer). */
 function flashZoomRestore() {
@@ -381,7 +375,7 @@ function openZoom(host, keepList = false, markup = null) {
     if (sb) return zoomStep(+sb.dataset.zstep);
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
     if (e.target.closest('[data-zfull]')) {
-      setZoomFull(!zoomFull); flashZoomFull();
+      setZoomFull(!zoomFull); showZoomTip();
       // la otra versión se abre ajustada (100 %): mientras se trae, la vista vuelve deprisa a ese ajuste, para que el
       // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
       const file = zoomHost.querySelector('.dg')?.dataset.svg;
@@ -831,7 +825,7 @@ function libraryView() {
       <h1>${L.pubs.length > 1 ? 'Colección Marx XXI' : esc(L.pubs[0].name)}</h1>
       ${L.pubs.length > 1
         ? `<div class="lede sm col"><p>Dos revistas, un proyecto: Marx XXI fija el marco; Nuevo Ciclo lo pone a prueba cada trimestre.</p>
-          <p>Lee, subraya y estudia en esta aplicación los textos íntegros facilitados por <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a> · Apoya su edición suscribiéndote en la página oficial. <a class="btn lede-cta" href="https://marxxxi.com/pages/tipos-de-suscripciones" rel="noopener" target="_blank">Suscríbete →</a></p></div>`
+          <p>Lee, subraya y estudia en esta aplicación los textos íntegros facilitados por <a href="https://marxxxi.com/" rel="noopener" target="_blank">Marx XXI</a>. Apoya su edición suscribiéndote en la página oficial. <a class="btn lede-cta" href="https://marxxxi.com/pages/tipos-de-suscripciones" rel="noopener" target="_blank">Suscríbete →</a></p></div>`
         : `<p class="lede">${esc(L.pubs[0].cross_volume.lede || '')}</p>`}
     </section>
     ${continueCard()}
