@@ -26,6 +26,7 @@ tools/dev_server.py     servidor local sin caché
 tools/make_icons.py     genera los PNG del icono
 tools/importar_nuevo_ciclo.py  trae a data/nuevo-ciclo/ el material de ../app-handoff-nuevo-ciclo y ../texto-estructurado-nuevo-ciclo
 tools/ajustar_esquemas.py      comprueba (y con --aplicar corrige) que los textos de los esquemas caben en su caja con Alegreya
+tools/extraccion/       cómo se extrae el texto de los PDF (EXTRACCION.md) y los scripts para hacerlo con números nuevos
 docs/                   método editorial: cómo incorporar números nuevos y actualizar tesis y síntesis; plantilla de notas
 .github/workflows/      publicación automática en GitHub Pages
 ```
@@ -64,6 +65,8 @@ Cada volumen y número lleva `url`, su ficha en la tienda oficial (marxxxi.com),
 cada artículo enlaza como «PDF disponible en marxxxi.com». En Nuevo Ciclo la pone el importador
 (`nuevo-ciclo`, `nuevo-ciclo-002`…) si los datos de origen no la traen.
 
+El texto de cada número sale de su PDF con los scripts de `tools/extraccion/` (método detallado en `tools/extraccion/EXTRACCION.md`).
+
 **Añadir el #005:** guardar su portada como `img/nc5.webp`, dejar su guía en `../app-handoff-nuevo-ciclo/` (mismo formato: `content.json`, `svg/`,
 `library-synthesis.json`) y su texto en `../texto-estructurado-nuevo-ciclo/nc5-a1.json…`, y ejecutar:
 
@@ -81,7 +84,10 @@ a las carpetas de origen. Después, `publicar.bat` como siempre. No hace falta t
 **Nuevas tesis y análisis.** Lo anterior es la parte mecánica. Cómo se leen los textos nuevos, cómo se redactan sus
 conclusiones y cómo se *enmiendan* (no se regeneran) las tesis de cada revista y la síntesis de la biblioteca está en
 [`docs/ACTUALIZACION-CONTENIDOS.md`](docs/ACTUALIZACION-CONTENIDOS.md); la plantilla de las notas de lectura, en
-[`docs/PLANTILLA-NOTAS.md`](docs/PLANTILLA-NOTAS.md). En resumen: sólo el número nuevo se lee íntegro; las capas
+[`docs/PLANTILLA-NOTAS.md`](docs/PLANTILLA-NOTAS.md). El criterio de contenido (qué extraer de cada texto, qué hace
+que una afirmación sea conclusión o tesis, cómo se detectan los conceptos puente, qué debe contener cada esquema en sus
+dos niveles) está en [`docs/GUIA-ANALISIS-NUEVAS-PUBLICACIONES.md`](docs/GUIA-ANALISIS-NUEVAS-PUBLICACIONES.md), y lo
+vigente que se enmienda (tesis, conclusiones, puentes, arcos) en [`docs/ESTADO-DE-LA-SINTESIS.md`](docs/ESTADO-DE-LA-SINTESIS.md). En resumen: sólo el número nuevo se lee íntegro; las capas
 superiores (conclusiones del número, tesis de la publicación, síntesis de la biblioteca) se actualizan a partir de las
 síntesis ya existentes, decidiendo tesis por tesis si el número las confirma, las matiza o aporta una nueva.
 

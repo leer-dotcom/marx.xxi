@@ -2,9 +2,11 @@
 
 Este documento explica el método editorial con el que se construyeron las guías de *Marx XXI* y *Nuevo Ciclo* y la
 síntesis de la biblioteca, y cómo mantenerlo cuando aparezca un número nuevo (el #005 de Nuevo Ciclo, un sexto
-tomo de Marx XXI o una tercera publicación). Complementa al `README.md`, que cubre la parte mecánica (importar,
+tomo de Marx XXI o una tercera publicación). La extracción del texto desde los PDF está detallada en `tools/extraccion/EXTRACCION.md`. Complementa al `README.md`, que cubre la parte mecánica (importar,
 comprobar, publicar). Aquí se trata de lo que va antes: cómo se lee, se sintetiza y se decide qué cambia en las
-tesis.
+tesis. El criterio de contenido en detalle (preguntas de lectura, qué cuenta como conclusión o tesis, conceptos puente,
+qué debe contener cada esquema en sus dos niveles, simplificado y detallado) está en
+`GUIA-ANALISIS-NUEVAS-PUBLICACIONES.md`, y el contenido vigente que se enmienda, en `ESTADO-DE-LA-SINTESIS.md`.
 
 ## 1. La idea: capas que se generan unas a partir de otras
 
