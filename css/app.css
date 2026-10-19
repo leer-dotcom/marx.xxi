@@ -254,6 +254,7 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 #r-seek:focus-visible{outline:2px solid var(--vol);outline-offset:3px;border-radius:4px}
 .reader-bottom .pct{font-size:14px;color:var(--ink-3);min-width:42px;text-align:right}
 .reader-bottom .buttons{display:flex;justify-content:space-around}
+.reader-bottom .buttons .bar-btn{padding:4px 6px} /* cinco botones: que quepan en el móvil (el reparto lo hace space-around) */
 /* «Subrayar»: despliega hacia arriba los cinco colores y, arriba y separado, los marcadores del texto */
 .hl-tool{position:relative;display:flex}
 .hl-pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
@@ -1082,7 +1083,8 @@ body.chrome-hidden .tts-bar{bottom:0;padding-bottom:var(--safe-b)}
 .tts-bar .tts-play svg path[d^="M8 5.5v13l"]{fill:currentColor}
 .tts-bar [data-tts="prev"] svg path:last-child,.tts-bar [data-tts="next"] svg path:last-child{fill:currentColor}
 .tts-rate{min-width:54px;height:36px;border:1px solid var(--line);border-radius:18px;background:none;color:var(--ink);font-family:var(--f-body);font-size:16px;cursor:pointer;font-variant-numeric:tabular-nums}
-#r-listen[aria-pressed="true"]{color:var(--vol);background:color-mix(in srgb,var(--vol) 14%,transparent)}
+#r-listen[aria-pressed="true"]{color:var(--vol);background:color-mix(in srgb,var(--vol) 14%,transparent);border-radius:10px}
+#r-listen[aria-pressed="true"] svg{stroke-width:2}
 body.tts-open .reader{padding-bottom:calc(230px + var(--safe-b))}
 body.tts-open .toast{bottom:calc(170px + var(--safe-b))}
 /* lo que suena: el párrafo, la frase y la palabra */

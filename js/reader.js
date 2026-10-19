@@ -151,7 +151,6 @@ export async function readerView(key, params) {
     <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
     <a class="icon-btn" href="${backHref}" aria-label="Volver" id="r-back">${SVG.back}</a>
     <div class="titles"><b>${esc(title)}</b><span>${esc(volShort(v))}${author ? ' · ' + esc(author) : ''}</span></div>
-    ${speechSupported() ? `<button class="icon-btn" id="r-listen" aria-label="Escuchar el texto" title="Escuchar" aria-pressed="false">${SVG.listen}</button>` : ''}
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
     <button class="icon-btn" data-share aria-label="Compartir enlace" title="Compartir enlace"><svg viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg></button>
   </div></div>
@@ -191,7 +190,8 @@ export async function readerView(key, params) {
         </div>
         <button class="bar-btn" id="r-hl" aria-expanded="false" aria-pressed="false">${SVG.pen}Subrayar</button>
       </div>
-      ${a ? `<button class="bar-btn" id="r-guide">${SVG.guide}Guía de estudio</button>` : ''}
+      ${a ? `<button class="bar-btn" id="r-guide" aria-label="Guía de estudio">${SVG.guide}Estudio</button>` : ''}
+      ${speechSupported() ? `<button class="bar-btn" id="r-listen" aria-label="Escuchar el texto" aria-pressed="false">${SVG.listen}Escuchar</button>` : ''}
       <button class="bar-btn" id="r-aa">${SVG.aa}Aa</button>
     </div>
   </div></div>`;
@@ -688,14 +688,10 @@ function mount({ key, a, v, blocks, params, title, author }) {
     intro: [title, author].filter(Boolean).join('. '),
     onToggle: on => $('#r-listen')?.setAttribute('aria-pressed', on),
   }) : null;
+  if (tts) $('#r-listen').onclick = () => tts.toggle();
 
   function bindTop() {
     $('#r-find').onclick = () => openFind();
-    const lb = $('#r-listen');
-    if (lb && tts) {
-      lb.setAttribute('aria-pressed', tts.isOpen());
-      lb.onclick = () => tts.toggle();
-    }
     updateUi();
   }
   bindTop();

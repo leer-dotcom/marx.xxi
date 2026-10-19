@@ -232,12 +232,12 @@ export function speechPlayer({ reader, blocks, els, startBlock, intro, topH, onT
       setTimeout(() => { if (!spanishVoices().length) toast('Este navegador no tiene voces en español instaladas'); }, 1200);
     }
     open = true;
-    bar.hidden = false;
-    document.body.classList.add('tts-open');
     build();
     const sb = startBlock();
     pos = { qi: intro && sb === null ? 0 : qiOf(sb ?? 0), ci: 0, off: 0 };
-    ui();
+    ui(); // ya a la altura de la barra inferior antes de mostrarse (sin deslizarse desde el borde)
+    bar.hidden = false;
+    document.body.classList.add('tts-open');
     onToggle?.(true);
     play();
   }
