@@ -27,7 +27,8 @@ def file_list():
     """data/files.json: lista de archivos que el service worker precarga para el modo sin conexión."""
     files = sorted(os.path.relpath(os.path.join(dp, f), WEB).replace(os.sep, "/")
                    for dp, _, fs in os.walk(DATA) for f in fs
-                   if os.path.join("svg", "revision") not in os.path.relpath(dp, DATA))  # carpeta de trabajo
+                   if not any(os.path.join("svg", w) in os.path.relpath(dp, DATA)
+                              for w in ("revision", "simplificada")))  # carpetas de trabajo
     p = os.path.join(DATA, "files.json")
     new = json.dumps(files)
     old = open(p, encoding="utf-8").read() if os.path.isfile(p) else ""
