@@ -254,7 +254,9 @@ body.chrome-hidden .reader-bottom{transform:translateY(100%);opacity:0}
 #r-seek:focus-visible{outline:2px solid var(--vol);outline-offset:3px;border-radius:4px}
 .reader-bottom .pct{font-size:14px;color:var(--ink-3);min-width:42px;text-align:right}
 .reader-bottom .buttons{display:flex;justify-content:space-around}
-.reader-bottom .buttons .bar-btn{padding:4px 6px} /* cinco botones: que quepan en el móvil (el reparto lo hace space-around) */
+/* columnas iguales: los iconos quedan a la misma distancia y el del medio, en el centro de la pantalla */
+.reader-bottom .buttons>*{flex:1 1 0;min-width:0}
+.reader-bottom .buttons .bar-btn{padding:4px 2px;width:100%}
 /* «Subrayar»: despliega hacia arriba los cinco colores y, arriba y separado, los marcadores del texto */
 .hl-tool{position:relative;display:flex}
 .hl-pop{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;

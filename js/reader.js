@@ -192,7 +192,7 @@ export async function readerView(key, params) {
       </div>
       ${a ? `<button class="bar-btn" id="r-guide" aria-label="Guía de estudio">${SVG.guide}Estudio</button>` : ''}
       ${speechSupported() ? `<button class="bar-btn" id="r-listen" aria-label="Escuchar el texto" aria-pressed="false">${SVG.listen}Escuchar</button>` : ''}
-      <button class="bar-btn" id="r-aa">${SVG.aa}Aa</button>
+      <button class="bar-btn" id="r-aa" aria-label="Fuente y ajustes de lectura">${SVG.aa}Fuente</button>
     </div>
   </div></div>`;
 
