@@ -547,8 +547,7 @@ function menuHtml() {
   const curArt = (here.match(/^#\/(?:articulo|leer)\/([tn]\d+-a\d+)/) || [])[1];
   const on = href => (here === href || here.split('?')[0] === href) ? ' aria-current="page"' : '';
   const link = (href, label, icon = '') => `<a class="m-link" href="${href}"${on(href)}>${icon}<span>${label}</span></a>`;
-  const lastId = store.last();
-  const last = lastId && !lastId.startsWith('tomo-') ? article(lastId) : null;
+  const last = continueReading();
   const vols = p => p.volumes.map(v => {
     const sub = [
       v.presentation_text || v.presentation?.length ? link(`${v.href}/0`, 'Presentación') : '',
@@ -733,9 +732,21 @@ function volCard(v, read, pos) {
   </a>`;
 }
 
-/** Tarjeta «Seguir leyendo» del último texto abierto. */
+/** «Seguir leyendo»: el último texto abierto que aún no se ha terminado (los leídos no se «siguen»); si el último
+ *  ya está leído, el más reciente de los empezados y sin terminar. Sin ninguno, nada. */
+function continueReading() {
+  const read = store.read(), pos = store.positions(), lastId = store.last();
+  const ids = Object.keys(pos).sort((x, y) => (y === lastId) - (x === lastId) || (pos[y].t || 0) - (pos[x].t || 0));
+  for (const id of ids) {
+    if (id.startsWith('tomo-') || read.has(id)) continue;
+    const hit = article(id);
+    if (hit) return hit;
+  }
+  return null;
+}
+/** Tarjeta «Seguir leyendo» del último texto abierto sin terminar. */
 function continueCard() {
-  const lastId = store.last(), last = lastId && (lastId.startsWith('tomo-') ? null : article(lastId));
+  const last = continueReading();
   if (!last) return '';
   const p = store.reached(last.a.id);
   return `<a class="card" href="#/leer/${last.a.id}" style="margin-top:18px" data-vol="${last.v.key}">
@@ -903,7 +914,7 @@ function volumeView(p, n, tab = 1) {
             <div class="muted small">${esc(byline(a))}</div>
             <div class="art-sum">
               ${a.summary[0] ? `<p class="small">${esc(a.summary[0])}</p>` : ''}
-              ${p > 0 ? progressBar(p) : ''}
+              ${p > 0 && !read.has(a.id) ? progressBar(p) : ''}
             </div>
           </div>
           <div class="art-actions" role="group" aria-label="Abrir ${esc(a.title)}">
@@ -1035,7 +1046,8 @@ function articleView(id, tab = 0, params = null) {
   if (!hit) return notFound();
   const { v, a } = hit;
   setBar(`${volShort(v).replace(/^Vol\./, 'Volumen')} · ${artLabel(a)}`, { up: v.href });
-  const p = store.reached(a.id), started = !!store.position(a.id);
+  // leído: ya no se «sigue leyendo» (el botón abre el texto donde se dejó)
+  const p = store.reached(a.id), done = store.read().has(a.id), started = !!store.position(a.id) && !done;
   const { prev, next } = neighbours(a.id);
   let body;
   if (tab === TAB.texto) {
@@ -1046,8 +1058,8 @@ function articleView(id, tab = 0, params = null) {
       ${v.url ? `<div class="muted small"><a href="${esc(v.url)}" target="_blank" rel="noopener">PDF disponible en marxxxi.com</a></div>` : ''}
       ${a.printed_pages && v.label ? `<div class="muted small">En la revista impresa: páginas ${a.printed_pages.from}–${a.printed_pages.to}</div>` : ''}
       <div style="display:grid;gap:8px;margin-top:16px">
-        <a class="btn block" href="#/leer/${a.id}">${ICON.book}${started ? `Seguir leyendo (${pct(p)} % leído)` : 'Abrir en modo lectura'}</a>
-        ${started || store.read().has(a.id) ? `<button type="button" class="btn ghost block" data-restart="${a.id}">Empezar desde el principio</button>` : ''}
+        <a class="btn block" href="#/leer/${a.id}">${ICON.book}${started ? `Seguir leyendo (${pct(p)} % leído)` : done ? 'Abrir en modo lectura (✓ leído)' : 'Abrir en modo lectura'}</a>
+        ${started || done ? `<button type="button" class="btn ghost block" data-restart="${a.id}">Empezar desde el principio</button>` : ''}
       </div>
       <p class="muted small" style="margin:14px 0 0">En el modo lectura puedes cambiar la fuente, el tamaño, el interlineado, los márgenes y el tema, guardar marcadores, buscar en el texto y consultar la guía sin perder la posición.</p>
     </div>`;

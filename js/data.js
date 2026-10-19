@@ -447,6 +447,12 @@ export const store = {
   saveLegend(l) { LS.set('mx.legend', l); },
 };
 
+// Datos guardados o importados sin la marca de leído (o con ella perdida): lo que llegó al final cuenta como leído,
+// con la misma regla que al leerlo (el 98 %).
+for (const [id, p] of Object.entries(store.positions())) {
+  if ((p?.max ?? p?.progress ?? 0) >= 0.98 && !store.read().has(id)) store.setRead(id, true);
+}
+
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
 /** Paleta de subrayadores (24, para que llene filas de 2, 3, 4 o 6): clave → [nombre, color]. Los cinco primeros son
