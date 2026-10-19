@@ -1,7 +1,8 @@
 // Lectura en voz alta con las voces del propio dispositivo (Web Speech API): sin servidor ni audios guardados.
 // Lee el texto sin marcas de cada bloque (b.p, el mismo que usan los subrayados) frase a frase, resalta la frase y
-// la palabra que suenan (CSS Custom Highlight API) y sigue la lectura desplazando el texto. Voz, velocidad, tono y
-// si se leen las notas se guardan en «mx.voz» (se exportan con el resto de datos del lector).
+// la palabra que suenan (CSS Custom Highlight API) y sigue la lectura desplazando el texto. Las notas al pie no se
+// leen. Voz, velocidad y tono se guardan en «mx.voz» (se exportan con el resto de datos del lector).
+// Estudio de la alternativa con audios pregrabados (no implementada): docs/LECTURA-EN-VOZ-ALTA.md.
 import { esc, store } from './data.js';
 import { openSheet, toast } from './app.js';
 
@@ -115,10 +116,9 @@ export function speechPlayer({ reader, blocks, els, startBlock, intro, topH, onT
   </div>`;
   document.body.append(bar);
 
-  /** Bloques que se leen, en orden: los visibles con texto (sin separadores ni tablas; las notas, si se quiere). */
+  /** Bloques que se leen, en orden: los visibles con texto (sin separadores, tablas ni notas). */
   function build() {
-    q = els.filter(e => e.offsetParent !== null && !e.classList.contains('sep') && !e.classList.contains('tbl')
-      && (prefs.notes || !e.classList.contains('note')))
+    q = els.filter(e => e.offsetParent !== null && !e.matches('.sep,.tbl,.note'))
       .map(e => ({ b: +e.dataset.b, el: e, text: blocks[+e.dataset.b]?.p || '' }))
       .filter(x => x.text.trim());
     if (intro) q.unshift({ b: -1, el: null, text: intro });
@@ -263,7 +263,6 @@ export function speechPlayer({ reader, blocks, els, startBlock, intro, topH, onT
         <input type="range" id="tts-rate" min="0.5" max="2" step="0.05" value="${prefs.rate}"></div>
       <div class="range-row"><label for="tts-pitch">Tono</label><output id="tts-pitch-o">${(+prefs.pitch).toFixed(1).replace('.', ',')}</output>
         <input type="range" id="tts-pitch" min="0.5" max="1.5" step="0.1" value="${prefs.pitch}"></div>
-      <label class="switch-row">Leer también las notas<input type="checkbox" id="tts-notes" ${prefs.notes ? 'checked' : ''}></label>
       <p class="muted small" style="margin-top:14px">Se usan las voces de este dispositivo: cambian de un navegador a otro. Las más naturales suelen ser las «Natural» de Edge, las de Google en Chrome y Android, y las «mejoradas» de iPhone y Mac. Si no suena nada, revisa el volumen y las voces instaladas en el sistema.</p>`;
     };
     openSheet('Lectura en voz alta', render(), body => {
@@ -275,10 +274,6 @@ export function speechPlayer({ reader, blocks, els, startBlock, intro, topH, onT
       };
       body.onchange = e => {
         if (e.target.id === 'tts-voice') { prefs.voice = e.target.value; savePrefs(); restart(); }
-        if (e.target.id === 'tts-notes') {
-          prefs.notes = e.target.checked; savePrefs();
-          const b = q[pos.qi]?.b ?? 0; build(); pos = { qi: qiOf(b), ci: 0, off: 0 };
-        }
       };
       body.onclick = e => {
         if (!e.target.closest('[data-test]')) return;

@@ -28,7 +28,8 @@ tools/make_icons.py     genera los PNG del icono
 tools/importar_nuevo_ciclo.py  trae a data/nuevo-ciclo/ el material de ../app-handoff-nuevo-ciclo y ../texto-estructurado-nuevo-ciclo
 tools/ajustar_esquemas.py      comprueba (y con --aplicar corrige) que los textos de los esquemas caben en su caja con Alegreya
 tools/extraccion/       cómo se extrae el texto de los PDF (EXTRACCION.md) y los scripts para hacerlo con números nuevos
-docs/                   método editorial: cómo incorporar números nuevos y actualizar tesis y síntesis; plantilla de notas
+docs/                   método editorial: cómo incorporar números nuevos y actualizar tesis y síntesis; plantilla de notas;
+                        estudio de la lectura en voz alta (LECTURA-EN-VOZ-ALTA.md)
 .github/workflows/      publicación automática en GitHub Pages
 ```
 

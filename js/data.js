@@ -350,8 +350,8 @@ export const store = {
   },
   saveSettings(s) { LS.set('mx.settings', s); },
 
-  /** Lectura en voz alta: voz elegida (voiceURI), velocidad, tono y si se leen las notas. */
-  voice() { return { voice: '', rate: 1, pitch: 1, notes: false, ...LS.get('mx.voz', {}) }; },
+  /** Lectura en voz alta: voz elegida (voiceURI), velocidad y tono. */
+  voice() { const { voice = '', rate = 1, pitch = 1 } = LS.get('mx.voz', {}) || {}; return { voice, rate, pitch }; },
   saveVoice(v) { LS.set('mx.voz', v); },
 
   positions() { return LS.get('mx.pos', {}) || {}; }, // también si quedó guardado «null»
