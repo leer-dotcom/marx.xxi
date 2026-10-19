@@ -1008,7 +1008,7 @@ body.art-page .tabs{--tabs-bg:color-mix(in srgb,var(--bg) 92%,#000);background:v
 .zoom-label{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
 .zoom-label .zl-hi{color:var(--vol)}
 .zoom-label .zl-au{font-weight:400;font-style:italic;color:var(--ink-3)} /* autor del artículo, como en la página */
-.zoom-full.locked{opacity:.5;cursor:default} /* por ahora, solo versión detallada: no hace nada */
+.zoom-full.no-s1 > span[data-zv="0"]{opacity:.3;cursor:default} /* sin simplificada 1 (mapa de la colección) */
 /* ventana de confirmación propia (sustituye al confirm() del navegador) */
 dialog.confirm{width:min(420px,calc(100% - 32px));margin:auto;padding:22px 22px 18px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);overflow:visible;animation:up .18s ease}
 dialog.confirm h2{margin:0;font-size:23px;font-weight:400;line-height:1.2}

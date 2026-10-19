@@ -286,11 +286,11 @@ function openZoom(host, keepList = false, markup = null) {
     : RESTORE_ICON;
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   zoomHost = host;
-  // el mapa de la colección, por ahora solo en versión detallada: se abre en ella y el interruptor queda bloqueado
-  const only = 'onlyfull' in host.dataset, swb = $('#zoom [data-zfull]');
-  if (only && zoomVer !== 2) { setZoomVer(2); zoomForced = true; }
-  else if (!only && zoomForced) { setZoomVer(0); zoomForced = false; }
-  swb.disabled = only; swb.classList.toggle('locked', only);
+  // el mapa de la colección no tiene simplificada 1: se abre en la simplificada 2 y la S1 queda bloqueada
+  const noS1 = 'nos1' in host.dataset, swb = $('#zoom [data-zfull]');
+  if (noS1 && zoomVer === 0) { setZoomVer(1); zoomForced = true; }
+  else if (!noS1 && zoomForced) { setZoomVer(0); zoomForced = false; }
+  swb.classList.toggle('no-s1', noS1);
   // simplificada 2 o detallada: se trae su SVG (si no existe, se queda la simplificada 1) y se vuelve a abrir con él
   const file = host.querySelector('.dg')?.dataset.svg;
   if (zoomVer && markup == null && file) {
@@ -383,8 +383,11 @@ function openZoom(host, keepList = false, markup = null) {
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
     if (e.target.closest('[data-zfull]')) {
       // tocando una de las tres, esa; si no (teclado), la siguiente
-      const zv = e.target.closest('[data-zv]'), v = zv ? +zv.dataset.zv : (zoomVer + 1) % ZOOM_VERS.length;
+      const zv = e.target.closest('[data-zv]'), noS1 = 'nos1' in zoomHost.dataset;
+      let v = zv ? +zv.dataset.zv : (zoomVer + 1) % ZOOM_VERS.length;
+      if (noS1 && v === 0) { if (zv) return; v = 1; } // sin simplificada 1 (mapa de la colección)
       if (v === zoomVer) return;
+      zoomForced = false;
       setZoomVer(v); showZoomTip();
       // la otra versión se abre ajustada (100 %): mientras se trae, la vista vuelve deprisa a ese ajuste, para que el
       // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
@@ -514,7 +517,7 @@ export function figure(f) {
   const [tag, rest] = figTag(f);
   const cap = tag ? `${tag}.${rest ? ' ' + rest : ''}` : f.caption || '';
   return `<figure class="diagram">
-    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" data-code="${esc(f.code || '')}" data-type="${esc(f.type || '')}"${f.code === 'CC' ? ' data-onlyfull' : ''} aria-label="Ampliar esquema: ${esc(label)}">
+    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" data-code="${esc(f.code || '')}" data-type="${esc(f.type || '')}"${f.code === 'CC' ? ' data-nos1' : ''} aria-label="Ampliar esquema: ${esc(label)}">
       <div class="dg" data-svg="${esc(f.file)}" style="${ratio}" role="img" aria-label="${esc(label)}"></div>
     </button>
     ${cap ? `<figcaption>${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(cap)}</figcaption>` : ''}
