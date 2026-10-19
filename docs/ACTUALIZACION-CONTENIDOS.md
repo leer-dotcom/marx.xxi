@@ -133,7 +133,15 @@ El método está pensado para que cada paso quepa en una sesión y no dependa de
   explícitamente la tabla de decisiones (confirmada / matizada / nueva / sin cambios) antes de ningún texto nuevo,
   para poder revisarla.
 - Los diagramas: una función por texto en `diagrams.py` siguiendo el «esquema sugerido» de las notas; el motor hace
-  el resto y produce los SVG con las clases `sv-*` que la web ya tematiza.
+  el resto y produce los SVG con las clases `sv-*` que la web ya tematiza. Desde octubre de 2026 cada esquema tiene
+  dos niveles con el mismo árbol: el simplificado (los originales de `svg/`, dibujados desde el «esquema propuesto»
+  de las notas) y el detallado (`svg/revision/`, mismo nombre de archivo), que expande el simplificado con los
+  ejemplos y datos del texto. Primero el simplificado, después el detallado (criterios en la guía, §7).
+  En octubre de 2026 se probó el camino inverso: simplificados obtenidos reduciendo los detallados
+  (`svg/simplificada/`), comparados en el visor con un interruptor de tres posiciones (S1 | S2 | D). Se descartaron
+  porque salen más cargados que los originales: se mantienen los simplificados originales y el interruptor vuelve a
+  S | D. Esos SVG y el interruptor de tres posiciones quedan en el historial de git (commits `0b9e4ce` y `dcd0ef6`,
+  revertidos).
 
 Guardar las notas de lectura (`notes/numeroN.md`) junto al traspaso: son la memoria del proyecto y lo que permite
 que una sesión futura trabaje sin volver al PDF.

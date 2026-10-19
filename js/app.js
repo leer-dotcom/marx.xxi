@@ -199,16 +199,10 @@ document.fonts?.ready.then(() => document.querySelectorAll('nav.tabs').forEach(u
 // cerrar. El pie va arriba, entero; el dibujo se ajusta al espacio que queda.
 // Esquemas que se recorren: los visibles de la pantalla (o de la hoja) de partida.
 let zoomList = [], zoomIdx = -1, zoomFit = null, zoomBy = null;
-// Versión de cada figura (temporal, para contrastar la revisión de los esquemas): 0 = simplificada 1 (la de siempre,
-// por defecto), 1 = simplificada 2 (derivada de la detallada, de svg/simplificada/) o 2 = detallada (de svg/revision/),
-// las tres con el mismo nombre. No se recuerda: al cerrar el visor, simplificada 1.
-let zoomVer = 0, zoomHost = null, zoomForced = false, zoomOpening = false;
-const ZOOM_VERS = [
-  { tag: 's1', name: 'Simplificada 1', dir: '' },
-  { tag: 's2', name: 'Simplificada 2', dir: 'simplificada/' },
-  { tag: 'd', name: 'Detallada', dir: 'revision/' },
-];
-const verFile = (f, v = zoomVer) => f.replace(/(^|\/)svg\//, `$1svg/${ZOOM_VERS[v].dir}`);
+// Versión de cada figura (temporal, para contrastar la revisión de los esquemas): la simplificada (la de siempre,
+// por defecto) o la detallada, de svg/revision/ con el mismo nombre. No se recuerda: al cerrar el visor, simplificada.
+let zoomFull = false, zoomHost = null, zoomForced = false, zoomOpening = false;
+const fullFile = f => f.replace(/(^|\/)svg\//, '$1svg/revision/');
 /** Etiqueta «Versión simplificada / detallada» sobre el interruptor, con una flechita hacia él: al abrir el visor y
  *  cada vez que se cambia de versión. Aparece en 0,2 s, se ve 0,4 s y se difumina en 0,3 s (animación «tipflash»).
  *  En los visores de varios esquemas, la primera vez que se amplía o se reduce en cada uso, la misma etiqueta sale
@@ -227,7 +221,7 @@ function flashZoomRestore() {
 function showZoomTip(anchor = $('#zoom [data-zfull]'), html = null, t = $('#zoom-full-tip')) {
   const bar = $('.zoom-bar');
   if (html) t.innerHTML = html;
-  else t.textContent = `Versión ${ZOOM_VERS[zoomVer].name}`; // como en el interruptor (S1 | S2 | D)
+  else t.textContent = zoomFull ? 'Versión Detallada' : 'Versión Simplificada'; // la inicial, como en el interruptor (S | D)
   let x = anchor.offsetWidth / 2, el = anchor;
   for (; el && el !== bar; el = el.offsetParent) x += el.offsetLeft;
   t.style.left = el === bar && anchor.offsetWidth ? `${x}px` : '';
@@ -249,12 +243,11 @@ function figLabel(code, type) {
   const a = v.articles.find(x => x.number === +m[3]); if (!a) return null;
   return { text: `${volShort(v)} · ${artLabel(a)} · ${a.title}`, hi: 2, author: byline(a), vol: v.key };
 }
-function setZoomVer(v) {
-  zoomVer = v;
-  const b = $('#zoom [data-zfull]'), next = ZOOM_VERS[(v + 1) % ZOOM_VERS.length];
-  b.dataset.ver = v;
-  b.querySelectorAll('[data-zv]').forEach(s => s.classList.toggle('on', +s.dataset.zv === v));
-  b.title = `Viendo la versión ${ZOOM_VERS[v].name.toLowerCase()} (${ZOOM_VERS[v].tag}): pasar a la ${next.name.toLowerCase()}`;
+function setZoomFull(on) {
+  zoomFull = on;
+  const b = $('#zoom [data-zfull]');
+  b.setAttribute('aria-pressed', on);
+  b.title = on ? 'Viendo la figura detallada (d): pasar a la simplificada' : 'Viendo la figura simplificada (s): pasar a la detallada';
 }
 /** Abre o cierra el control vertical de zoom (sobre la lupa). */
 function toggleZoomSlider(on) {
@@ -276,7 +269,7 @@ const zoomAt = v => 10 ** (ZL + v / 100 * ZR);
 function openZoom(host, keepList = false, markup = null) {
   const st = $('#zoom-stage'), dlg = $('#zoom'), cap = $('#zoom-caption'), level = $('#zoom-level'), range = $('#zoom-range');
   if (!keepList) {
-    if (!$('#zoom').open) { setZoomVer(0); zoomForced = false; zoomTipsShown = new Set(); zoomOpening = true; } // cada vez que se abre el visor, la simplificada
+    if (!$('#zoom').open) { setZoomFull(false); zoomForced = false; zoomTipsShown = new Set(); zoomOpening = true; } // cada vez que se abre el visor, la simplificada
     const root = host.closest('#sheet-body') || view;
     zoomList = [...root.querySelectorAll('[data-zoom]')].filter(b => b.offsetParent !== null && !b.closest('details:not([open])') && b.querySelector('.dg[data-state="ok"]'));
     zoomIdx = zoomList.indexOf(host);
@@ -286,15 +279,15 @@ function openZoom(host, keepList = false, markup = null) {
     : RESTORE_ICON;
   for (const b of dlg.querySelectorAll('[data-zstep]')) b.hidden = zoomList.length < 2;
   zoomHost = host;
-  // el mapa de la colección no tiene simplificada 1: se abre en la simplificada 2 y la S1 queda bloqueada
-  const noS1 = 'nos1' in host.dataset, swb = $('#zoom [data-zfull]');
-  if (noS1 && zoomVer === 0) { setZoomVer(1); zoomForced = true; }
-  else if (!noS1 && zoomForced) { setZoomVer(0); zoomForced = false; }
-  swb.classList.toggle('no-s1', noS1);
-  // simplificada 2 o detallada: se trae su SVG (si no existe, se queda la simplificada 1) y se vuelve a abrir con él
+  // el mapa de la colección, por ahora solo en versión detallada: se abre en ella y el interruptor queda bloqueado
+  const only = 'onlyfull' in host.dataset, swb = $('#zoom [data-zfull]');
+  if (only && !zoomFull) { setZoomFull(true); zoomForced = true; }
+  else if (!only && zoomForced) { setZoomFull(false); zoomForced = false; }
+  swb.disabled = only; swb.classList.toggle('locked', only);
+  // detallada: se trae su SVG (si no existe, se queda la simplificada) y se vuelve a abrir con él
   const file = host.querySelector('.dg')?.dataset.svg;
-  if (zoomVer && markup == null && file) {
-    loadSvg(verFile(file)).then(m => openZoom(host, true, m), () => openZoom(host, true, host.querySelector('.dg')?.innerHTML || ''));
+  if (zoomFull && markup == null && file) {
+    loadSvg(fullFile(file)).then(m => openZoom(host, true, m), () => openZoom(host, true, host.querySelector('.dg')?.innerHTML || ''));
     if (!dlg.open) dlg.showModal();
     return;
   }
@@ -307,8 +300,8 @@ function openZoom(host, keepList = false, markup = null) {
   const fl = figLabel(host.dataset.code, host.dataset.type);
   const zh = host.closest('[data-zlabel]'), zl = fl?.text || zh?.dataset.zlabel;
   // nombre de la figura («Esquema MX1.14») en negrita cursiva, como en el pie de la página, y su descripción
-  // tras el código, (s1) o (s2) simplificada o (d) detallada: qué versión se está viendo
-  const tag = host.dataset.tag ? `${host.dataset.tag} (${ZOOM_VERS[zoomVer].tag})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
+  // tras el código, (s) simplificada o (d) detallada: qué versión se está viendo
+  const tag = host.dataset.tag ? `${host.dataset.tag} (${zoomFull ? 'd' : 's'})` : '', rest = host.dataset.rest ?? host.dataset.caption ?? '';
   // la descripción (zc-desc) se pliega con la doble flecha; queda el título: qué esquema es y su nombre
   const capHtml = tag || rest ? `<span class="zc-desc">${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' : ''}` : ''}${esc(rest)}</span>` : '';
   const zseg = zl ? zl.split(' · ') : [], zhi = fl ? fl.hi : +(zh?.dataset.zhi || 0);
@@ -382,17 +375,11 @@ function openZoom(host, keepList = false, markup = null) {
     if (sb) return zoomStep(+sb.dataset.zstep);
     if (e.target.closest('[data-zmenu]')) return toggleZoomSlider();
     if (e.target.closest('[data-zfull]')) {
-      // tocando una de las tres, esa; si no (teclado), la siguiente
-      const zv = e.target.closest('[data-zv]'), noS1 = 'nos1' in zoomHost.dataset;
-      let v = zv ? +zv.dataset.zv : (zoomVer + 1) % ZOOM_VERS.length;
-      if (noS1 && v === 0) { if (zv) return; v = 1; } // sin simplificada 1 (mapa de la colección)
-      if (v === zoomVer) return;
-      zoomForced = false;
-      setZoomVer(v); showZoomTip();
+      setZoomFull(!zoomFull); showZoomTip();
       // la otra versión se abre ajustada (100 %): mientras se trae, la vista vuelve deprisa a ese ajuste, para que el
       // cambio tenga continuidad (si ya estaba ajustada, se cambia sin esperar)
       const file = zoomHost.querySelector('.dg')?.dataset.svg;
-      if (zoomVer && file) loadSvg(verFile(file)).catch(() => {});
+      if (zoomFull && file) loadSvg(fullFile(file)).catch(() => {});
       const [ox, oy, os] = [x, y, s];
       box.classList.remove('settle'); box.classList.add('restore'); fit();
       if (Math.abs(ox - x) + Math.abs(oy - y) < 1 && Math.abs(os / s - 1) < 0.005) return openZoom(zoomHost, true);
@@ -483,7 +470,7 @@ function setZoomRot(on) {
   const label = on ? 'Volver a vertical' : 'Girar a horizontal';
   b.setAttribute('aria-label', label); b.title = label;
 }
-$('#zoom').addEventListener('close', () => { setZoomRot(false); toggleZoomSlider(false); setZoomVer(0); $('#zoom-caption').classList.remove('folded'); });
+$('#zoom').addEventListener('close', () => { setZoomRot(false); toggleZoomSlider(false); setZoomFull(false); $('#zoom-caption').classList.remove('folded'); });
 // al girar el móvil o cambiar el tamaño de la ventana, volver a ajustar a la pantalla
 new ResizeObserver(() => { if ($('#zoom').open) zoomFit?.(); }).observe($('#zoom-stage'));
 document.addEventListener('keydown', e => {
@@ -517,7 +504,7 @@ export function figure(f) {
   const [tag, rest] = figTag(f);
   const cap = tag ? `${tag}.${rest ? ' ' + rest : ''}` : f.caption || '';
   return `<figure class="diagram">
-    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" data-code="${esc(f.code || '')}" data-type="${esc(f.type || '')}"${f.code === 'CC' ? ' data-nos1' : ''} aria-label="Ampliar esquema: ${esc(label)}">
+    <button type="button" data-zoom data-caption="${esc(cap)}" data-tag="${esc(tag)}" data-rest="${esc(tag ? rest : cap)}" data-code="${esc(f.code || '')}" data-type="${esc(f.type || '')}"${f.code === 'CC' ? ' data-onlyfull' : ''} aria-label="Ampliar esquema: ${esc(label)}">
       <div class="dg" data-svg="${esc(f.file)}" style="${ratio}" role="img" aria-label="${esc(label)}"></div>
     </button>
     ${cap ? `<figcaption>${tag ? `<b class="fig-tag">${esc(tag)}</b>.${rest ? ' ' + esc(rest) : ''}` : esc(cap)}</figcaption>` : ''}
