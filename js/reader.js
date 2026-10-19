@@ -1,6 +1,7 @@
 // Modo lectura: texto íntegro con ajustes tipográficos, posición guardada, búsqueda, marcadores, índice y guía.
 import { article, volume, neighbours, text, esc, highlight, fold, store, MK, hlHex, hlCat, shownSlots, volHead, volShort, artLabel, byline } from './data.js';
 import { ICON, openSheet, closeSheet, settingsPanel, bindSettings, styleReader, guideTab, ART_TABS, TAB, toast, cameFrom, confirmDialog, openLegend, hlFilterBar } from './app.js';
+import { speechPlayer, speechSupported } from './speech.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const SVG = {
@@ -16,6 +17,7 @@ const SVG = {
   menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
   note: '<svg viewBox="0 0 24 24"><path d="M5 4h14v12H10l-5 4z"/><path d="M8.5 8.5h7M8.5 12h4.5"/></svg>',
   pen: '<svg viewBox="0 0 24 24"><path d="M14.5 4.5l5 5L10 19H5v-5z"/><path d="M12.5 6.5l5 5M4 21.5h9"/></svg>',
+  listen: '<svg viewBox="0 0 24 24"><path d="M4.5 14v-2a7.5 7.5 0 0 1 15 0v2"/><path d="M4.5 14h3v6h-1.5a1.5 1.5 0 0 1-1.5-1.5zM19.5 14h-3v6h1.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>',
   gear: '<svg class="ico-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
 };
 const hlColor = hlHex;
@@ -149,6 +151,7 @@ export async function readerView(key, params) {
     <button class="icon-btn" data-open-menu aria-label="Menú" title="Menú">${SVG.menu}</button>
     <a class="icon-btn" href="${backHref}" aria-label="Volver" id="r-back">${SVG.back}</a>
     <div class="titles"><b>${esc(title)}</b><span>${esc(volShort(v))}${author ? ' · ' + esc(author) : ''}</span></div>
+    ${speechSupported() ? `<button class="icon-btn" id="r-listen" aria-label="Escuchar el texto" title="Escuchar" aria-pressed="false">${SVG.listen}</button>` : ''}
     <button class="icon-btn" id="r-find" aria-label="Buscar en el texto">${SVG.search}</button>
     <button class="icon-btn" data-share aria-label="Compartir enlace" title="Compartir enlace"><svg viewBox="0 0 24 24"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg></button>
   </div></div>
@@ -193,10 +196,10 @@ export async function readerView(key, params) {
     </div>
   </div></div>`;
 
-  return [html, () => mount({ key, a, v, blocks, params })];
+  return [html, () => mount({ key, a, v, blocks, params, title, author })];
 }
 
-function mount({ key, a, v, blocks, params }) {
+function mount({ key, a, v, blocks, params, title, author }) {
   document.body.classList.add('reading');
   document.body.dataset.vol = $('#reader').dataset.vol;
   const reader = $('#reader');
@@ -678,8 +681,21 @@ function mount({ key, a, v, blocks, params }) {
     topInner.innerHTML = topNormal;
     bindTop();
   }
+  // --- escuchar el texto (voces del dispositivo); si se empieza arriba del todo, primero el título y la autoría
+  const tts = speechSupported() ? speechPlayer({
+    reader, blocks, els, topH,
+    startBlock: () => (scrollY < 40 ? null : currentBlock()),
+    intro: [title, author].filter(Boolean).join('. '),
+    onToggle: on => $('#r-listen')?.setAttribute('aria-pressed', on),
+  }) : null;
+
   function bindTop() {
     $('#r-find').onclick = () => openFind();
+    const lb = $('#r-listen');
+    if (lb && tts) {
+      lb.setAttribute('aria-pressed', tts.isOpen());
+      lb.onclick = () => tts.toggle();
+    }
     updateUi();
   }
   bindTop();
@@ -761,6 +777,7 @@ function mount({ key, a, v, blocks, params }) {
   addEventListener('pagehide', onPageHide);
 
   return () => {
+    tts?.destroy();
     clearTimeout(saveT);
     savePos();
     clearTimeout(settleT);

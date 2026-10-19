@@ -13,6 +13,7 @@ index.html              estructura de la página
 css/app.css             diseño inspirado en marxxxi.com (Alegreya, verde #2c332f, color por volumen) + temas sepia/oscuro/negro
 js/app.js               rutas (#/…) y vistas: inicio, volumen, artículo, tesis, glosario, búsqueda, marcadores, lista de lectura, ajustes
 js/reader.js            modo lectura
+js/speech.js            lectura en voz alta del modo lectura (voces del dispositivo, Web Speech API)
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
 manifest.webmanifest    instalación como app («Añadir a pantalla de inicio»)

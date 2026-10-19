@@ -2,9 +2,9 @@
 // Sube VERSION cada vez que publiques cambios para que los navegadores renueven la caché.
 // La versión nueva se instala en cuanto el navegador la ve, pero no toma el control de la app abierta por sí
 // sola: espera a que el lector pulse «Actualizar» (app.js le manda 'skipWaiting') o a que cierre la app del todo.
-const VERSION = 'mx-20261019-2232';
+const VERSION = 'mx-20261019-2253';
 const SHELL = [
-  './', 'index.html', 'css/app.css', 'css/fonts.css', 'js/app.js', 'js/data.js', 'js/reader.js',
+  './', 'index.html', 'css/app.css', 'css/fonts.css', 'js/app.js', 'js/data.js', 'js/reader.js', 'js/speech.js',
   'manifest.webmanifest', 'img/icon.svg', 'img/nuevo-ciclo.png', 'data/library.json', 'data/content.json',
   'data/nuevo-ciclo/content.json', 'data/diagram.css',
   // portadas

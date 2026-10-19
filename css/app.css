@@ -1068,3 +1068,25 @@ html{-webkit-tap-highlight-color:transparent}
 :where(.card.tool,a.card,summary):active{transform:scale(.985);filter:brightness(.96)}
 /* los enlaces dentro del texto: solo se atenúan */
 :where(p,li,.sub,.muted) a:active{opacity:.6}
+
+/* ---------------------------------------------------------------- lectura en voz alta (js/speech.js) */
+/* barra del reproductor: encima de la barra inferior del lector; si esta se oculta, baja hasta el borde */
+.tts-bar{position:fixed;left:0;right:0;bottom:calc(var(--rb-h,0px));z-index:31;background:color-mix(in srgb,var(--paper) 96%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);transition:bottom .25s ease}
+body.chrome-hidden .tts-bar{bottom:0;padding-bottom:var(--safe-b)}
+.tts-bar[hidden]{display:none}
+.tts-bar .inner{max-width:560px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2px;padding:2px 8px}
+.tts-bar .icon-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tts-bar .tts-play{width:52px;height:52px;background:var(--btn);color:var(--btn-ink)}
+.tts-bar .tts-play svg{width:26px;height:26px}
+.tts-bar .tts-play svg path[d^="M8 5.5v13l"]{fill:currentColor}
+.tts-bar [data-tts="prev"] svg path:last-child,.tts-bar [data-tts="next"] svg path:last-child{fill:currentColor}
+.tts-rate{min-width:54px;height:36px;border:1px solid var(--line);border-radius:18px;background:none;color:var(--ink);font-family:var(--f-body);font-size:16px;cursor:pointer;font-variant-numeric:tabular-nums}
+#r-listen[aria-pressed="true"]{color:var(--vol);background:color-mix(in srgb,var(--vol) 14%,transparent)}
+body.tts-open .reader{padding-bottom:calc(230px + var(--safe-b))}
+body.tts-open .toast{bottom:calc(170px + var(--safe-b))}
+/* lo que suena: el párrafo, la frase y la palabra */
+.reader .tts-on{box-shadow:-10px 0 0 -7px var(--vol)}
+::highlight(mx-tts-s){background-color:color-mix(in srgb,var(--mark) 45%,transparent)}
+::highlight(mx-tts-w){background-color:var(--mark);color:inherit}
+.tts-voices{width:100%;font:inherit;font-size:17px;padding:8px 10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);color:var(--ink)}

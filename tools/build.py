@@ -147,7 +147,7 @@ def check():
                 errors.append(f".github/workflows/pages.yml no copia {d}/ a la web publicada")
 
     # Módulos JS importados
-    for js in ("app.js", "data.js", "reader.js"):
+    for js in ("app.js", "data.js", "reader.js", "speech.js"):
         src = open(os.path.join(WEB, "js", js), encoding="utf-8").read()
         for imp in re.findall(r"from '\./([^']+)'", src):
             if not os.path.isfile(os.path.join(WEB, "js", imp)):
@@ -155,7 +155,7 @@ def check():
 
     # Sintaxis JS, si hay Node instalado
     try:
-        for js in ("app.js", "data.js", "reader.js"):
+        for js in ("app.js", "data.js", "reader.js", "speech.js"):
             r = subprocess.run(["node", "--check", os.path.join(WEB, "js", js)], capture_output=True, text=True)
             if r.returncode != 0:
                 errors.append(f"js/{js}: {r.stderr.strip()[:300]}")
