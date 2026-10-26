@@ -21,7 +21,7 @@ Escribe:
   data/nuevo-ciclo/texto/nN-aM.json  textos íntegros (mismo id que la guía: n1-a1…)
   data/library-synthesis.json        síntesis de la biblioteca, si existe
 
-Para añadir el #005: dejar sus datos en app-handoff-nuevo-ciclo/ y texto-estructurado-nuevo-ciclo/
+Para añadir el #005 (su texto ya está en data/nuevo-ciclo/texto/n5-a*.json; falta su guía): dejar sus datos en app-handoff-nuevo-ciclo/ y texto-estructurado-nuevo-ciclo/
 (mismo formato) y volver a ejecutar; no hace falta tocar el código de la web.
 """
 import json

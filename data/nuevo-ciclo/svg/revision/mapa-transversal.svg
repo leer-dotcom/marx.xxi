@@ -1,154 +1,169 @@
-<svg xmlns="http://www.w3.org/2000/svg" aria-label="Mapa transversal de los cuatro números: diagnóstico compartido en seis tesis, respuestas rechazadas, propuesta (partido comunista de masas) y sus tres dimensiones, y horizonte." role="img" viewBox="0 0 760 1024" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToyZTYzZGYxOS0wYWUwLTQ3ZDQtYmVlYS02ZGEzYThmODc0MDMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaIuSa7e0FV608TsiaFdB7sMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoxYTg0MWQyMC0yNjBjLTRhZDktYWIyZi0zMTlkMzEzNDY2NzNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNog+7XV/TrpH+cuYzK14FSswAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg828sz0Fie89otbs74PYQ8LLFs0H+TQYj1tG22fIXvfGkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaHJ0GiKceOi9fVlr0GRLllMAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIGmAN4YiUIBwOg52e0/fUaxlDUjRcoS+ntpxZPzsUMTwZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQFJZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjJlNjNkZjE5LTBhZTAtNDdkNC1iZWVhLTZkYTNhOGY4NzQwMy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjQyMmM4ZDIzLWNlMzctNDE2Ni05YjkzLWZiMWNkNDVjNzdkZXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDzbyzPQWJ7z2i1uzvg9hDwssWzQf5NBiPW0bbZ8he98aJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggdU7lMtgOmIKMEO1ROwWDNdTP5yeYLPW2aUTzbPVF3qeiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggsVpgXTqoofbaVARpsYCoPgnjj5DEHv57txC0mNz0dJx0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQBATz2IJdqZaglZPUdNq8asoSUJ6DI/+li39wQ8u1N8Ea5WFd5YmC2VCXVjM8t/uelyBHXPSHa+XZyZ4Hd75E3k=</c2pa:manifest></metadata>
-<defs><marker id="nc-tr-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
-<rect class="sv-soft" height="292.59999999999997" rx="2" width="752" x="4" y="20"></rect>
-<text class="sv-t3" text-anchor="start" x="10" y="31">DIAGNÓSTICO COMPARTIDO</text>
-<rect class="sv-box-ink" height="131.89999999999998" rx="2" width="235" x="12" y="42"></rect>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="63">Declive del capitalismo</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="76.5" style="font-weight:400;font-size:11.2px">rentabilidad en caída, población</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="89.7" style="font-weight:400;font-size:11.2px">sobrante, «fin de juego»</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="102.9" style="font-weight:400;font-size:11.2px">crecimiento de suma cero; militarismo</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="116.10000000000001" style="font-weight:400;font-size:11.2px">estructural y giro autoritario de los</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="129.3" style="font-weight:400;font-size:11.2px">Estados; la reacción actual no repite el</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="142.5" style="font-weight:400;font-size:11.2px">fascismo clásico: es dictadura burguesa</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="155.7" style="font-weight:400;font-size:11.2px">en condiciones de declive</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="167.89999999999998" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-ink" height="131.89999999999998" rx="2" width="235" x="263" y="42"></rect>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="63">Guerra e imperialismo</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="76.5" style="font-weight:400;font-size:11.2px">militarismo estructural, Gaza, rearme</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="89.7" style="font-weight:400;font-size:11.2px">europeo</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="102.9" style="font-weight:400;font-size:11.2px">el genocidio es una operación del bloque</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="116.10000000000001" style="font-weight:400;font-size:11.2px">occidental; la multipolaridad es el estado</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="129.3" style="font-weight:400;font-size:11.2px">natural del imperialismo (Lenin); la</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="142.5" style="font-weight:400;font-size:11.2px">inmigración es «imperialismo en casa»;</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="155.7" style="font-weight:400;font-size:11.2px">une Gaza, la frontera y el barrio</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="167.89999999999998" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-ink" height="131.89999999999998" rx="2" width="235" x="513" y="42"></rect>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="63" style="font-size:13.4px;letter-spacing:0">El Estado como dictadura de clase</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="76.5" style="font-weight:400;font-size:11.2px">Estado dual, Gladio, antiterrorismo,</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="89.7" style="font-weight:400;font-size:11.2px">fronteras</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="102.9" style="font-weight:400;font-size:11.2px">ni neutral ni democratizable: el Estado</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="116.10000000000001" style="font-weight:400;font-size:11.2px">de Derecho es una excepción histórica;</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="129.3" style="font-weight:400;font-size:11.2px">aparatos insumisos = «cimientos, no</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="142.5" style="font-weight:400;font-size:11.2px">cloacas»; franquismo y 78, un mismo</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="155.7" style="font-weight:400;font-size:11.2px">Estado; hay que destruirlo</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="167.89999999999998" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-ink" height="118.69999999999999" rx="2" width="235" x="12" y="183.89999999999998"></rect>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="204.89999999999998" style="font-size:13.2px;letter-spacing:0">Lo que parece excepción es esencia</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="218.39999999999998" style="font-weight:400;font-size:11.2px">genocidio, devoluciones en caliente,</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="231.59999999999997" style="font-weight:400;font-size:11.2px">delincuencia funcional, 800 muertes al</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="244.79999999999995" style="font-weight:400;font-size:11.2px">año en el trabajo, austeridad: inmanentes</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="257.99999999999994" style="font-weight:400;font-size:11.2px">al capital; personalizar el mal en un</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="271.19999999999993" style="font-weight:400;font-size:11.2px">gobierno, una élite o una potencia es el</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="284.3999999999999" style="font-weight:400;font-size:11.2px">error común del reformismo</text>
-<text class="sv-tw" text-anchor="middle" x="129.5" y="296.59999999999997" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-ink" height="118.69999999999999" rx="2" width="235" x="263" y="183.89999999999998"></rect>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="204.89999999999998" style="font-size:13.2px;letter-spacing:0">Trabajo vivo, proletariado sin sujeto</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="218.39999999999998" style="font-weight:400;font-size:11.2px">sólo el trabajo vivo crea valor (contra el</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="231.59999999999997" style="font-weight:400;font-size:11.2px">neofeudalismo y el «fin del trabajo»);</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="244.79999999999995" style="font-weight:400;font-size:11.2px">clase mayoritaria pero fragmentada:</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="257.99999999999994" style="font-weight:400;font-size:11.2px">precariedad, población sobrante, raza,</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="271.19999999999993" style="font-weight:400;font-size:11.2px">género, migración; el socialismo «necesita</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="284.3999999999999" style="font-weight:400;font-size:11.2px">un portador» que aún no existe</text>
-<text class="sv-tw" text-anchor="middle" x="380.5" y="296.59999999999997" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-ink" height="118.69999999999999" rx="2" width="235" x="513" y="183.89999999999998"></rect>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="204.89999999999998" style="font-size:13.2px;letter-spacing:0">Sin partido, las luchas son impotentes</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="218.39999999999998" style="font-weight:400;font-size:11.2px">protestas post-2008 bajo hegemonía</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="231.59999999999997" style="font-weight:400;font-size:11.2px">pequeñoburguesa; movimiento propalestino,</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="244.79999999999995" style="font-weight:400;font-size:11.2px">huelgas de Grecia y Francia, ciclo feminista:</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="257.99999999999994" style="font-weight:400;font-size:11.2px">sin fuerza independiente no logran sus fines;</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="271.19999999999993" style="font-weight:400;font-size:11.2px">la organización es la mediación necesaria</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="284.3999999999999" style="font-weight:400;font-size:11.2px">entre la opinión y la praxis</text>
-<text class="sv-tw" text-anchor="middle" x="630.5" y="296.59999999999997" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4</text>
-<rect class="sv-soft" height="166.2" rx="2" width="752" x="4" y="348.59999999999997"></rect>
-<text class="sv-t3" text-anchor="middle" x="255.0" y="359.59999999999997">RESPUESTAS QUE LA REVISTA RECHAZA</text>
-<rect class="sv-box-gold" height="134.2" rx="2" width="235" x="12" y="370.59999999999997"></rect>
-<text class="sv-tg" text-anchor="middle" x="129.5" y="391.59999999999997">Socialdemocracia y reformismo</text>
-<text class="sv-tg" text-anchor="middle" x="129.5" y="407.09999999999997">gobernante</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="420.59999999999997" style="font-size:11.2px">PSOE, Sumar, IU, Podemos, Weber,</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="433.79999999999995" style="font-size:11.2px">neofeudalismo</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="446.99999999999994" style="font-size:11.2px">no contienen la reacción: la alimentan;</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="460.19999999999993" style="font-size:11.2px">ala izquierda del capital (armas a Israel,</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="473.3999999999999" style="font-size:11.2px">fronteras que matan más que las de Meloni);</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="486.5999999999999" style="font-size:11.2px">retrasar a la extrema derecha ≠ frenarla</text>
-<text class="sv-t3" text-anchor="middle" x="129.5" y="498.79999999999995" style="font-size:9.5px">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-gold" height="134.2" rx="2" width="235" x="263" y="370.59999999999997"></rect>
-<text class="sv-tg" text-anchor="middle" x="380.5" y="399.34999999999997">Campismo y soberanismo</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="420.59999999999997" style="font-size:11.2px">pacifismo multipolar, «fantasías de</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="433.79999999999995" style="font-size:11.2px">secesión», europeísmo militarista</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="446.99999999999994" style="font-size:11.2px">ni OTAN ni BRICS: la multipolaridad no</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="460.19999999999993" style="font-size:11.2px">supera el imperialismo; abandonar OTAN y</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="473.3999999999999" style="font-size:11.2px">UE nación por nación no es la salida;</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="486.5999999999999" style="font-size:11.2px">socialchovinismo y pacifismo multipolar</text>
-<text class="sv-t3" text-anchor="middle" x="380.5" y="498.79999999999995" style="font-size:9.5px">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-gold" height="134.2" rx="2" width="235" x="513" y="370.59999999999997"></rect>
-<text class="sv-tg" text-anchor="middle" x="630.5" y="391.59999999999997">Espontaneísmo, moralismo,</text>
-<text class="sv-tg" text-anchor="middle" x="630.5" y="407.09999999999997">atrapalotodo</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="420.59999999999997" style="font-size:11.2px">comunización, frente impopular,</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="433.79999999999995" style="font-size:11.2px">feminismo dual</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="446.99999999999994" style="font-size:11.2px">y adanismo, hagiografía, «programatismo»,</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="460.19999999999993" style="font-size:11.2px">economicismo e interseccionalidad,</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="473.3999999999999" style="font-size:11.2px">nacionalismo económico de izquierdas,</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="486.5999999999999" style="font-size:11.2px">sectarismo, «sed de sangre»</text>
-<text class="sv-t3" text-anchor="middle" x="630.5" y="498.79999999999995" style="font-size:9.5px">#1 · #2 · #3 · #4</text>
-<line class="sv-line-dash" x1="129.5" y1="302.59999999999997" x2="129.5" y2="370.59999999999997" marker-end="url(#nc-tr-arrow)"></line>
-<line class="sv-line-dash" x1="380.5" y1="302.59999999999997" x2="380.5" y2="370.59999999999997" marker-end="url(#nc-tr-arrow)"></line>
-<line class="sv-line-dash" x1="630.5" y1="302.59999999999997" x2="630.5" y2="370.59999999999997" marker-end="url(#nc-tr-arrow)"></line>
-<text class="sv-t3" text-anchor="start" x="137.5" y="322.59999999999997" style="font-size:10px">respuestas al diagnóstico</text>
-<text class="sv-t3" text-anchor="start" x="137.5" y="334.59999999999997" style="font-size:10px">que la revista rechaza</text>
-<rect class="sv-box-red" height="92" rx="2" width="736" x="12" y="548.8"></rect>
-<text class="sv-tr" text-anchor="middle" x="380" y="570.8">Independencia política del proletariado: partido comunista de masas</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="587.8" style="font-size:12px">«el gran ausente hoy, a la vez que la única alternativa real»</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="603.8" style="font-size:11.2px">fórmula de 1850; programa mínimo-máximo; unidad de acción sobre mínimos y deslinde frente al reformismo; nuevas instituciones</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="617.8" style="font-size:11.2px">condición: unidad de clase con el proletariado migrante y con todas las trabajadoras</text>
-<text class="sv-t3" text-anchor="middle" x="380" y="634.8" style="font-size:9.5px">#1 (TODO EL NÚMERO) · #2 · #3 · #4</text>
-<path class="sv-line-red" d="M129.5 504.79999999999995 V524.8 H380 V548.8" marker-end="url(#nc-tr-arrow)"></path>
-<line class="sv-line-red" x1="380" y1="504.79999999999995" x2="380" y2="548.8" marker-end="url(#nc-tr-arrow)"></line>
-<path class="sv-line-red" d="M630.5 504.79999999999995 V524.8 H380 V548.8" marker-end="url(#nc-tr-arrow)"></path>
-<text class="sv-t3" text-anchor="start" x="392" y="540.8" style="font-size:10px">deslinde de campos «mediante la argumentación y la polémica»</text>
-<rect class="sv-soft" height="163.89999999999998" rx="2" width="752" x="4" y="680.8"></rect>
-<text class="sv-t3" text-anchor="middle" x="255.0" y="691.8">DIMENSIONES DE LA PROPUESTA</text>
-<rect class="sv-box-blue" height="131.89999999999998" rx="2" width="235" x="12" y="702.8"></rect>
-<text class="sv-tb" text-anchor="middle" x="129.5" y="723.8">Instituciones propias</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="737.3" style="font-size:11.2px">prensa obrera, organización</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="750.5" style="font-size:11.2px">territorial, autodefensa, gimnasios</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="763.7" style="font-size:11.2px">el partido con su prensa (Volodia, Ferrín);</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="776.9000000000001" style="font-size:11.2px">«nueva normatividad socialista» (Mármol);</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="790.1000000000001" style="font-size:11.2px">nuevas instituciones (Merchant, Toscano);</text>
-<text class="sv-t2" text-anchor="middle" x="129.5" y="803.3000000000002" style="font-size:11.2px">la organización media entre opinión y praxis</text>
-<text class="sv-t3" text-anchor="middle" x="129.5" y="828.6999999999999" style="font-size:9.5px">#1 · #2 · #3 · #4</text>
-<rect class="sv-box-blue" height="131.89999999999998" rx="2" width="235" x="263" y="702.8"></rect>
-<text class="sv-tb" text-anchor="middle" x="380.5" y="723.8">Legalidad e ilegalidad combinadas</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="737.3" style="font-size:11.2px">derechos políticos como armas; el</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="750.5" style="font-size:11.2px">juicio como tribuna</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="763.7" style="font-size:11.2px">política comunista: ilegal por definición;</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="776.9000000000001" style="font-size:11.2px">subordinar los medios a la estrategia (SPD</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="790.1000000000001" style="font-size:11.2px">clandestino, POSDR); defensa de ruptura;</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="803.3000000000002" style="font-size:11.2px">konspiratsiya = reverso de la publicidad;</text>
-<text class="sv-t2" text-anchor="middle" x="380.5" y="816.5000000000002" style="font-size:11.2px">derechos políticos, «deber ineludible»</text>
-<text class="sv-t3" text-anchor="middle" x="380.5" y="828.6999999999999" style="font-size:9.5px">#1 · #2 · #4</text>
-<rect class="sv-box-blue" height="131.89999999999998" rx="2" width="235" x="513" y="702.8"></rect>
-<text class="sv-tb" text-anchor="middle" x="630.5" y="723.8">Escala continental e internacional</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="737.3" style="font-size:11.2px">Partido Comunista Europeo, nueva</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="750.5" style="font-size:11.2px">Internacional, EE. UU. Socialistas de</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="763.7" style="font-size:11.2px">Europa</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="776.9000000000001" style="font-size:11.2px">la escala mínima es Europa; desmantelar</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="790.1000000000001" style="font-size:11.2px">OTAN y UE, no reformarlas ni abandonarlas</text>
-<text class="sv-t2" text-anchor="middle" x="630.5" y="803.3000000000002" style="font-size:11.2px">una a una; antimperialismo sin campismo</text>
-<text class="sv-t3" text-anchor="middle" x="630.5" y="828.6999999999999" style="font-size:9.5px">#1 · #2 · #3 · #4</text>
-<path class="sv-line" d="M380 640.8 V660.8 H129.5 V702.8" marker-end="url(#nc-tr-arrow)"></path>
-<line class="sv-line" x1="380" y1="640.8" x2="380" y2="702.8" marker-end="url(#nc-tr-arrow)"></line>
-<path class="sv-line" d="M380 640.8 V660.8 H630.5 V702.8" marker-end="url(#nc-tr-arrow)"></path>
-<text class="sv-t3" text-anchor="start" x="392" y="655.8" style="font-size:10px">se desarrolla en tres dimensiones</text>
-<rect class="sv-box-green" height="86" rx="2" width="736" x="12" y="874.6999999999999"></rect>
-<text class="sv-tgr" text-anchor="middle" x="380" y="896.6999999999999">Horizonte: unidad de clase (migrantes, género) y antimperialismo sin campismo — «el enemigo principal está en</text>
-<text class="sv-tgr" text-anchor="middle" x="380" y="913.6999999999999">casa»; Palestina como prueba</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="930.6999999999999" style="font-size:11.2px">«el futuro de Palestina es el futuro de la humanidad» (Brassier); hacer que la nueva era de crisis y guerras lo sea también de revoluciones</text>
-<text class="sv-t3" text-anchor="middle" x="380" y="954.6999999999999" style="font-size:9.5px">EN TODOS LOS NÚMEROS</text>
-<path class="sv-line" d="M129.5 834.6999999999999 V854.6999999999999 H380 V874.6999999999999" marker-end="url(#nc-tr-arrow)"></path>
-<line class="sv-line" x1="380" y1="834.6999999999999" x2="380" y2="874.6999999999999" marker-end="url(#nc-tr-arrow)"></line>
-<path class="sv-line" d="M630.5 834.6999999999999 V854.6999999999999 H380 V874.6999999999999" marker-end="url(#nc-tr-arrow)"></path>
-<text class="sv-t3" text-anchor="start" x="392" y="866.6999999999999" style="font-size:10px">realizan</text>
-<rect class="sv-soft" height="40" rx="2" width="752" x="4" y="972.6999999999999"></rect>
-<text class="sv-t3" text-anchor="middle" x="380" y="988.6999999999999" style="font-size:9.5px">LÍNEA DISCONTINUA: RESPUESTAS AL DIAGNÓSTICO QUE LA REVISTA RECHAZA · FLECHA ROJA: DESLINDE DE CAMPOS HACIA LA PROPUESTA</text>
-<text class="sv-t3" text-anchor="middle" x="380" y="1003.6999999999999" style="font-size:9.5px">FLECHA CONTINUA: LA PROPUESTA SE DESARROLLA Y SE REALIZA · #N = NÚMEROS EN QUE SE DESARROLLA CADA TESIS</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa transversal de los cinco números: diagnóstico compartido en siete tesis (con el cierre del ciclo progresista como revolución pasiva), respuestas rechazadas, propuesta (partido comunista de masas) y sus tres dimensiones, y horizonte." viewBox="0 0 760 1210" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5MmI2MThmZC0xM2UxLTQzMDUtODFhOS05Y2U2YzU1MmIyZTMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaArvWIvF+yDc7YxJGdQQSekAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDowNzQzNjIxNi1iY2M1LTQ5NmQtYjYxNi1lZjlkMGZmMGNkMDZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoK9vBmTqi5xSgfU/arTInjgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggPfjhFCNWMQK9fT0M8kanuBmhUVc8X3l5FzYtY6s0L2GkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaFRMaI/gmd3dcvUWr9/mpesAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYILW0O2AM9ASiSfQCDAnPBK0/v3GdE6JHEU96YsW29Q5FZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQGHZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjkyYjYxOGZkLTEzZTEtNDMwNS04MWE5LTljZTZjNTUyYjJlMy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjRlODA5ZjJkLTIzZjgtNGJhZS05OGNlLWUzY2RmNDgxMDExOHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCA9+OEUI1YxAr19PQzyRqe4GaFRVzxfeXkXNi1jqzQvYaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggFJx8g/ByxWfTjwzas9GIeYmViGZg+19ZsoGAr6Y4PqiiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggCfU9Qfivp/lv/+ObwWWVRlyhqv37P6N1twH/GLNze310Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQP8xx38+R8JrP1nGKYLFTisQk/ky9SUJ0lkBjyPeIWp9W+vOMOOh7BmTjIXO8IKGeHO6ZbY7ned+blg6EaEuB0M=</c2pa:manifest></metadata>
+<defs><marker id="nc-tr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<rect class="sv-soft" x="4" y="20" width="752" height="438.3" rx="2"/>
+<rect class="sv-soft" x="4" y="494.3" width="752" height="184.4" rx="2"/>
+<rect class="sv-soft" x="4" y="858.7" width="752" height="170.9" rx="2"/>
+<text class="sv-t3" x="10" y="31" text-anchor="start">DIAGNÓSTICO COMPARTIDO</text>
+<rect class="sv-box-ink" x="12" y="42" width="235" height="149.1" rx="2"/>
+<text class="sv-tw" x="129.5" y="63" text-anchor="middle">Declive del capitalismo</text>
+<text class="sv-tw" x="129.5" y="76.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">rentabilidad en caída, población</text>
+<text class="sv-tw" x="129.5" y="89.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">sobrante, «fin de juego»</text>
+<text class="sv-tw" x="129.5" y="102.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">crecimiento de suma cero; militarismo</text>
+<text class="sv-tw" x="129.5" y="116.1" text-anchor="middle" style="font-weight:400;font-size:11.2px">estructural y giro autoritario de los</text>
+<text class="sv-tw" x="129.5" y="129.3" text-anchor="middle" style="font-weight:400;font-size:11.2px">Estados; la reacción actual no repite el</text>
+<text class="sv-tw" x="129.5" y="142.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">fascismo clásico: es dictadura burguesa</text>
+<text class="sv-tw" x="129.5" y="155.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">en condiciones de declive</text>
+<text class="sv-tw" x="129.5" y="168.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">larga onda, no fase: no toda crisis es orgánica</text>
+<text class="sv-tw" x="129.5" y="185.1" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="263" y="42" width="235" height="149.1" rx="2"/>
+<text class="sv-tw" x="380.5" y="63" text-anchor="middle">Guerra e imperialismo</text>
+<text class="sv-tw" x="380.5" y="76.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">militarismo estructural, Gaza, rearme</text>
+<text class="sv-tw" x="380.5" y="89.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">europeo</text>
+<text class="sv-tw" x="380.5" y="102.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">el genocidio es una operación del bloque</text>
+<text class="sv-tw" x="380.5" y="116.1" text-anchor="middle" style="font-weight:400;font-size:11.2px">occidental; la multipolaridad es el estado</text>
+<text class="sv-tw" x="380.5" y="129.3" text-anchor="middle" style="font-weight:400;font-size:11.2px">natural del imperialismo (Lenin); la</text>
+<text class="sv-tw" x="380.5" y="142.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">inmigración es «imperialismo en casa»;</text>
+<text class="sv-tw" x="380.5" y="155.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">une Gaza, la frontera y el barrio</text>
+<text class="sv-tw" x="380.5" y="168.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">bloque no monolítico: EE. UU.–Israel en crisis</text>
+<text class="sv-tw" x="380.5" y="185.1" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="513" y="42" width="235" height="149.1" rx="2"/>
+<text class="sv-tw" x="630.5" y="63" text-anchor="middle" style="font-size:13.4px;letter-spacing:0">El Estado como dictadura de clase</text>
+<text class="sv-tw" x="630.5" y="76.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">Estado dual, Gladio, antiterrorismo,</text>
+<text class="sv-tw" x="630.5" y="89.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">fronteras</text>
+<text class="sv-tw" x="630.5" y="102.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">ni neutral ni democratizable: el Estado</text>
+<text class="sv-tw" x="630.5" y="116.1" text-anchor="middle" style="font-weight:400;font-size:11.2px">de Derecho es una excepción histórica;</text>
+<text class="sv-tw" x="630.5" y="129.3" text-anchor="middle" style="font-weight:400;font-size:11.2px">aparatos insumisos = «cimientos, no</text>
+<text class="sv-tw" x="630.5" y="142.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">cloacas»; franquismo y 78, un mismo</text>
+<text class="sv-tw" x="630.5" y="155.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">Estado; hay que destruirlo</text>
+<text class="sv-tw" x="630.5" y="185.1" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="12" y="201.1" width="235" height="135.9" rx="2"/>
+<text class="sv-tw" x="129.5" y="222.1" text-anchor="middle" style="font-size:13.2px;letter-spacing:0">Lo que parece excepción es esencia</text>
+<text class="sv-tw" x="129.5" y="235.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">genocidio, devoluciones en caliente,</text>
+<text class="sv-tw" x="129.5" y="248.8" text-anchor="middle" style="font-weight:400;font-size:11.2px">delincuencia funcional, 800 muertes al</text>
+<text class="sv-tw" x="129.5" y="262" text-anchor="middle" style="font-weight:400;font-size:11.2px">año en el trabajo, austeridad: inmanentes</text>
+<text class="sv-tw" x="129.5" y="275.2" text-anchor="middle" style="font-weight:400;font-size:11.2px">al capital; personalizar el mal en un</text>
+<text class="sv-tw" x="129.5" y="288.4" text-anchor="middle" style="font-weight:400;font-size:11.2px">gobierno, una élite o una potencia es el</text>
+<text class="sv-tw" x="129.5" y="301.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">error común del reformismo</text>
+<text class="sv-tw" x="129.5" y="331" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="263" y="201.1" width="235" height="135.9" rx="2"/>
+<text class="sv-tw" x="380.5" y="222.1" text-anchor="middle" style="font-size:13.2px;letter-spacing:0">Trabajo vivo, proletariado sin sujeto</text>
+<text class="sv-tw" x="380.5" y="235.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">sólo el trabajo vivo crea valor (contra el</text>
+<text class="sv-tw" x="380.5" y="248.8" text-anchor="middle" style="font-weight:400;font-size:11.2px">neofeudalismo y el «fin del trabajo»);</text>
+<text class="sv-tw" x="380.5" y="262" text-anchor="middle" style="font-weight:400;font-size:11.2px">clase mayoritaria pero fragmentada:</text>
+<text class="sv-tw" x="380.5" y="275.2" text-anchor="middle" style="font-weight:400;font-size:11.2px">precariedad, población sobrante, raza,</text>
+<text class="sv-tw" x="380.5" y="288.4" text-anchor="middle" style="font-weight:400;font-size:11.2px">género, migración; el socialismo «necesita</text>
+<text class="sv-tw" x="380.5" y="301.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">un portador» que aún no existe</text>
+<text class="sv-tw" x="380.5" y="314.8" text-anchor="middle" style="font-weight:400;font-size:11.2px">el sujeto unitario se construye políticamente</text>
+<text class="sv-tw" x="380.5" y="331" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="513" y="201.1" width="235" height="135.9" rx="2"/>
+<text class="sv-tw" x="630.5" y="222.1" text-anchor="middle" style="font-size:13.2px;letter-spacing:0">Sin partido, las luchas son impotentes</text>
+<text class="sv-tw" x="630.5" y="235.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">protestas post-2008 bajo hegemonía</text>
+<text class="sv-tw" x="630.5" y="248.8" text-anchor="middle" style="font-weight:400;font-size:11.2px">pequeñoburguesa; movimiento propalestino,</text>
+<text class="sv-tw" x="630.5" y="262" text-anchor="middle" style="font-weight:400;font-size:11.2px">huelgas de Grecia y Francia, ciclo feminista:</text>
+<text class="sv-tw" x="630.5" y="275.2" text-anchor="middle" style="font-weight:400;font-size:11.2px">sin fuerza independiente no logran sus fines;</text>
+<text class="sv-tw" x="630.5" y="288.4" text-anchor="middle" style="font-weight:400;font-size:11.2px">la organización es la mediación necesaria</text>
+<text class="sv-tw" x="630.5" y="301.6" text-anchor="middle" style="font-weight:400;font-size:11.2px">entre la opinión y la praxis</text>
+<text class="sv-tw" x="630.5" y="331" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-ink" x="12" y="347" width="736" height="101.3" rx="2"/>
+<text class="sv-tw" x="380" y="368" text-anchor="middle">El ciclo progresista se ha cerrado como revolución pasiva; de su fracaso nace el ciclo reaccionario</text>
+<text class="sv-tw" x="380" y="381.5" text-anchor="middle" style="font-weight:400;font-size:11.2px">el populismo fue la forma político-organizativa de la socialdemocracia en crisis y el «socialismo del siglo XXI», un nacionalismo desarrollista:</text>
+<text class="sv-tw" x="380" y="394.7" text-anchor="middle" style="font-weight:400;font-size:11.2px">ambos aceptaron el capitalismo a cambio de redistribución y encerraron la lucha en el Estado nacional; cerrado el ciclo (la «excepción española»</text>
+<text class="sv-tw" x="380" y="407.9" text-anchor="middle" style="font-weight:400;font-size:11.2px">toca a su fin; de once gobiernos de izquierda a cinco), la contrarrevolución nace de la revolución incompleta (Benjamin; 1794) y se articula contra</text>
+<text class="sv-tw" x="380" y="421.1" text-anchor="middle" style="font-weight:400;font-size:11.2px">el gobierno progresista y en torno a la migración; la tarea no es reanimar la marca agotada sino la herramienta nueva</text>
+<text class="sv-tw" x="380" y="442.3" text-anchor="middle" style="font-size:9.5px;font-weight:400;letter-spacing:.06em">#5 (Navarro, Tauste, Fernández, Pauwels) · nueva tras el #005</text>
+<text class="sv-t3" x="255" y="505.3" text-anchor="middle">RESPUESTAS QUE LA REVISTA RECHAZA</text>
+<rect class="sv-box-gold" x="12" y="516.3" width="235" height="152.4" rx="2"/>
+<text class="sv-tg" x="129.5" y="537.3" text-anchor="middle">Socialdemocracia y reformismo</text>
+<text class="sv-tg" x="129.5" y="552.8" text-anchor="middle">gobernante</text>
+<text class="sv-t2" x="129.5" y="566.3" text-anchor="middle" style="font-size:11.2px">PSOE, Sumar, IU, Podemos, Weber,</text>
+<text class="sv-t2" x="129.5" y="579.5" text-anchor="middle" style="font-size:11.2px">neofeudalismo</text>
+<text class="sv-t2" x="129.5" y="592.7" text-anchor="middle" style="font-size:11.2px">no contienen la reacción: la alimentan;</text>
+<text class="sv-t2" x="129.5" y="605.9" text-anchor="middle" style="font-size:11.2px">ala izquierda del capital (armas a Israel,</text>
+<text class="sv-t2" x="129.5" y="619.1" text-anchor="middle" style="font-size:11.2px">fronteras que matan más que las de Meloni);</text>
+<text class="sv-t2" x="129.5" y="632.3" text-anchor="middle" style="font-size:11.2px">retrasar a la extrema derecha ≠ frenarla</text>
+<text class="sv-t2" x="129.5" y="645.5" text-anchor="middle" style="font-size:11.2px">ministerialismo: Podemos, ola rosa, Sánchez</text>
+<text class="sv-t3" x="129.5" y="662.7" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-gold" x="263" y="516.3" width="235" height="152.4" rx="2"/>
+<text class="sv-tg" x="380.5" y="545" text-anchor="middle">Campismo y soberanismo</text>
+<text class="sv-t2" x="380.5" y="566.3" text-anchor="middle" style="font-size:11.2px">pacifismo multipolar, «fantasías de</text>
+<text class="sv-t2" x="380.5" y="579.5" text-anchor="middle" style="font-size:11.2px">secesión», europeísmo militarista</text>
+<text class="sv-t2" x="380.5" y="592.7" text-anchor="middle" style="font-size:11.2px">ni OTAN ni BRICS: la multipolaridad no</text>
+<text class="sv-t2" x="380.5" y="605.9" text-anchor="middle" style="font-size:11.2px">supera el imperialismo; abandonar OTAN y</text>
+<text class="sv-t2" x="380.5" y="619.1" text-anchor="middle" style="font-size:11.2px">UE nación por nación no es la salida;</text>
+<text class="sv-t2" x="380.5" y="632.3" text-anchor="middle" style="font-size:11.2px">socialchovinismo y pacifismo multipolar</text>
+<text class="sv-t2" x="380.5" y="645.5" text-anchor="middle" style="font-size:11.2px">China y Rusia, «igualmente predatorias»</text>
+<text class="sv-t3" x="380.5" y="662.7" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-gold" x="513" y="516.3" width="235" height="152.4" rx="2"/>
+<text class="sv-tg" x="630.5" y="537.3" text-anchor="middle">Espontaneísmo, moralismo,</text>
+<text class="sv-tg" x="630.5" y="552.8" text-anchor="middle">atrapalotodo</text>
+<text class="sv-t2" x="630.5" y="566.3" text-anchor="middle" style="font-size:11.2px">comunización, frente impopular,</text>
+<text class="sv-t2" x="630.5" y="579.5" text-anchor="middle" style="font-size:11.2px">feminismo dual</text>
+<text class="sv-t2" x="630.5" y="592.7" text-anchor="middle" style="font-size:11.2px">y adanismo, hagiografía, «programatismo»,</text>
+<text class="sv-t2" x="630.5" y="605.9" text-anchor="middle" style="font-size:11.2px">economicismo e interseccionalidad,</text>
+<text class="sv-t2" x="630.5" y="619.1" text-anchor="middle" style="font-size:11.2px">nacionalismo económico de izquierdas,</text>
+<text class="sv-t2" x="630.5" y="632.3" text-anchor="middle" style="font-size:11.2px">sectarismo, «sed de sangre»</text>
+<text class="sv-t2" x="630.5" y="645.5" text-anchor="middle" style="font-size:11.2px">ni izquierdismo ni antipolítica ante lo electoral</text>
+<text class="sv-t3" x="630.5" y="662.7" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #3 · #4 · #5</text>
+<line class="sv-line-dash" x1="129.5" y1="448.3" x2="129.5" y2="516.3" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-dash" x1="380.5" y1="448.3" x2="380.5" y2="516.3" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-dash" x1="630.5" y1="448.3" x2="630.5" y2="516.3" marker-end="url(#nc-tr-arrow)"/>
+<text class="sv-t3" x="137.5" y="464.3" text-anchor="start" style="font-size:10px">respuestas al diagnóstico</text>
+<text class="sv-t3" x="137.5" y="476.3" text-anchor="start" style="font-size:10px">que la revista rechaza</text>
+<rect class="sv-box-red" x="12" y="712.7" width="736" height="106" rx="2"/>
+<text class="sv-tr" x="380" y="734.7" text-anchor="middle">Independencia política del proletariado: partido comunista de masas</text>
+<text class="sv-t2" x="380" y="751.7" text-anchor="middle" style="font-size:12px">«el gran ausente hoy, a la vez que la única alternativa real»</text>
+<text class="sv-t2" x="380" y="767.7" text-anchor="middle" style="font-size:11.2px">fórmula de 1850; programa mínimo-máximo; unidad de acción sobre mínimos y deslinde frente al reformismo; nuevas instituciones</text>
+<text class="sv-t2" x="380" y="781.7" text-anchor="middle" style="font-size:11.2px">condición: unidad de clase con el proletariado migrante y con todas las trabajadoras</text>
+<text class="sv-t2" x="380" y="795.7" text-anchor="middle" style="font-size:11.2px">ante el ciclo electoral, deslinde desde la oposición extraparlamentaria; balance veraz del ciclo anterior (principio de veracidad)</text>
+<text class="sv-t3" x="380" y="812.7" text-anchor="middle" style="font-size:9.5px">#1 (TODO EL NÚMERO) · #2 · #3 · #4 · #5</text>
+<path class="sv-line-red" d="M129.5 668.7 V690.7 H380 V712.7" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-red" x1="380" y1="668.7" x2="380" y2="712.7" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line-red" d="M630.5 668.7 V690.7 H380 V712.7" marker-end="url(#nc-tr-arrow)"/>
+<text class="sv-t3" x="392" y="704.7" text-anchor="start" style="font-size:10px">deslinde de campos «mediante la argumentación y la polémica»</text>
+<text class="sv-t3" x="255" y="869.7" text-anchor="middle">DIMENSIONES DE LA PROPUESTA</text>
+<rect class="sv-box-blue" x="12" y="880.7" width="235" height="138.9" rx="2"/>
+<text class="sv-tb" x="129.5" y="901.7" text-anchor="middle">Instituciones propias</text>
+<text class="sv-t2" x="129.5" y="915.2" text-anchor="middle" style="font-size:11.2px">prensa obrera, organización</text>
+<text class="sv-t2" x="129.5" y="928.4" text-anchor="middle" style="font-size:11.2px">territorial, autodefensa, gimnasios</text>
+<text class="sv-t2" x="129.5" y="941.6" text-anchor="middle" style="font-size:11.2px">el partido con su prensa (Volodia, Ferrín);</text>
+<text class="sv-t2" x="129.5" y="954.8" text-anchor="middle" style="font-size:11.2px">«nueva normatividad socialista» (Mármol);</text>
+<text class="sv-t2" x="129.5" y="968" text-anchor="middle" style="font-size:11.2px">nuevas instituciones (Merchant, Toscano);</text>
+<text class="sv-t2" x="129.5" y="981.2" text-anchor="middle" style="font-size:11.2px">la organización media entre opinión y praxis</text>
+<text class="sv-t3" x="129.5" y="1013.6" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #3 · #4 · #5</text>
+<rect class="sv-box-blue" x="263" y="880.7" width="235" height="138.9" rx="2"/>
+<text class="sv-tb" x="380.5" y="901.7" text-anchor="middle">Legalidad e ilegalidad combinadas</text>
+<text class="sv-t2" x="380.5" y="915.2" text-anchor="middle" style="font-size:11.2px">derechos políticos como armas; el</text>
+<text class="sv-t2" x="380.5" y="928.4" text-anchor="middle" style="font-size:11.2px">juicio como tribuna</text>
+<text class="sv-t2" x="380.5" y="941.6" text-anchor="middle" style="font-size:11.2px">política comunista: ilegal por definición;</text>
+<text class="sv-t2" x="380.5" y="954.8" text-anchor="middle" style="font-size:11.2px">subordinar los medios a la estrategia (SPD</text>
+<text class="sv-t2" x="380.5" y="968" text-anchor="middle" style="font-size:11.2px">clandestino, POSDR); defensa de ruptura;</text>
+<text class="sv-t2" x="380.5" y="981.2" text-anchor="middle" style="font-size:11.2px">konspiratsiya = reverso de la publicidad;</text>
+<text class="sv-t2" x="380.5" y="994.4" text-anchor="middle" style="font-size:11.2px">derechos políticos, «deber ineludible»</text>
+<text class="sv-t3" x="380.5" y="1013.6" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #4</text>
+<rect class="sv-box-blue" x="513" y="880.7" width="235" height="138.9" rx="2"/>
+<text class="sv-tb" x="630.5" y="901.7" text-anchor="middle">Escala continental e internacional</text>
+<text class="sv-t2" x="630.5" y="915.2" text-anchor="middle" style="font-size:11.2px">Partido Comunista Europeo, nueva</text>
+<text class="sv-t2" x="630.5" y="928.4" text-anchor="middle" style="font-size:11.2px">Internacional, EE. UU. Socialistas de</text>
+<text class="sv-t2" x="630.5" y="941.6" text-anchor="middle" style="font-size:11.2px">Europa</text>
+<text class="sv-t2" x="630.5" y="954.8" text-anchor="middle" style="font-size:11.2px">la escala mínima es Europa; desmantelar</text>
+<text class="sv-t2" x="630.5" y="968" text-anchor="middle" style="font-size:11.2px">OTAN y UE, no reformarlas ni abandonarlas</text>
+<text class="sv-t2" x="630.5" y="981.2" text-anchor="middle" style="font-size:11.2px">una a una; antimperialismo sin campismo</text>
+<text class="sv-t2" x="630.5" y="994.4" text-anchor="middle" style="font-size:11.2px">en América Latina: la unidad continental</text>
+<text class="sv-t3" x="630.5" y="1013.6" text-anchor="middle" style="font-size:9.5px">#1 · #2 · #3 · #4 · #5</text>
+<path class="sv-line" d="M380 818.7 V849.7 H129.5 V880.7" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line" x1="380" y1="818.7" x2="380" y2="880.7" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line" d="M380 818.7 V849.7 H630.5 V880.7" marker-end="url(#nc-tr-arrow)"/>
+<text class="sv-t3" x="392" y="833.7" text-anchor="start" style="font-size:10px">se desarrolla en tres dimensiones</text>
+<rect class="sv-box-green" x="12" y="1059.6" width="736" height="86" rx="2"/>
+<text class="sv-tgr" x="380" y="1081.6" text-anchor="middle">Horizonte: unidad de clase (migrantes, género) y antimperialismo sin campismo — «el enemigo principal está en</text>
+<text class="sv-tgr" x="380" y="1098.6" text-anchor="middle">casa»; Palestina como prueba</text>
+<text class="sv-t2" x="380" y="1115.6" text-anchor="middle" style="font-size:11.2px">«el futuro de Palestina es el futuro de la humanidad» (Brassier); hacer que la nueva era de crisis y guerras lo sea también de revoluciones</text>
+<text class="sv-t3" x="380" y="1139.6" text-anchor="middle" style="font-size:9.5px">EN TODOS LOS NÚMEROS</text>
+<path class="sv-line" d="M129.5 1019.6 V1039.6 H380 V1059.6" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line" x1="380" y1="1019.6" x2="380" y2="1059.6" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line" d="M630.5 1019.6 V1039.6 H380 V1059.6" marker-end="url(#nc-tr-arrow)"/>
+<text class="sv-t3" x="392" y="1051.6" text-anchor="start" style="font-size:10px">realizan</text>
+<rect class="sv-soft" x="4" y="1157.6" width="752" height="40" rx="2"/>
+<text class="sv-t3" x="380" y="1173.6" text-anchor="middle" style="font-size:9.5px">LÍNEA DISCONTINUA: RESPUESTAS AL DIAGNÓSTICO QUE LA REVISTA RECHAZA · FLECHA ROJA: DESLINDE DE CAMPOS HACIA LA PROPUESTA</text>
+<text class="sv-t3" x="380" y="1188.6" text-anchor="middle" style="font-size:9.5px">FLECHA CONTINUA: LA PROPUESTA SE DESARROLLA Y SE REALIZA · #N = NÚMEROS EN QUE SE DESARROLLA CADA TESIS</text>
 </svg>

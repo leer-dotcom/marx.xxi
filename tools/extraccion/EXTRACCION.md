@@ -46,8 +46,8 @@ Ejemplo con el #006, PDF `NC_006.pdf` en la carpeta `Marx XXI`.
    igual, ver §2.5.
 2. **Ver la maqueta** si algo parece distinto a los números anteriores:
    `python volcado_maqueta.py NC_006.pdf 1,2,3,10` (portada, índice, inicio de artículo, página interior).
-   Comparar con la tabla del §3. Casi siempre solo cambia la escala (el PDF del #005 viene 1,4167 veces más grande
-   que los cuatro primeros) y el programa la detecta solo.
+   Comparar con la tabla del §3. Casi siempre solo cambia la escala (el extracto del #005 vino 1,4167 veces más grande
+   que los cuatro primeros; el #005 completo, ya a escala 1,0 en formato A5) y el programa la detecta solo.
 3. **Extraer**:
 
    ```bash
@@ -153,7 +153,7 @@ python qa.py
   `volcado_maqueta.py` en la página afectada y ajustar `kind_of` / `process_article` en `extract_nc.py`.
 - **Escala distinta**: `detect_scale` mide el tamaño de cuerpo; si falla, forzar `k` en `load_lines(path, k)`.
 - **Faltan o sobran inicios de texto**: los inicios son páginas con una línea ≥ 19,5 pt (escalada) bajo la cabecera,
-  excluyendo portada (fuente Black) e índice (línea que empieza por «Índice»). Revisar `parse_index`.
+  excluyendo portada (fuente Black), índice (línea que empieza por «Índice») y toda página sin línea de cuerpo (Zenon-Book ≈ 12 pt, ≥ 35 caracteres): portada y créditos del #005. Revisar `parse_index`.
 - **Nota sin llamada / llamada sin nota**: casi siempre una llamada impresa como dígito normal o una nota que
   continúa en la página siguiente; comprobar en el PDF y, si es real (cuatro casos en Marx XXI), dejarla en
   `unanchored_notes`.
@@ -166,9 +166,9 @@ python qa.py
 - Autores con seudónimo y variantes de nombre (p. ej. Toscano) se dejan como vienen en el PDF; unificarlos es decisión editorial.
 - Los niveles de título interior son una aproximación por tipografía (normalizada por artículo).
 - En Marx XXI hay 4 notas sin llamada impresa (t4-a5 #11, t5-a1 #15, t5-a3 #28, t5-a4 #88): quedan en `unanchored_notes` y la app las muestra aparte.
-- El #005 de Nuevo Ciclo está solo como extracto (`nc5-a2`, id asumido): hay que repetirlo con el número completo.
+- El #005 llegó primero como extracto de 28 páginas (maqueta a escala ×1,4167) y después completo (144 páginas, A5, escala 1,0); la opción `--primer-articulo` y el parámetro de escala existen para casos así.
 
 ## 8. Comprobación de que este paquete funciona (octubre 2026)
 
 Desde esta carpeta: `extraer_nc.py` sobre `NC_005.pdf --primer-articulo 2` reproduce exactamente `nc5-a2.json`
-(44 bloques, 31 notas, cobertura 34272/34272), y `run_all.py 1` reproduce los 15 textos del tomo 1.
+(44 bloques, 31 notas), `run_all.py 1` reproduce los 15 textos del tomo 1, y la extracción de los números 1–4 reproduce idénticos sus 24 textos. El #005 completo se extrajo con este mismo programa: 6 textos, cobertura exacta.

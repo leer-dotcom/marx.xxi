@@ -1,66 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 517" role="img" aria-label="Mapa transversal de los cuatro números: diagnóstico compartido, respuestas rechazadas, propuesta y sus dimensiones, y horizonte.">
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa transversal de los cinco números: diagnóstico compartido (con el cierre del ciclo progresista), respuestas rechazadas, propuesta y sus dimensiones, y horizonte." viewBox="0 0 760 631" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpkODVhZGFmYS1jYmU0LTQ5N2UtOTlkNi02OTNhZmI5YjM1MWQAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaCL/RhAhqKl1Moo71wtp/BMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1MTdmNzAyNS04M2YyLTRjZjYtODNiNi01NmIxNjg3NGQ2MDJscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo04bzWQkKTdizMh171aR60QAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggyI6EJa/m/s3LmWXcZrYpI3WkVOTClHAOMHJn0nKDhCOkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaDl6MdxqH/N3pKuV7aV9isUAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYICM0thn1MntTLzu/1c+2ZRg1bnNxTp/XP7Go8c2zC86AZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQE9Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmQ4NWFkYWZhLWNiZTQtNDk3ZS05OWQ2LTY5M2FmYjliMzUxZC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmM4MjRkMTAxLTBkNTUtNDE1MS04NzQzLTkwYTRiNmU3OTg3ZXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDIjoQlr+b+zcuZZdxmtikjdaRU5MKUcA4wcmfScoOEI6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggFvQ/ixmbPMLpiqaVKGsaETDuRJ1v0NEnqcu0/j0/rU+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggGIeUvqvjJXQJ8yo4V72zbaWNPvzhX5cTG3i2uDIt/wp0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQA28w8LASJOzR1dt8HlzbdZdOWZpqj5eIVib4tIIks6ciso1xK2BsBaOaeXVBpPQp7pdfmaFlc5ZGROrYBVEbSc=</c2pa:manifest></metadata>
 <defs><marker id="nc-tr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
-<rect class="sv-soft" x="4" y="16" width="752" height="87" rx="2"/>
-<text class="sv-t3" x="10" y="27">DIAGNÓSTICO COMPARTIDO</text>
-<rect class="sv-soft" x="4" y="119" width="752" height="102" rx="2"/>
-<rect class="sv-soft" x="4" y="323" width="752" height="102" rx="2"/>
-<rect class="sv-box-ink" x="12" y="38" width="235" height="57" rx="2"/>
-<text class="sv-tw" x="129" y="55.5" text-anchor="middle">Declive del capitalismo</text>
-<text class="sv-tw" style="font-weight:400" x="129" y="70.5" text-anchor="middle">rentabilidad en caída, población</text>
-<text class="sv-tw" style="font-weight:400" x="129" y="85.5" text-anchor="middle">sobrante, «fin de juego»</text>
-<rect class="sv-box-ink" x="263" y="38" width="235" height="57" rx="2"/>
-<text class="sv-tw" x="380" y="55.5" text-anchor="middle">Guerra e imperialismo</text>
-<text class="sv-tw" style="font-weight:400;font-size:13.9px;letter-spacing:0" x="380" y="70.5" text-anchor="middle">militarismo estructural, Gaza, rearme</text>
-<text class="sv-tw" style="font-weight:400" x="380" y="85.5" text-anchor="middle">europeo</text>
-<rect class="sv-box-ink" x="513" y="38" width="235" height="57" rx="2"/>
-<text class="sv-tw" x="631" y="55.5" text-anchor="middle">El Estado como dictadura de clase</text>
-<text class="sv-tw" style="font-weight:400" x="631" y="70.5" text-anchor="middle">Estado dual, Gladio, antiterrorismo,</text>
-<text class="sv-tw" style="font-weight:400" x="631" y="85.5" text-anchor="middle">fronteras</text>
-<rect class="sv-box-gold" x="12" y="141" width="235" height="72" rx="2"/>
-<text class="sv-tg" x="129" y="158.5" text-anchor="middle">Socialdemocracia y reformismo</text>
-<text class="sv-tg" x="129" y="173.5" text-anchor="middle">gobernante</text>
-<text class="sv-t2" style="font-weight:400" x="129" y="188.5" text-anchor="middle">PSOE, Sumar, IU, Podemos, Weber,</text>
-<text class="sv-t2" style="font-weight:400" x="129" y="203.5" text-anchor="middle">neofeudalismo</text>
-<rect class="sv-box-gold" x="263" y="141" width="235" height="72" rx="2"/>
-<text class="sv-tg" x="380" y="166.0" text-anchor="middle">Campismo y soberanismo</text>
-<text class="sv-t2" style="font-weight:400" x="380" y="181.0" text-anchor="middle">pacifismo multipolar, «fantasías de</text>
-<text class="sv-t2" style="font-weight:400" x="380" y="196.0" text-anchor="middle">secesión», europeísmo militarista</text>
-<rect class="sv-box-gold" x="513" y="141" width="235" height="72" rx="2"/>
-<text class="sv-tg" x="631" y="158.5" text-anchor="middle">Espontaneísmo, moralismo,</text>
-<text class="sv-tg" x="631" y="173.5" text-anchor="middle">atrapalotodo</text>
-<text class="sv-t2" style="font-weight:400" x="631" y="188.5" text-anchor="middle">comunización, frente impopular,</text>
-<text class="sv-t2" style="font-weight:400" x="631" y="203.5" text-anchor="middle">feminismo dual</text>
-<rect class="sv-box-red" x="12" y="245" width="736" height="54" rx="2"/>
-<text class="sv-tr" x="380" y="268.5" text-anchor="middle">Independencia política del proletariado: partido comunista de masas</text>
-<text class="sv-t2" style="font-weight:400" x="380" y="283.5" text-anchor="middle">«el gran ausente hoy, a la vez que la única alternativa real»</text>
-<rect class="sv-box-blue" x="12" y="345" width="235" height="72" rx="2"/>
-<text class="sv-tb" x="129" y="370.0" text-anchor="middle">Instituciones propias</text>
-<text class="sv-t2" style="font-weight:400" x="129" y="385.0" text-anchor="middle">prensa obrera, organización</text>
-<text class="sv-t2" style="font-weight:400" x="129" y="400.0" text-anchor="middle">territorial, autodefensa, gimnasios</text>
-<rect class="sv-box-blue" x="263" y="345" width="235" height="72" rx="2"/>
-<text class="sv-tb" x="380" y="370.0" text-anchor="middle">Legalidad e ilegalidad combinadas</text>
-<text class="sv-t2" style="font-weight:400" x="380" y="385.0" text-anchor="middle">derechos políticos como armas; el</text>
-<text class="sv-t2" style="font-weight:400" x="380" y="400.0" text-anchor="middle">juicio como tribuna</text>
-<rect class="sv-box-blue" x="513" y="345" width="235" height="72" rx="2"/>
-<text class="sv-tb" x="631" y="362.5" text-anchor="middle">Escala continental e internacional</text>
-<text class="sv-t2" style="font-weight:400" x="631" y="377.5" text-anchor="middle">Partido Comunista Europeo, nueva</text>
-<text class="sv-t2" style="font-weight:400" x="631" y="392.5" text-anchor="middle">Internacional, EE. UU. Socialistas de</text>
-<text class="sv-t2" style="font-weight:400" x="631" y="407.5" text-anchor="middle">Europa</text>
-<rect class="sv-box-green" x="12" y="449" width="736" height="54" rx="2"/>
-<text class="sv-tgr" x="380" y="472.5" text-anchor="middle">Horizonte: unidad de clase (migrantes, género) y antimperialismo sin campismo — «el enemigo principal está en</text>
-<text class="sv-tgr" x="380" y="487.5" text-anchor="middle">casa»; Palestina como prueba</text>
-<line class="sv-line-dash" x1="129" y1="95" x2="129" y2="141" marker-end="url(#nc-tr-arrow)"/>
-<line class="sv-line-dash" x1="380" y1="95" x2="380" y2="141" marker-end="url(#nc-tr-arrow)"/>
-<line class="sv-line-dash" x1="631" y1="95" x2="631" y2="141" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line-red" d="M129 213 V229 H380 V245" marker-end="url(#nc-tr-arrow)"/>
-<line class="sv-line-red" x1="380" y1="213" x2="380" y2="245" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line-red" d="M631 213 V229 H380 V245" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line" d="M380 299 V322 H129 V345" marker-end="url(#nc-tr-arrow)"/>
-<line class="sv-line" x1="380" y1="299" x2="380" y2="345" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line" d="M380 299 V322 H631 V345" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line" d="M129 417 V433 H380 V449" marker-end="url(#nc-tr-arrow)"/>
-<line class="sv-line" x1="380" y1="417" x2="380" y2="449" marker-end="url(#nc-tr-arrow)"/>
-<path class="sv-line" d="M631 417 V433 H380 V449" marker-end="url(#nc-tr-arrow)"/>
-<text class="sv-t3" x="10" y="130" style="paint-order:stroke;stroke:color-mix(in srgb,var(--d-ink) 5.5%,var(--d-bg));stroke-width:5px;stroke-linejoin:round">RESPUESTAS QUE LA REVISTA RECHAZA</text>
-<text class="sv-t3" x="10" y="334" style="paint-order:stroke;stroke:color-mix(in srgb,var(--d-ink) 5.5%,var(--d-bg));stroke-width:5px;stroke-linejoin:round">DIMENSIONES DE LA PROPUESTA</text>
+<rect class="sv-soft" x="4" y="16" width="752" height="156" rx="2"/>
+<rect class="sv-soft" x="4" y="188" width="752" height="117" rx="2"/>
+<rect class="sv-soft" x="4" y="407" width="752" height="117" rx="2"/>
+<text class="sv-t3" x="10" y="27" text-anchor="start">DIAGNÓSTICO COMPARTIDO</text>
+<rect class="sv-box-ink" x="12" y="38" width="235" height="72" rx="2"/>
+<text class="sv-tw" x="129.5" y="55.5" text-anchor="middle">Declive del capitalismo</text>
+<text class="sv-tw" x="129.5" y="70.5" text-anchor="middle" style="font-weight:400">rentabilidad en caída, población</text>
+<text class="sv-tw" x="129.5" y="85.5" text-anchor="middle" style="font-weight:400">sobrante, «fin de juego»</text>
+<text class="sv-tw" x="129.5" y="100.5" text-anchor="middle" style="font-weight:400;font-size:13.4px;letter-spacing:0">tendencia de larga onda, no una fase</text>
+<rect class="sv-box-ink" x="263" y="38" width="235" height="72" rx="2"/>
+<text class="sv-tw" x="380.5" y="55.5" text-anchor="middle">Guerra e imperialismo</text>
+<text class="sv-tw" x="380.5" y="70.5" text-anchor="middle" style="font-weight:400;font-size:13.4px;letter-spacing:0">militarismo estructural, Gaza, rearme</text>
+<text class="sv-tw" x="380.5" y="85.5" text-anchor="middle" style="font-weight:400">europeo</text>
+<text class="sv-tw" x="380.5" y="100.5" text-anchor="middle" style="font-weight:400">bloque occidental no monolítico</text>
+<rect class="sv-box-ink" x="513" y="38" width="235" height="72" rx="2"/>
+<text class="sv-tw" x="630.5" y="63" text-anchor="middle">El Estado como dictadura de clase</text>
+<text class="sv-tw" x="630.5" y="78" text-anchor="middle" style="font-weight:400;font-size:13.4px;letter-spacing:0">Estado dual, Gladio, antiterrorismo,</text>
+<text class="sv-tw" x="630.5" y="93" text-anchor="middle" style="font-weight:400">fronteras</text>
+<rect class="sv-box-ink" x="12" y="122" width="736" height="42" rx="2"/>
+<text class="sv-tw" x="380" y="140" text-anchor="middle">El ciclo progresista se ha cerrado como revolución pasiva: de su fracaso nace el ciclo reaccionario</text>
+<text class="sv-tw" x="380" y="155" text-anchor="middle" style="font-weight:400;font-size:12.5px">populismo, «socialismo del siglo XXI», ola rosa → ola negra: no reanimar la marca agotada, sino la herramienta nueva</text>
+<text class="sv-t3" x="140" y="199" text-anchor="start">RESPUESTAS QUE LA REVISTA RECHAZA</text>
+<rect class="sv-box-gold" x="12" y="210" width="235" height="87" rx="2"/>
+<text class="sv-tg" x="129.5" y="235" text-anchor="middle">Socialdemocracia y reformismo</text>
+<text class="sv-tg" x="129.5" y="250" text-anchor="middle">gobernante</text>
+<text class="sv-t2" x="129.5" y="265" text-anchor="middle" style="font-weight:400">PSOE, Sumar, IU, Podemos, Weber,</text>
+<text class="sv-t2" x="129.5" y="280" text-anchor="middle" style="font-weight:400">neofeudalismo</text>
+<rect class="sv-box-gold" x="263" y="210" width="235" height="87" rx="2"/>
+<text class="sv-tg" x="380.5" y="235" text-anchor="middle">Campismo y soberanismo</text>
+<text class="sv-t2" x="380.5" y="250" text-anchor="middle" style="font-weight:400;font-size:12.5px">pacifismo multipolar, «fantasías de</text>
+<text class="sv-t2" x="380.5" y="265" text-anchor="middle" style="font-weight:400">secesión», europeísmo militarista</text>
+<text class="sv-t2" x="380.5" y="280" text-anchor="middle" style="font-weight:400;font-size:12.5px">China y Rusia, «igualmente predatorias»</text>
+<rect class="sv-box-gold" x="513" y="210" width="235" height="87" rx="2"/>
+<text class="sv-tg" x="630.5" y="227.5" text-anchor="middle">Espontaneísmo, moralismo,</text>
+<text class="sv-tg" x="630.5" y="242.5" text-anchor="middle">atrapalotodo</text>
+<text class="sv-t2" x="630.5" y="257.5" text-anchor="middle" style="font-weight:400">comunización, frente impopular,</text>
+<text class="sv-t2" x="630.5" y="272.5" text-anchor="middle" style="font-weight:400">feminismo dual</text>
+<text class="sv-t2" x="630.5" y="287.5" text-anchor="middle" style="font-weight:400">balance veraz del ciclo anterior</text>
+<line class="sv-line-dash" x1="129.5" y1="164" x2="129.5" y2="210" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-dash" x1="380.5" y1="164" x2="380.5" y2="210" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-dash" x1="630.5" y1="164" x2="630.5" y2="210" marker-end="url(#nc-tr-arrow)"/>
+<rect class="sv-box-red" x="12" y="329" width="736" height="54" rx="2"/>
+<text class="sv-tr" x="380" y="352.5" text-anchor="middle">Independencia política del proletariado: partido comunista de masas</text>
+<text class="sv-t2" x="380" y="367.5" text-anchor="middle" style="font-weight:400">«el gran ausente hoy, a la vez que la única alternativa real»</text>
+<path class="sv-line-red" d="M129.5 297 V313 H380 V329" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line-red" x1="380" y1="297" x2="380" y2="329" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line-red" d="M630.5 297 V313 H380 V329" marker-end="url(#nc-tr-arrow)"/>
+<text class="sv-t3" x="140" y="418" text-anchor="start">DIMENSIONES DE LA PROPUESTA</text>
+<rect class="sv-box-blue" x="12" y="429" width="235" height="87" rx="2"/>
+<text class="sv-tb" x="129.5" y="461.5" text-anchor="middle">Instituciones propias</text>
+<text class="sv-t2" x="129.5" y="476.5" text-anchor="middle" style="font-weight:400">prensa obrera, organización</text>
+<text class="sv-t2" x="129.5" y="491.5" text-anchor="middle" style="font-weight:400">territorial, autodefensa, gimnasios</text>
+<rect class="sv-box-blue" x="263" y="429" width="235" height="87" rx="2"/>
+<text class="sv-tb" x="380.5" y="461.5" text-anchor="middle">Legalidad e ilegalidad combinadas</text>
+<text class="sv-t2" x="380.5" y="476.5" text-anchor="middle" style="font-weight:400">derechos políticos como armas; el</text>
+<text class="sv-t2" x="380.5" y="491.5" text-anchor="middle" style="font-weight:400">juicio como tribuna</text>
+<rect class="sv-box-blue" x="513" y="429" width="235" height="87" rx="2"/>
+<text class="sv-tb" x="630.5" y="446.5" text-anchor="middle">Escala continental e internacional</text>
+<text class="sv-t2" x="630.5" y="461.5" text-anchor="middle" style="font-weight:400">Partido Comunista Europeo, nueva</text>
+<text class="sv-t2" x="630.5" y="476.5" text-anchor="middle" style="font-weight:400">Internacional, EE. UU. Socialistas de</text>
+<text class="sv-t2" x="630.5" y="491.5" text-anchor="middle" style="font-weight:400">Europa; en América Latina, la</text>
+<text class="sv-t2" x="630.5" y="506.5" text-anchor="middle" style="font-weight:400">unidad continental</text>
+<path class="sv-line" d="M380 383 V406 H129.5 V429" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line" x1="380" y1="383" x2="380" y2="429" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line" d="M380 383 V406 H630.5 V429" marker-end="url(#nc-tr-arrow)"/>
+<rect class="sv-box-green" x="12" y="548" width="736" height="69" rx="2"/>
+<text class="sv-tgr" x="380" y="571.5" text-anchor="middle">Horizonte: unidad de clase (migrantes, género) y antimperialismo sin campismo — «el enemigo principal está en</text>
+<text class="sv-tgr" x="380" y="586.5" text-anchor="middle">casa»; Palestina como prueba</text>
+<text class="sv-t2" x="380" y="603" text-anchor="middle" style="font-weight:400;font-size:12.5px">«el sujeto unitario de clase debe construirse políticamente»: feminizado, formado, migrante, racialmente estratificado</text>
+<path class="sv-line" d="M129.5 516 V532 H380 V548" marker-end="url(#nc-tr-arrow)"/>
+<line class="sv-line" x1="380" y1="516" x2="380" y2="548" marker-end="url(#nc-tr-arrow)"/>
+<path class="sv-line" d="M630.5 516 V532 H380 V548" marker-end="url(#nc-tr-arrow)"/>
 </svg>

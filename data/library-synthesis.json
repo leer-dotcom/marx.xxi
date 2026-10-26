@@ -1,10 +1,10 @@
 {
- "library_synthesis_version": "2026-10-09",
+ "library_synthesis_version": "2026-10-26",
  "publications": [
   "marx-xxi",
   "nuevo-ciclo"
  ],
- "intro": "Marx XXI (cinco volúmenes, 48 artículos) y Nuevo Ciclo (cuatro números, 24 textos) son dos caras de un mismo proyecto editorial. Los volúmenes fijan el marco: qué es el marxismo, por qué la socialdemocracia no es una alternativa, cómo se reconstituye la independencia política, qué es el derecho a la revolución y a qué escala se juega todo ello. Los números lo aplican a la coyuntura: Trump, Gaza, el rearme, la Ley de Extranjería, los juicios, las huelgas europeas. Esta página alinea las once tesis de la primera con las diez de la segunda, formula las tesis comunes de la biblioteca en el eje principio → aplicación, y muestra los conceptos que hacen de puente entre las dos revistas.",
+ "intro": "Marx XXI (cinco volúmenes, 48 artículos) y Nuevo Ciclo (cinco números, 30 textos) son dos caras de un mismo proyecto editorial. Los volúmenes fijan el marco: qué es el marxismo, por qué la socialdemocracia no es una alternativa, cómo se reconstituye la independencia política, qué es el derecho a la revolución y a qué escala se juega todo ello. Los números lo aplican a la coyuntura: Trump, Gaza, el rearme, la Ley de Extranjería, los juicios, las huelgas europeas. Esta página alinea las once tesis de la primera con las diez de la segunda, formula las tesis comunes de la biblioteca en el eje principio → aplicación, y muestra los conceptos que hacen de puente entre las dos revistas.",
  "method": "Cómo se ha hecho y cómo se mantiene. No se ha vuelto a leer ningún PDF: la síntesis se construye sobre las dos síntesis ya existentes (tesis, conclusiones, mapas y glosarios de cada publicación). Primero se emparejan las tesis de ambas; después se formula cada tesis común en dos tiempos, el principio tal como lo enuncian los volúmenes y la aplicación tal como la desarrollan los números; por último se contrastan los glosarios: los conceptos presentes en las dos publicaciones son los puentes reales, y los que sólo aparecen en una señalan lo que cada revista aporta en exclusiva. Cuando salga el #005, el procedimiento es de enmienda, no de regeneración: se leen sus seis textos, se escriben sus notas y conclusiones, y cada tesis común se revisa una por una para decidir si el número la confirma (se añade al «dónde aparece»), la matiza (se reescribe) o aporta una nueva.",
  "map": {
   "file": "nuevo-ciclo/svg/mapa-biblioteca.svg",
@@ -15,7 +15,7 @@
    "number": 1,
    "title": "El marxismo es ciencia, filosofía y política a la vez, y sólo vive como organizador; su racionalidad se defiende contra el dogma, la academia y las novedades falsas.",
    "principle": "La colección rechaza tanto el marxismo-dogma como el marxismo-académico: la crítica de la economía política es un arma para la revolución, y una teoría que no pueda pensar la praxis deja de ser teoría revolucionaria. Contra el activismo irreflexivo, la conciencia socialista se elabora y se hegemoniza.",
-   "application": "Nuevo Ciclo lo convierte en programa de la revista: demostrar «mediante la argumentación y la polémica» la validez del marxismo, ni con adanismo ni con hagiografía (Aguiriano), ni con el «programatismo» de la comunización ni con el chantaje liberal sobre el leninismo (Brassier), ni con el neofeudalismo como vestido nuevo (Ferrín). Las cuatro entrevistas (Brassier, Roberts, Merchant, Toscano) son la cara internacional de ese deslinde.",
+   "application": "Nuevo Ciclo lo convierte en programa de la revista: demostrar «mediante la argumentación y la polémica» la validez del marxismo, ni con adanismo ni con hagiografía (Aguiriano), ni con el «programatismo» de la comunización ni con el chantaje liberal sobre el leninismo (Brassier), ni con el neofeudalismo como vestido nuevo (Ferrín). Las cuatro entrevistas (Brassier, Roberts, Merchant, Toscano) son la cara internacional de ese deslinde. En el #005: El #005 añade el principio gramsciano de veracidad —no ocultar nada a la clase obrera, tratarla como mayor de edad (Tauste)— y la destrucción de mitos históricos con el arma del análisis de clase (Pauwels): el balance veraz del ciclo anterior es parte de la racionalidad del marxismo. Quinta entrevista internacional (Pauwels).",
    "status": "común",
    "marx_xxi_theses": [
     1,
@@ -25,13 +25,14 @@
     9
    ],
    "where_marx_xxi": "Volumen 1 (Gallardo, Ruiz, Barcina, Fernández Bustos, Plana) · Volumen 3 (Fernández Barcina, Bizkarra-Beitia, Aguiriano) · Volumen 5 (Aguiriano)",
-   "where_nuevo_ciclo": "#001 (Aguiriano, Brassier) · #002 (Ferrín, Roberts) · #003 (Merchant) · #004 (Toscano)"
+   "where_nuevo_ciclo": "#001 (Aguiriano, Brassier) · #002 (Ferrín, Roberts) · #003 (Merchant) · #004 (Toscano) · #005 (Tauste, Fernández, Pauwels)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 2,
    "title": "El capital es una totalidad en declive: sus crisis, guerras, opresiones y muertes son inmanentes, no desviaciones corregibles.",
    "principle": "Las crisis nacen de la acumulación misma (tasa de ganancia), la opresión de sexo-género es «íntegramente capitalista», la devastación ecológica es una crisis orgánica y el imperialismo es la forma política del mercado mundial. Los capitalistas son personificaciones del capital: nada se corrige personalizando el mal.",
-   "application": "La caída de la rentabilidad y el crecimiento de suma cero («fin de juego», Merchant) explican la nueva era de crisis, guerras y autoritarismo (Aguiriano, Miasni). Lo que el liberalismo llama excepción es esencia: el genocidio no es una desviación de Netanyahu sino la esencia del sionismo (MJ, Hernández), las devoluciones en caliente no son anomalías (Suárez), la delincuencia es funcional (Mármol), las 800 muertes anuales en el trabajo responden al beneficio (Palacios), la austeridad es una decisión de clase (Baroud).",
+   "application": "La caída de la rentabilidad y el crecimiento de suma cero («fin de juego», Merchant) explican la nueva era de crisis, guerras y autoritarismo (Aguiriano, Miasni). Lo que el liberalismo llama excepción es esencia: el genocidio no es una desviación de Netanyahu sino la esencia del sionismo (MJ, Hernández), las devoluciones en caliente no son anomalías (Suárez), la delincuencia es funcional (Mármol), las 800 muertes anuales en el trabajo responden al beneficio (Palacios), la austeridad es una decisión de clase (Baroud). En el #005: La fascistización y el genocidio son «características necesarias para un capitalismo en declive» (Martínez); pero el declive es tendencia de larga onda y convive con fases expansivas en las que el conflicto es integrable: no toda crisis es orgánica (Cirera).",
    "status": "común",
    "marx_xxi_theses": [
     2
@@ -41,13 +42,14 @@
     3
    ],
    "where_marx_xxi": "Volumen 1 (Ruiz, Bedmar, Del Pino) · Volumen 2 (Ruiz, Fernández Barcina, Smith) · Volumen 3 (Ruiz, Gallardo) · Volumen 5 (Seijo, Gómez)",
-   "where_nuevo_ciclo": "#001 (Aguiriano, Miasni, Hernández) · #002 (Ferrín, Palacios, Roberts) · #003 (Baroud, Merchant) · #004 (MJ, Mármol, Suárez)"
+   "where_nuevo_ciclo": "#001 (Aguiriano, Miasni, Hernández) · #002 (Ferrín, Palacios, Roberts) · #003 (Baroud, Merchant) · #004 (MJ, Mármol, Suárez) · #005 (Martínez, Tauste, Cirera)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 3,
    "title": "El trabajo vivo sigue siendo la fuente del valor: redistribuir no es criticar el capitalismo, y ningún «nuevo modo de producción» ha sustituido la explotación.",
    "principle": "Socialdemocracia clásica, populismo, republicanismo, keynesianismo, renta básica y pacto verde comparten el mismo presupuesto: tratar la producción como esfera técnica y la política como reparto. La distribución presupone la extracción de plusvalor; toda reforma decisiva se rescinde o se convierte en superación.",
-   "application": "Contra el neofeudalismo y el «fin del trabajo», sólo el trabajo vivo crea valor y el capital no puede prescindir de él (Ferrín); el capital vampiro se cobra con ese trabajo cientos de muertos al año (Palacios); la «política económica antifascista» de Weber reproduce la ilusión de una redistribución sin conflicto (Baroud). El neofeudalismo es el equipaje teórico de una socialdemocracia radical confinada a la redistribución.",
+   "application": "Contra el neofeudalismo y el «fin del trabajo», sólo el trabajo vivo crea valor y el capital no puede prescindir de él (Ferrín); el capital vampiro se cobra con ese trabajo cientos de muertos al año (Palacios); la «política económica antifascista» de Weber reproduce la ilusión de una redistribución sin conflicto (Baroud). El neofeudalismo es el equipaje teórico de una socialdemocracia radical confinada a la redistribución. En el #005: El «socialismo del siglo XXI» redistribuyó la renta de los hidrocarburos sin tocar la producción y cayó con el ciclo del capital (Fernández); en la expansión española la renta de los hogares sube mientras cae el salario por hora y se disparan los márgenes, por lo que la reivindicación debe cargar sobre los beneficios: indexación salarial (Cirera); el populismo fue la forma de la socialdemocracia en crisis (Tauste).",
    "status": "común",
    "marx_xxi_theses": [
     3
@@ -57,13 +59,14 @@
     6
    ],
    "where_marx_xxi": "Volumen 1 (Aguiriano) · Volumen 2 (todo el volumen, en especial Hägglund, Suther, Fernández Barcina) · Volumen 4 (Aguiriano)",
-   "where_nuevo_ciclo": "#002 (Ferrín, Palacios, Roberts) · #003 (Baroud, Merchant)"
+   "where_nuevo_ciclo": "#002 (Ferrín, Palacios, Roberts) · #003 (Baroud, Merchant) · #005 (Fernández, Cirera, Tauste)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 4,
    "title": "El Estado es la forma política del capital, no un instrumento neutro: en la crisis gira hacia el autoritarismo, y la democracia liberal esconde una dictadura de clase.",
    "principle": "Del Estado como «comunidad ilusoria» (Clarke) al Estado-instrumento kautskiano criticado en el volumen 2, pasando por el Código Penal español y la arquitectura ordoliberal de la UE, el Estado burgués no se conquista: se destruye y se sustituye por el Estado-Comuna.",
-   "application": "Los aparatos insumisos contra el gobierno Sánchez son «cimientos, no cloacas» (Gallardo); el aparato antiterrorista franquista sigue vigente (Villegas); el franquismo y el 78 son formas sucesivas de un mismo Estado (García); Gladio y el 23-F muestran la OTAN como guardia pretoriana (Raq, Garde); el Estado dual trumpista estaba prefigurado en el liberalismo (Gómez y Seijo); la coacción pasa al primer plano cuando el consenso se agota (Mármol, Toscano).",
+   "application": "Los aparatos insumisos contra el gobierno Sánchez son «cimientos, no cloacas» (Gallardo); el aparato antiterrorista franquista sigue vigente (Villegas); el franquismo y el 78 son formas sucesivas de un mismo Estado (García); Gladio y el 23-F muestran la OTAN como guardia pretoriana (Raq, Garde); el Estado dual trumpista estaba prefigurado en el liberalismo (Gómez y Seijo); la coacción pasa al primer plano cuando el consenso se agota (Mármol, Toscano). En el #005: Aparatos en «moción de censura permanente» (Navarro); el relato de las cloacas y del «Estado profundo» refuerza la ilusión del Estado neutral frente al Estado-comuna (Tauste); aparatos burocrático-militares desleales en la ola rosa (Fernández); la «democracia burguesa» como seudodemocracia y la burguesía con «la máscara democrática a regañadientes» (Pauwels).",
    "status": "común",
    "marx_xxi_theses": [
     4,
@@ -73,29 +76,32 @@
     2
    ],
    "where_marx_xxi": "Volumen 1 (Clarke, Najarro, Moreno Tonda) · Volumen 2 (Santander, Miasni) · Volumen 3 (Gallardo, Aguiriano) · Volumen 4 (Jugo, Ruiz, Aguiriano)",
-   "where_nuevo_ciclo": "#001 (Gallardo, Villegas) · #002 (García, Roberts) · #003 (Gómez y Seijo, Raq, Garde) · #004 (MJ, Mármol, Toscano)"
+   "where_nuevo_ciclo": "#001 (Gallardo, Villegas) · #002 (García, Roberts) · #003 (Gómez y Seijo, Raq, Garde) · #004 (MJ, Mármol, Toscano) · #005 (Navarro, Tauste, Fernández, Pauwels)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 5,
    "title": "Los «falsos amigos» son más peligrosos que los enemigos declarados: la socialdemocracia y el reformismo gobernante no contienen la reacción, la alimentan.",
    "principle": "El gesto que repite cada volumen es la delimitación: frente a las «nuevas lecturas» posmarxistas, la socialdemocracia y el populismo, el espontaneísmo y el sectarismo, el centrismo y los partidos amplios, el campismo. Oportunismo e izquierdismo son reversos simétricos.",
-   "application": "El PSOE organiza y contiene a «la izquierda» mientras vende armas a Israel (Gallardo, Hernández); IU, nacida del «OTAN no», está en el gobierno más militarista de la democracia (Garde); las promesas incumplidas de Sumar alimentan la frustración (Baroud); las fronteras de Sánchez matan más que las de Meloni (Suárez); la socialdemocracia actual repite 1914 (Paula D.). Retrasar la llegada de la extrema derecha al gobierno «no es sinónimo de frenar su avance».",
+   "application": "El PSOE organiza y contiene a «la izquierda» mientras vende armas a Israel (Gallardo, Hernández); IU, nacida del «OTAN no», está en el gobierno más militarista de la democracia (Garde); las promesas incumplidas de Sumar alimentan la frustración (Baroud); las fronteras de Sánchez matan más que las de Meloni (Suárez); la socialdemocracia actual repite 1914 (Paula D.). Retrasar la llegada de la extrema derecha al gobierno «no es sinónimo de frenar su avance». En el #005: Ministerialismo: el ministro socialista en un gobierno burgués se vuelve ministro burgués (Tauste, con Luxemburg); el marco de defensa nacional de Sumar, Podemos y ERC convierte a los migrantes en invasores (Navarro); Sánchez como «gestor capitalista ideal» y CCOO-UGT como escuderos (Cirera); el soberanismo reformista de la ola rosa engendra la ola negra (Fernández); las reformas fueron válvula de escape del miedo a la revolución (Pauwels).",
    "status": "común",
    "marx_xxi_theses": [
     5
    ],
    "nuevo_ciclo_theses": [
     6,
-    9
+    9,
+    11
    ],
    "where_marx_xxi": "Volumen 2 (Gallardo, Aguiriano) · Volumen 3 (Miasni, Fernández Barcina) · Volumen 4 (Volodia, Seijo, Miasni) · Volumen 5 (Seijo, Miasni)",
-   "where_nuevo_ciclo": "#001 (Gallardo, Miasni, Hernández) · #002 (Ferrín, Juncales) · #003 (Garde, Raq, Baroud) · #004 (Suárez, Paula D., Toscano)"
+   "where_nuevo_ciclo": "#001 (Gallardo, Miasni, Hernández) · #002 (Ferrín, Juncales) · #003 (Garde, Raq, Baroud) · #004 (Suárez, Paula D., Toscano) · #005 (Navarro, Tauste, Cirera, Fernández, Pauwels)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 6,
    "title": "La clase no existe políticamente hasta que se constituye en partido: la debilidad organizativa del proletariado explica la impotencia de todas las luchas y la independencia política es la tarea de la fase.",
    "principle": "El proletariado está «ausente», fragmentado y sin vanguardia; por eso el objetivo no es tomar el poder ni radicalizar movimientos sino reconstituir al proletariado como sujeto organizado antes de la crisis. Las formas de la fase (frentes, consejos, marcos territoriales, trabajo cultural) se justifican por su utilidad para construir ese partido.",
-   "application": "Sin partido, las protestas post-2008 caen bajo hegemonía pequeñoburguesa (Aguiriano); el movimiento propalestino es débil porque lo son sus organizaciones (Hernández); las huelgas generales de Grecia y Francia no logran nada sin fuerza política impugnadora (Juncales); el ciclo feminista se institucionalizó sin alternativa independiente (Royo); el socialismo «necesita un portador» (Roberts). El partido comunista de masas es «el gran ausente hoy, a la vez que la única alternativa real» (Gallardo).",
+   "application": "Sin partido, las protestas post-2008 caen bajo hegemonía pequeñoburguesa (Aguiriano); el movimiento propalestino es débil porque lo son sus organizaciones (Hernández); las huelgas generales de Grecia y Francia no logran nada sin fuerza política impugnadora (Juncales); el ciclo feminista se institucionalizó sin alternativa independiente (Royo); el socialismo «necesita un portador» (Roberts). El partido comunista de masas es «el gran ausente hoy, a la vez que la única alternativa real» (Gallardo). En el #005: Podemos «no tiene futuro, solo pasado» y solo un partido comunista de masas responde a la necesidad (Tauste); sin partido revolucionario de masas el «doble poder» se disgrega (Fernández); sin proyecto propio toda movilización se integra (Cirera); reforzar la organización comunista es el «principal antídoto» contra el fascismo (Navarro).",
    "status": "común",
    "marx_xxi_theses": [
     6
@@ -105,13 +111,14 @@
     10
    ],
    "where_marx_xxi": "Volumen 1 (Plana, Rodríguez Cueto) · Volumen 3 (todo el volumen) · Volumen 4 (Miasni, Aguiriano) · Volumen 5 (Aguiriano)",
-   "where_nuevo_ciclo": "#001 (Aguiriano, Gallardo, Hernández) · #002 (Juncales, Roberts) · #003 (Royo, Baroud) · #004 (Mármol, Zafra)"
+   "where_nuevo_ciclo": "#001 (Aguiriano, Gallardo, Hernández) · #002 (Juncales, Roberts) · #003 (Royo, Baroud) · #004 (Mármol, Zafra) · #005 (Tauste, Fernández, Cirera, Navarro)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 7,
    "title": "El partido necesita instituciones propias: prensa, organización territorial, autodefensa, pedagogía.",
    "principle": "La conciencia socialista no es la posesión previa de un grupo sino el resultado de la lucha teórica y organizativa dentro del movimiento; se disputa culturalmente mediante teoría, propaganda y agitación (volumen 3), y el periódico es «organizador colectivo» (Volodia, volumen 4).",
-   "application": "Nuevo Ciclo concreta esa tesis en instituciones: la prensa bolchevique de Iskra a Pravda como mediación entre conciencia y praxis (Volodia) y como respuesta a un movimiento obrero europeo sin fuerza política (Juncales); una prensa obrera que nombre a los responsables de cada muerte (Palacios); organización en barrios, gradas y gimnasios populares hasta una «nueva normatividad socialista» (Mármol); trabajo territorial, institucional y pedagógico e «instituciones comunistas por inventar» (Toscano).",
+   "application": "Nuevo Ciclo concreta esa tesis en instituciones: la prensa bolchevique de Iskra a Pravda como mediación entre conciencia y praxis (Volodia) y como respuesta a un movimiento obrero europeo sin fuerza política (Juncales); una prensa obrera que nombre a los responsables de cada muerte (Palacios); organización en barrios, gradas y gimnasios populares hasta una «nueva normatividad socialista» (Mármol); trabajo territorial, institucional y pedagógico e «instituciones comunistas por inventar» (Toscano). En el #005: El «muro de contención» contra el fascismo en barrios obreros y centros de estudio, con alianzas con otras organizaciones obreras (Navarro), y la independencia sindical frente a CCOO y UGT, dependientes del PSOE, Sumar y el Estado (Cirera), como instituciones de la fase.",
    "status": "aplicación de Nuevo Ciclo",
    "marx_xxi_theses": [
     7
@@ -120,7 +127,8 @@
     10
    ],
    "where_marx_xxi": "Volumen 1 (Fernández Bustos, Plana) · Volumen 3 (Bizkarra-Beitia, Fernández Barcina, Gallardo) · Volumen 4 (Volodia)",
-   "where_nuevo_ciclo": "#002 (Volodia, Palacios, Juncales, Ferrín) · #004 (Mármol, Paula D., Toscano)"
+   "where_nuevo_ciclo": "#002 (Volodia, Palacios, Juncales, Ferrín) · #004 (Mármol, Paula D., Toscano) · #005 (Navarro, Cirera)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 8,
@@ -141,7 +149,7 @@
    "number": 9,
    "title": "La historia del movimiento obrero se lee como maduración y degeneración: ni calco ni negación.",
    "principle": "De la «defensa crítica del leninismo» al balance de las Tres Internacionales y del estalinismo, la colección asume la derrota del ciclo revolucionario sin idealizarla ni borrarla: la II Internacional como origen del Estado-instrumento; los bolcheviques como forma madura de la constitución de la clase en partido.",
-   "application": "El «nuevo ciclo» que da nombre a la revista exige rendir cuentas con toda la historia del proletariado, contra el adanismo y la hagiografía (Aguiriano); las posiciones ante la guerra se releen de Marx a la Komintern (Miasni); el franquismo se analiza como fascismo desarrollado y el 78 como continuidad del Estado (García); 1914 es el espejo de la socialdemocracia actual (Paula D., Suárez); la OTAN y Gladio, la historia que la izquierda «tiende a obviar» (Raq, Garde).",
+   "application": "El «nuevo ciclo» que da nombre a la revista exige rendir cuentas con toda la historia del proletariado, contra el adanismo y la hagiografía (Aguiriano); las posiciones ante la guerra se releen de Marx a la Komintern (Miasni); el franquismo se analiza como fascismo desarrollado y el 78 como continuidad del Estado (García); 1914 es el espejo de la socialdemocracia actual (Paula D., Suárez); la OTAN y Gladio, la historia que la izquierda «tiende a obviar» (Raq, Garde). En el #005: El #005 rinde cuentas con el ciclo inmediato —Podemos y la Segunda Restauración con Galdós (Tauste), la ola rosa con Martins Rodrigues (Fernández)— y con los mitos de la historia moderna (Pauwels). Discrepancia a registrar: la defensa sin reservas de 1917 y de Stalin como vencedor de Hitler («gracias, Vladimir, gracias, Iósif», Pauwels) contrasta con el balance crítico del estalinismo de Marx XXI (volumen 5) y del #001.",
    "status": "común",
    "marx_xxi_theses": [
     9
@@ -150,13 +158,14 @@
     9
    ],
    "where_marx_xxi": "Volumen 1 (Plana, Rodríguez Cueto) · Volumen 2 (Santander) · Volumen 3 (Aguiriano, Miasni) · Volumen 4 (Aguiriano) · Volumen 5 (Volodia, Aguiriano)",
-   "where_nuevo_ciclo": "#001 (Aguiriano, Miasni) · #002 (García, Volodia) · #003 (Raq, Garde, Baroud) · #004 (Paula D., Zafra)"
+   "where_nuevo_ciclo": "#001 (Aguiriano, Miasni) · #002 (García, Volodia) · #003 (Raq, Garde, Baroud) · #004 (Paula D., Zafra) · #005 (Tauste, Fernández, Pauwels)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 10,
    "title": "La escala mínima es Europa y la real es el mundo: antimperialismo sin campismo, «el enemigo principal está en casa».",
    "principle": "Ninguna revolución nacional sobrevive si no se hace europea; ante la guerra imperialista la tarea es el derrotismo en el propio bloque (ni OTAN ni BRICS) y el defensismo revolucionario en el país agredido; Palestina es una lucha anticolonial que exige combatir al propio Estado. Hace falta un partido de escala continental y una nueva Internacional.",
-   "application": "El militarismo es condición estructural del Estado capitalista y las cuatro posiciones de la izquierda fallan (Miasni); el genocidio es una operación del bloque occidental y Palestina prefigura el futuro (Hernández, Brassier, MJ); para Lenin la multipolaridad es el estado natural del imperialismo (Roberts); la inmigración es «imperialismo en casa» (Suárez); OTAN y UE se desmantelan, no se abandonan nación por nación: Partido Comunista Europeo, Estados Unidos Socialistas de Europa, nueva Internacional (Raq, Juncales, Merchant).",
+   "application": "El militarismo es condición estructural del Estado capitalista y las cuatro posiciones de la izquierda fallan (Miasni); el genocidio es una operación del bloque occidental y Palestina prefigura el futuro (Hernández, Brassier, MJ); para Lenin la multipolaridad es el estado natural del imperialismo (Roberts); la inmigración es «imperialismo en casa» (Suárez); OTAN y UE se desmantelan, no se abandonan nación por nación: Partido Comunista Europeo, Estados Unidos Socialistas de Europa, nueva Internacional (Raq, Juncales, Merchant). En el #005: El bloque occidental tiene fisuras: «crisis de mediaciones» entre EE. UU. e Israel e Israel como «(des)ordenador geopolítico» (Martínez); la migración es dinámica imperialista en la periferia, no cuestión de seguridad nacional (Navarro); China y Rusia son potencias «igualmente predatorias», Venezuela una neocolonia y la escala latinoamericana es la unidad continental (Fernández).",
    "status": "común",
    "marx_xxi_theses": [
     10
@@ -165,13 +174,14 @@
     7
    ],
    "where_marx_xxi": "Volumen 2 (Chirivella, Juncales/Liber) · Volumen 3 (Juncales/Liber, Ruiz) · Volumen 4 (Seijo, Ruiz) · Volumen 5 (todo el volumen)",
-   "where_nuevo_ciclo": "#001 (Miasni, Hernández, Brassier) · #002 (Juncales, Roberts) · #003 (Raq, Garde, Merchant) · #004 (MJ, Suárez, Toscano)"
+   "where_nuevo_ciclo": "#001 (Miasni, Hernández, Brassier) · #002 (Juncales, Roberts) · #003 (Raq, Garde, Merchant) · #004 (MJ, Suárez, Toscano) · #005 (Navarro, Martínez, Fernández)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 11,
    "title": "La unidad de clase incluye al proletariado migrante y a todas las trabajadoras: la comprensión de la clase es unitaria, no economicista.",
    "principle": "La opresión de sexo-género es «íntegramente capitalista» y exige un frente socialista de mujeres (volúmenes 1-3); la clase se piensa como totalidad frente a la «suma de partes» interseccional; las identidades existentes son formas alienadas de aspiraciones reales.",
-   "application": "Nuevo Ciclo lleva la tesis a dos frentes nuevos: la estratificación racial del proletariado (una «subclase» migrante con un 40-60 % menos de salario) como expresión interna del imperialismo, y la unidad con el proletariado migrante como «la diferencia entre nuestra victoria o nuestra derrota» (Suárez, Mármol); y la crítica del economicismo que el feminismo heredó del movimiento comunista, con el género como relación capitalista articulada en la familia nuclear (Royo).",
+   "application": "Nuevo Ciclo lleva la tesis a dos frentes nuevos: la estratificación racial del proletariado (una «subclase» migrante con un 40-60 % menos de salario) como expresión interna del imperialismo, y la unidad con el proletariado migrante como «la diferencia entre nuestra victoria o nuestra derrota» (Suárez, Mármol); y la crítica del economicismo que el feminismo heredó del movimiento comunista, con el género como relación capitalista articulada en la familia nuclear (Royo). En el #005: Base estadística de la estratificación racial: renta un 40 % inferior y 54 % en riesgo de pobreza, el sector «más proletarizado» de la clase; igualdad de derechos migrante/nativo como reivindicación (Cirera); «no puede existir un afuera del proletariado internacional» y solidaridad con Vía Democrática, el Polisario y la juventud marroquí (Navarro); el palestino como humanidad excedente prefigura al trabajador mundial (Martínez).",
    "status": "aplicación de Nuevo Ciclo",
    "marx_xxi_theses": [
     2,
@@ -182,26 +192,28 @@
     10
    ],
    "where_marx_xxi": "Volumen 1 (Bedmar, Rodríguez Cueto, Arconada) · Volumen 2 (M.B.C. y Seijo) · Volumen 3 (Pérez)",
-   "where_nuevo_ciclo": "#003 (Royo) · #004 (Mármol, Suárez)"
+   "where_nuevo_ciclo": "#003 (Royo) · #004 (Mármol, Suárez) · #005 (Cirera, Navarro, Martínez)",
+   "revised": "2026-10 · #005"
   },
   {
    "number": 12,
    "title": "El horizonte es la asociación de productores libres: el control consciente de la producción y la dispersión del poder entre el pueblo.",
    "principle": "Casi literalmente, en todos los volúmenes aparece la fórmula de Marx: una asociación de individuos libres que regulan conscientemente su metabolismo con la naturaleza, sobre la base de la abolición de las clases, del salario, de la propiedad privada, de la familia burguesa, del Estado y de la división entre trabajo manual e intelectual. No es una esencia perdida sino algo que nace de las entrañas del capital.",
-   "application": "Nuevo Ciclo toca el horizonte sólo de paso: el socialismo como control consciente y colectivo de la producción frente a la muerte en el trabajo (Palacios); el republicanismo de Marx que dispersa el poder económico y militar entre el pueblo, y la advertencia de que las instituciones de la transición no son las de la libertad (Roberts); la superación de todas las opresiones, identidades y escisiones que el capitalismo perpetúa (Royo). Es la tesis donde los volúmenes dicen más que los números.",
+   "application": "Nuevo Ciclo toca el horizonte sólo de paso: el socialismo como control consciente y colectivo de la producción frente a la muerte en el trabajo (Palacios); el republicanismo de Marx que dispersa el poder económico y militar entre el pueblo, y la advertencia de que las instituciones de la transición no son las de la libertad (Roberts); la superación de todas las opresiones, identidades y escisiones que el capitalismo perpetúa (Royo). Es la tesis donde los volúmenes dicen más que los números. En el #005: Un proyecto emancipador que no se reduzca a superar la pobreza: autogobierno, tiempo libre, límites naturales, fin de las opresiones de raza y género (Cirera); el Estado-comuna como «gobierno de los pobres libres» (Tauste); la democracia como sistema socioeconómico por y para el demos (Pauwels). Sigue siendo la tesis donde los volúmenes dicen más que los números.",
    "status": "propia de Marx XXI",
    "marx_xxi_theses": [
     11
    ],
    "nuevo_ciclo_theses": [],
    "where_marx_xxi": "Volumen 1 (Moreno Tonda, Brassier, Rodríguez Rojo) · Volumen 2 (Miasni, Clover) · Volumen 3 (Gallardo) · Volumen 4 (Aguiriano) · Volumen 5 (Volodia)",
-   "where_nuevo_ciclo": "#002 (Palacios, Roberts) · #003 (Royo)"
+   "where_nuevo_ciclo": "#002 (Palacios, Roberts) · #003 (Royo) · #005 (Cirera, Tauste, Pauwels)",
+   "revised": "2026-10 · #005"
   }
  ],
  "bridge_concepts": [
   {
    "term": "Población sobrante",
-   "note": "De concepto de la crítica de la economía política (Rodríguez Rojo) a clave de la coacción actual: el barrio (Mármol), Gaza (Brassier, Roberts).",
+   "note": "De concepto de la crítica de la economía política (Rodríguez Rojo) a clave de la coacción actual: el barrio (Mármol), Gaza (Brassier, Roberts). n5-a4 (palestinos como «humanidad excedente» sustituidos por inmigración judía y mano de obra asiática) y n5-a3 (ejército industrial de reserva migrante).",
    "marx_xxi": [
     {
      "article": "t1-a9",
@@ -220,6 +232,14 @@
     {
      "article": "n1-a6",
      "term": "Palestina como población sobrante"
+    },
+    {
+     "article": "n5-a3",
+     "term": "Ejército industrial de reserva migrante"
+    },
+    {
+     "article": "n5-a4",
+     "term": "humanidad excedente"
     }
    ]
   },
@@ -277,7 +297,7 @@
   },
   {
    "term": "Independencia política",
-   "note": "Columna vertebral de las dos revistas: título del volumen 3 y tarea de 1850 en el #001.",
+   "note": "Columna vertebral de las dos revistas: título del volumen 3 y tarea de 1850 en el #001. n5-a2 (partido comunista de masas frente a la recomposición electoral), n5-a5 (Martins Rodrigues: usar las reformas sin ceder la independencia) y n5-a3 (independencia sindical).",
    "marx_xxi": [
     {
      "article": "t2-a4",
@@ -296,12 +316,24 @@
     {
      "article": "n1-a1",
      "term": "Independencia ideológica / política"
+    },
+    {
+     "article": "n5-a2",
+     "term": "Independencia política"
+    },
+    {
+     "article": "n5-a3",
+     "term": "Independencia política"
+    },
+    {
+     "article": "n5-a5",
+     "term": "Independencia política"
     }
    ]
   },
   {
    "term": "Fragmentación de la clase",
-   "note": "Los números añaden la estratificación racial y migrante como forma concreta de la fragmentación.",
+   "note": "Los números añaden la estratificación racial y migrante como forma concreta de la fragmentación. n5-a3, que da base estadística a la estratificación y amplía la fragmentación a feminización, formación y terciarización.",
    "marx_xxi": [
     {
      "article": "t2-a2",
@@ -316,6 +348,10 @@
     {
      "article": "n4-a5",
      "term": "Estratificación mundial del proletariado"
+    },
+    {
+     "article": "n5-a3",
+     "term": "estratificación racial"
     }
    ]
   },
@@ -401,7 +437,7 @@
   },
   {
    "term": "Derechos políticos como armas",
-   "note": "Marx XXI fija el principio; Nuevo Ciclo lo aplica a la clandestinidad, al juicio y al antiterrorismo.",
+   "note": "Marx XXI fija el principio; Nuevo Ciclo lo aplica a la clandestinidad, al juicio y al antiterrorismo. n5-a6 (reformas como válvula de escape concedida por miedo a la revolución) y n5-a5 (usar reformas y movilizaciones para avanzar posiciones sin ceder independencia): la misma lógica de la concesión como mal menor.",
    "marx_xxi": [
     {
      "article": "t4-a3",
@@ -424,6 +460,14 @@
     {
      "article": "n1-a5",
      "term": "Líneas maestras de la legislación antiterrorista"
+    },
+    {
+     "article": "n5-a5",
+     "term": "programa mínimo"
+    },
+    {
+     "article": "n5-a6",
+     "term": "programa mínimo"
     }
    ]
   },
@@ -449,7 +493,7 @@
   },
   {
    "term": "Oportunismo",
-   "note": "Colaboración de clases e inversión de medios y fines; 1914 como espejo de la socialdemocracia actual.",
+   "note": "Colaboración de clases e inversión de medios y fines; 1914 como espejo de la socialdemocracia actual. n5-a2: con Luxemburg, el camino «de la mayoría a la táctica» en lugar de la táctica a la mayoría; Podemos perdió de los dos modos.",
    "marx_xxi": [
     {
      "article": "t2-a11",
@@ -472,12 +516,16 @@
     {
      "article": "n4-a3",
      "term": "Liquidacionismo de derecha y de izquierda"
+    },
+    {
+     "article": "n5-a2",
+     "term": "Oportunismo"
     }
    ]
   },
   {
    "term": "Giro autoritario del Estado",
-   "note": "Jugo (volumen 4) analiza el Código Penal; Villegas, Gómez y Seijo y Baroud lo prolongan al antiterrorismo, a Trump y a la austeridad.",
+   "note": "Jugo (volumen 4) analiza el Código Penal; Villegas, Gómez y Seijo y Baroud lo prolongan al antiterrorismo, a Trump y a la austeridad. n5-a1 (acoso y derribo, aparatos en moción de censura permanente) y n5-a5 (Doctrina de Seguridad Nacional).",
    "marx_xxi": [
     {
      "article": "t4-a4",
@@ -500,6 +548,14 @@
     {
      "article": "n3-a5",
      "term": "Austeridad como solución autoritaria"
+    },
+    {
+     "article": "n5-a1",
+     "term": "Giro autoritario del Estado"
+    },
+    {
+     "article": "n5-a5",
+     "term": "Giro autoritario del Estado"
     }
    ]
   },
@@ -525,7 +581,7 @@
   },
   {
    "term": "Régimen del 78",
-   "note": "Miasni (Podemos), García (continuidad del Estado franquista) y Garde (23-F y OTAN) describen el mismo marco.",
+   "note": "Miasni (Podemos), García (continuidad del Estado franquista) y Garde (23-F y OTAN) describen el mismo marco. n5-a2: Podemos pasó de impugnar el 78 a querer gobernarlo.",
    "marx_xxi": [
     {
      "article": "t4-a5",
@@ -539,6 +595,10 @@
     },
     {
      "article": "n3-a3",
+     "term": "Régimen del 78"
+    },
+    {
+     "article": "n5-a2",
      "term": "Régimen del 78"
     }
    ]
@@ -605,7 +665,7 @@
   },
   {
    "term": "Colonia de asentamiento",
-   "note": "Miasni (volumen 5) y MJ (#004) coinciden en que un Estado colonial de asentamiento no puede delimitar fronteras ni tener solución de dos Estados.",
+   "note": "Miasni (volumen 5) y MJ (#004) coinciden en que un Estado colonial de asentamiento no puede delimitar fronteras ni tener solución de dos Estados. n5-a4: «colonia sin metrópoli» como avanzadilla y laboratorio.",
    "marx_xxi": [
     {
      "article": "t5-a3",
@@ -620,12 +680,16 @@
     {
      "article": "n1-a4",
      "term": "El sionismo como problema"
+    },
+    {
+     "article": "n5-a4",
+     "term": "colonia sin metrópoli"
     }
    ]
   },
   {
    "term": "Multipolarismo / campismo",
-   "note": "Ni OTAN ni BRICS: la multipolaridad es el estado natural del imperialismo (Roberts).",
+   "note": "Ni OTAN ni BRICS: la multipolaridad es el estado natural del imperialismo (Roberts). n5-a5 (China y Rusia como potencias predatorias, el reverso de la independencia frente a EE. UU.) y n5-a4.",
    "marx_xxi": [
     {
      "article": "t5-a3",
@@ -648,6 +712,14 @@
     {
      "article": "n2-a3",
      "term": "Europeísmo abstracto y soberanismo tercermundista"
+    },
+    {
+     "article": "n5-a4",
+     "term": "campismo"
+    },
+    {
+     "article": "n5-a5",
+     "term": "campismo"
     }
    ]
   },
@@ -717,7 +789,7 @@
   },
   {
    "term": "Keynesianismo",
-   "note": "Las recetas que la izquierda reclamó en la austeridad las aplican hoy la UE y EE. UU. para la economía de guerra.",
+   "note": "Las recetas que la izquierda reclamó en la austeridad las aplican hoy la UE y EE. UU. para la economía de guerra. n5-a2: el giro neokeynesiano de la UE como revolución pasiva que prorrogó la sociedad de clases medias.",
    "marx_xxi": [
     {
      "article": "t2-a4",
@@ -736,6 +808,10 @@
     {
      "article": "n3-a6",
      "term": "Capitalismo de Estado (nuevo tipo)"
+    },
+    {
+     "article": "n5-a2",
+     "term": "Keynesianismo"
     }
    ]
   },
@@ -777,7 +853,7 @@
   },
   {
    "term": "Dictadura del proletariado",
-   "note": "Aguiriano (Estado-Comuna) y Roberts (instituciones de la transición ≠ instituciones de la libertad).",
+   "note": "Aguiriano (Estado-Comuna) y Roberts (instituciones de la transición ≠ instituciones de la libertad). n5-a6 (democracia en sentido griego frente a seudodemocracia) y n5-a2 («gobierno de los pobres libres»).",
    "marx_xxi": [
     {
      "article": "t3-a8",
@@ -792,6 +868,14 @@
     {
      "article": "n2-a6",
      "term": "Dominar la dominación / dictadura de la democracia"
+    },
+    {
+     "article": "n5-a2",
+     "term": "democracia como gobierno de los pobres"
+    },
+    {
+     "article": "n5-a6",
+     "term": "democracia como gobierno de los pobres"
     }
    ]
   },
@@ -833,7 +917,7 @@
   },
   {
    "term": "Hegemonía",
-   "note": "Dos usos distintos del mismo término: hegemonía socialista (Gramsci, volumen 3) y hegemonía mundial (Wallerstein, Arrighi, en los números).",
+   "note": "Dos usos distintos del mismo término: hegemonía socialista (Gramsci, volumen 3) y hegemonía mundial (Wallerstein, Arrighi, en los números). n5-a2 («desde la perspectiva de la hegemonía, la marca está agotada») y n5-a4 (hegemonía atlantista desestructurada): persisten los dos usos.",
    "marx_xxi": [
     {
      "article": "t3-a1",
@@ -852,8 +936,108 @@
     {
      "article": "n4-a6",
      "term": "Dominación sin hegemonía"
+    },
+    {
+     "article": "n5-a2",
+     "term": "Hegemonía"
+    },
+    {
+     "article": "n5-a4",
+     "term": "Hegemonía"
     }
    ]
+  },
+  {
+   "term": "Estado-comuna",
+   "note": "Figuraba entre los exclusivos de Marx XXI; n5-a2 lo cita expresamente contra el relato de las cloacas y el Estado neutral. Pasa a puente.",
+   "marx_xxi": [
+    {
+     "article": "t4-a7",
+     "term": "Estado-comuna"
+    }
+   ],
+   "nuevo_ciclo": [
+    {
+     "article": "n5-a2",
+     "term": "Estado-comuna"
+    }
+   ],
+   "added": "2026-10 · #005"
+  },
+  {
+   "term": "Populismo como forma de la socialdemocracia",
+   "note": "n5-a2 lo cita y lo aplica a Podemos («el populismo solo fue la forma político-organizativa que adoptó la socialdemocracia en un contexto de crisis»); n5-a5 lo prolonga al chavismo y al «socialismo del siglo XXI».",
+   "marx_xxi": [
+    {
+     "article": "t2-a2",
+     "term": "Populismo como forma de la socialdemocracia"
+    }
+   ],
+   "nuevo_ciclo": [
+    {
+     "article": "n5-a2",
+     "term": "Populismo como forma de la socialdemocracia"
+    },
+    {
+     "article": "n5-a5",
+     "term": "Populismo como forma de la socialdemocracia"
+    }
+   ],
+   "added": "2026-10 · #005"
+  },
+  {
+   "term": "Crisis orgánica",
+   "note": "Figuraba como exclusivo de Marx XXI; n5-a3 (la crisis abre «crisis orgánicas» cuando el Estado pierde capacidad integradora) y n5-a2 (la «crisis orgánica» española que Podemos no colmó) usan la misma noción gramsciana. Puente temático, sin cita.",
+   "marx_xxi": [
+    {
+     "article": "t3-a6",
+     "term": "Crisis orgánica"
+    }
+   ],
+   "nuevo_ciclo": [
+    {
+     "article": "n5-a2",
+     "term": "Crisis orgánica"
+    },
+    {
+     "article": "n5-a3",
+     "term": "Crisis orgánica"
+    }
+   ],
+   "added": "2026-10 · #005"
+  },
+  {
+   "term": "Integración de las demandas",
+   "note": "n5-a3 («toda movilización social acaba en última instancia en la integración») y n5-a5 (la lucha popular encerrada en el régimen nacionalista) lo enuncian con las mismas palabras.",
+   "marx_xxi": [
+    {
+     "article": "t2-a1",
+     "term": "Integración de las demandas"
+    },
+    {
+     "article": "t2-a4",
+     "term": "Integración de las demandas"
+    },
+    {
+     "article": "t2-a10",
+     "term": "Integración de las demandas"
+    },
+    {
+     "article": "t2-a11",
+     "term": "Integración de las demandas"
+    }
+   ],
+   "nuevo_ciclo": [
+    {
+     "article": "n5-a3",
+     "term": "Integración de las demandas"
+    },
+    {
+     "article": "n5-a5",
+     "term": "Integración de las demandas"
+    }
+   ],
+   "added": "2026-10 · #005"
   }
  ],
  "only_nuevo_ciclo": [
@@ -926,6 +1110,76 @@
    "term": "Huelga general minoritaria / huelga como decorado",
    "article": "n2-a3",
    "note": "Los formatos de la huelga en la UE."
+  },
+  {
+   "term": "Revolución pasiva",
+   "article": "n5-a2",
+   "note": "Candidato a puente: comprobar si t4-a5 (Miasni, 15-M y Podemos) o t2-a2 usan el término."
+  },
+  {
+   "term": "Ministerialismo",
+   "article": "n5-a2",
+   "note": "Candidato a puente: posible eco en t2-a1 (Santander) y t2-a11 (Suther); no consta en el glosario."
+  },
+  {
+   "term": "Tragedia y farsa / «farsa de otra farsa»",
+   "article": "n5-a2",
+   "note": "El esquema del 18 Brumario aplicado a Podemos; comprobar si t2-a2 lo usa para el bonapartismo populista."
+  },
+  {
+   "term": "Partido-empresa / fines oficiales y fines reales",
+   "article": "n5-a2",
+   "note": "Estructura dual de Vistalegre, inscrito pasivo y notables con técnicos de comunicación; enlaza por tema con t4-a5."
+  },
+  {
+   "term": "Principio de veracidad / mito histórico",
+   "article": "n5-a2, n5-a6",
+   "note": "Dos nombres para la misma exigencia (Gramsci; Pauwels): desmontar el relato que «estructura el pasado para dominar el presente»."
+  },
+  {
+   "term": "Oposición extraparlamentaria / muro de contención",
+   "article": "n5-a1",
+   "note": "Táctica de la fase ante un ciclo electoral; enlaza con t4-a3 (uso de los derechos políticos sin cretinismo) sin coincidir en el término."
+  },
+  {
+   "term": "Devaluación salarial indirecta / renta real frente a salario real",
+   "article": "n5-a3",
+   "note": "Candidato a puente con t2-a4 (Ruiz, «Precios, competencia y lucha de clases»); comprobar."
+  },
+  {
+   "term": "Heterogeneidad de la clase / terciarización / voz propia de la clase",
+   "article": "n5-a3",
+   "note": "Se subsume en «Fragmentación de la clase», pero con contenido nuevo: la clase formada e integrada, no sólo la precaria."
+  },
+  {
+   "term": "Fascistización",
+   "article": "n3-a5, n5-a4, n5-a6, n5-a1",
+   "note": "Tres textos del #005 lo usan (Israel, democracias liberales, normalización en España); candidato a puente con «Giro autoritario del Estado» (t4-a4) y el «liberalismo autoritario» de t3-a2, pero Marx XXI no emplea el término."
+  },
+  {
+   "term": "Crisis de mediaciones / (des)ordenador geopolítico / paraestado sionista",
+   "article": "n5-a4",
+   "note": "Tomados del Comité por la Reconstitución y de D. García; matizan el «perro guardián» de n4-a1."
+  },
+  {
+   "term": "Soberanismo reformista / nacionalismo desarrollista / ola rosa y ola negra",
+   "article": "n5-a5",
+   "note": "Enlaza por tema con la cuestión nacional de t2-a8 (Chirivella) y con el frente único antimperialista de t5-a3 (Nasser), sin cita."
+  },
+  {
+   "term": "Doctrina Donroe / Doctrina de Seguridad Nacional / neocolonia / contrarrevolución dengista",
+   "article": "n5-a1, n5-a5",
+   "note": "Coyuntura de 2025-2026; enlaza por tema con t5-a2 (Gómez)."
+  },
+  {
+   "term": "Seudodemocracia / máscara democrática / fascismo como activo imperialista",
+   "article": "n5-a6",
+   "note": "Formulaciones de Pauwels de la tesis 8 de Marx XXI; se registran como vocabulario de la entrevista, no como concepto nuevo."
+  },
+  {
+   "term": "Revoluciones burguesas a destiempo / revolución incompleta",
+   "article": "n5-a2, n5-a5",
+   "note": "Sostiene la tesis nueva 11; enlaza por tema con el balance del 15-M de t4-a5."
   }
  ],
  "only_marx_xxi": [
@@ -936,14 +1190,6 @@
   {
    "term": "Asociación de productores libres / metabolismo con la naturaleza",
    "where": "Todos los volúmenes"
-  },
-  {
-   "term": "Estado-Comuna / Comuna de París",
-   "where": "Volumen 4 (Aguiriano)"
-  },
-  {
-   "term": "Crisis ecológica como crisis orgánica",
-   "where": "Volumen 3 (Gallardo)"
   },
   {
    "term": "Lucha cultural socialista / bloque cultural",

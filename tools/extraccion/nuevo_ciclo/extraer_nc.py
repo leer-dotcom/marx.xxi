@@ -76,6 +76,7 @@ def main():
     starts = [s for i, s in enumerate(starts) if i == 0 or s - 1 != starts[i - 1]]
     starts = [s for s in starts if not any(L['size'] >= 19.5 and 'Black' in L['font'] for L in pages[s - 1]['lines'])]   # excluye la portada
     starts = [s for s in starts if not any(is_index(L) for L in pages[s - 1]['lines'])]                          # y el índice
+    starts = [s for s in starts if any(L['font'].endswith('Book') and L['chars'] >= 35 and 11.5 <= L['size'] <= 12.5 and L['y'] >= X.HDR_Y for L in pages[s - 1]['lines'])]   # y toda página sin texto de cuerpo (portada, créditos)
     has_text = lambda pn: any(L['y'] >= X.HDR_Y for L in pages[pn - 1]['lines'])
     last = max(p['pdf'] for p in pages if any(L['y'] >= X.HDR_Y for L in p['lines']))
     if index and len(index) != len(starts): print('AVISO: el índice tiene %d textos y se han detectado %d comienzos' % (len(index), len(starts)))

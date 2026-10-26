@@ -431,7 +431,7 @@ dialog:focus,dialog:focus-visible{outline:none}
   --slate:#3c5a72;--olive:#716a56;--green:#3f5147;--vol:#2c332f;color-scheme:light}
 #zoom[data-vol="1"]{--vol:#4646dc} #zoom[data-vol="2"]{--vol:#b10a0a} #zoom[data-vol="3"]{--vol:#2a9f99}
 #zoom[data-vol="4"]{--vol:#d39504} #zoom[data-vol="5"]{--vol:#7ea52a}
-#zoom[data-vol^="n"]{--vol:#be2544} #zoom[data-vol="n2"]{--vol:#cf4868} #zoom[data-vol="n3"]{--vol:#e0658c} #zoom[data-vol="n4"]{--vol:#e8473f}
+#zoom[data-vol^="n"]{--vol:#be2544} #zoom[data-vol="n2"]{--vol:#cf4868} #zoom[data-vol="n3"]{--vol:#e0658c} #zoom[data-vol="n4"]{--vol:#e8473f} #zoom[data-vol="n5"]{--vol:#014151}
 .zoom[open]{display:block}
 /* con el visor abierto, la página de debajo no se desplaza ni muestra su barra de desplazamiento */
 html:has(.zoom[open]){overflow:hidden}
@@ -695,6 +695,9 @@ body.about-page .card.about li{font-size:inherit}
    en el #004, cuya franja es rosa pálido, el coral de la ilustración). data-vol="n1"… */
 [data-vol^="n"]{--vol:#be2544}
 [data-vol="n2"]{--vol:#cf4868} [data-vol="n3"]{--vol:#e0658c} [data-vol="n4"]{--vol:#e8473f}
+[data-vol="n5"]{--vol:#014151} /* #005: azul petróleo de la franja (primer número que no es rojo) */
+@media (prefers-color-scheme: dark){:root:not([data-theme]) [data-vol="n5"]{--vol:#4fa3b8}}
+:root[data-theme="dark"] [data-vol="n5"],:root[data-theme="black"] [data-vol="n5"]{--vol:#4fa3b8}
 @media (prefers-color-scheme: dark){:root:not([data-theme]) [data-vol="n1"]{--vol:#e2546f}}
 :root[data-theme="dark"] [data-vol="n1"],:root[data-theme="black"] [data-vol="n1"]{--vol:#e2546f}
 

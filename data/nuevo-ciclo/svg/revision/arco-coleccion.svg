@@ -1,72 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" aria-label="Los cuatro números de Nuevo Ciclo como pasos de un mismo argumento: cada uno aborda el mismo problema desde un ángulo distinto y todos desembocan en el partido comunista de masas e internacional." role="img" viewBox="0 0 760 404" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTowOTg0MjU3ZC03MzkxLTQ5OTgtYjg3Ny1iZjgyN2Q0NWY5NDIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaFjK2ynqGBAktOtDzbppbnMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpkZDI0NGM1MC01ZDM5LTQ5MGItYjE0YS04MjA4OTJkOTIyNjBscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo+KxEuNA+n6KKByVu36jvegAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggw6eETjCY8MIsZOtuWXieeWLrx0G2d/jyh1AYFSfL0NakZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJMx+e6VahSfwEH7wCARdFgAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIFk5xVA5qWjUYgm9TmjPDCif804Lnw8KzrEOUy0MLtrTZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQFbZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjA5ODQyNTdkLTczOTEtNDk5OC1iODc3LWJmODI3ZDQ1Zjk0Mi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjNjYzU3YjYyLTkwM2EtNGQyOC1iOWU0LTAwMjlkZDRiZDMyNnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDDp4ROMJjwwixk625ZeJ55YuvHQbZ3+PKHUBgVJ8vQ1qJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg1jon1pUOVmPeS3yBRTgRyibTseEWRQUC/TLSy18XIGWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggBQbSdJ/0b2HOT4WynvuZu0DztQ9gGGaIj3cLGjxAi/J0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQN6nlKMjyWJtIF6hmpzBly0fJywGCwJbxNSZLTQvx51E78sduhlq2ZWuUt99ldVktm7+qyKZ9x4OuOaermGexvA=</c2pa:manifest></metadata>
-<defs><marker id="nc-hero-arrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="9" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" class="sv-arrow"></path></marker></defs>
-<text class="sv-t3" text-anchor="middle" x="380" y="22">EL ARCO DE LOS CUATRO NÚMEROS: UN MISMO PROBLEMA, CUATRO ÁNGULOS, UNA TAREA</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="41" style="font-size:11px">Problema común: cómo se reorganizan las fuerzas del proletariado en una era de declive capitalista, guerra, genocidio y giro autoritario de los Estados</text>
-<text class="sv-t3" text-anchor="middle" x="380" y="58" style="font-size:10px">CADA NÚMERO VUELVE SOBRE EL MISMO PROBLEMA DESDE UN ÁNGULO DISTINTO  →</text>
-<rect class="sv-box" height="204" rx="2" width="172" x="18" y="68"></rect>
-<text class="sv-t" text-anchor="middle" x="104.0" y="89" style="font-size:13.4px;letter-spacing:0">#001 · Septiembre 2025</text>
-<text class="sv-t3" text-anchor="middle" x="104.0" y="105" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="119.0" style="font-size:11.5px">fija el diagnóstico</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="132.5" style="font-size:11.5px">de época</text>
-<text class="sv-t3" text-anchor="middle" x="104.0" y="161.5" style="font-size:9.5px">TEMAS</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="175.5" style="font-size:11.5px">diagnóstico de época:</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="189.0" style="font-size:11.5px">declive, guerra, represión,</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="202.5" style="font-size:11.5px">Gaza, España</text>
-<text class="sv-t3" text-anchor="middle" x="104.0" y="218.0" style="font-size:9.5px">AUTORES</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="232.0" style="font-size:11px">Aguiriano · Miasni · Gallardo</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="245.0" style="font-size:11px">Hernández · Villegas</text>
-<text class="sv-t2" text-anchor="middle" x="104.0" y="258.0" style="font-size:11px">entrevista: Ray Brassier</text>
-<line class="sv-line" x1="190" y1="170.0" x2="202" y2="170.0" marker-end="url(#nc-hero-arrow)"></line>
-<rect class="sv-box" height="204" rx="2" width="172" x="202" y="68"></rect>
-<text class="sv-t" text-anchor="middle" x="288.0" y="89" style="font-size:13.4px;letter-spacing:0">#002 · Diciembre 2025</text>
-<text class="sv-t3" text-anchor="middle" x="288.0" y="105" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="119.0" style="font-size:11.5px">las formas de la dominación</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="132.5" style="font-size:11.5px">de clase y la ausencia</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="146.0" style="font-size:11.5px">del sujeto</text>
-<text class="sv-t3" text-anchor="middle" x="288.0" y="161.5" style="font-size:9.5px">TEMAS</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="175.5" style="font-size:11.5px">franquismo, neofeudalismo,</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="189.0" style="font-size:11.5px">Europa, siniestralidad,</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="202.5" style="font-size:11.5px">prensa</text>
-<text class="sv-t3" text-anchor="middle" x="288.0" y="218.0" style="font-size:9.5px">AUTORES</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="232.0" style="font-size:11px">García · Ferrín · Juncales</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="245.0" style="font-size:11px">Palacios · Volodia</text>
-<text class="sv-t2" text-anchor="middle" x="288.0" y="258.0" style="font-size:11px">entrevista: W. C. Roberts</text>
-<line class="sv-line" x1="374" y1="170.0" x2="386" y2="170.0" marker-end="url(#nc-hero-arrow)"></line>
-<rect class="sv-box" height="204" rx="2" width="172" x="386" y="68"></rect>
-<text class="sv-t" text-anchor="middle" x="472.0" y="89" style="font-size:13.4px;letter-spacing:0">#003 · Marzo 2026</text>
-<text class="sv-t3" text-anchor="middle" x="472.0" y="105" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="119.0" style="font-size:11.5px">la reacción como</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="132.5" style="font-size:11.5px">producto del declive</text>
-<text class="sv-t3" text-anchor="middle" x="472.0" y="161.5" style="font-size:9.5px">TEMAS</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="175.5" style="font-size:11.5px">Estado dual, OTAN,</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="189.0" style="font-size:11.5px">género, austeridad y</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="202.5" style="font-size:11.5px">fascismo</text>
-<text class="sv-t3" text-anchor="middle" x="472.0" y="218.0" style="font-size:9.5px">AUTORES</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="232.0" style="font-size:11px">Gómez y Seijo · Raq · Garde</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="245.0" style="font-size:11px">Royo · Baroud</text>
-<text class="sv-t2" text-anchor="middle" x="472.0" y="258.0" style="font-size:11px">entrevista: Jamie Merchant</text>
-<line class="sv-line" x1="558" y1="170.0" x2="570" y2="170.0" marker-end="url(#nc-hero-arrow)"></line>
-<rect class="sv-box" height="204" rx="2" width="172" x="570" y="68"></rect>
-<text class="sv-t" text-anchor="middle" x="656.0" y="89" style="font-size:13.4px;letter-spacing:0">#004 · Junio 2026</text>
-<text class="sv-t3" text-anchor="middle" x="656.0" y="105" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="119.0" style="font-size:11.5px">la coacción, la ley</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="132.5" style="font-size:11.5px">y la resistencia</text>
-<text class="sv-t3" text-anchor="middle" x="656.0" y="161.5" style="font-size:9.5px">TEMAS</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="175.5" style="font-size:11.5px">genocidio, delincuencia,</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="189.0" style="font-size:11.5px">ilegalidad, el juez,</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="202.5" style="font-size:11.5px">inmigración</text>
-<text class="sv-t3" text-anchor="middle" x="656.0" y="218.0" style="font-size:9.5px">AUTORES</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="232.0" style="font-size:11px">MJ · Mármol · Paula D.</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="245.0" style="font-size:11px">Zafra · Suárez</text>
-<text class="sv-t2" text-anchor="middle" x="656.0" y="258.0" style="font-size:11px">entrevista: Alberto Toscano</text>
-<rect class="sv-box-red" height="72" rx="2" width="724" x="18" y="314"></rect>
-<text class="sv-tr" text-anchor="middle" x="380" y="336">Partido comunista de masas, continental e internacional</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="354" style="font-size:12px">independencia política de la clase: «el gran ausente hoy, a la vez que la única alternativa real»</text>
-<text class="sv-t2" text-anchor="middle" x="380" y="371" style="font-size:11px">con instituciones propias; fórmula de 1850; condición: unidad de clase con el proletariado migrante y todas las trabajadoras</text>
-<line class="sv-line-red" x1="104.0" y1="272" x2="104.0" y2="314" marker-end="url(#nc-hero-arrow)"></line>
-<line class="sv-line-red" x1="288.0" y1="272" x2="288.0" y2="314" marker-end="url(#nc-hero-arrow)"></line>
-<line class="sv-line-red" x1="472.0" y1="272" x2="472.0" y2="314" marker-end="url(#nc-hero-arrow)"></line>
-<line class="sv-line-red" x1="656.0" y1="272" x2="656.0" y2="314" marker-end="url(#nc-hero-arrow)"></line>
-<text class="sv-t3" text-anchor="middle" x="196.0" y="291" style="font-size:10px">TODOS DESEMBOCAN</text>
-<text class="sv-t3" text-anchor="middle" x="196.0" y="303" style="font-size:10px">EN LA MISMA TAREA</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Los cinco números de Nuevo Ciclo como pasos de un mismo argumento: cada uno aborda el mismo problema desde un ángulo distinto y todos desembocan en el partido comunista de masas e internacional." viewBox="0 0 760 491" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTplN2NjYmI0NS0yYWZhLTQ3MzYtYjUyYS05ZmRiMTc1MDk3N2EAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaD9+YrFgERhNGvYNY+k4e2sAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoyZjYxMDQxNS0yYjhjLTRmN2QtODFkMy01NTI5MGQwNDU4NDRscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNo0LyydwpRbIrAmSBWPl9f8wAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgg3flZ1DI3RzI2z6Xu+kwGqTKwyMiMFEwLbY79myzvD0GkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaJ7tIMtrMJOXhexs5inT4gQAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIAyMcqF3ytA3obkIp6c8lQDaZkfZC0xKuHlg1i0hlJY/ZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GQFaZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmU3Y2NiYjQ1LTJhZmEtNDczNi1iNTJhLTlmZGIxNzUwOTc3YS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmUwYjA4NWIxLWNhMzEtNDJiNi1hOGMwLTMwMDgyMTRkOTM5N3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDd+VnUMjdHMjbPpe76TAapMrDIyIwUTAttjv2bLO8PQaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg78N2eOxl8rHnUxUsgJt568/0HV4C6WD46P3Zj9uLekeiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggm1liAmK63gPtTvruazE+zZXtLQNN8xeO0VxA2Zjr47d0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQIqNzVbNQYAY7MsD6vBLRRI+4YVNGdyA7wGo3qlIrGFd8V2QLzJ3tvAq7QK3sjBju2Ty3ge4wxB6GuWXJCqiavI=</c2pa:manifest></metadata>
+<defs><marker id="nc-hero-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="sv-arrow"/></marker></defs>
+<text class="sv-t3" x="380" y="22" text-anchor="middle">EL ARCO DE LOS CINCO NÚMEROS: UN MISMO PROBLEMA, CINCO ÁNGULOS, UNA TAREA</text>
+<text class="sv-t2" x="380" y="41" text-anchor="middle" style="font-size:11px">Problema común: cómo se reorganizan las fuerzas del proletariado en una era de declive capitalista, guerra, genocidio y giro autoritario de los Estados</text>
+<text class="sv-t3" x="380" y="58" text-anchor="middle" style="font-size:10px">CADA NÚMERO VUELVE SOBRE EL MISMO PROBLEMA DESDE UN ÁNGULO DISTINTO  →</text>
+<rect class="sv-box" x="18" y="68" width="136" height="291" rx="2"/>
+<text class="sv-t" x="86" y="88" text-anchor="middle" style="font-size:13px;letter-spacing:0">Nuevo Ciclo #001</text>
+<text class="sv-t" x="86" y="103" text-anchor="middle" style="font-size:12px;letter-spacing:0">Septiembre 2025</text>
+<text class="sv-t3" x="86" y="119" text-anchor="middle" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
+<text class="sv-t2" x="86" y="133" text-anchor="middle" style="font-size:11px">fija el diagnóstico</text>
+<text class="sv-t2" x="86" y="146" text-anchor="middle" style="font-size:11px">de época</text>
+<text class="sv-t3" x="86" y="188" text-anchor="middle" style="font-size:9.5px">TEMAS</text>
+<text class="sv-t2" x="86" y="202" text-anchor="middle" style="font-size:11px">diagnóstico de época:</text>
+<text class="sv-t2" x="86" y="215" text-anchor="middle" style="font-size:11px">declive, guerra,</text>
+<text class="sv-t2" x="86" y="228" text-anchor="middle" style="font-size:11px">represión, Gaza,</text>
+<text class="sv-t2" x="86" y="241" text-anchor="middle" style="font-size:11px">España</text>
+<text class="sv-t3" x="86" y="283" text-anchor="middle" style="font-size:9.5px">AUTORES</text>
+<text class="sv-t2" x="86" y="297" text-anchor="middle" style="font-size:11px">Aguiriano · Miasni</text>
+<text class="sv-t2" x="86" y="310" text-anchor="middle" style="font-size:11px">Gallardo · Hernández</text>
+<text class="sv-t2" x="86" y="323" text-anchor="middle" style="font-size:11px">Villegas</text>
+<text class="sv-t2" x="86" y="336" text-anchor="middle" style="font-size:11px">entrevista:</text>
+<text class="sv-t2" x="86" y="349" text-anchor="middle" style="font-size:11px">Ray Brassier</text>
+<line class="sv-line" x1="154" y1="213.5" x2="165" y2="213.5" marker-end="url(#nc-hero-arrow)"/>
+<rect class="sv-box" x="165" y="68" width="136" height="291" rx="2"/>
+<text class="sv-t" x="233" y="88" text-anchor="middle" style="font-size:13px;letter-spacing:0">Nuevo Ciclo #002</text>
+<text class="sv-t" x="233" y="103" text-anchor="middle" style="font-size:12px;letter-spacing:0">Diciembre 2025</text>
+<text class="sv-t3" x="233" y="119" text-anchor="middle" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
+<text class="sv-t2" x="233" y="133" text-anchor="middle" style="font-size:11px">las formas de la</text>
+<text class="sv-t2" x="233" y="146" text-anchor="middle" style="font-size:11px">dominación de clase y</text>
+<text class="sv-t2" x="233" y="159" text-anchor="middle" style="font-size:11px">la ausencia del sujeto</text>
+<text class="sv-t3" x="233" y="188" text-anchor="middle" style="font-size:9.5px">TEMAS</text>
+<text class="sv-t2" x="233" y="202" text-anchor="middle" style="font-size:11px">franquismo,</text>
+<text class="sv-t2" x="233" y="215" text-anchor="middle" style="font-size:11px">neofeudalismo, Europa,</text>
+<text class="sv-t2" x="233" y="228" text-anchor="middle" style="font-size:11px">siniestralidad, prensa</text>
+<text class="sv-t3" x="233" y="283" text-anchor="middle" style="font-size:9.5px">AUTORES</text>
+<text class="sv-t2" x="233" y="297" text-anchor="middle" style="font-size:11px">García · Ferrín</text>
+<text class="sv-t2" x="233" y="310" text-anchor="middle" style="font-size:11px">Juncales · Palacios</text>
+<text class="sv-t2" x="233" y="323" text-anchor="middle" style="font-size:11px">Volodia</text>
+<text class="sv-t2" x="233" y="336" text-anchor="middle" style="font-size:11px">entrevista:</text>
+<text class="sv-t2" x="233" y="349" text-anchor="middle" style="font-size:11px">W. C. Roberts</text>
+<line class="sv-line" x1="301" y1="213.5" x2="312" y2="213.5" marker-end="url(#nc-hero-arrow)"/>
+<rect class="sv-box" x="312" y="68" width="136" height="291" rx="2"/>
+<text class="sv-t" x="380" y="88" text-anchor="middle" style="font-size:13px;letter-spacing:0">Nuevo Ciclo #003</text>
+<text class="sv-t" x="380" y="103" text-anchor="middle" style="font-size:12px;letter-spacing:0">Marzo 2026</text>
+<text class="sv-t3" x="380" y="119" text-anchor="middle" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
+<text class="sv-t2" x="380" y="133" text-anchor="middle" style="font-size:11px">la reacción como</text>
+<text class="sv-t2" x="380" y="146" text-anchor="middle" style="font-size:11px">producto del declive</text>
+<text class="sv-t3" x="380" y="188" text-anchor="middle" style="font-size:9.5px">TEMAS</text>
+<text class="sv-t2" x="380" y="202" text-anchor="middle" style="font-size:11px">Estado dual, OTAN,</text>
+<text class="sv-t2" x="380" y="215" text-anchor="middle" style="font-size:11px">género, austeridad y</text>
+<text class="sv-t2" x="380" y="228" text-anchor="middle" style="font-size:11px">fascismo</text>
+<text class="sv-t3" x="380" y="283" text-anchor="middle" style="font-size:9.5px">AUTORES</text>
+<text class="sv-t2" x="380" y="297" text-anchor="middle" style="font-size:11px">Gómez y Seijo · Raq</text>
+<text class="sv-t2" x="380" y="310" text-anchor="middle" style="font-size:11px">Garde · Royo · Baroud</text>
+<text class="sv-t2" x="380" y="323" text-anchor="middle" style="font-size:11px">entrevista:</text>
+<text class="sv-t2" x="380" y="336" text-anchor="middle" style="font-size:11px">Jamie Merchant</text>
+<line class="sv-line" x1="448" y1="213.5" x2="459" y2="213.5" marker-end="url(#nc-hero-arrow)"/>
+<rect class="sv-box" x="459" y="68" width="136" height="291" rx="2"/>
+<text class="sv-t" x="527" y="88" text-anchor="middle" style="font-size:13px;letter-spacing:0">Nuevo Ciclo #004</text>
+<text class="sv-t" x="527" y="103" text-anchor="middle" style="font-size:12px;letter-spacing:0">Junio 2026</text>
+<text class="sv-t3" x="527" y="119" text-anchor="middle" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
+<text class="sv-t2" x="527" y="133" text-anchor="middle" style="font-size:11px">la coacción, la ley</text>
+<text class="sv-t2" x="527" y="146" text-anchor="middle" style="font-size:11px">y la resistencia</text>
+<text class="sv-t3" x="527" y="188" text-anchor="middle" style="font-size:9.5px">TEMAS</text>
+<text class="sv-t2" x="527" y="202" text-anchor="middle" style="font-size:11px">genocidio,</text>
+<text class="sv-t2" x="527" y="215" text-anchor="middle" style="font-size:11px">delincuencia,</text>
+<text class="sv-t2" x="527" y="228" text-anchor="middle" style="font-size:11px">ilegalidad, el juez,</text>
+<text class="sv-t2" x="527" y="241" text-anchor="middle" style="font-size:11px">inmigración</text>
+<text class="sv-t3" x="527" y="283" text-anchor="middle" style="font-size:9.5px">AUTORES</text>
+<text class="sv-t2" x="527" y="297" text-anchor="middle" style="font-size:11px">MJ · Mármol · Paula D.</text>
+<text class="sv-t2" x="527" y="310" text-anchor="middle" style="font-size:11px">Zafra · Suárez</text>
+<text class="sv-t2" x="527" y="323" text-anchor="middle" style="font-size:11px">entrevista:</text>
+<text class="sv-t2" x="527" y="336" text-anchor="middle" style="font-size:11px">Alberto Toscano</text>
+<line class="sv-line" x1="595" y1="213.5" x2="606" y2="213.5" marker-end="url(#nc-hero-arrow)"/>
+<rect class="sv-box" x="606" y="68" width="136" height="291" rx="2"/>
+<text class="sv-t" x="674" y="88" text-anchor="middle" style="font-size:13px;letter-spacing:0">Nuevo Ciclo #005</text>
+<text class="sv-t" x="674" y="103" text-anchor="middle" style="font-size:12px;letter-spacing:0">Septiembre 2026</text>
+<text class="sv-t3" x="674" y="119" text-anchor="middle" style="font-size:9.5px">ÁNGULO DEL NÚMERO</text>
+<text class="sv-t2" x="674" y="133" text-anchor="middle" style="font-size:11px">el cierre del ciclo</text>
+<text class="sv-t2" x="674" y="146" text-anchor="middle" style="font-size:11px">progresista y el</text>
+<text class="sv-t2" x="674" y="159" text-anchor="middle" style="font-size:11px">nacimiento del</text>
+<text class="sv-t2" x="674" y="172" text-anchor="middle" style="font-size:11px">reaccionario</text>
+<text class="sv-t3" x="674" y="188" text-anchor="middle" style="font-size:9.5px">TEMAS</text>
+<text class="sv-t2" x="674" y="202" text-anchor="middle" style="font-size:11px">fin del ciclo</text>
+<text class="sv-t2" x="674" y="215" text-anchor="middle" style="font-size:11px">progresista: Ceuta y</text>
+<text class="sv-t2" x="674" y="228" text-anchor="middle" style="font-size:11px">las elecciones,</text>
+<text class="sv-t2" x="674" y="241" text-anchor="middle" style="font-size:11px">Podemos, la fuerza de</text>
+<text class="sv-t2" x="674" y="254" text-anchor="middle" style="font-size:11px">trabajo, Israel fascista,</text>
+<text class="sv-t2" x="674" y="267" text-anchor="middle" style="font-size:11px">ola rosa y ola negra</text>
+<text class="sv-t3" x="674" y="283" text-anchor="middle" style="font-size:9.5px">AUTORES</text>
+<text class="sv-t2" x="674" y="297" text-anchor="middle" style="font-size:11px">Navarro · Tauste</text>
+<text class="sv-t2" x="674" y="310" text-anchor="middle" style="font-size:11px">Cirera · Martínez</text>
+<text class="sv-t2" x="674" y="323" text-anchor="middle" style="font-size:11px">Fernández</text>
+<text class="sv-t2" x="674" y="336" text-anchor="middle" style="font-size:11px">entrevista:</text>
+<text class="sv-t2" x="674" y="349" text-anchor="middle" style="font-size:11px">Jacques Pauwels</text>
+<rect class="sv-box-red" x="18" y="401" width="724" height="72" rx="2"/>
+<text class="sv-tr" x="380" y="423" text-anchor="middle">Partido comunista de masas, continental e internacional</text>
+<text class="sv-t2" x="380" y="441" text-anchor="middle" style="font-size:12px">independencia política de la clase: «el gran ausente hoy, a la vez que la única alternativa real»</text>
+<text class="sv-t2" x="380" y="458" text-anchor="middle" style="font-size:11px">con instituciones propias; fórmula de 1850; condición: unidad de clase con el proletariado migrante y todas las trabajadoras</text>
+<line class="sv-line-red" x1="86" y1="359.0" x2="86" y2="401.0" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line-red" x1="233" y1="359.0" x2="233" y2="401.0" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line-red" x1="380" y1="359.0" x2="380" y2="401.0" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line-red" x1="527" y1="359.0" x2="527" y2="401.0" marker-end="url(#nc-hero-arrow)"/>
+<line class="sv-line-red" x1="674" y1="359.0" x2="674" y2="401.0" marker-end="url(#nc-hero-arrow)"/>
+<text class="sv-t3" x="241" y="378" text-anchor="start" style="font-size:10px">TODOS DESEMBOCAN</text>
+<text class="sv-t3" x="241" y="390" text-anchor="start" style="font-size:10px">EN LA MISMA TAREA</text>
 </svg>

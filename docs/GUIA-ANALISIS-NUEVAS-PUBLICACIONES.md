@@ -9,7 +9,7 @@ está en `README.md` y `ACTUALIZACION-CONTENIDOS.md`; trata el criterio.
 Se apoya en dos documentos que hay que tener abiertos al trabajar:
 
 - `ESTADO-DE-LA-SINTESIS.md`: foto fija de lo vigente (tesis de cada revista, tesis comunes, conclusiones de cada
-  volumen y número, conceptos puente, arcos). Es lo que se enmienda.
+  volumen y número, conceptos puente, arcos). Es lo que se enmienda; se regenera con `tools/estado_sintesis.py`.
 - `PLANTILLA-NOTAS.md`: el formato de las notas de lectura de cada texto.
 
 ## 1. Qué es la biblioteca y cuál es su hilo
@@ -171,8 +171,7 @@ esté en él. Cada esquema existe en **dos niveles con el mismo árbol**:
 El orden de trabajo es **simplificado primero, detallado después**. El simplificado se dibuja desde el «esquema
 propuesto» de las notas; el detallado lo expande sin cambiar su árbol. (La carpeta `svg/simplificada/`, obtenida
 en octubre de 2026 reduciendo los detallados, fue una prueba en sentido inverso y no es el modelo: sale más
-cargada que los originales. Tras compararlas en el visor se descartó y se retiró del repositorio; queda en el
-historial de git, commit `0b9e4ce`.)
+cargada que los originales.)
 
 ### 7.1 El esquema simplificado: cómo se hicieron los originales
 
@@ -307,7 +306,8 @@ Contenido, en orden:
    nota; exclusivos anotados.
 9. Esquema simplificado de cada texto desde el «esquema propuesto» de las notas (§7.1) y, después, el detallado que lo expande (§7.2), comprobado contra el texto y la lista de fallos.
 10. Arco, mapa transversal y mapa de la biblioteca actualizados (una caja, una columna, o sólo texto, según §7).
-11. `ESTADO-DE-LA-SINTESIS.md` regenerado o corregido a mano para que refleje lo vigente.
+11. `ESTADO-DE-LA-SINTESIS.md` regenerado con `python tools/estado_sintesis.py` (lee los tres JSON de `data/`) para que
+    refleje lo vigente.
 
 ## 10. Qué conservar como memoria del proyecto
 
