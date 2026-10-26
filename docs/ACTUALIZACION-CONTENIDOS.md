@@ -26,22 +26,29 @@ regeneran desde cero. Si se regeneraran cada trimestre, cada número nuevo arras
 tema (el #004 las habría llevado hacia la coacción y la ley; el #003 hacia el fascismo) y se perdería la
 continuidad que hace útil la síntesis.
 
-## 2. Procedimiento para un número nuevo (ejemplo: Nuevo Ciclo #005)
+## 2. Procedimiento para un número nuevo (tal como se hizo con el #005)
+
+El #005 (septiembre de 2026) fue el primer número integrado con este método, el 26 de octubre de 2026. Lo que sigue
+es el procedimiento tal como quedó después de hacerlo, con los scripts (`tools/nuevo_numero/`) y los encargos tipo
+(`docs/briefs/`) que salieron de esa primera integración. La sección 6 recoge lo aprendido.
 
 ### Paso 1 · Texto y notas de lectura (con lectura íntegra)
 
-1. Extraer el texto del PDF y trocearlo por artículo. En Nuevo Ciclo una página del PDF es una página impresa, así
-   que los rangos salen del índice; conviene comprobarlos (en el #001 el índice situaba la entrevista en la p. 133 y
-   empezaba en la 129).
-2. Preparar el texto estructurado (`texto-estructurado-nuevo-ciclo/nc5-aM.json`) con el formato de
-   `data/texto/FORMATO.md`.
-3. Escribir las notas de lectura de los seis textos con el formato fijo de `docs/PLANTILLA-NOTAS.md`. Reglas que no se
-   negocian: las citas entre «» son literales y llevan página; los nombres de autores y títulos van tal cual los
-   imprime la revista; los resúmenes explican, no copian; no se inventan tesis ni cifras. Una entrevista sigue el
-   mismo formato (el resumen recorre las preguntas y respuestas principales).
+1. Extraer el texto del PDF con `tools/extraccion/` y dejar los `data/nuevo-ciclo/texto/n{N}-aM.json` (formato de
+   `data/texto/FORMATO.md`). En Nuevo Ciclo una página del PDF es una página impresa.
+2. `python tools/nuevo_numero/texto_a_txt.py N DESTINO` convierte esos JSON en `.txt` planos con marcas `[p.N]` y las
+   notas al pie al final: es lo que leen las sesiones de notas (y lo que se guarda en `../Marx XXI/txt/nc-art/`).
+   Aviso: sólo hay marca en las páginas donde empieza un bloque; las ocupadas por una tabla o una figura no la dejan,
+   y las sesiones infieren esas páginas por las notas al pie. Las tablas pueden aparecer volcadas dentro de una nota.
+3. Escribir las notas de lectura de los seis textos con el formato de `docs/PLANTILLA-NOTAS.md` ampliado con los dos
+   apartados que pide el encargo `docs/briefs/01-notas.md`: «Datos y ejemplos» (con página, alimentan el esquema
+   detallado) y «Posición en el arco» (qué tesis confirma, matiza o discute). Reglas que no se negocian: citas entre
+   «» literales, comprobadas con una búsqueda en el `.txt`, y con página; autores y títulos tal cual los imprime la
+   revista (en el #005: «D. Martínez», «L. Fernández», y una serie que cambia de firma entre entregas); los resúmenes
+   explican, no copian; nada se inventa. Una entrevista sigue el mismo formato.
 
-Esta es la parte cara y es local: seis textos, no veintiocho. Se puede repartir en varias sesiones (una por texto) y
-cada sesión sólo necesita su texto y la plantilla.
+Esta es la parte cara y es local: seis sesiones en paralelo, una por texto, con el `.txt`, la plantilla y el
+`ESTADO-DE-LA-SINTESIS.md` para situar el texto. En el #005 cada una tardó entre dos y cinco minutos de agente.
 
 ### Paso 2 · Síntesis del número (sin PDF)
 
@@ -57,6 +64,18 @@ Con las notas del #005 y, como contexto, las **conclusiones y mapas** de los nú
 
 Una comprobación útil al terminar: cada conclusión del número debe poder señalar al menos dos textos. Si sólo
 tiene uno, es la conclusión de un artículo, no del número.
+
+En la práctica (`docs/briefs/02-sintesis.md`) la misma sesión entrega, además, el ángulo y el subtítulo del número,
+los «Datos del número» y las tres tablas que necesita el paso siguiente: decisión tesis por tesis sobre las de la
+publicación, decisión sobre las tesis comunes con la frase de «aplicación» que añade el número, y la lista de
+conceptos puente (ya puente / nuevo puente / exclusivo). Hacerlo todo en una pasada, con las notas delante, salió
+mejor que repartirlo: las decisiones son coherentes entre sí y el script del paso 3 las aplica sin reinterpretar.
+Las discrepancias internas del número (en el #005, Cirera contra Navarro, Tauste y Martínez sobre la fase del
+ciclo) van como conclusión propia, como arista discontinua del mapa y como matiz de la tesis que tocan.
+
+Con las notas listas se lanzan también, en paralelo, las sesiones de esquemas (`docs/briefs/03-esquema.md`, una por
+texto): simplificado primero, desde el «Esquema propuesto», y detallado después; cada una entrega los dos SVG y un
+JSON con `aria_label`, `caption` y `viewBox` que el paso 3 lee.
 
 ### Paso 3 · Enmienda de las tesis de la publicación (sin PDF)
 
@@ -75,8 +94,16 @@ número, no una tesis de la publicación), y una tesis existente no se elimina n
 números no la mencionen (el horizonte de la asociación de productores libres sigue siendo tesis de Marx XXI
 aunque Nuevo Ciclo apenas lo toque).
 
-El mapa transversal de la publicación se regenera a partir de las tesis resultantes: está construido como diagrama
-a partir de texto (ver `tools/` de `app-handoff-nuevo-ciclo`), no dibujado a mano, así que no cuesta nada rehacerlo.
+Mecánica: `python tools/nuevo_numero/notas_a_json.py N NOTAS --mes AAAA-MM [--issn … --pages …]` convierte las
+notas, el cierre y los JSON de los esquemas en la entrada del número (`NOTAS/out/volume.json`), y
+`python tools/nuevo_numero/aplicar_enmiendas.py N NOTAS --alinear T=C` aplica esa entrada y las tablas del cierre a
+`content.json`, `library-synthesis.json`, `files.json` y `library.json`. La alineación de una tesis nueva con una
+tesis común (`--alinear 11=5` en el #005) la decide quien integra: la tabla no la trae. Después hay que retocar a
+mano cuatro textos de `cross_volume` que nombran los números (`arc.caption`, `lede`, `map.caption`, `colophon`) y
+la `description` de Nuevo Ciclo en `library.json`.
+
+El mapa transversal de la publicación se rehace a partir de las tesis resultantes (`docs/briefs/04-mapas.md`): la
+tesis nueva recibe caja en su banda, las matizadas una línea con el matiz y todas las cajas el «#N» en su rótulo.
 
 ### Paso 4 · Enmienda de la síntesis de la biblioteca (sin PDF)
 
@@ -98,8 +125,12 @@ coyuntura trabaja bajo ese principio y quién la firma.
 - `content_version` en `nuevo-ciclo/content.json` y `library_synthesis_version` en `library-synthesis.json` pasan a
   la fecha del cambio. Conviene añadir en cada tesis enmendada un campo `revised` con la fecha y el número que la
   motivó, y en las nuevas `added`; la web ignora los campos que no conoce, así que se pueden añadir sin tocar código.
-- `python tools/importar_nuevo_ciclo.py`, `python tools/ajustar_esquemas.py data/nuevo-ciclo/svg --aplicar`,
-  `publicar.bat` (ver README). Recordar que el importador sobrescribe `data/nuevo-ciclo/`.
+- Desde el #005 la fuente de verdad es `data/` directamente: **no ejecutar `tools/importar_nuevo_ciclo.py`**, que
+  sobrescribiría `data/nuevo-ciclo/` con el traspaso antiguo (cuatro números). Si se quiere conservar el traspaso
+  como copia, copiar hacia él, no desde él.
+- Comprobar los esquemas con `python tools/esquemas/batch.py data/nuevo-ciclo/svg SALIDA` (y la carpeta
+  `revision/`): renderiza con Alegreya como la web y lista textos fuera de caja, sobre líneas o solapados.
+- `python tools/estado_sintesis.py` regenera `docs/ESTADO-DE-LA-SINTESIS.md`; después `publicar.bat` (ver README).
 
 ## 3. Qué pasa con un tomo nuevo de Marx XXI o una tercera publicación
 
@@ -120,30 +151,68 @@ dos publicaciones (`synthesisView`).
   «Alberto Toscano»; se deja constancia en `data_notes` y se elige una forma para la ficha de autor.
 - **Apoyos**: conclusiones de número con ≥ 2 textos; tesis de publicación con ≥ 2 apoyos; conceptos puente con al
   menos un artículo en cada publicación.
-- **Ids**: `n5-a1…n5-a6` para el #005; `cross_refs` sólo apunta a ids existentes (`tools/build.py` lo comprueba).
+- **Ids**: `n{N}-a1…n{N}-a6`; `cross_refs` sólo apunta a ids existentes (`tools/build.py` lo comprueba).
+- **Fechas y cifras de los esquemas**: cada año o cifra de un rótulo se busca en el `.txt`; lo que no está se
+  retira o se reformula («desde 2019»).
+- **Sin Markdown en los JSON**: ni asteriscos ni guiones de lista en resúmenes, píldoras o conceptos.
 - **Lo que no se hace**: regenerar las tesis desde cero; poner títulos temáticos a los números (son «Nuevo Ciclo
-  #005»); inventar presentaciones; «mejorar» resúmenes ya aprobados al tocar otra cosa.
+  #00N»); inventar presentaciones; «mejorar» resúmenes ya aprobados al tocar otra cosa; ejecutar
+  `importar_nuevo_ciclo.py` sobre un `data/` que ya va por delante del traspaso.
 
 ## 5. Cómo repartir el trabajo con Claude
 
 El método está pensado para que cada paso quepa en una sesión y no dependa de recordar las anteriores:
 
-- Paso 1: una sesión por texto (o por número, con un agente por texto) con `docs/PLANTILLA-NOTAS.md` y el `.txt`
-  del artículo. Es la única que necesita el PDF.
-- Paso 2: una sesión con las seis notas nuevas y el `content.json` actual de la publicación.
-- Pasos 3-4: una sesión con las tesis vigentes, las conclusiones del número y `library-synthesis.json`; se le pide
-  explícitamente la tabla de decisiones (confirmada / matizada / nueva / sin cambios) antes de ningún texto nuevo,
-  para poder revisarla.
-- Los diagramas: una función por texto en `diagrams.py` siguiendo el «esquema sugerido» de las notas; el motor hace
-  el resto y produce los SVG con las clases `sv-*` que la web ya tematiza. Desde octubre de 2026 cada esquema tiene
-  dos niveles con el mismo árbol: el simplificado (los originales de `svg/`, dibujados desde el «esquema propuesto»
-  de las notas) y el detallado (`svg/revision/`, mismo nombre de archivo), que expande el simplificado con los
-  ejemplos y datos del texto. Primero el simplificado, después el detallado (criterios en la guía, §7).
-  En octubre de 2026 se probó el camino inverso: simplificados obtenidos reduciendo los detallados
-  (`svg/simplificada/`), comparados en el visor con un interruptor de tres posiciones (S1 | S2 | D). Se descartaron
-  porque salen más cargados que los originales: se mantienen los simplificados originales y el interruptor vuelve a
-  S | D. Esos SVG y el interruptor de tres posiciones quedan en el historial de git (commits `0b9e4ce` y `dcd0ef6`,
-  revertidos).
+Los encargos tipo están en `docs/briefs/` (índice en su `README.md`); el reparto que se usó en el #005:
 
-Guardar las notas de lectura (`notes/numeroN.md`) junto al traspaso: son la memoria del proyecto y lo que permite
-que una sesión futura trabaje sin volver al PDF.
+- Encargo 1 (notas): una sesión por texto, en paralelo, con el `.txt`, la plantilla y el estado de la síntesis. Es
+  la única que lee el texto entero.
+- Encargo 2 (síntesis): una sesión con las seis notas y `docs/ESTADO-DE-LA-SINTESIS.md`. Entrega conclusiones,
+  relaciones, mapa en texto, referencias cruzadas, datos y las tres tablas de decisión (tesis de la publicación,
+  tesis comunes, puentes), que se revisan antes de aplicarlas con el script.
+- Encargo 3 (esquemas): una sesión por texto, en paralelo con la anterior, que dibuja el simplificado desde el
+  «Esquema propuesto» de las notas y después el detallado con el mismo árbol (criterios en la guía, §7). Cada
+  esquema tiene dos niveles: `svg/` (simplificado) y `svg/revision/` (detallado), con el mismo nombre de archivo.
+- Encargo 4 (mapas): dos sesiones, cuando los JSON ya están enmendados: el mapa del número; el arco, el transversal
+  y el mapa de la biblioteca.
+
+Guardar las notas de lectura y el cierre (`../app-handoff-nuevo-ciclo/notes/numeroN.md`) y los `.txt`
+(`../Marx XXI/txt/nc-art/`): son la memoria del proyecto y lo que permite que una sesión futura trabaje sin volver
+al PDF.
+
+## 6. Lo aprendido integrando el #005 (26-10-2026)
+
+**Lo que funcionó.** Seis sesiones de notas en paralelo con un encargo cerrado; una sola sesión de síntesis que
+entrega conclusiones, relaciones, mapa en texto, referencias cruzadas y las tres tablas de decisión; seis sesiones
+de esquemas en paralelo con la de síntesis; dos sesiones de mapas al final, cuando los JSON ya están enmendados. En
+total, unas tres horas de pared, la mayor parte en los esquemas. Los scripts de `tools/nuevo_numero/` reproducen
+exactamente lo que se hizo a mano, así que el #006 debería costar la mitad.
+
+**Lo que hubo que corregir sobre la marcha, y ahora está en los encargos.**
+- Un esquema puso «Gobierno PSOE-UP (2020-2023)» tomando los años de las notas; el texto sólo dice «tras la
+  repetición electoral de noviembre de 2019». Regla: los años de un rótulo tienen que estar en el texto; las notas
+  no son fuente suficiente (encargo 3).
+- Las notas y el cierre llevan cursivas y negritas en Markdown; `content.json` no las admite (los números anteriores
+  no tienen un solo asterisco). `notas_a_json.py` las limpia; la primera versión del número se subió con cuatro.
+- El cierre proponía «ola rosa (1998-2015)»; el texto no fija 2015. Mismo criterio que arriba.
+- La tabla de tesis comunes no dice con qué tesis común se alinea una tesis nueva de la publicación; se añadió a la
+  plantilla del encargo 2 y como opción `--alinear` del script.
+- Al añadir artículos a un puente existente, el script etiquetaba los tres con el nombre compuesto del puente; se
+  dejó a mano «Ejército industrial de reserva migrante» para n5-a3. Conviene que el cierre dé el término exacto de
+  cada artículo (encargo 2).
+- El mapa del número salió más alto de lo previsto (913 px en el simplificado): con diez nodos y dieciocho aristas
+  rotuladas no cabe menos. Se acepta; la alternativa sería menos aristas, y las aristas son las conclusiones.
+- `mapa-biblioteca.svg` necesitó una línea más por caja de coyuntura y 32 px; la versión de 790 px de ancho que
+  había en `svg/` no daba de sí y se sustituyó por la de 760 (mismos textos). Un número nuevo no añade columna.
+- La página de créditos (depósito legal, ISSN, paginación total) no viene en los textos extraídos; la ficha del
+  #005 lleva el ISSN de la revista y `deposito_legal: null`. Conviene extraerla con el PDF.
+- `content.json` espera por artículo `text_file` y `word_count` además de `source_text_file`/`words_txt` (los
+  cuatro, por compatibilidad); `concept_map` lleva `viewBox`; las entrevistas llevan `author` «Entrevista con X ·
+  preguntas de la redacción», `interviewee` X y `quote.source` «X, entrevista en Nuevo Ciclo #00N (p. N)». Todo lo
+  hace `notas_a_json.py`.
+- `files.json` debe listar los SVG y los textos nuevos (los de `revision/` no); `aplicar_enmiendas.py` lo hace.
+
+**Lo que no cambió y conviene no cambiar.** Las tesis se enmendaron, no se regeneraron: del #005 salieron cuatro
+matices y una tesis nueva con cuatro apoyos, no un juego de tesis nuevo. Las conclusiones se escribieron con los
+autores por nombre y con dos textos como mínimo. Y los esquemas simplificados siguieron saliendo del «Esquema
+propuesto» de las notas, con el detallado después: cuando el plano está bien escrito, el dibujo es ejecución.

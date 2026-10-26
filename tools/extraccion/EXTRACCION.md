@@ -12,6 +12,7 @@ volcado_maqueta.py       vuelca x, y, fuente y tamaño de las líneas de unas p�
 nuevo_ciclo/
   extraer_nc.py          ejecutable: un PDF de Nuevo Ciclo → un JSON por texto (el que se usa normalmente)
   extract_nc.py          biblioteca: lectura de líneas, clasificación, párrafos, notas, tablas, cobertura
+  extraer_creditos.py    ficha técnica (pág. 2 del PDF) → ncN-creditos.json
   qa_nc.py               revisión heurística de los JSON (minúsculas al inicio, párrafos sin cierre, muy cortos…)
 marx_xxi/
   extract.py             biblioteca de Marx XXI
@@ -69,6 +70,10 @@ Ejemplo con el #006, PDF `NC_006.pdf` en la carpeta `Marx XXI`.
    `--primer-articulo K` para que el primer texto del PDF se numere `ncN-aK` (así se hizo con el #005, que solo
    trae el artículo 2: `nc5-a2`). Cuando salga el número completo, **volver a extraer con el PDF completo y sin esa
    opción**, y borrar el JSON provisional.
+5 bis. **Créditos**: `extraer_nc.py` solo extrae los textos del índice; la ficha técnica (pág. 2: edición, portada, depósito
+   legal, ISSN, contacto, licencia) se extrae aparte: `python extraer_creditos.py NC_006.pdf --numero 6 --salida
+   ../../../../texto-estructurado-nuevo-ciclo` → `nc6-creditos.json` (`items` rótulo/valor + `license`). Comprobar que
+   los caracteres coinciden con los de la página.
 6. **Revisión heurística**: `python qa_nc.py ../../../../texto-estructurado-nuevo-ciclo` lista párrafos que empiezan
    en minúscula, no acaban en signo de cierre o son muy cortos. Casi siempre son legítimos (continuación tras una
    cita o tabla, marcada `cont:true`); mirar los demás.

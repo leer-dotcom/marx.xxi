@@ -1,7 +1,7 @@
 # Marx XXI · lector web
 
 Versión web (PWA) del lector de *Marx XXI*. Es una **biblioteca** con dos publicaciones del mismo proyecto editorial:
-*Marx XXI* (revista-libro, cinco volúmenes) y *Nuevo Ciclo* (revista trimestral, cuatro números hasta junio de 2026).
+*Marx XXI* (revista-libro, cinco volúmenes) y *Nuevo Ciclo* (revista trimestral, cinco números hasta septiembre de 2026).
 Textos íntegros con píldoras, resúmenes, esquemas, conceptos, glosario, tesis comunes, referencias cruzadas entre las
 dos revistas, síntesis de la biblioteca, índice de autores y búsqueda. Es HTML, CSS y JavaScript sin dependencias ni paso de compilación,
 y se puede publicar directamente en GitHub Pages.
@@ -13,7 +13,6 @@ index.html              estructura de la página
 css/app.css             diseño inspirado en marxxxi.com (Alegreya, verde #2c332f, color por volumen) + temas sepia/oscuro/negro
 js/app.js               rutas (#/…) y vistas: inicio, volumen, artículo, tesis, glosario, búsqueda, marcadores, lista de lectura, ajustes
 js/reader.js            modo lectura
-js/speech.js            lectura en voz alta del modo lectura (voces del dispositivo, Web Speech API)
 js/data.js              carga de datos, búsqueda y almacenamiento local (localStorage)
 sw.js                   service worker: funciona sin conexión tras la primera visita
 manifest.webmanifest    instalación como app («Añadir a pantalla de inicio»)
@@ -27,9 +26,11 @@ tools/dev_server.py     servidor local sin caché
 tools/make_icons.py     genera los PNG del icono
 tools/importar_nuevo_ciclo.py  trae a data/nuevo-ciclo/ el material de ../app-handoff-nuevo-ciclo y ../texto-estructurado-nuevo-ciclo
 tools/ajustar_esquemas.py      comprueba (y con --aplicar corrige) que los textos de los esquemas caben en su caja con Alegreya
+tools/esquemas/         render.py y batch.py: renderizan un esquema (o una carpeta) como lo hace la web y listan problemas de encaje
+tools/nuevo_numero/     texto_a_txt.py, notas_a_json.py, aplicar_enmiendas.py: integran un número nuevo (ver docs/ACTUALIZACION-CONTENIDOS.md §2)
+tools/estado_sintesis.py       regenera docs/ESTADO-DE-LA-SINTESIS.md a partir de los tres JSON de data/
 tools/extraccion/       cómo se extrae el texto de los PDF (EXTRACCION.md) y los scripts para hacerlo con números nuevos
-docs/                   método editorial: cómo incorporar números nuevos y actualizar tesis y síntesis; plantilla de notas;
-                        estudio de la lectura en voz alta (LECTURA-EN-VOZ-ALTA.md)
+docs/                   método editorial (ACTUALIZACION-CONTENIDOS), criterio de contenido (GUIA-ANALISIS…), estado de la síntesis, plantilla de notas y encargos tipo (briefs/)
 .github/workflows/      publicación automática en GitHub Pages
 ```
 
@@ -69,27 +70,21 @@ cada artículo enlaza como «PDF disponible en marxxxi.com». En Nuevo Ciclo la 
 
 El texto de cada número sale de su PDF con los scripts de `tools/extraccion/` (método detallado en `tools/extraccion/EXTRACCION.md`).
 
-**Añadir el #005:** guardar su portada como `img/nc5.webp`, dejar su guía en `../app-handoff-nuevo-ciclo/` (mismo formato: `content.json`, `svg/`,
-`library-synthesis.json`) y su texto en `../texto-estructurado-nuevo-ciclo/nc5-a1.json…`, y ejecutar:
-
-```bash
-python tools/importar_nuevo_ciclo.py
-```
-
-```bash
-python tools/ajustar_esquemas.py data/nuevo-ciclo/svg --aplicar
-```
-
-Ojo: el importador **sobrescribe** `data/nuevo-ciclo/`; si se ha corregido algo a mano allí, hay que llevarlo antes
-a las carpetas de origen. Después, `publicar.bat` como siempre. No hace falta tocar el código.
+**Añadir un número nuevo (así se hizo con el #005):** desde el #005 la fuente de verdad es `data/` y el importador
+ya no se usa. Pasos, con detalle en `docs/ACTUALIZACION-CONTENIDOS.md` §2: extraer el texto con `tools/extraccion/`
+a `data/nuevo-ciclo/texto/n{N}-a*.json`; `python tools/nuevo_numero/texto_a_txt.py N DESTINO` para los `.txt` que
+leen las sesiones de notas; notas, síntesis y esquemas con los encargos de `docs/briefs/`;
+`python tools/nuevo_numero/notas_a_json.py N NOTAS --mes AAAA-MM` y
+`python tools/nuevo_numero/aplicar_enmiendas.py N NOTAS --alinear T=C` para llevar todo a los JSON; retocar a mano
+`arc.caption`, `lede`, `map.caption`, `colophon` y la `description` de `library.json`; mapas de colección; portada en
+`img/ncN.webp`; `python tools/esquemas/batch.py data/nuevo-ciclo/svg SALIDA` para comprobar los esquemas;
+`python tools/estado_sintesis.py`; y `publicar.bat`. `tools/importar_nuevo_ciclo.py` queda para reconstruir
+`data/nuevo-ciclo/` desde el traspaso antiguo y **sobrescribe**: no ejecutarlo sobre un `data/` que ya va por delante.
 
 **Nuevas tesis y análisis.** Lo anterior es la parte mecánica. Cómo se leen los textos nuevos, cómo se redactan sus
 conclusiones y cómo se *enmiendan* (no se regeneran) las tesis de cada revista y la síntesis de la biblioteca está en
 [`docs/ACTUALIZACION-CONTENIDOS.md`](docs/ACTUALIZACION-CONTENIDOS.md); la plantilla de las notas de lectura, en
-[`docs/PLANTILLA-NOTAS.md`](docs/PLANTILLA-NOTAS.md). El criterio de contenido (qué extraer de cada texto, qué hace
-que una afirmación sea conclusión o tesis, cómo se detectan los conceptos puente, qué debe contener cada esquema en sus
-dos niveles) está en [`docs/GUIA-ANALISIS-NUEVAS-PUBLICACIONES.md`](docs/GUIA-ANALISIS-NUEVAS-PUBLICACIONES.md), y lo
-vigente que se enmienda (tesis, conclusiones, puentes, arcos) en [`docs/ESTADO-DE-LA-SINTESIS.md`](docs/ESTADO-DE-LA-SINTESIS.md). En resumen: sólo el número nuevo se lee íntegro; las capas
+[`docs/PLANTILLA-NOTAS.md`](docs/PLANTILLA-NOTAS.md). En resumen: sólo el número nuevo se lee íntegro; las capas
 superiores (conclusiones del número, tesis de la publicación, síntesis de la biblioteca) se actualizan a partir de las
 síntesis ya existentes, decidiendo tesis por tesis si el número las confirma, las matiza o aporta una nueva.
 

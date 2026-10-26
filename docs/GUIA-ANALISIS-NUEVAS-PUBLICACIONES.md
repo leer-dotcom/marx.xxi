@@ -309,7 +309,19 @@ Contenido, en orden:
 11. `ESTADO-DE-LA-SINTESIS.md` regenerado con `python tools/estado_sintesis.py` (lee los tres JSON de `data/`) para que
     refleje lo vigente.
 
-## 10. Qué conservar como memoria del proyecto
+## 10. Lo que enseñó la primera integración real (#005)
+
+El método se había escrito antes de usarse. Al aplicarlo al #005 se sostuvo en lo esencial —capas, enmienda en vez
+de regeneración, simplificado antes que detallado— y pidió cuatro ajustes de criterio que ya están incorporados
+arriba: la discrepancia interna como conclusión (§3); la alineación explícita de las tesis nuevas y la disonancia
+registrada sin resolver (§5); el término por artículo en los puentes (§6); y los años de los rótulos tomados del
+texto y no de las notas (§7.1). Dos cosas más que conviene saber. La primera: el reparto que funciona es seis
+sesiones de notas en paralelo, una de síntesis que entrega también las tablas de decisión, seis de esquemas y dos
+de mapas; los encargos están en `docs/briefs/` y la mecánica en `ACTUALIZACION-CONTENIDOS.md` §2 y §6. La segunda:
+el número nuevo pesa en las tesis más de lo que parece mientras se lee (cuatro matices y una tesis nueva de un
+solo número) y menos de lo que parecería si se regenerasen: ninguna tesis anterior cambió de título.
+
+## 11. Qué conservar como memoria del proyecto
 
 Lo que permite que una sesión futura trabaje sin volver a los PDF: las notas de lectura de cada texto
 (`notes/`), los `content.json` de cada publicación, `library-synthesis.json`, este documento y su anexo, y la hoja
